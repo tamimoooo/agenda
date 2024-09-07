@@ -79,8 +79,14 @@
             justify-content: center;
             font-weight: bold;
             font-size: 0.8em;
-            margin: 20px auto;
+            margin: 20px auto 5px auto;
             text-align: center;
+        }
+        .day-text {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #b22222;
         }
         .agenda-items {
             flex: 1;
@@ -92,7 +98,11 @@
             margin-bottom: 15px;
         }
         ul li {
-            margin-bottom: 20px; /* Adds space between bullet points */
+            margin-bottom: 20px; /* Adds space between all bullet points */
+        }
+        .agenda-items ul li,
+        #contacts-content ul li {
+            margin-bottom: 20px; /* Adds additional space specifically for the agenda and contacts sections */
         }
         .highlight {
             color: red;
@@ -108,7 +118,6 @@
         }
         .mini-reunion {
             background-color: #f9f1d2;
-            border: 2px solid #f1c40f;
             padding: 10px 15px;
             display: inline-block;
             margin: 20px auto;
@@ -129,11 +138,6 @@
         }
         th {
             background-color: #f2f2f2;
-        }
-        /* Add specific spacing for agenda and contacts sections */
-        #agenda ul li,
-        #contacts-content ul li {
-            margin-bottom: 20px; /* Adds space between bullet points in Agenda and Contacts sections */
         }
         @media (max-width: 768px) {
             h1 {
@@ -167,11 +171,13 @@
         <!-- Agenda Items with Days -->
         <div class="agenda-items">
             <div class="circle">Thursday<br>10/3</div>
+            <p class="day-text">Unite Da Dots</p>
             <ul>
                 <li><strong>6:00 PM:</strong> Arrival (Roommate Reveal) and Floating Food and Beverage Bars by #2 & #9</li>
                 <li><strong>8:00 PM:</strong> Sisterhood Activities led by #1 & #11</li>
             </ul>
             <div class="circle">Friday<br>10/4</div>
+            <p class="day-text">Connect Da Dots</p>
             <ul>
                 <li><strong>9:00 AM:</strong> Service Project led by #12</li>
                 <li><strong>11:00 AM:</strong> Catered Brunch – Dame’s Chicken and Waffles</li>
@@ -182,6 +188,7 @@
                 <li><strong>7:00 PM:</strong> Game Night!</li>
             </ul>
             <div class="circle">Saturday<br>10/5</div>
+            <p class="day-text">Share Da Dots</p>
             <ul>
                 <li><strong>8:00 AM:</strong> Continental Breakfast (ODD Dots)</li>
                 <li><strong>9:00 AM - 11:00 AM:</strong> OH Red Pajama Party</li>
@@ -193,6 +200,7 @@
                 <li><strong>9:00 PM:</strong> All Black Party VIP – All Black Attire/Sneaker Party</li>
             </ul>
             <div class="circle">Sunday<br>10/6</div>
+            <p class="day-text">Dots Depart</p>
             <ul>
                 <li><strong>9:00 AM:</strong> Continental Breakfast (EVEN Dots)</li>
                 <li><strong>10:00 AM:</strong> Departure</li>
