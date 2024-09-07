@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OH SPRING 94 REUNION WEEKEND</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            overflow-y: scroll;
+            position: relative;
+            background: linear-gradient(to bottom right, #f0f0f0, #ffffff);
+        }
+        .polka-dots {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: radial-gradient(circle, rgba(211, 47, 47, 0.8) 10%, transparent 10%), 
+                        radial-gradient(circle, rgba(211, 47, 47, 0.8) 10%, transparent 10%);
+            background-size: 20px 20px; /* Smaller polka dots */
+            background-position: 0 0, 10px 10px;
+            z-index: -1;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 140px;
+            font-size: 3em;
+            color: #d32f2f;
+            font-weight: bold;
+            background: -webkit-linear-gradient(#d32f2f, #f06d6d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .center-text {
+            text-align: center;
+            font-size: 1em;
+            color: #333;
+            margin: 20px auto;
+            font-weight: bold;
+            display: block;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .section-title {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #b22222;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .expandable-content {
+            display: block;
+        }
+        .agenda {
+            display: flex;
+            align-items: flex-start;
+        }
+        .days {
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px;
+        }
+        .circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #d32f2f;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-bottom: 60px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .agenda-items {
+            flex: 1;
+        }
+        .agenda-text {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        ul {
+            padding-left: 20px;
+            text-align: left;
+            margin-bottom: 15px;
+        }
+        .highlight {
+            color: red;
+            font-weight: bold;
+        }
+        a {
+            text-decoration: none;
+            color: #b22222;
+        }
+        a:hover {
+            color: #333;
+            text-decoration: underline;
+        }
+        .mini-reunion {
+            background-color: #f9f1d2;
+            border: 2px solid #f1c40f;
+            padding: 10px 15px;
+            display: inline-block;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+            color: #8c6c00;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="polka-dots"></div>
+<h1>OH SPRING 94 REUNION WEEKEND</h1>
+<p class="center-text">October 3-6, 2024 | 203 Woodfern Dr., Jamestown, NC 27282</p>
+
+<div id="agenda" class="section">
+    <h2 class="section-title">Agenda</h2>
+    
+    <div class="agenda">
+        <!-- Days Column -->
+        <div class="days">
+            <div class="circle">Thursday<br>10/3</div>
+            <div class="circle">Friday<br>10/4</div>
+            <div style="margin-bottom: 20px;"></div>
+            <div class="circle">Saturday<br>10/5</div>
+            <div style="margin-bottom: 40px;"></div>
+            <div class="circle">Sunday<br>10/6</div>
+        </div>
+
+        <!-- Agenda Items Column -->
+        <div class="agenda-items">
+            <ul>
+                <li>6:00 PM: Arrival (Roommate Reveal) and Floating Food and Beverage Bars by #2 & #9</li>
+                <li>8:00 PM: Sisterhood Activities led by #1 & #11</li>
+            </ul>
+            <ul>
+                <li>9:00 AM: Service Project led by #12</li>
+                <li>11:00 AM: Catered Brunch – Dame’s Chicken and Waffles</li>
+                <li>12:00 PM: Sisterhood Activity led by #15 & #16</li>
+                <li>1:00 PM: Capture Da Dots (See **Friday Shoot Attire Below)</li>
+                <li>2:00 PM: Sisterhood Activity led by #7</li>
+                <li>6:00 PM: Catered Dinner – Black Powder BBQ</li>
+                <li>7:00 PM: Game Night!</li>
+            </ul>
+            <ul>
+                <li>8:00 AM: Continental Breakfast (ODD Dots)</li>
+                <li>9:00 AM - 11:00 AM: OH Red Pajama Party</li>
+                <li>12:30 PM: Line Photo on Campus</li>
+                <li>1:00 PM: On the Yard (with OH and/or G activities)</li>
+                <li>2:00 PM - 3:00 PM: Line competition and fellowship (Optional)</li>
+                <li>4:00 PM: Sweetheart song (Optional)</li>
+                <li>7:00 PM: Dinner at the House (Optional)</li>
+                <li>9:00 PM: All Black Party VIP – All Black Attire/Sneaker Party</li>
+            </ul>
+            <ul>
+                <li>9:00 AM: Continental Breakfast (EVEN Dots)</li>
+                <li>10:00 AM: Departure</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="housing" class="section">
+    <h2 class="section-title">Housing Information</h2>
+    <div id="housing-content" class="expandable-content">
+        <ul>
+            <li>Linens are provided, but you're welcome to bring your own.</li>
+            <li>We’ll have snacks, but feel free to bring your favorites too!</li>
+            <li>Drinks (alcoholic and non-alcoholic) will be available. You're welcome to bring any special drinks you enjoy.</li>
+            <li>Please Complete the <a href="https://docs.google.com/forms/d/e/1FAIpQLSed9jIKizhQYIXekyOB8jPlhBwif-q1vAEDTWlYjoQormaaQA/viewform" target="_blank">Travel Form</a> if you haven’t already done so.</li>
+            <li>We will be using WhatsApp to share pictures and keep in touch during homecoming. Please download if you haven't already: <a href="https://www.whatsapp.com/download" target="_blank">Download WhatsApp</a>.</li>
+        </ul>
+        
+        <p><strong>Lodging:</strong></p>
+        <ul>
+            <li>Checkout Details - [Details to Come]</li>
+            <li>Please check out by 9:45 am on Sunday, October 6th.</li>
+        </ul>
+        <p><strong>WiFi Details:</strong></p>
+        <ul>
+            <li>SSID: [Details to Come]</li>
+            <li>Password: [Details to Come]</li>
+        </ul>
+    </div>
+</div>
+
+<div id="contacts" class="section">
+    <h2 class="section-title">Contacts</h2>
+    <div id="contacts-content" class="expandable-content">
+        <ul>
+            <li>Attire for the Weekend: Summer Scott</li>
+            <li>Sister Activities: Errin McComb</li>
+            <li>Lodging Questions: Tamika Moody, Janita Moody, Sherri Belk, Tephia Lindsay</li>
+            <li>Service Project: Sherri Belk</li>
+            <li>Airport Pickup/DropOff: Tamika Moody</li>
+            <li>Food Dietary Restrictions: Errin McComb</li>
+            <li>OH Mini Reunion Free Activities: Tamika Moody (This group will be communicating via GroupMe)</li>
+        </ul>
+    </div>
+</div>
+
+<div id="service-project" class="section">
+    <h2 class="section-title">Service Project Sign-Up Sheet</h2>
+    <div id="service-content" class="expandable-content">
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Status</th>
+                    <th>Confirmed Sign-ups</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Shampoo</td>
+                    <td class="highlight">15 of 30 filled</td>
+                    <td>Michelle Foxx (5), Dana Smith (10)</td>
+                </tr>
+                <tr>
+                    <td>Conditioner</td>
+                    <td>30 of 30 filled</td>
+                    <td>Monshaire Johnson (15), Tamika Francis (15)</td>
+                </tr>
+                <tr>
+                    <td>Comb</td>
+                    <td>30 of 30 filled</td>
+                    <td>Janita Moody (11), Errin M (19)</td>
+                </tr>
+                <tr>
+                    <td>Body Wash/Soap</td>
+                    <td>30 of 30 filled</td>
+                    <td>Melanie Bullock (20), Summer Larkin (10)</td>
+                </tr>
+                <tr>
+                    <td>Toothbrush</td>
+                    <td>30 of 30 filled</td>
+                    <td>Nicole (5), Tamika Moody (5), Tephia Lindsay (10), Sherri Belk (10)</td>
+                </tr>
+                <tr>
+                    <td>Toothpaste</td>
+                    <td>30 of 30 filled</td>
+                    <td>Janita Moody (10), Summer Larkin (10), Sherri Belk (10)</td>
+                </tr>
+                <tr>
+                    <td>Wash Cloths</td>
+                    <td>30 of 30 filled</td>
+                    <td>Summer Larkin (10), Tamika Moody (20)</td>
+                </tr>
+                <tr>
+                    <td>Wipes</td>
+                    <td class="highlight">10 of 30 filled</td>
+                    <td>Tephia Lindsay (10)</td>
+                </tr>
+                <tr>
+                    <td>Deodorant</td>
+                    <td>30 of 30 filled</td>
+                    <td>Vernét Farmer (30)</td>
+                </tr>
+                <tr>
+                    <td>Lotion</td>
+                    <td class="highlight">20 of 30 filled</td>
+                    <td>Dana Smith (10), Michelle Foxx (5), Nicole (5)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="homecoming-activities" class="section">
+    <h2 class="section-title">Other Homecoming Activities</h2>
+    <div id="homecoming-content" class="expandable-content">
+        <div class="mini-reunion"><strong>OH Mini Reunion Activities:</strong> <a href="https://www.facebook.com/share/g/jH5KFPnemhkEuf5Y/?mibextid=K35XfP" target="_blank">Facebook Event Link</a></div>
+        
+        <div><strong>UNCG Homecoming Activities:</strong> UNCG Registration: <a href="https://alumni.uncg.edu/homecoming/" target="_blank">Register on the official UNCG site for homecoming</a>.</div>
+
+        <ul>
+            <li>Parking decks around campus will be open and free of charge from 5 pm on Friday, October 4 through 8 am on Monday, October 7.</li>
+            <li>Spartan Chariots, our campus shuttles, will be running throughout the weekend. Track the shuttle at <a href="https://passiogo.com/" target="_blank">this site</a>.</li>
+            <li>For more information on parking and transportation, visit the <a href="https://www.uncg.edu/campus-life-resources/student-community-resources/parking-transportation/" target="_blank">UNCG website</a>.</li>
+        </ul>
+
+        <p><strong>Black Alumni Network Homecoming Schedule:</strong></p>
+        <div class="homecoming-item"><strong>Saturday, October 5 (SA)</strong></div>
+            <ul>
+                <li><strong>MiXXed Fit/Turn Up Mashup</strong><br>Location: UNCG: Kaplan Center<br>Time: 10:00 AM - 11:00 AM<br>Details: With Frankerra McKoy '12</li>
+                
+                <li><strong>SA Family Reunion</strong><br>Location: UNCG: The Quad<br>Time: 12:00 PM - 3:00 PM<br>Details: Vendors, Food Trucks, and Fellowship</li>
+                
+                <li><strong>ADZ Ghost 20th Anniversary Chapter Cookout</strong><br>Location: UNCG: Foust Park<br>Date: October 5</li>
+                
+                <li><strong>SA All Black Attire Party</strong><br>Location: Limelight GSO<br>Date: October 5</li>
+                
+                <li><strong>SA Midnight Breakfast</strong><br>Location: IHOP on Lanada and Westover Terrace<br>Time: 12:00 AM - 4:00 AM<br>Date: October 5</li>
+            </ul>
+        </div>
+
+        <div class="homecoming-item"><strong>Sunday, October 6 (SU)</strong></div>
+        <ul>
+            <li><strong>BLK Alum Meetup</strong><br>Location: Boxcar GSO<br>Time: 11:00 AM - 3:00 PM</li>
+            <li><strong>GBlack Alum Sunday Farewell</strong><br>Location: Lawn Chairs Encouraged<br>Time: 2:00 PM - 7:00 PM</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
