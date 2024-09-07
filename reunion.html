@@ -65,13 +65,8 @@
         }
         .agenda {
             display: flex;
-            flex-wrap: wrap;
-            align-items: flex-start;
-        }
-        .days {
-            display: flex;
             flex-direction: column;
-            margin-right: 20px;
+            align-items: flex-start;
         }
         .circle {
             width: 60px;
@@ -84,9 +79,8 @@
             justify-content: center;
             font-weight: bold;
             font-size: 0.8em;
-            margin-bottom: 20px;
+            margin: 20px auto;
             text-align: center;
-            flex-shrink: 0;
         }
         .agenda-items {
             flex: 1;
@@ -147,14 +141,7 @@
                 margin-bottom: 10px;
             }
             .agenda {
-                flex-direction: column;
-            }
-            .days {
-                flex-direction: row;
-                justify-content: center;
-            }
-            .agenda-items {
-                margin-top: 20px;
+                align-items: center;
             }
         }
     </style>
@@ -169,20 +156,14 @@
     <h2 class="section-title">Agenda</h2>
     
     <div class="agenda">
-        <!-- Days Column -->
-        <div class="days">
-            <div class="circle">Thursday<br>10/3</div>
-            <div class="circle">Friday<br>10/4</div>
-            <div class="circle">Saturday<br>10/5</div>
-            <div class="circle">Sunday<br>10/6</div>
-        </div>
-
-        <!-- Agenda Items Column -->
+        <!-- Agenda Items with Days -->
         <div class="agenda-items">
+            <div class="circle">Thursday<br>10/3</div>
             <ul>
                 <li>6:00 PM: Arrival (Roommate Reveal) and Floating Food and Beverage Bars by #2 & #9</li>
                 <li>8:00 PM: Sisterhood Activities led by #1 & #11</li>
             </ul>
+            <div class="circle">Friday<br>10/4</div>
             <ul>
                 <li>9:00 AM: Service Project led by #12</li>
                 <li>11:00 AM: Catered Brunch – Dame’s Chicken and Waffles</li>
@@ -192,6 +173,7 @@
                 <li>6:00 PM: Catered Dinner – Black Powder BBQ</li>
                 <li>7:00 PM: Game Night!</li>
             </ul>
+            <div class="circle">Saturday<br>10/5</div>
             <ul>
                 <li>8:00 AM: Continental Breakfast (ODD Dots)</li>
                 <li>9:00 AM - 11:00 AM: OH Red Pajama Party</li>
@@ -202,6 +184,7 @@
                 <li>7:00 PM: Dinner at the House (Optional)</li>
                 <li>9:00 PM: All Black Party VIP – All Black Attire/Sneaker Party</li>
             </ul>
+            <div class="circle">Sunday<br>10/6</div>
             <ul>
                 <li>9:00 AM: Continental Breakfast (EVEN Dots)</li>
                 <li>10:00 AM: Departure</li>
