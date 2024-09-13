@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embedded HTML Files</title>
+    <title>Display PNG Images</title>
     <style>
-        .iframe-container {
+        .image-container {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
+            justify-content: center;
         }
 
-        iframe {
-            width: 30%;
-            height: 500px;
+        .image-container img {
+            max-width: 100%;
+            height: auto;
             border: 1px solid #ccc;
         }
     </style>
 </head>
 <body>
-    <h1>Embedded HTML Files</h1>
-    <div class="iframe-container">
-        <iframe src="file.png" title="HTML File 1"></iframe>
-        <iframe src="file2.png" title="HTML File 2"></iframe>
-        <iframe src="file3.png" title="HTML File 3"></iframe>
+    <h1>Display PNG Images</h1>
+    <div class="image-container">
+        <img src="image1.png" alt="Image 1">
+        <img src="image2.png" alt="Image 2">
+        <img src="image3.png" alt="Image 3">
     </div>
 </body>
 </html>
