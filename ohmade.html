@@ -3,8 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OH Made Mini Reunion</title>
+    <title>OHMade</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        .red-font {
+            color: #B22222; /* Different shade of red */
+            font-family: 'Georgia', serif; /* Different font style */
+        }
+
         .image-container {
             display: flex;
             flex-wrap: wrap;
@@ -13,19 +28,21 @@
         }
 
         .image-container img {
-            max-width: 100%;
+            max-width: 300px; /* Set a max width for better uniformity */
             height: auto;
             border: 1px solid #ccc;
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
         }
     </style>
 </head>
 <body>
-    <h1>OH Made Mini Reunion</h1>
+    <h1 class="title">OHMade <span class="red-font">Mini Reunion</span></h1>
     <div class="image-container">
         <img src="file1.png" alt="Image 1">
-        <img src="file.png" alt="Image 2">
-        <img src="file2.png" alt="Image 3">
-        <img src="file3.png" alt="Image 4">
+        <img src="file2.png" alt="Image 2">
+        <img src="file3.png" alt="Image 3">
+        <img src="file4.png" alt="Image 4">
     </div>
 </body>
 </html>
