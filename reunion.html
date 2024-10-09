@@ -349,25 +349,86 @@
       </div>
 </div>
 
-<div id="dot-connections" class="section" onclick="toggleSection('dot-connections')">
+
+    <div id="dot-connections" class="section" onclick="toggleSection('dot-connections')">
     <h2 class="section-title">
         <span class="twisty" id="dot-connections-twisty-icon">▶</span>
         Dot Connections
     </h2>
     <div class="expandable-content" id="dot-connections-content">
         <p>Here are the upcoming events where our line sisters will gather:</p>
-        <h3>Event 1: Usher Concert</h3>
-        <p><strong>Location:</strong> Charlotte, NC</p>
-        <p><strong>Date:</strong> 10/22</p>
-        <p><strong>Confirmed Attendees:</strong> Tamika, Errin</p>
         
-        <h3>Event 2: Charleston Get-Together</h3>
-        <p><strong>Location:</strong> Charleston, SC</p>
-        <p><strong>Date:</strong> February 27 - March 2, 2025</p>
-        <p><strong>Confirmed Attendees:</strong> 11 people confirmed (Tephia is organizing)</p>
-        <p><strong>Not Confirmed:</strong> Tamika M., Tamika F., Rochelle, Michelle</p>
+        <div id="event-1" class="event" onclick="toggleSection('event-1-content'); event.stopPropagation();">
+            <h3>
+                <span class="twisty" id="event-1-twisty-icon">▶</span>
+                Event 1: Usher Concert
+            </h3>
+            <div class="expandable-content" id="event-1-content" style="display: none;">
+                <p><strong>Location:</strong> Charlotte, NC</p>
+                <p><strong>Date:</strong> 10/22</p>
+                <p><strong>Organizer:</strong> Errin</p>
+                <p><strong>Confirmed Attendees:</strong> Tamika, Errin</p>
+            </div>
+        </div>
+        
+        <div id="event-2" class="event" onclick="toggleSection('event-2-content'); event.stopPropagation();">
+            <h3>
+                <span class="twisty" id="event-2-twisty-icon">▶</span>
+                Event 2: Charleston Get-Together
+            </h3>
+            <div class="expandable-content" id="event-2-content" style="display: none;">
+                <p><strong>Location:</strong> Charleston, SC</p>
+                <p><strong>Date:</strong> February 27 - March 2, 2025</p>
+                <p><strong>Organizer:</strong> Tephia</p>
+                <p><strong>Confirmed Attendees:</strong> 10 people confirmed</p>
+                <p><strong>Not Confirmed:</strong> Tamika M., Tamika F., Rochelle, Michelle</p>
+                <p><strong>Logistics:</strong> Details coming soon!</p>
+            </div>
+        </div>
+        
     </div>
 </div>
+
+<div id="logistics" class="section" onclick="toggleSection('logistics')">
+    <h2 class="section-title">
+        <span class="twisty" id="logistics-twisty-icon">▶</span>
+        General Logistics
+    </h2>
+    <div class="expandable-content" id="logistics-content">
+        <p>Details coming soon!</p>
+    </div>
+</div>
+
+<script>
+    function toggleSection(id) {
+        const section = document.getElementById(id);
+        const content = section.querySelector('.expandable-content');
+        const twisty = section.querySelector('.twisty');
+        
+        if (content.style.display === 'none' || content.style.display === '') {
+            content.style.display = 'block';
+            twisty.textContent = '▼';
+        } else {
+            content.style.display = 'none';
+            twisty.textContent = '▶';
+        }
+    }
+    
+    // Modify toggleSection for individual events
+    function toggleEventSection(eventId) {
+        const eventContent = document.getElementById(eventId);
+        const eventTwisty = eventContent.previousElementSibling.querySelector('.twisty');
+
+        if (eventContent.style.display === 'none' || eventContent.style.display === '') {
+            eventContent.style.display = 'block';
+            eventTwisty.textContent = '▼';
+        } else {
+            eventContent.style.display = 'none';
+            eventTwisty.textContent = '▶';
+        }
+    }
+</script>
+
  
 
  </body>
