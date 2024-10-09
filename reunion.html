@@ -350,54 +350,35 @@
 </div>
 
 
-    <div id="dot-connections" class="section" onclick="toggleSection('dot-connections')">
+   <div id="dot-connections" class="section" onclick="toggleSection('dot-connections')">
     <h2 class="section-title">
         <span class="twisty" id="dot-connections-twisty-icon">▶</span>
         Dot Connections
     </h2>
     <div class="expandable-content" id="dot-connections-content">
-        <p>Here are the upcoming events where our line sisters will gather:</p>
-        
-        <div id="event-1" class="event" onclick="toggleSection('event-1-content'); event.stopPropagation();">
-            <h3>
-                <span class="twisty" id="event-1-twisty-icon">▶</span>
-                Event 1: Usher Concert
+        <div id="event1" class="event" onclick="toggleSection('event1-details')">
+            <h3 class="event-title">
+                <span class="twisty" id="event1-twisty-icon">▶</span>
+                Usher Concert - Charlotte, NC (10/22)
             </h3>
-            <div class="expandable-content" id="event-1-content" style="display: none;">
-                <p><strong>Location:</strong> Charlotte, NC</p>
-                <p><strong>Date:</strong> 10/22</p>
+            <div class="expandable-content" id="event1-details">
                 <p><strong>Organizer:</strong> Errin</p>
                 <p><strong>Confirmed Attendees:</strong> Tamika, Errin</p>
             </div>
         </div>
-        
-        <div id="event-2" class="event" onclick="toggleSection('event-2-content'); event.stopPropagation();">
-            <h3>
-                <span class="twisty" id="event-2-twisty-icon">▶</span>
-                Event 2: Charleston Get-Together
+        <div id="event2" class="event" onclick="toggleSection('event2-details')">
+            <h3 class="event-title">
+                <span class="twisty" id="event2-twisty-icon">▶</span>
+                Charleston, SC (February 27 - March 2, 2025)
             </h3>
-            <div class="expandable-content" id="event-2-content" style="display: none;">
-                <p><strong>Location:</strong> Charleston, SC</p>
-                <p><strong>Date:</strong> February 27 - March 2, 2025</p>
+            <div class="expandable-content" id="event2-details">
                 <p><strong>Organizer:</strong> Tephia</p>
-                <p><strong>Confirmed Attendees:</strong> 10 people confirmed</p>
-                <p><strong>Not Confirmed:</strong> Tamika M., Tamika F., Rochelle, Michelle</p>
-                <p><strong>Logistics:</strong> Details coming soon!</p>
+                <p><strong>Confirmed Attendees:</strong> 10 people confirmed (excluding Tamika M., Tamika F., Rochelle, and Michelle)</p>
             </div>
         </div>
-        
     </div>
 </div>
 
-<div id="logistics" class="section" onclick="toggleSection('logistics')">
-    <h2 class="section-title">
-        <span class="twisty" id="logistics-twisty-icon">▶</span>
-        General Logistics
-    </h2>
-    <div class="expandable-content" id="logistics-content">
-        <p>Details coming soon!</p>
-    </div>
-</div>
 
 <script>
     function toggleSection(id) {
