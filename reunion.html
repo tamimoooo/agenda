@@ -152,20 +152,27 @@
         }
     </style>
     
-    <script>
-        function toggleSection(id) {
-            const section = document.getElementById(id);
-            const content = section.querySelector('.expandable-content');
-            const twisty = section.querySelector('.twisty');
-            if (content.style.display === 'none' || content.style.display === '') {
-                content.style.display = 'block';
-                twisty.textContent = '▼';
-            } else {
-                content.style.display = 'none';
-                twisty.textContent = '▶';
-            }
-        }
-    </script>
+  <script>
+  function toggleSection(id, event) {
+    // Prevent clicks inside nested sections from toggling parent sections
+    if (event) event.stopPropagation();
+
+    const section = document.getElementById(id);
+    if (!section) return;
+
+    const content = section.querySelector('.expandable-content');
+    const twisty = section.querySelector('.twisty');
+    if (!content || !twisty) return;
+
+    if (content.style.display === 'none' || content.style.display === '') {
+      content.style.display = 'block';
+      twisty.textContent = '▼';
+    } else {
+      content.style.display = 'none';
+      twisty.textContent = '▶';
+    }
+  }
+</script>
 </head>
 <body>
 
@@ -552,7 +559,7 @@ Greenville, SC 29651
       — you can review group discussions and helpful notes there before reaching out.  Feel Free to save a note you think others will find hepful.</p>
 
       <!-- Collapsible Image Section -->
-      <div id="notebook-example" class="section" onclick="toggleSection('notebook-example')" style="margin-top: 15px; background-color: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 10px;">
+      <div id="notebook-example" class="section" onclick="toggleSection('notebook-example', event)" style="margin-top: 15px; background-color: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 10px;">
         <h3 style="margin: 0; color: #b22222; font-size: 1.1em; cursor: pointer;">
           <span class="twisty" id="notebook-example-twisty-icon">▶</span>
           View Example of Where to Type in Google Notebook
@@ -591,6 +598,7 @@ Greenville, SC 29651
 
  </body>
 </html>
+
 
 
 
