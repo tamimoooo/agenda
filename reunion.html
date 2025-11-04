@@ -540,7 +540,7 @@ Greenville, SC 29651
     </a>
   </li>
 </ul>
-     <!-- New Google Notebook Note Box -->
+      <!-- Google Notebook Note Box -->
     <div style="margin-top: 25px; padding: 15px; background-color: #fff0f0; border-left: 4px solid #b22222; border-radius: 8px;">
       <p><strong>Have questions about the 2026 trip proposals?</strong><br>
       Try asking them in our shared 
@@ -549,22 +549,29 @@ Greenville, SC 29651
          style="color: #b22222; font-weight: bold;">
          Click Here to Open Google Notebook
       </a>
-      — you can review group discussions and helpful notes there before reaching out.</p>
+      — you can review group discussions and helpful notes there before reaching out.  Feel Free to save a note you think others will find hepful.</p>
 
-      <!-- Embedded instructional image -->
-      <div style="text-align: center; margin-top: 15px;">
-        <a href="https://github.com/tamimoooo/agenda/blob/main/ChatWithGoogleNoteBook.jpg" target="_blank">
-          <img src="https://github.com/tamimoooo/agenda/blob/main/ChatWithGoogleNoteBook.jpg?raw=true" 
-               alt="Example of where to type in Google Notebook" 
-               style="max-width: 80%; height: auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer;">
-        </a>
-        <p style="font-size: 0.9em; color: #555;">Click the image to view full size example of where to type in Google Notebook.</p>
+      <!-- Collapsible Image Section -->
+      <div id="notebook-example" class="section" onclick="toggleSection('notebook-example')" style="margin-top: 15px; background-color: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 10px;">
+        <h3 style="margin: 0; color: #b22222; font-size: 1.1em; cursor: pointer;">
+          <span class="twisty" id="notebook-example-twisty-icon">▶</span>
+          View Example of Where to Type in Google Notebook
+        </h3>
+        <div class="expandable-content" id="notebook-example-content" style="padding-top: 10px;">
+          <div style="text-align: center;">
+            <a href="https://github.com/tamimoooo/agenda/blob/main/ChatWithGoogleNoteBook.jpg" target="_blank">
+              <img src="https://github.com/tamimoooo/agenda/blob/main/ChatWithGoogleNoteBook.jpg?raw=true" 
+                   alt="Example of where to type in Google Notebook" 
+                   style="max-width: 80%; height: auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer;">
+            </a>
+            <p style="font-size: 0.9em; color: #555;">Click the image to view full size example.</p>
+          </div>
+        </div>
       </div>
     </div>
 
   </div>
 </div>
-
          <div id="proposal-survey" class="section" onclick="toggleSection('proposal-survey')">
   <h2 class="section-title">
     <span class="twisty" id="proposal-survey-twisty-icon">▶</span>
@@ -584,6 +591,7 @@ Greenville, SC 29651
 
  </body>
 </html>
+
 
 
 
