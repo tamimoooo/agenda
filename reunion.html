@@ -1,666 +1,550 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <title>16 Connect da Dots - In the Newz</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            overflow-y: scroll;
-            position: relative;
-            background: linear-gradient(to bottom right, #f0f0f0, #ffffff);
-        }
-        .polka-dots {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            background: radial-gradient(circle, rgba(211, 47, 47, 0.8) 10%, transparent 10%), 
-                        radial-gradient(circle, rgba(211, 47, 47, 0.8) 10%, transparent 10%);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
-            z-index: -1;
-        }
-        h1 {
-            text-align: center;
-            margin-top: 140px;
-            font-size: 2.5em;
-            color: #d32f2f;
-            font-weight: bold;
-            background: -webkit-linear-gradient(#d32f2f, #f06d6d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        .center-text {
-            text-align: center;
-            font-size: 1em;
-            color: #333;
-            margin: 20px auto;
-            font-weight: bold;
-            display: block;
-        }
-        .section {
-            margin-bottom: 30px;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-            position: relative;
-            z-index: 1;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .section-title {
-            font-size: 1.8em;
-            margin-bottom: 10px;
-            color: #b22222;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 5px;
-            cursor: pointer;
-        }
-        .expandable-content {
-            display: none;
-        }
-        .agenda {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        .circle {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #d32f2f;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.8em;
-            margin: 20px auto 5px auto;
-            text-align: center;
-        }
-        .day-text {
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #b22222;
-        }
-        .agenda-items {
-            flex: 1;
-            min-width: 250px;
-        }
-        ul {
-            padding-left: 20px;
-            text-align: left;
-            margin-bottom: 15px;
-        }
-        ul li {
-            margin-bottom: 20px;
-        }
-        .agenda-items ul li,
-        #contacts-content ul li {
-            margin-bottom: 20px;
-        }
-        .highlight {
-            color: red;
-            font-weight: bold;
-        }
-        a {
-            text-decoration: none;
-            color: #b22222;
-        }
-        a:hover {
-            color: #333;
-            text-decoration: underline;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2em;
-            }
-            .section-title {
-                font-size: 1.5em;
-            }
-            .circle {
-                width: 50px;
-                height: 50px;
-                font-size: 0.7em;
-                margin-bottom: 10px;
-            }
-            .agenda {
-                align-items: center;
-            }
-        }
-    </style>
-    
-  <script>
-  function toggleSection(id, event) {
-    // Prevent clicks inside nested sections from toggling parent sections
-    if (event) event.stopPropagation();
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>16 Connect da Dots - In the Newz</title>
 
-    const section = document.getElementById(id);
-    if (!section) return;
-
-    const content = section.querySelector('.expandable-content');
-    const twisty = section.querySelector('.twisty');
-    if (!content || !twisty) return;
-
-    if (content.style.display === 'none' || content.style.display === '') {
-      content.style.display = 'block';
-      twisty.textContent = '▼';
-    } else {
-      content.style.display = 'none';
-      twisty.textContent = '▶';
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      overflow-y: scroll;
+      position: relative;
+      background: linear-gradient(to bottom right, #f0f0f0, #ffffff);
     }
-  }
-</script>
+    .polka-dots {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background:
+        radial-gradient(circle, rgba(211, 47, 47, 0.8) 10%, transparent 10%),
+        radial-gradient(circle, rgba(211, 47, 47, 0.8) 10%, transparent 10%);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 10px;
+      z-index: -1;
+    }
+    h1 {
+      text-align: center;
+      margin-top: 140px;
+      font-size: 2.5em;
+      color: #d32f2f;
+      font-weight: bold;
+      background: -webkit-linear-gradient(#d32f2f, #f06d6d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .center-text {
+      text-align: center;
+      font-size: 1em;
+      color: #333;
+      margin: 20px auto;
+      font-weight: bold;
+      display: block;
+    }
+    .section {
+      margin-bottom: 30px;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .section-title {
+      font-size: 1.8em;
+      margin-bottom: 10px;
+      color: #b22222;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 5px;
+      cursor: pointer;
+    }
+    .expandable-content {
+      display: none;
+    }
+    .agenda {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #d32f2f;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.8em;
+      margin: 20px auto 5px auto;
+      text-align: center;
+    }
+    .day-text {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #b22222;
+    }
+    .agenda-items {
+      flex: 1;
+      min-width: 250px;
+    }
+    ul {
+      padding-left: 20px;
+      text-align: left;
+      margin-bottom: 15px;
+    }
+    ul li {
+      margin-bottom: 20px;
+    }
+    .agenda-items ul li,
+    #contacts-content ul li {
+      margin-bottom: 20px;
+    }
+    .highlight {
+      color: red;
+      font-weight: bold;
+    }
+    a {
+      text-decoration: none;
+      color: #b22222;
+    }
+    a:hover {
+      color: #333;
+      text-decoration: underline;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2em;
+      }
+      .section-title {
+        font-size: 1.5em;
+      }
+      .circle {
+        width: 50px;
+        height: 50px;
+        font-size: 0.7em;
+        margin-bottom: 10px;
+      }
+      .agenda {
+        align-items: center;
+      }
+    }
+    .feedback-comment {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 1.1em;
+      color: #333;
+      background-color: #f9f9f9;
+      border-left: 4px solid #ff6f61;
+      padding: 10px;
+      margin: 10px 0;
+    }
+  </style>
+
+  <script>
+    function toggleSection(id, event) {
+      // Only toggle when the header is clicked
+      if (event) event.stopPropagation();
+
+      // Ignore toggle while the user is selecting text
+      const sel = window.getSelection && window.getSelection();
+      if (sel && sel.toString && sel.toString().length > 0) return;
+
+      // Ignore toggle if the click came from interactive elements
+      const t = event ? event.target : null;
+      if (t && t.closest && t.closest('a, button, input, textarea, summary, details')) return;
+
+      const section = document.getElementById(id);
+      if (!section) return;
+
+      const content = section.querySelector('.expandable-content');
+      const twisty  = section.querySelector('.twisty');
+      if (!content || !twisty) return;
+
+      const isHidden = (content.style.display === 'none' || content.style.display === '');
+      if (isHidden) {
+        content.style.display = 'block';
+        twisty.textContent = '▼';
+      } else {
+        content.style.display = 'none';
+        twisty.textContent = '▶';
+      }
+    }
+  </script>
 </head>
 <body>
 
-<div class="polka-dots"></div>
-<h1>SPRING 94 Dot Connection Updates</h1>
+  <div class="polka-dots"></div>
+  <h1>SPRING 94 Dot Connection Updates</h1>
 
-<style>
-    .feedback-comment {
-        font-family: 'Courier New', Courier, monospace; /* Change to your desired font */
-        font-size: 1.1em; /* Slightly larger font size */
-        color: #333; /* Dark gray color for better readability */
-        background-color: #f9f9f9; /* Light background for contrast */
-        border-left: 4px solid #ff6f61; /* Left border for emphasis */
-        padding: 10px; /* Padding for space around the text */
-        margin: 10px 0; /* Margin for spacing between comments */
-    }
-</style>
+  <!-- Reunion Feedback section remains commented out -->
 
-
-  
-
-<!-- <div id="reunion-feedback" class="section" onclick="toggleSection('reunion-feedback')">
-    <h2 class="section-title">
-        <span class="twisty" id="reunion-twisty-icon">▶</span>
-        Reunion Feedback Summary
-    </h2>
-    <div class="expandable-content" id="reunion-content">
-        <p><strong>Overall Sentiment:</strong> The feedback indicates a positive reception of the reunion, with many expressing enjoyment and a desire to continue the tradition in the future.</p>
-        
-        <p><strong>Key Suggestions:</strong></p>
-        
-        <p><strong>Frequency of Events:</strong></p>
-        <p class="feedback-comment">Many attendees expressed interest in making the reunion an annual event, emphasizing a desire to reconnect regularly.</p>
-        
-        <p><strong>Catering and Food:</strong></p>
-        <p class="feedback-comment">There were several comments suggesting a reduction in food to minimize waste. Suggestions included ordering less food or adjusting quantities for future events.</p>
-        
-        <p><strong>Future Trip Ideas:</strong></p>
-        <p class="feedback-comment">Ideas for future gatherings included organizing trips to other U.S. states, such as destinations out west, or even international trips like Barbados.</p>
-        
-        <p><strong>Planning Considerations:</strong></p>
-        <p class="feedback-comment">Some attendees suggested alternating the planning of events between odd and even numbers, which could provide a structured schedule for future gatherings.</p>
-        
-        <p><strong>Positive Feedback:</strong></p>
-        <p class="feedback-comment">Numerous comments highlighted the event's success, describing it as "amazing," "phenomenal," and an "awesome weekend." Attendees appreciated the overall experience and expressed eagerness for the next gathering.</p>
-
-        <p class="feedback-comment">Appreciation for the sisterhood activities and the service project.</p>
-    </div>
-</div>-->
-
-
-   <div id="mailing-addresses" class="section" onclick="toggleSection('mailing-addresses')">
-    <h2 class="section-title">
-        <span class="twisty" id="address-twisty-icon">▶</span> 
-        Email and Mailing Addresses
+  <div id="mailing-addresses" class="section">
+    <h2 class="section-title" onclick="toggleSection('mailing-addresses', event)">
+      <span class="twisty" id="address-twisty-icon">▶</span>
+      Email and Mailing Addresses
     </h2>
     <div class="expandable-content" id="address-content">
-        
-        <h3>Mailing Address</h3>
-        <p><strong>Errin</strong><br>
+
+      <h3>Mailing Address</h3>
+      <p><strong>Errin</strong><br>
         14 Coan Street<br>
         Greenville, SC 29617
-   <a href="mailto:errinmccomb@gmail.com">errinmccomb@gmail.com</a>
-</p>
-      <h3>Mailing Address</h3> 
-       <p><strong>Melanie</strong><br>
+        <a href="mailto:errinmccomb@gmail.com">errinmccomb@gmail.com</a>
+      </p>
+
+      <h3>Mailing Address</h3>
+      <p><strong>Melanie</strong><br>
         3703 Burt Drive<br>
         Raleigh, NC 27606
-  <a href="mailto:melaniebullock@yahoo.com">melaniebullock@yahoo.com</a>
-</p>
-         <h3>Mailing Address</h3>
-         <p><strong>Summer</strong><br>
+        <a href="mailto:melaniebullock@yahoo.com">melaniebullock@yahoo.com</a>
+      </p>
+
+      <h3>Mailing Address</h3>
+      <p><strong>Summer</strong><br>
         2408 Dulair Road<br>
         Greensboro, NC 27407
- <a href="mailto:summer0316@example.com">summer0316@example.com</a>
-</p>
-       <p><strong>Dana</strong><br>
+        <a href="mailto:summer0316@example.com">summer0316@example.com</a>
+      </p>
+
+      <p><strong>Dana</strong><br>
         8030 Stillmist Drive<br>
         Fairburn, Georgia 30213
- <a href="mailto:missdana213@gmail.com">missdana213@gmail.com</a>
-</p>
+        <a href="mailto:missdana213@gmail.com">missdana213@gmail.com</a>
+      </p>
 
-          <p><strong>Vernét</strong><br>
+      <p><strong>Vernet</strong><br>
         105 Shadburn Ferry Rd<br>
-        Buford, GA 30518  
-     <a href="mailto:vernet1@gmail.com">vernet1@gmail.com</a>
-</p>
+        Buford, GA 30518
+        <a href="mailto:vernet1@gmail.com">vernet1@gmail.com</a>
+      </p>
 
-
-            <p><strong>Monshaire</strong><br>
+      <p><strong>Monshaire</strong><br>
         PO Box 6213<br>
         Florence, SC 29502
-  <a href="mailto:mdfikes@gmail.com">mdfikes@gmail.com</a>
-</p>
+        <a href="mailto:mdfikes@gmail.com">mdfikes@gmail.com</a>
+      </p>
 
-           <p><strong>Tamika F.</strong><br>
+      <p><strong>Tamika F.</strong><br>
         225 Riverdell North Mews<br>
         Lancaster, TX 75146
- <a href="mailto:tamikalfrancis@gmail.com">tamikalfrancis@gmail.com</a>
-</p>
+        <a href="mailto:tamikalfrancis@gmail.com">tamikalfrancis@gmail.com</a>
+      </p>
 
-             <p><strong>Tamika</strong><br>
+      <p><strong>Tamika</strong><br>
         8304 Flat Keystone Drive<br>
         Raleigh, NC
- <a href="mailto:DST894@hotmail.com">DST894@hotmail.com</a>
-</p>
-          <p><strong>Tephia Lindsay</strong><br>
+        <a href="mailto:DST894@hotmail.com">DST894@hotmail.com</a>
+      </p>
+
+      <p><strong>Tephia Lindsay</strong><br>
         8612-202 Olde Station Dr.<br>
         Raleigh, NC 27615
- <a href="mailto:tephia25@yahoo.com">tephia25@yahoo.com</a>
-</p>
-        
-        <p><strong>Janita</strong><br>
+        <a href="mailto:tephia25@yahoo.com">tephia25@yahoo.com</a>
+      </p>
+
+      <p><strong>Janita</strong><br>
         PO Box 415<br>
         Wendell, NC 27591
- <a href="mailto:freshnclean9@gmail.com">freshnclean9@gmail.com</a>
-</p>
+        <a href="mailto:freshnclean9@gmail.com">freshnclean9@gmail.com</a>
+      </p>
 
-         <p><strong>Carolyn</strong><br>
-       <br>
+      <p><strong>Carolyn</strong><br>
+        <br>
         Texas
- <a href="mailto:carolyn@example.com">carolyn@example.com</a>
-</p>
-        
-         <p><strong>Sherri</strong><br>
+        <a href="mailto:carolyn@example.com">carolyn@example.com</a>
+      </p>
+
+      <p><strong>Sherri</strong><br>
         143 Skylark Way<br>
         Raleigh, NC 27615
- <a href="mailto:sherribelklaw@gmail.com">sherribelklaw@gmail.com</a>
-</p>
-        
+        <a href="mailto:sherribelklaw@gmail.com">sherribelklaw@gmail.com</a>
+      </p>
 
-        <p><strong>Michelle</strong><br>
+      <p><strong>Michelle</strong><br>
         11682 Mustang Creek Ct<br>
         Waldorf, Maryland 20602
- <a href="mailto:michelleyfoxx@yahoo.com">michelleyfoxx@yahoo.com</a>
-</p>
+        <a href="mailto:michelleyfoxx@yahoo.com">michelleyfoxx@yahoo.com</a>
+      </p>
 
-         <p><strong>Joeshun</strong><br>
-       <br>
-      
- <a href="mailto:Joeshun@example.com">Joeshun@example.com</a>
-</p>
-       
+      <p><strong>Joeshun</strong><br>
+        <br>
+        <a href="mailto:Joeshun@example.com">Joeshun@example.com</a>
+      </p>
 
-        <p><strong>Nicole</strong><br>
+      <p><strong>Nicole</strong><br>
         141 Bayleigh Court<br>
         Garner, NC 27529
- <a href="mailto:kilpatrickn39@gmail.com">kilpatrickn39@gmail.com</a>
-</p>
-         <p><strong>Rochelle</strong><br>
-         9904 Orchard Grass Court<br>
-        Charlotte, NC 28278
- <a href="mailto:iamadelta@yahoo.com">iamadelta@yahoo.com</a>
-</p>
-       <details open>
-  <summary style="font-weight:bold; font-size:1.1em; cursor:pointer;">
-    Email BCC List
-  </summary>
-  <div style="margin-top:8px; padding:10px; border:1px solid #ccc; border-radius:6px; background:#f9f9f9;">
-    sum0316@gmail.com; dst894@hotmail.com; tamikalfrancis@gmail.com; errinmccomb@gmail.com; melaniebullock@yahoo.com; missdana213@gmail.com; vernet1@gmail.com; mdfikes@gmail.com; tephia25@yahoo.com; sherribelklaw@gmail.com; freshnclean9@gmail.com; kilpatrickn39@gmail.com; iamadelta@yahoo.com; michellelyfoxx@yahoo.com
-  </div>
-</details>
-              
-    </div>
-</div>
+        <a href="mailto:kilpatrickn39@gmail.com">kilpatrickn39@gmail.com</a>
+      </p>
 
-    <div id="shutterfly-album" class="section" onclick="toggleSection('shutterfly-album')">
-    <h2 class="section-title">
-        <span class="twisty" id="shutterfly-twisty-icon">▶</span>
-        Access the Spring 94 Old Photos
+      <p><strong>Rochelle</strong><br>
+        9904 Orchard Grass Court<br>
+        Charlotte, NC 28278
+        <a href="mailto:iamadelta@yahoo.com">iamadelta@yahoo.com</a>
+      </p>
+
+      <details open onclick="event.stopPropagation()">
+        <summary style="font-weight:bold; font-size:1.1em; cursor:pointer;">
+          Email Distro List.  Copy this right in your email "To" section.
+        </summary>
+        <div style="margin-top:8px; padding:10px; border:1px solid #ccc; border-radius:6px; background:#f9f9f9;">
+          sum0316@gmail.com; dst894@hotmail.com; tamikalfrancis@gmail.com; errinmccomb@gmail.com; melaniebullock@yahoo.com; missdana213@gmail.com; vernet1@gmail.com; mdfikes@gmail.com; tephia25@yahoo.com; sherribelklaw@gmail.com; freshnclean9@gmail.com; kilpatrickn39@gmail.com; iamadelta@yahoo.com; michellelyfoxx@yahoo.com
+        </div>
+      </details>
+
+    </div>
+  </div>
+
+  <div id="shutterfly-album" class="section">
+    <h2 class="section-title" onclick="toggleSection('shutterfly-album', event)">
+      <span class="twisty" id="shutterfly-twisty-icon">▶</span>
+      Access the Spring 94 Old Photos
     </h2>
     <div class="expandable-content" id="shutterfly-content">
-        <p>We've created a shared album on Shutterfly where you can view and share all the wonderful memories thru the years. To access the album, click the link below:</p>
-        <p><a href="https://link.shutterfly.com/AVu65l2xBJb" target="_blank">Click here to view the shutterfly spring 94 thru the years album</a></p>
-        <p>Follow these steps to access the album:</p>
-        <ol>
-            <li>Click the link above to open the album.</li>
-            <li>If prompted, sign in or create a Shutterfly account.</li>
-            <li>If you don't want to create an account. Use shared account below</li>
-            <li><strong>Email:</strong> <span style="color: blue; font-weight: bold;">dst894@yahoo.com</span></li>
-    <li><strong>Password:</strong> <span style="color: red; font-weight: bold;">16connectdadots</span></li>
-            <li>Enjoy browsing the photos!</li>
-        </ol>
+      <p>We have a shared album on Shutterfly where you can view and share memories. Use the link below:</p>
+      <p><a href="https://link.shutterfly.com/AVu65l2xBJb" target="_blank">Click here to view the Shutterfly Spring 94 album</a></p>
+      <p>Steps to access the album:</p>
+      <ol>
+        <li>Click the link above to open the album.</li>
+        <li>If prompted, sign in or create a Shutterfly account.</li>
+        <li>If you do not want to create an account, use the shared account below</li>
+        <li><strong>Email:</strong> <span style="color: blue; font-weight: bold;">dst894@yahoo.com</span></li>
+        <li><strong>Password:</strong> <span style="color: red; font-weight: bold;">16connectdadots</span></li>
+        <li>Enjoy browsing the photos.</li>
+      </ol>
     </div>
-</div>
+  </div>
 
-<div id="homecoming-photos" class="section" onclick="toggleSection('homecoming-photos')">
-    <h2 class="section-title">
-        <span class="twisty" id="homecoming-twisty-icon">▶</span>
-        Homecoming 2024 Reunion Photos
+  <div id="homecoming-photos" class="section">
+    <h2 class="section-title" onclick="toggleSection('homecoming-photos', event)">
+      <span class="twisty" id="homecoming-twisty-icon">▶</span>
+      Homecoming 2024 Reunion Photos
     </h2>
     <div class="expandable-content" id="homecoming-content">
-        <p>Check out the amazing photos from our Homecoming reunion! Click the link below to view the album:</p>
-        <p><a href="https://link.shutterfly.com/suiedxnxvNb" target="_blank">Click here to view homecoming reunion photos</a></p>
-        <p>We hope you enjoy reliving the wonderful memories!</p>
-        <ol>
-            <li>Click the link above to open the album.</li>
-            <li>If prompted, sign in or create a Shutterfly account.</li>
-            <li>If you don't want to create an account. Use shared account below</li>
-            <li><strong>Email:</strong> <span style="color: blue; font-weight: bold;">dst894@yahoo.com</span></li>
-    <li><strong>Password:</strong> <span style="color: red; font-weight: bold;">16connectdadots</span></li>
-            <li>Enjoy browsing the photos!</li>
-        </ol>
+      <p>Check out the photos from our Homecoming reunion. Link below:</p>
+      <p><a href="https://link.shutterfly.com/suiedxnxvNb" target="_blank">Click here to view homecoming reunion photos</a></p>
+      <p>We hope you enjoy reliving the memories.</p>
+      <ol>
+        <li>Click the link above to open the album.</li>
+        <li>If prompted, sign in or create a Shutterfly account.</li>
+        <li>If you do not want to create an account, use the shared account below</li>
+        <li><strong>Email:</strong> <span style="color: blue; font-weight: bold;">dst894@yahoo.com</span></li>
+        <li><strong>Password:</strong> <span style="color: red; font-weight: bold;">16connectdadots</span></li>
+        <li>Enjoy browsing the photos.</li>
+      </ol>
     </div>
-</div>
+  </div>
 
-    <div id="dot-photoshoots" class="section" onclick="toggleSection('dot-photoshoots')">
-    <h2 class="section-title">
-        <span class="twisty" id="dot-photoshoots-twisty-icon">▶</span>
-        Photoshoots
+  <div id="dot-photoshoots" class="section">
+    <h2 class="section-title" onclick="toggleSection('dot-photoshoots', event)">
+      <span class="twisty" id="dot-photoshoots-twisty-icon">▶</span>
+      Photoshoots
     </h2>
     <div class="expandable-content" id="dot-photoshoots-content">
-        <p>Check out the amazing photos from our Homecoming reunion! Click the link below to view the album:</p>
-        <p><a href="https://link.shutterfly.com/lurzZCVsxNb" target="_blank">Click here to view photoshoot</a></p>
-        <ol>
-            <li>Click the link above to open the album.</li>
-            <li>If prompted, sign in or create a Shutterfly account.</li>
-            <li>If you don't want to create an account. Use shared account below</li>
-            <li><strong>Email:</strong> <span style="color: blue; font-weight: bold;">dst894@yahoo.com</span></li>
-    <li><strong>Password:</strong> <span style="color: red; font-weight: bold;">16connectdadots</span></li>
-            <li>Enjoy browsing the photos!</li>
-        </ol>
-      </div>
-</div>
+      <p>Click below to view the photoshoot album:</p>
+      <p><a href="https://link.shutterfly.com/lurzZCVsxNb" target="_blank">Click here to view photoshoot</a></p>
+      <ol>
+        <li>Click the link above to open the album.</li>
+        <li>If prompted, sign in or create a Shutterfly account.</li>
+        <li>If you do not want to create an account, use the shared account below</li>
+        <li><strong>Email:</strong> <span style="color: blue; font-weight: bold;">dst894@yahoo.com</span></li>
+        <li><strong>Password:</strong> <span style="color: red; font-weight: bold;">16connectdadots</span></li>
+        <li>Enjoy browsing the photos.</li>
+      </ol>
+    </div>
+  </div>
 
-
-   <div id="dot-connections" class="section" onclick="toggleSection('dot-connections')">
-    <h2 class="section-title">
-        <span class="twisty" id="dot-connections-twisty-icon">▶</span>
-        Dot Connections
+  <div id="dot-connections" class="section">
+    <h2 class="section-title" onclick="toggleSection('dot-connections', event)">
+      <span class="twisty" id="dot-connections-twisty-icon">▶</span>
+      Dot Connections
     </h2>
     <div class="expandable-content" id="dot-connections-content" style="padding: 10px;">
 
-        <div id="event2" class="event" style="border: 2px solid #FF5733; background-color: #FFE6E6; padding: 10px; border-radius: 5px;">
-            <h3 class="event-title">Greenville, SC</h3>
-            <p><strong>Organizer:</strong> <a href="sms:+19192647864">Errin</a></p>
-<!-- Housing Payments -->
-<p><strong>Housing Money Dates:</strong> 
-    $150 due by <a href="https://cash.app/$EMcComb" target="_blank"><u>Friday, August 29, 2025</u></a> (or entire amount) | 
-    $150 due by <a href="https://cash.app/$EMcComb" target="_blank"><u>Monday, September 15th</u></a> via 
-    <a href="https://cash.app/$EMcComb" target="_blank">Cash App</a> or 
-    <a href="sms:+19192647864">Zelle (919-264-7864)</a>.
-</p>
+      <div id="event2" class="event" style="border: 2px solid #FF5733; background-color: #FFE6E6; padding: 10px; border-radius: 5px;">
+        <h3 class="event-title">Greenville, SC</h3>
+        <p><strong>Organizer:</strong> <a href="sms:+19192647864">Errin</a></p>
 
-<!-- Meals & Activities -->
-<p><strong>Meals & Activities:</strong> 
-    $125 due by <a href="https://cash.app/$EMcComb" target="_blank"><u>Monday, September 15th</u></a> via 
-    <a href="https://cash.app/$EMcComb" target="_blank">Cash App</a> or 
-    <a href="sms:+19192647864">Zelle (919-264-7864)</a>.
-    <br><span style="color: red; font-weight: bold;">Note: Saturday lunch costs will be on your own.</span>
-</p>
+        <p><strong>Housing Money Dates:</strong>
+          $150 due by <a href="https://cash.app/$EMcComb" target="_blank"><u>Friday, August 29, 2025</u></a> (or entire amount) |
+          $150 due by <a href="https://cash.app/$EMcComb" target="_blank"><u>Monday, September 15th</u></a> via
+          <a href="https://cash.app/$EMcComb" target="_blank">Cash App</a> or
+          <a href="sms:+19192647864">Zelle (919-264-7864)</a>.
+        </p>
 
-            
-            
-            <p><strong>Payment Options:</strong></p>
-            <ul>
-                <li>💵 Cash App: <a href="https://cash.app/$EMcComb" target="_blank">https://cash.app/$EMcComb</a></li>
-                <li>🏦 Zelle: Use phone number <a href="sms:+19192647864">919-264-7864</a></li>
-            </ul>
+        <p><strong>Meals and Activities:</strong>
+          $125 due by <a href="https://cash.app/$EMcComb" target="_blank"><u>Monday, September 15th</u></a> via
+          <a href="https://cash.app/$EMcComb" target="_blank">Cash App</a> or
+          <a href="sms:+19192647864">Zelle (919-264-7864)</a>.
+          <br><span style="color: red; font-weight: bold;">Note: Saturday lunch costs will be on your own.</span>
+        </p>
 
-            <p><strong>House Info:</strong> 
-                <a href="https://therockwallhouse.com" target="_blank">Click here for The Rock Wall House</a>
-            </p>
+        <p><strong>Payment Options:</strong></p>
+        <ul>
+          <li>Cash App: <a href="https://cash.app/$EMcComb" target="_blank">https://cash.app/$EMcComb</a></li>
+          <li>Zelle: Use phone number <a href="sms:+19192647864">919-264-7864</a></li>
+        </ul>
 
-          <p><strong>House Address:</strong><br>
-1747 Memorial Drive Ext<br>
-Greenville, SC 29651
-             *** housecode 828335 ENTER***
-</p>
-        </div>
+        <p><strong>House Info:</strong>
+          <a href="https://therockwallhouse.com" target="_blank">Click here for The Rock Wall House</a>
+        </p>
 
-        <!-- Embedded Image with red background -->
-        <div style="background-color: #d32f2f; text-align: center; margin-top: 20px; padding: 15px; border-radius: 8px;">
-            <img src="SPRING 94 Dots to Greenville 9.11.25.png" 
-                 alt="All Dots Lead to Greenville Agenda" 
-                 style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
-        </div>
+        <p><strong>House Address:</strong><br>
+          1747 Memorial Drive Ext<br>
+          Greenville, SC 29651<br>
+          *** housecode 828335 ENTER ***
+        </p>
+      </div>
+
+      <div style="background-color: #d32f2f; text-align: center; margin-top: 20px; padding: 15px; border-radius: 8px;">
+        <img src="SPRING 94 Dots to Greenville 9.11.25.png"
+             alt="All Dots Lead to Greenville Agenda"
+             style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);" />
+      </div>
 
     </div>
-</div>
+  </div>
 
-  <div id="trip-proposals" class="section" onclick="toggleSection('trip-proposals')">
-  <h2 class="section-title">
-    <span class="twisty" id="trip-proposals-twisty-icon">▶</span>
-    2026 Trip Proposals
-  </h2>
-  <div class="expandable-content" id="trip-proposals-content">
-    <p>Click the Links Below to Download the Trip Proposals (delete from download folder after viewing):</p>
-    <ul>
-<ul>
-<li>
-  We So ATL Presentation (Atlanta, GA) — 
-  <a href="https://github.com/tamimoooo/agenda/raw/main/WeSoATL.pdf" target="_blank">
-    Click Here to Download Presentation
-  </a>
-  &nbsp;|&nbsp;
-  <a href="https://github.com/tamimoooo/agenda/raw/main/WeSoATL.png" target="_blank">
-    Click Here to Download Image
-  </a>
-</li>
+  <div id="trip-proposals" class="section">
+    <h2 class="section-title" onclick="toggleSection('trip-proposals', event)">
+      <span class="twisty" id="trip-proposals-twisty-icon">▶</span>
+      2026 Trip Proposals
+    </h2>
+    <div class="expandable-content" id="trip-proposals-content">
+      <p>Click the links below to download the trip proposals. Delete from your downloads folder after viewing.</p>
+      <ul>
+        <li>
+          We So ATL Presentation (Atlanta, GA) - 
+          <a href="https://github.com/tamimoooo/agenda/raw/main/WeSoATL.pdf" target="_blank">Click here to download presentation</a>
+          &nbsp;|&nbsp;
+          <a href="https://github.com/tamimoooo/agenda/raw/main/WeSoATL.png" target="_blank">Click here to download image</a>
+        </li>
 
+        <li>
+          Barnsly Wellness Resort (Calhoun, GA) - 
+          <a href="https://github.com/tamimoooo/agenda/raw/main/Barnsly%20Wellsness%20Resort_Calhoun,%20Ga.pdf" target="_blank">Click here to download presentation</a>
+        </li>
 
+        <li>
+          Blast from the Past - Lake Norman (Lake Norman, NC) - 
+          <a href="https://github.com/tamimoooo/agenda/raw/main/Blast%20from%20the%20past_LakeNorman.pdf" target="_blank">Click here to download presentation</a>
+        </li>
 
-  <li>
-    Barnsly Wellsness Resort (Calhoun, GA) — 
-    <a href="https://github.com/tamimoooo/agenda/raw/main/Barnsly%20Wellsness%20Resort_Calhoun,%20Ga.pdf" target="_blank">
-      Click Here to Download Presentation
-    </a>
-  </li>
+        <li>
+          CIVANA Wellness Resort and Spa (Carefree, AZ) - 
+          <a href="https://proposalpath.com/85e91cf6" target="_blank">Click here to view presentation</a>
+        </li>
 
-  <li>
-    Blast from the Past – Lake Norman (Lake Norman, NC) — 
-    <a href="https://github.com/tamimoooo/agenda/raw/main/Blast%20from%20the%20past_LakeNorman.pdf" target="_blank">
-      Click Here to Download Presentation
-    </a>
-  </li>
+        <li>
+          Dallas TakeOver (Dallas, TX) - 
+          <a href="https://github.com/tamimoooo/agenda/raw/main/DallasTakeOver.jpg" target="_blank">Click here to download presentation</a>
+        </li>
 
-  <li>
-    CIVANA Wellness Resort & Spa (Carefree, AZ) — 
-    <a href="https://proposalpath.com/85e91cf6" target="_blank">
-      Click Here to View Presentation
-    </a>
-  </li>
+        <li>
+          Destination Ashville (Ashville, NC) - 
+          <a href="https://github.com/tamimoooo/agenda/raw/main/Destination%20Ashville.png" target="_blank">Click here to download presentation</a>
+        </li>
 
-  <li>
-    Dallas TakeOver (Dallas, TX)— 
-    <a href="https://github.com/tamimoooo/agenda/raw/main/DallasTakeOver.jpg" target="_blank">
-      Click Here to Download Presentation
-    </a>
-  </li>
+        <li>
+          Dots Go Country 2026 (Gatlinburg, TN) - 
+          <a href="https://github.com/tamimoooo/agenda/raw/main/Dots%20Go%20Country%202026%20-%20Gatlinburg%2C%20TN.pdf" target="_blank">Click here to download presentation</a>
+          &nbsp;|&nbsp;
+          <a href="https://drive.google.com/file/d/1EOb1J8HKYmXcQJNE8cJ97rKfwG6NU8f6/view?usp=drive_link" target="_blank">Click to view video</a>
+        </li>
 
-  <li>
-    Destination Ashville (Ashville, NC) — 
-    <a href="https://github.com/tamimoooo/agenda/raw/main/Destination%20Ashville.png" target="_blank">
-      Click Here to Download Presentation
-    </a>
-  </li>
+        <li>
+          Glamping in Yellowstone National Park (West Yellowstone, MT) - 
+          <a href="https://github.com/tamimoooo/agenda/raw/main/Dots%20Go%20Glamping.pdf" target="_blank">Click here to view or download presentation</a>
+          &nbsp;|&nbsp;
+          <a href="https://drive.google.com/file/d/1yv554UjX1m8c1OL3E1XrwWtILhKnabvm/view?usp=drive_link" target="_blank">Click to view video</a>
+        </li>
 
- <li>
-  Dots Go Country 2026 (Gatlinburg, TN) — 
-  <a href="https://github.com/tamimoooo/agenda/raw/main/Dots%20Go%20Country%202026%20-%20Gatlinburg%2C%20TN.pdf" target="_blank">
-    Click Here to Download Presentation
-  </a>
-  &nbsp;|&nbsp;
-  <a href="https://drive.google.com/file/d/1EOb1J8HKYmXcQJNE8cJ97rKfwG6NU8f6/view?usp=drive_link" target="_blank">
-    Click to View Video
-  </a>
-</li>
+        <li>
+          Sistershood, Soul, Savannah (Dots in Savannah) (Savannah, GA) - 
+          <a href="https://github.com/tamimoooo/agenda/raw/main/Dots%20in%20Savannah.,GA.pdf" target="_blank">Click here to download presentation</a>
+        </li>
 
+        <li>
+          Girls' Getaway to Dollywood (Pigeon Forge, Tennessee) - 
+          <a href="https://github.com/tamimoooo/agenda/raw/main/Girls'%20Getaway%20to%20Dollywood.pdf" target="_blank">Click here to download presentation</a>
+        </li>
 
-  <li>
-    Glamping in Yellowstone National Park (West Yellowstone,MT) — 
-    <a href="https://github.com/tamimoooo/agenda/raw/main/Dots%20Go%20Glamping.pdf" target="_blank">
-      Click Here to View or Download Presentation
-    </a>
-    &nbsp;|&nbsp;
-    <a href="https://drive.google.com/file/d/1yv554UjX1m8c1OL3E1XrwWtILhKnabvm/view?usp=drive_link" target="_blank">
-      Click to View Video
-    </a>
-  </li>
+        <li>
+          Martha's Vineyard Black Film Festival (Massachusetts)
+        </li>
+        <li>
+          Phoenix Bound (Phoenix, AZ)
+        </li>
+      </ul>
 
-  <li>
-    Sistershood, Soul, Savannah (Dots in Savannah) (Savannah, GA) — 
-    <a href="https://github.com/tamimoooo/agenda/raw/main/Dots%20in%20Savannah.,GA.pdf" target="_blank">
-      Click Here to Download Presentation
-    </a>
-  </li>
+      <div style="margin-top: 25px; padding: 15px; background-color: #fff0f0; border-left: 4px solid #b22222; border-radius: 8px;">
+        <p><strong>Have questions about the 2026 trip proposals?</strong><br>
+          Try asking them in our shared
+          <a href="https://notebooklm.google.com/notebook/e78ec4a4-323e-4584-9cbd-0f784705f28e" target="_blank" style="color: #b22222; font-weight: bold;">
+            Click here to open Google Notebook
+          </a>
+          then review group discussions and helpful notes there before reaching out. Feel free to save a note you think others will find helpful.
+        </p>
 
-  <li>
-    Girls' Getaway to Dollywood (Pigeon Forge, Tennessee)- 
-    <a href="https://github.com/tamimoooo/agenda/raw/main/Girls'%20Getaway%20to%20Dollywood.pdf" target="_blank">
-      Click Here to Download Presentation
-    </a>
-  </li>
-
-  <li>
-    Martha’s Vineyard Black Film Festival (Massachusetts)
-  <!--  <a href="https://github.com/tamimoooo/agenda/raw/main/Martha’s%20Vineyard_Black_Film_Festival.pdf" target="_blank">
-      Click Here to Download Presentation
-    </a> -->
-  </li>
-     <li>
-    Phoenix Bound (Phoenix, AZ)
-  <!--  <a href="https://github.com/tamimoooo/agenda/raw/main/Martha’s%20Vineyard_Black_Film_Festival.pdf" target="_blank">
-      Click Here to Download Presentation
-    </a> -->
-  </li>
-</ul>
-      <!-- Google Notebook Note Box -->
-    <div style="margin-top: 25px; padding: 15px; background-color: #fff0f0; border-left: 4px solid #b22222; border-radius: 8px;">
-      <p><strong>Have questions about the 2026 trip proposals?</strong><br>
-      Try asking them in our shared 
-      <a href="https://notebooklm.google.com/notebook/e78ec4a4-323e-4584-9cbd-0f784705f28e" 
-         target="_blank" 
-         style="color: #b22222; font-weight: bold;">
-         Click Here to Open Google Notebook
-      </a>
-      — you can review group discussions and helpful notes there before reaching out.  Feel Free to save a note you think others will find hepful.</p>
-
-      <!-- Collapsible Image Section -->
-      <div id="notebook-example" class="section" onclick="toggleSection('notebook-example', event)" style="margin-top: 15px; background-color: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 10px;">
-        <h3 style="margin: 0; color: #b22222; font-size: 1.1em; cursor: pointer;">
-          <span class="twisty" id="notebook-example-twisty-icon">▶</span>
-          View Example of Where to Type in Google Notebook
-        </h3>
-        <div class="expandable-content" id="notebook-example-content" style="padding-top: 10px;">
-          <div style="text-align: center;">
-            <a href="https://github.com/tamimoooo/agenda/blob/main/ChatWithGoogleNoteBook.jpg" target="_blank">
-              <img src="https://github.com/tamimoooo/agenda/blob/main/ChatWithGoogleNoteBook.jpg?raw=true" 
-                   alt="Example of where to type in Google Notebook" 
-                   style="max-width: 80%; height: auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer;">
-            </a>
-            <p style="font-size: 0.9em; color: #555;">Click the image to view full size example.</p>
+        <div id="notebook-example" class="section" style="margin-top: 15px; background-color: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 10px;">
+          <h3 style="margin: 0; color: #b22222; font-size: 1.1em; cursor: pointer;" onclick="toggleSection('notebook-example', event)">
+            <span class="twisty" id="notebook-example-twisty-icon">▶</span>
+            View Example of Where to Type in Google Notebook
+          </h3>
+          <div class="expandable-content" id="notebook-example-content" style="padding-top: 10px;">
+            <div style="text-align: center;">
+              <a href="https://github.com/tamimoooo/agenda/blob/main/ChatWithGoogleNoteBook.jpg" target="_blank">
+                <img src="https://github.com/tamimoooo/agenda/blob/main/ChatWithGoogleNoteBook.jpg?raw=true"
+                     alt="Example of where to type in Google Notebook"
+                     style="max-width: 80%; height: auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer;" />
+              </a>
+              <p style="font-size: 0.9em; color: #555;">Click the image to view full size example.</p>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
-
   </div>
-</div>
-         <div id="proposal-survey" class="section" onclick="toggleSection('proposal-survey')">
-  <h2 class="section-title">
-    <span class="twisty" id="proposal-survey-twisty-icon">▶</span>
-    2026 Trip Proposal Survey
-  </h2>
-  <div class="expandable-content" id="proposal-survey-content">
-    <p>The Dots need everyones input on where the 2026 trip should be! Please click the link below to complete the quick survey and cast your vote:</p>
-    <p>
-      <a href="https://www.surveymonkey.com/r/9SZBJL3" target="_blank" style="font-weight: bold; color: #b22222;">
-        Click here to vote on the 2026 Trip Proposal
-      </a>
-    </p>
-    <p>If you haven’t decided yet, you can review all <strong>Trip Proposals</strong> above before voting. The survey will remain open until <strong>November 07, 2025</strong>.</p>
+
+  <div id="proposal-survey" class="section">
+    <h2 class="section-title" onclick="toggleSection('proposal-survey', event)">
+      <span class="twisty" id="proposal-survey-twisty-icon">▶</span>
+      2026 Trip Proposal Survey
+    </h2>
+    <div class="expandable-content" id="proposal-survey-content">
+      <p>The Dots need everyone's input on where the 2026 trip should be. Please click the link below to complete the quick survey and cast your vote:</p>
+      <p>
+        <a href="https://www.surveymonkey.com/r/9SZBJL3" target="_blank" style="font-weight: bold; color: #b22222;">
+          Click here to vote on the 2026 Trip Proposal
+        </a>
+      </p>
+      <p>If you have not decided yet, you can review all Trip Proposals above before voting. The survey will remain open until <strong>November 07, 2025</strong>.</p>
+    </div>
   </div>
-</div>
 
-
- </body>
+</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
