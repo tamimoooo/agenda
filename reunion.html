@@ -6,542 +6,1100 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <title>16 Connect da Dots - In the Newz</title>
-
+  <title>Spring 94 Connect da Dots - In the Newz</title>
+  
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function(){
+      emailjs.init({
+        publicKey: "1aDc1YFIiPnbjb-CS",
+      });
+    })();
+  </script>
+  
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 20px;
-      overflow-y: scroll;
-      position: relative;
-      background: linear-gradient(to bottom right, #f0f0f0, #ffffff);
+    :root {
+      --primary-color: #d32f2f;
+      --primary-light: #f06d6d;
+      --primary-dark: #b22222;
+      --secondary-color: #ff6f61;
+      --background: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-primary: #2c3e50;
+      --text-secondary: #7f8c8d;
+      --border-color: #e0e0e0;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Modern polka dots background */
     .polka-dots {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      height: 100%;
+      bottom: 0;
       background:
-        radial-gradient(circle, rgba(211, 47, 47, 0.8) 10%, transparent 10%),
-        radial-gradient(circle, rgba(211, 47, 47, 0.8) 10%, transparent 10%);
-      background-size: 20px 20px;
-      background-position: 0 0, 10px 10px;
+        radial-gradient(circle, rgba(211, 47, 47, 0.05) 10%, transparent 10%),
+        radial-gradient(circle, rgba(211, 47, 47, 0.05) 10%, transparent 10%);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
       z-index: -1;
+      pointer-events: none;
     }
-    h1 {
-      text-align: center;
-      margin-top: 140px;
-      font-size: 2.5em;
-      color: #d32f2f;
-      font-weight: bold;
-      background: -webkit-linear-gradient(#d32f2f, #f06d6d);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    }
-    .center-text {
-      text-align: center;
-      font-size: 1em;
-      color: #333;
-      margin: 20px auto;
-      font-weight: bold;
-      display: block;
-    }
-    .section {
-      margin-bottom: 30px;
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
       padding: 20px;
-      border-radius: 8px;
-      background-color: #f9f9f9;
-      position: relative;
-      z-index: 1;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-    .section-title {
-      font-size: 1.8em;
-      margin-bottom: 10px;
-      color: #b22222;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 5px;
-      cursor: pointer;
-    }
-    .expandable-content {
-      display: none;
-    }
-    .agenda {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .circle {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background-color: #d32f2f;
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
       color: white;
+      border-radius: 0 0 30px 30px;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.95;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 30px;
+      padding: 0 20px;
+    }
+
+    .nav-tab {
+      padding: 12px 24px;
+      background: var(--card-bg);
+      border: 2px solid var(--border-color);
+      border-radius: 25px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 600;
+      color: var(--text-primary);
+      box-shadow: var(--shadow);
+    }
+
+    .nav-tab:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-color);
+    }
+
+    .nav-tab.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+
+    /* Card Sections */
+    .section {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    .section:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      color: var(--primary-dark);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toggle-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+      color: var(--primary-color);
+    }
+
+    .toggle-icon.expanded {
+      transform: rotate(90deg);
+    }
+
+    .section-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+    }
+
+    .section-content.expanded {
+      max-height: 5000px;
+    }
+
+    /* Contact Cards */
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .contact-card {
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+      border: 2px solid var(--border-color);
+      border-radius: 15px;
+      padding: 20px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .contact-card:hover {
+      border-color: var(--primary-color);
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+    }
+
+    .contact-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+    }
+
+    .contact-info {
+      color: var(--text-secondary);
+      margin-bottom: 5px;
+      font-size: 0.95rem;
+    }
+
+    .contact-email {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .contact-email:hover {
+      color: var(--primary-light);
+      text-decoration: underline;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .btn-small {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .modal.active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      animation: slideUp 0.4s ease-out;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .modal-title {
+      font-size: 2rem;
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: var(--transition);
+      padding: 0;
+      width: 40px;
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
-      font-size: 0.8em;
-      margin: 20px auto 5px auto;
-      text-align: center;
+      border-radius: 50%;
     }
-    .day-text {
-      text-align: center;
-      font-weight: bold;
-      margin-bottom: 15px;
-      color: #b22222;
+
+    .close-btn:hover {
+      background: var(--background);
+      color: var(--primary-color);
+      transform: rotate(90deg);
     }
-    .agenda-items {
-      flex: 1;
-      min-width: 250px;
-    }
-    ul {
-      padding-left: 20px;
-      text-align: left;
-      margin-bottom: 15px;
-    }
-    ul li {
+
+    /* Form Styles */
+    .form-group {
       margin-bottom: 20px;
     }
-    .agenda-items ul li,
-    #contacts-content ul li {
-      margin-bottom: 20px;
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text-primary);
     }
-    .highlight {
-      color: red;
-      font-weight: bold;
-    }
-    a {
-      text-decoration: none;
-      color: #b22222;
-    }
-    a:hover {
-      color: #333;
-      text-decoration: underline;
-    }
-    table {
+
+    .form-input {
       width: 100%;
-      border-collapse: collapse;
+      padding: 12px 16px;
+      border: 2px solid var(--border-color);
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+    }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* Photo Gallery */
+    .photo-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .photo-link-card {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      transition: var(--transition);
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+    }
+
+    .photo-link-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .photo-link-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .photo-link-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    /* Trip Proposals */
+    .trip-card {
+      background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+      border: 2px solid var(--border-color);
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 20px;
+      transition: var(--transition);
+    }
+
+    .trip-card:hover {
+      border-color: var(--primary-color);
+      box-shadow: var(--shadow);
+    }
+
+    .trip-card.highlight {
+      border-color: var(--primary-color);
+      background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+    }
+
+    .trip-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 15px;
+    }
+
+    .trip-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    /* Alert/Info Box */
+    .info-box {
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+      border-left: 4px solid #2196f3;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    .warning-box {
+      background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+      border-left: 4px solid #ff9800;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+
+      header {
+        padding: 40px 20px 30px;
+        border-radius: 0 0 20px 20px;
+      }
+
+      .section {
+        padding: 20px;
+        border-radius: 15px;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+      }
+
+      .modal-content {
+        padding: 25px;
+      }
+
+      .contacts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-tabs {
+        gap: 8px;
+      }
+
+      .nav-tab {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Utility Classes */
+    .text-center {
+      text-align: center;
+    }
+
+    .mt-20 {
+      margin-top: 20px;
+    }
+
+    .mb-20 {
       margin-bottom: 20px;
     }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
+
+    .hidden {
+      display: none;
     }
-    th {
-      background-color: #f2f2f2;
+
+    /* Loading State */
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-secondary);
     }
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2em;
-      }
-      .section-title {
-        font-size: 1.5em;
-      }
-      .circle {
-        width: 50px;
-        height: 50px;
-        font-size: 0.7em;
-        margin-bottom: 10px;
-      }
-      .agenda {
-        align-items: center;
-      }
+
+    .spinner {
+      border: 3px solid var(--border-color);
+      border-top: 3px solid var(--primary-color);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
     }
-    .feedback-comment {
-      font-family: "Courier New", Courier, monospace;
-      font-size: 1.1em;
-      color: #333;
-      background-color: #f9f9f9;
-      border-left: 4px solid #ff6f61;
-      padding: 10px;
-      margin: 10px 0;
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .edit-btn, .delete-btn {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .edit-btn {
+      background: #4caf50;
+      color: white;
+    }
+
+    .edit-btn:hover {
+      background: #45a049;
+    }
+
+    .delete-btn {
+      background: #f44336;
+      color: white;
+    }
+
+    .delete-btn:hover {
+      background: #da190b;
     }
   </style>
-
-  <script>
-    function toggleSection(id, event) {
-      // Only toggle when the header is clicked
-      if (event) event.stopPropagation();
-
-      // Ignore toggle while the user is selecting text
-      const sel = window.getSelection && window.getSelection();
-      if (sel && sel.toString && sel.toString().length > 0) return;
-
-      // Ignore toggle if the click came from interactive elements
-      const t = event ? event.target : null;
-      if (t && t.closest && t.closest('a, button, input, textarea, summary, details')) return;
-
-      const section = document.getElementById(id);
-      if (!section) return;
-
-      const content = section.querySelector('.expandable-content');
-      const twisty  = section.querySelector('.twisty');
-      if (!content || !twisty) return;
-
-      const isHidden = (content.style.display === 'none' || content.style.display === '');
-      if (isHidden) {
-        content.style.display = 'block';
-        twisty.textContent = '▼';
-      } else {
-        content.style.display = 'none';
-        twisty.textContent = '▶';
-      }
-    }
-  </script>
 </head>
 <body>
-
   <div class="polka-dots"></div>
-  <h1>SPRING 94 Dot Connection Updates</h1>
 
-  <!-- Reunion Feedback section remains commented out -->
+  <header>
+    <h1>🔴 SPRING 94 Dot Connection</h1>
+    <p class="subtitle">Stay Connected, Share Memories, Plan Adventures</p>
+  </header>
 
-  <div id="mailing-addresses" class="section">
-    <h2 class="section-title" onclick="toggleSection('mailing-addresses', event)">
-      <span class="twisty" id="address-twisty-icon">▶</span>
-      Email and Mailing Addresses
-    </h2>
-    <div class="expandable-content" id="address-content">
-
-      <h3>Mailing Address</h3>
-      <p><strong>Errin</strong><br>
-        14 Coan Street<br>
-        Greenville, SC 29617
-        <a href="mailto:errinmccomb@gmail.com">errinmccomb@gmail.com</a>
-      </p>
-
-      <h3>Mailing Address</h3>
-      <p><strong>Melanie</strong><br>
-        3703 Burt Drive<br>
-        Raleigh, NC 27606
-        <a href="mailto:melaniebullock@yahoo.com">melaniebullock@yahoo.com</a>
-      </p>
-
-      <h3>Mailing Address</h3>
-      <p><strong>Summer</strong><br>
-        2408 Dulair Road<br>
-        Greensboro, NC 27407
-        <a href="mailto:summer0316@example.com">summer0316@example.com</a>
-      </p>
-
-      <p><strong>Dana</strong><br>
-        8030 Stillmist Drive<br>
-        Fairburn, Georgia 30213
-        <a href="mailto:missdana213@gmail.com">missdana213@gmail.com</a>
-      </p>
-
-      <p><strong>Vernet</strong><br>
-        105 Shadburn Ferry Rd<br>
-        Buford, GA 30518
-        <a href="mailto:vernet1@gmail.com">vernet1@gmail.com</a>
-      </p>
-
-      <p><strong>Monshaire</strong><br>
-        PO Box 6213<br>
-        Florence, SC 29502
-        <a href="mailto:mdfikes@gmail.com">mdfikes@gmail.com</a>
-      </p>
-
-      <p><strong>Tamika F.</strong><br>
-        225 Riverdell North Mews<br>
-        Lancaster, TX 75146
-        <a href="mailto:tamikalfrancis@gmail.com">tamikalfrancis@gmail.com</a>
-      </p>
-
-      <p><strong>Tamika</strong><br>
-        8304 Flat Keystone Drive<br>
-        Raleigh, NC
-        <a href="mailto:DST894@hotmail.com">DST894@hotmail.com</a>
-      </p>
-
-      <p><strong>Tephia Lindsay</strong><br>
-        8612-202 Olde Station Dr.<br>
-        Raleigh, NC 27615
-        <a href="mailto:tephia25@yahoo.com">tephia25@yahoo.com</a>
-      </p>
-
-      <p><strong>Janita</strong><br>
-        PO Box 415<br>
-        Wendell, NC 27591
-        <a href="mailto:freshnclean9@gmail.com">freshnclean9@gmail.com</a>
-      </p>
-
-      <p><strong>Carolyn</strong><br>
-        <br>
-        Texas
-        <a href="mailto:carolyn@example.com">carolyn@example.com</a>
-      </p>
-
-      <p><strong>Sherri</strong><br>
-        143 Skylark Way<br>
-        Raleigh, NC 27615
-        <a href="mailto:sherribelklaw@gmail.com">sherribelklaw@gmail.com</a>
-      </p>
-
-      <p><strong>Michelle</strong><br>
-        11682 Mustang Creek Ct<br>
-        Waldorf, Maryland 20602
-        <a href="mailto:michelleyfoxx@yahoo.com">michelleyfoxx@yahoo.com</a>
-      </p>
-
-      <p><strong>Joeshun</strong><br>
-        <br>
-        <a href="mailto:Joeshun@example.com">Joeshun@example.com</a>
-      </p>
-
-      <p><strong>Nicole</strong><br>
-        141 Bayleigh Court<br>
-        Garner, NC 27529
-        <a href="mailto:kilpatrickn39@gmail.com">kilpatrickn39@gmail.com</a>
-      </p>
-
-      <p><strong>Rochelle</strong><br>
-        9904 Orchard Grass Court<br>
-        Charlotte, NC 28278
-        <a href="mailto:iamadelta@yahoo.com">iamadelta@yahoo.com</a>
-      </p>
-
-   <details open onclick="event.stopPropagation()">
-  <summary style="font-weight:bold; font-size:1.1em; cursor:pointer;">
-    Email List
-  </summary>
-  <div style="margin-top:8px; padding:14px; border:1px solid #ccc; border-radius:6px; background:#f9f9f9;">
-
-    <h4 style="color:#b22222;">Instructions</h4>
-    <ol style="margin-top:5px; color:#333; font-size:0.95em;">
-      <li>Click the <strong>red button below</strong> to open your default email program (Outlook, Gmail, Apple Mail, etc.).</li>
-      <li>Your email address will automatically appear in the <strong>“To” field</strong>.</li>
-      <li>All other contacts will automatically be placed in the <strong>“CC” field</strong>.</li>
-      <li>The subject and message body will be pre-filled — you can edit them as needed.</li>
-      <li>If you prefer, you can <strong>copy and paste</strong> the email addresses listed below into your own message instead of clicking the button.</li>
-    </ol>
-
-    <a href="mailto:YOURADDRESS@example.com?cc=sum0316@gmail.com;dst894@hotmail.com;tamikalfrancis@gmail.com;errinmccomb@gmail.com;melaniebullock@yahoo.com;missdana213@gmail.com;vernet1@gmail.com;mdfikes@gmail.com;tephia25@yahoo.com;sherribelklaw@gmail.com;freshnclean9@gmail.com;kilpatrickn39@gmail.com;iamadelta@yahoo.com;michellelyfoxx@yahoo.com&subject=Spring%2094%20Dot%20Connection%20Updates&body=Hi%20everyone%2C%0D%0A%0D%0AHere%20are%20the%20latest%20updates%20and%20links%20for%20our%20Spring%2094%20Dot%20Connection%20group.%0D%0A%0D%0AYou%20can%20also%20find%20the%20photo%20albums%20and%20trip%20details%20in%20the%20attached%20links.%0D%0A%0D%0AThanks%20so%20much%2C%0D%0A[Your%20Name]"
-       style="display:inline-block; background:#d32f2f; color:#fff; padding:10px 14px; border-radius:6px; text-decoration:none; font-weight:bold; margin-top:10px;">
-      📧 Click to Open Email (You in “To”, Group in “CC”)
-    </a>
-
-    <h4 style="margin-top:16px; color:#b22222;">Copy & Paste List</h4>
-    <p style="margin-top:6px; font-size:0.95em; color:#333;">
-      sum0316@gmail.com; dst894@hotmail.com; tamikalfrancis@gmail.com; errinmccomb@gmail.com; melaniebullock@yahoo.com; 
-      missdana213@gmail.com; vernet1@gmail.com; mdfikes@gmail.com; tephia25@yahoo.com; sherribelklaw@gmail.com; 
-      freshnclean9@gmail.com; kilpatrickn39@gmail.com; iamadelta@yahoo.com; michellelyfoxx@yahoo.com
-    </p>
-
-  </div>
-</details>
-
-
-
+  <div class="container">
+    
+    <!-- Add Contact Button -->
+    <div class="text-center mb-20">
+      <button class="btn btn-primary" onclick="openAddContactModal()">
+        ➕ Add Your Contact Info
+      </button>
     </div>
-  </div>
 
-  <div id="shutterfly-album" class="section">
-    <h2 class="section-title" onclick="toggleSection('shutterfly-album', event)">
-      <span class="twisty" id="shutterfly-twisty-icon">▶</span>
-      Access the Spring 94 Old Photos
-    </h2>
-    <div class="expandable-content" id="shutterfly-content">
-      <p>We have a shared album on Shutterfly where you can view and share memories. Use the link below:</p>
-      <p><a href="https://link.shutterfly.com/AVu65l2xBJb" target="_blank">Click here to view the Shutterfly Spring 94 album</a></p>
-      <p>Steps to access the album:</p>
-      <ol>
-        <li>Click the link above to open the album.</li>
-        <li>If prompted, sign in or create a Shutterfly account.</li>
-        <li>If you do not want to create an account, use the shared account below</li>
-        <li><strong>Email:</strong> <span style="color: blue; font-weight: bold;">dst894@yahoo.com</span></li>
-        <li><strong>Password:</strong> <span style="color: red; font-weight: bold;">16connectdadots</span></li>
-        <li>Enjoy browsing the photos.</li>
-      </ol>
-    </div>
-  </div>
-
-  <div id="homecoming-photos" class="section">
-    <h2 class="section-title" onclick="toggleSection('homecoming-photos', event)">
-      <span class="twisty" id="homecoming-twisty-icon">▶</span>
-      Homecoming 2024 Reunion Photos
-    </h2>
-    <div class="expandable-content" id="homecoming-content">
-      <p>Check out the photos from our Homecoming reunion. Link below:</p>
-      <p><a href="https://link.shutterfly.com/suiedxnxvNb" target="_blank">Click here to view homecoming reunion photos</a></p>
-      <p>We hope you enjoy reliving the memories.</p>
-      <ol>
-        <li>Click the link above to open the album.</li>
-        <li>If prompted, sign in or create a Shutterfly account.</li>
-        <li>If you do not want to create an account, use the shared account below</li>
-        <li><strong>Email:</strong> <span style="color: blue; font-weight: bold;">dst894@yahoo.com</span></li>
-        <li><strong>Password:</strong> <span style="color: red; font-weight: bold;">16connectdadots</span></li>
-        <li>Enjoy browsing the photos.</li>
-      </ol>
-    </div>
-  </div>
-
-  <div id="dot-photoshoots" class="section">
-    <h2 class="section-title" onclick="toggleSection('dot-photoshoots', event)">
-      <span class="twisty" id="dot-photoshoots-twisty-icon">▶</span>
-      Photoshoots
-    </h2>
-    <div class="expandable-content" id="dot-photoshoots-content">
-      <p>Click below to view the photoshoot album:</p>
-      <p><a href="https://link.shutterfly.com/lurzZCVsxNb" target="_blank">Click here to view photoshoot</a></p>
-      <ol>
-        <li>Click the link above to open the album.</li>
-        <li>If prompted, sign in or create a Shutterfly account.</li>
-        <li>If you do not want to create an account, use the shared account below</li>
-        <li><strong>Email:</strong> <span style="color: blue; font-weight: bold;">dst894@yahoo.com</span></li>
-        <li><strong>Password:</strong> <span style="color: red; font-weight: bold;">16connectdadots</span></li>
-        <li>Enjoy browsing the photos.</li>
-      </ol>
-    </div>
-  </div>
-
-<!--  <div id="dot-connections" class="section">
-    <h2 class="section-title" onclick="toggleSection('dot-connections', event)">
-      <span class="twisty" id="dot-connections-twisty-icon">▶</span>
-      Dot Connections
-    </h2>
-    <div class="expandable-content" id="dot-connections-content" style="padding: 10px;">
-
-      <div id="event2" class="event" style="border: 2px solid #FF5733; background-color: #FFE6E6; padding: 10px; border-radius: 5px;">
-        <h3 class="event-title">Greenville, SC</h3>
-        <p><strong>Organizer:</strong> <a href="sms:+19192647864">Errin</a></p>
-
-        <p><strong>Housing Money Dates:</strong>
-          $150 due by <a href="https://cash.app/$EMcComb" target="_blank"><u>Friday, August 29, 2025</u></a> (or entire amount) |
-          $150 due by <a href="https://cash.app/$EMcComb" target="_blank"><u>Monday, September 15th</u></a> via
-          <a href="https://cash.app/$EMcComb" target="_blank">Cash App</a> or
-          <a href="sms:+19192647864">Zelle (919-264-7864)</a>.
-        </p>
-
-        <p><strong>Meals and Activities:</strong>
-          $125 due by <a href="https://cash.app/$EMcComb" target="_blank"><u>Monday, September 15th</u></a> via
-          <a href="https://cash.app/$EMcComb" target="_blank">Cash App</a> or
-          <a href="sms:+19192647864">Zelle (919-264-7864)</a>.
-          <br><span style="color: red; font-weight: bold;">Note: Saturday lunch costs will be on your own.</span>
-        </p>
-
-        <p><strong>Payment Options:</strong></p>
-        <ul>
-          <li>Cash App: <a href="https://cash.app/$EMcComb" target="_blank">https://cash.app/$EMcComb</a></li>
-          <li>Zelle: Use phone number <a href="sms:+19192647864">919-264-7864</a></li>
-        </ul>
-
-        <p><strong>House Info:</strong>
-          <a href="https://therockwallhouse.com" target="_blank">Click here for The Rock Wall House</a>
-        </p>
-
-        <p><strong>House Address:</strong><br>
-          1747 Memorial Drive Ext<br>
-          Greenville, SC 29651<br>
-          *** housecode 828335 ENTER ***
-        </p>
+    <!-- Contacts Section -->
+    <div class="section">
+      <div class="section-header" onclick="toggleSection('contacts')">
+        <h2 class="section-title">
+          <span class="toggle-icon" id="contacts-icon">▶</span>
+          📇 Contact Directory
+        </h2>
       </div>
-
-      <div style="background-color: #d32f2f; text-align: center; margin-top: 20px; padding: 15px; border-radius: 8px;">
-        <img src="SPRING 94 Dots to Greenville 9.11.25.png"
-             alt="All Dots Lead to Greenville Agenda"
-             style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);" />
+      <div class="section-content" id="contacts-content">
+        <div class="info-box">
+          <strong>💡 Tip:</strong> Click on any contact to edit their information. Changes are saved automatically.
+        </div>
+        <div class="text-center mt-20">
+          <button class="btn btn-secondary btn-small" onclick="downloadContactsJSON()">
+            💾 Download All Contacts
+          </button>
+        </div>
+        <div class="contacts-grid" id="contacts-grid">
+          <!-- Contacts will be loaded here -->
+        </div>
       </div>
-
     </div>
-  </div> -->
 
- <div id="trip-proposals" class="section">
-  <h2 class="section-title" onclick="toggleSection('trip-proposals', event)">
-    <span class="twisty" id="trip-proposals-twisty-icon">▶</span>
-    2026 Trip Proposal
-  </h2>
-  <div class="expandable-content" id="trip-proposals-content">
-    <p>Click the links below to download the trip proposal. Delete from your downloads folder after viewing.</p>
-    <ul>
-      <!--
-      <li>
-        We So ATL Presentation (Atlanta, GA) - 
-        <a href="https://github.com/tamimoooo/agenda/raw/main/WeSoATL.pdf" target="_blank">Click here to download presentation</a>
-        &nbsp;|&nbsp;
-        <a href="https://github.com/tamimoooo/agenda/raw/main/WeSoATL.png" target="_blank">Click here to download image</a>
-      </li>
+    <!-- Email List Section -->
+    <div class="section">
+      <div class="section-header" onclick="toggleSection('email')">
+        <h2 class="section-title">
+          <span class="toggle-icon" id="email-icon">▶</span>
+          📧 Email Everyone
+        </h2>
+      </div>
+      <div class="section-content" id="email-content">
+        <div class="info-box">
+          <h3 style="margin-bottom: 15px;">How to Email the Group</h3>
+          <ol style="margin-left: 20px;">
+            <li>Click the button below to open your email client</li>
+            <li>Your email will be in the "To" field</li>
+            <li>All other contacts will be in "CC"</li>
+            <li>Edit the subject and message as needed</li>
+          </ol>
+        </div>
+        <div class="text-center mt-20">
+          <a href="mailto:YOURADDRESS@example.com?cc=sum0316@gmail.com;dst894@hotmail.com;tamikalfrancis@gmail.com;errinmccomb@gmail.com;melaniebullock@yahoo.com;missdana213@gmail.com;vernet1@gmail.com;mdfikes@gmail.com;tephia25@yahoo.com;sherribelklaw@gmail.com;freshnclean9@gmail.com;kilpatrickn39@gmail.com;iamadelta@yahoo.com;michellelyfoxx@yahoo.com&subject=Spring%2094%20Dot%20Connection%20Updates&body=Hi%20everyone%2C%0D%0A%0D%0AHere%20are%20the%20latest%20updates%20for%20our%20Spring%2094%20Dot%20Connection%20group.%0D%0A%0D%0AThanks%2C%0D%0A[Your%20Name]" 
+             class="btn btn-primary">
+            📧 Open Email Client
+          </a>
+        </div>
+        <div class="warning-box mt-20">
+          <strong>📋 Copy & Paste Email List:</strong><br>
+          <code style="display: block; margin-top: 10px; padding: 10px; background: white; border-radius: 8px; word-break: break-all;">
+            sum0316@gmail.com; dst894@hotmail.com; tamikalfrancis@gmail.com; errinmccomb@gmail.com; melaniebullock@yahoo.com; missdana213@gmail.com; vernet1@gmail.com; mdfikes@gmail.com; tephia25@yahoo.com; sherribelklaw@gmail.com; freshnclean9@gmail.com; kilpatrickn39@gmail.com; iamadelta@yahoo.com; michellelyfoxx@yahoo.com
+          </code>
+        </div>
+      </div>
+    </div>
 
-      <li>
-        Barnsly Wellness Resort (Calhoun, GA) - 
-        <a href="https://github.com/tamimoooo/agenda/raw/main/Barnsly%20Wellsness%20Resort_Calhoun,%20Ga.pdf" target="_blank">Click here to download presentation</a>
-      </li>
+    <!-- Photo Albums Section -->
+    <div class="section">
+      <div class="section-header" onclick="toggleSection('photos')">
+        <h2 class="section-title">
+          <span class="toggle-icon" id="photos-icon">▶</span>
+          📸 Photo Albums
+        </h2>
+      </div>
+      <div class="section-content" id="photos-content">
+        <div class="photo-links">
+          <a href="https://link.shutterfly.com/AVu65l2xBJb" target="_blank" class="photo-link-card">
+            <div class="photo-link-icon">🎓</div>
+            <div class="photo-link-title">Spring 94 Old Photos</div>
+            <p>Throwback memories from our college days</p>
+          </a>
+          <a href="https://link.shutterfly.com/suiedxnxvNb" target="_blank" class="photo-link-card">
+            <div class="photo-link-icon">🏈</div>
+            <div class="photo-link-title">Homecoming 2024</div>
+            <p>Recent reunion photos</p>
+          </a>
+          <a href="https://link.shutterfly.com/lurzZCVsxNb" target="_blank" class="photo-link-card">
+            <div class="photo-link-icon">📷</div>
+            <div class="photo-link-title">Photoshoots</div>
+            <p>Professional group photos</p>
+          </a>
+        </div>
+        <div class="info-box mt-20">
+          <strong>🔐 Shared Account Access:</strong><br>
+          Email: <strong style="color: #2196f3;">dst894@yahoo.com</strong><br>
+          Password: <strong style="color: #f44336;">16connectdadots</strong>
+        </div>
+      </div>
+    </div>
 
-      <li>
-        Blast from the Past - Lake Norman (Lake Norman, NC) - 
-        <a href="https://github.com/tamimoooo/agenda/raw/main/Blast%20from%20the%20past_LakeNorman.pdf" target="_blank">Click here to download presentation</a>
-      </li>
+    <!-- Trip Proposals Section -->
+    <div class="section">
+      <div class="section-header" onclick="toggleSection('trips')">
+        <h2 class="section-title">
+          <span class="toggle-icon" id="trips-icon">▶</span>
+          ✈️ 2026 Trip Proposals
+        </h2>
+      </div>
+      <div class="section-content" id="trips-content">
+        <div class="trip-card highlight">
+          <div class="trip-title">⛺ Glamping in Yellowstone National Park</div>
+          <p><strong>Location:</strong> West Yellowstone, MT</p>
+          <p style="margin-top: 10px;">Experience luxury camping in one of America's most iconic national parks!</p>
+          <div class="trip-links">
+            <a href="https://github.com/tamimoooo/agenda/raw/main/Dots%20Go%20Glamping.pdf" target="_blank" class="btn btn-primary btn-small">
+              📄 View Presentation
+            </a>
+            <a href="https://drive.google.com/file/d/1yv554UjX1m8c1OL3E1XrwWtILhKnabvm/view?usp=drive_link" target="_blank" class="btn btn-secondary btn-small">
+              🎥 Watch Video
+            </a>
+            <a href="https://www.undercanvas.com/camps/north-yellowstone" target="_blank" class="btn btn-secondary btn-small">
+              🏕️ Under Canvas Website
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <li>
-        <span class="highlight">CIVANA Wellness Resort and Spa (Carefree, AZ)</span> - 
-        <a href="https://proposalpath.com/85e91cf6" target="_blank">Click here to view presentation</a>
-      </li>
-
-      <li>
-        Dallas TakeOver (Dallas, TX) - 
-        <a href="https://github.com/tamimoooo/agenda/raw/main/DallasTakeOver.jpg" target="_blank">Click here to download presentation</a>
-      </li>
-
-      <li>
-        Destination Ashville (Ashville, NC) - 
-        <a href="https://github.com/tamimoooo/agenda/raw/main/Destination%20Ashville.png" target="_blank">Click here to download presentation</a>
-      </li>
-
-      <li>
-        <span class="highlight">Dots Go Country 2026 (Gatlinburg, TN)</span> - 
-        <a href="https://github.com/tamimoooo/agenda/raw/main/Dots%20Go%20Country%202026%20-%20Gatlinburg%2C%20TN.pdf" target="_blank">Click here to download presentation</a>
-        &nbsp;|&nbsp;
-        <a href="https://drive.google.com/file/d/1EOb1J8HKYmXcQJNE8cJ97rKfwG6NU8f6/view?usp=drive_link" target="_blank">Click to view video</a>
-      </li>
-      -->
-
-      <!-- ✅ ACTIVE TRIP: Glamping in Yellowstone -->
-      <li>
-        <span class="highlight">Glamping in Yellowstone National Park (West Yellowstone, MT)</span> - 
-        <a href="https://github.com/tamimoooo/agenda/raw/main/Dots%20Go%20Glamping.pdf" target="_blank">Click here to view or download presentation</a>
-        &nbsp;|&nbsp;
-        <a href="https://drive.google.com/file/d/1yv554UjX1m8c1OL3E1XrwWtILhKnabvm/view?usp=drive_link" target="_blank">Click to view Video</a>
-          <a href="https://www.undercanvas.com/camps/north-yellowstone" target="_blank">  : Click Here to Go To Under Canvas Website</a>
-      </li>
-
-      <!--
-      <li>
-        Sistershood, Soul, Savannah (Dots in Savannah) (Savannah, GA) - 
-        <a href="https://github.com/tamimoooo/agenda/raw/main/Dots%20in%20Savannah.,GA.pdf" target="_blank">Click here to download presentation</a>
-      </li>
-
-      <li>
-        Girls' Getaway to Dollywood (Pigeon Forge, Tennessee) - 
-        <a href="https://github.com/tamimoooo/agenda/raw/main/Girls'%20Getaway%20to%20Dollywood.pdf" target="_blank">Click here to download presentation</a>
-      </li>
-
-      <li>
-        <span class="highlight">Martha’s Vineyard Black Film Festival (Massachusetts)</span>
-      </li>
-
-      <li>
-        Phoenix Bound (Phoenix, AZ)
-      </li>
-      -->
-    </ul>
   </div>
-</div>
 
+  <!-- Add/Edit Contact Modal -->
+  <div class="modal" id="contactModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle">Add Your Contact Info</h2>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+      <form id="contactForm" onsubmit="saveContact(event)">
+        <input type="hidden" id="contactId">
+        
+        <div class="form-group">
+          <label class="form-label" for="contactName">Name *</label>
+          <input type="text" id="contactName" class="form-input" required placeholder="Enter your name">
+        </div>
 
+        <div class="form-group">
+          <label class="form-label" for="contactEmail">Email *</label>
+          <input type="email" id="contactEmail" class="form-input" required placeholder="your.email@example.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactAddress">Street Address</label>
+          <input type="text" id="contactAddress" class="form-input" placeholder="123 Main Street">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactCity">City</label>
+          <input type="text" id="contactCity" class="form-input" placeholder="City">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactState">State</label>
+          <input type="text" id="contactState" class="form-input" placeholder="State">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactZip">ZIP Code</label>
+          <input type="text" id="contactZip" class="form-input" placeholder="12345">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactPhone">Phone Number</label>
+          <input type="tel" id="contactPhone" class="form-input" placeholder="(555) 123-4567">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactBirthday">Birthday (Month & Day)</label>
+          <input type="text" id="contactBirthday" class="form-input" placeholder="MM/DD (e.g., 03/15)" pattern="(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])">
+          <small style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 5px; display: block;">Format: MM/DD (e.g., 03/15 for March 15th)</small>
+        </div>
+
+        <div class="action-buttons">
+          <button type="submit" class="btn btn-primary">💾 Save Contact</button>
+          <button type="button" class="btn btn-secondary" onclick="submitContactToAdmin(event)">📧 Submit to Admin</button>
+          <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let contactsData = [];
+
+    // Load contacts from JSON file
+    async function initializeContacts() {
+      try {
+        const response = await fetch('contacts.json');
+        if (response.ok) {
+          contactsData = await response.json();
+          // Also store in localStorage for editing
+          localStorage.setItem('spring94Contacts', JSON.stringify(contactsData));
+        } else {
+          // Fallback to localStorage if file not found
+          const stored = localStorage.getItem('spring94Contacts');
+          contactsData = stored ? JSON.parse(stored) : [];
+        }
+      } catch (error) {
+        console.error('Error loading contacts:', error);
+        // Fallback to localStorage
+        const stored = localStorage.getItem('spring94Contacts');
+        contactsData = stored ? JSON.parse(stored) : [];
+      }
+      loadContacts();
+    }
+
+    // Load and display contacts
+    function loadContacts() {
+      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      const grid = document.getElementById('contacts-grid');
+      
+      if (contacts.length === 0) {
+        grid.innerHTML = '<p class="text-center">No contacts yet. Click "Add Your Contact Info" to get started!</p>';
+        return;
+      }
+
+      grid.innerHTML = contacts.map(contact => `
+        <div class="contact-card">
+          <div class="contact-name">${contact.name}</div>
+          ${contact.birthday ? `<div class="contact-info">🎂 ${formatBirthday(contact.birthday)}</div>` : ''}
+          ${contact.address ? `<div class="contact-info">📍 ${contact.address}</div>` : ''}
+          ${contact.city || contact.state || contact.zip ? `<div class="contact-info">${[contact.city, contact.state, contact.zip].filter(Boolean).join(', ')}</div>` : ''}
+          ${contact.phone ? `<div class="contact-info">📞 ${contact.phone}</div>` : ''}
+          <div class="contact-info">
+            <a href="mailto:${contact.email}" class="contact-email">✉️ ${contact.email}</a>
+          </div>
+          <div class="action-buttons">
+            <button class="edit-btn" onclick="editContact(${contact.id})">✏️ Edit</button>
+            <button class="delete-btn" onclick="deleteContact(${contact.id})">🗑️ Delete</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Format birthday for display
+    function formatBirthday(birthday) {
+      if (!birthday) return '';
+      // Handle MM/DD format
+      const parts = birthday.split('/');
+      if (parts.length === 2) {
+        const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                       'July', 'August', 'September', 'October', 'November', 'December'];
+        const month = parseInt(parts[0]) - 1;
+        const day = parseInt(parts[1]);
+        if (month >= 0 && month < 12 && day >= 1 && day <= 31) {
+          return `${months[month]} ${day}`;
+        }
+      }
+      return birthday;
+    }
+
+    // Download contacts as JSON file
+    function downloadContactsJSON() {
+      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      const dataStr = JSON.stringify(contacts, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(dataBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'contacts.json';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      
+      alert('✅ Contacts downloaded! Please send this file to the group admin to update the website.');
+    }
+
+    // Toggle section visibility
+    function toggleSection(sectionId) {
+      const content = document.getElementById(`${sectionId}-content`);
+      const icon = document.getElementById(`${sectionId}-icon`);
+      
+      if (content.classList.contains('expanded')) {
+        content.classList.remove('expanded');
+        icon.classList.remove('expanded');
+      } else {
+        content.classList.add('expanded');
+        icon.classList.add('expanded');
+      }
+    }
+
+    // Open modal for adding contact
+    function openAddContactModal() {
+      document.getElementById('modalTitle').textContent = 'Add Your Contact Info';
+      document.getElementById('contactForm').reset();
+      document.getElementById('contactId').value = '';
+      document.getElementById('contactModal').classList.add('active');
+    }
+
+    // Edit contact
+    function editContact(id) {
+      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      const contact = contacts.find(c => c.id === id);
+      
+      if (contact) {
+        document.getElementById('modalTitle').textContent = 'Edit Contact Info';
+        document.getElementById('contactId').value = contact.id;
+        document.getElementById('contactName').value = contact.name;
+        document.getElementById('contactEmail').value = contact.email;
+        document.getElementById('contactAddress').value = contact.address || '';
+        document.getElementById('contactCity').value = contact.city || '';
+        document.getElementById('contactState').value = contact.state || '';
+        document.getElementById('contactZip').value = contact.zip || '';
+        document.getElementById('contactPhone').value = contact.phone || '';
+        document.getElementById('contactBirthday').value = contact.birthday || '';
+        document.getElementById('contactModal').classList.add('active');
+      }
+    }
+
+    // Delete contact
+    function deleteContact(id) {
+      if (confirm('Are you sure you want to delete this contact?')) {
+        let contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+        contacts = contacts.filter(c => c.id !== id);
+        localStorage.setItem('spring94Contacts', JSON.stringify(contacts));
+        loadContacts();
+      }
+    }
+
+    // Save contact (no email)
+    function saveContact(event) {
+      event.preventDefault();
+      
+      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      const id = document.getElementById('contactId').value;
+      
+      const contactData = {
+        id: id ? parseInt(id) : Date.now(),
+        name: document.getElementById('contactName').value,
+        email: document.getElementById('contactEmail').value,
+        address: document.getElementById('contactAddress').value,
+        city: document.getElementById('contactCity').value,
+        state: document.getElementById('contactState').value,
+        zip: document.getElementById('contactZip').value,
+        phone: document.getElementById('contactPhone').value,
+        birthday: document.getElementById('contactBirthday').value
+      };
+      
+      if (id) {
+        // Update existing contact
+        const index = contacts.findIndex(c => c.id === parseInt(id));
+        if (index !== -1) {
+          contacts[index] = contactData;
+        }
+      } else {
+        // Add new contact
+        contacts.push(contactData);
+      }
+
+      localStorage.setItem('spring94Contacts', JSON.stringify(contacts));
+      closeModal();
+      loadContacts();
+      
+      alert('✅ Contact saved locally!');
+    }
+
+    // Submit contact to admin (uses mailto as fallback)
+    async function submitContactToAdmin(event) {
+      event.preventDefault();
+      
+      // Get the current contact data from the form
+      const contactData = {
+        id: document.getElementById('contactId').value || Date.now(),
+        name: document.getElementById('contactName').value,
+        email: document.getElementById('contactEmail').value,
+        address: document.getElementById('contactAddress').value,
+        city: document.getElementById('contactCity').value,
+        state: document.getElementById('contactState').value,
+        zip: document.getElementById('contactZip').value,
+        phone: document.getElementById('contactPhone').value,
+        birthday: document.getElementById('contactBirthday').value
+      };
+
+      // Validate required fields
+      if (!contactData.name || !contactData.email) {
+        alert('❌ Please fill in at least Name and Email before submitting.');
+        return;
+      }
+
+      // Format contact info for email
+      const contactInfo = `
+Name: ${contactData.name}
+Email: ${contactData.email}
+Birthday: ${contactData.birthday || 'Not provided'}
+Address: ${contactData.address || 'Not provided'}
+City: ${contactData.city || 'Not provided'}
+State: ${contactData.state || 'Not provided'}
+ZIP: ${contactData.zip || 'Not provided'}
+Phone: ${contactData.phone || 'Not provided'}
+      `.trim();
+
+      const contactJSON = JSON.stringify(contactData, null, 2);
+
+      // Send via EmailJS only
+      const submitBtn = event.target;
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '⏳ Sending...';
+      submitBtn.disabled = true;
+
+      try {
+        await emailjs.send(
+          'service_tyw2ual',
+          'template_fainkx7',
+          {
+            name: contactData.name,
+            message: `Contact information has been updated:\n\n${contactInfo}\n\n---\nJSON Format:\n${contactJSON}`
+          }
+        );
+
+        alert('✅ Contact information sent successfully to admin!');
+        saveAndClose(contactData);
+        
+      } catch (error) {
+        console.error('EmailJS failed:', error);
+        alert('❌ Failed to send email. Please check your internet connection and try again.');
+      } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
+    }
+
+    // Helper function to save and close modal
+    function saveAndClose(contactData) {
+      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      const id = document.getElementById('contactId').value;
+      
+      if (id) {
+        const index = contacts.findIndex(c => c.id === parseInt(id));
+        if (index !== -1) {
+          contacts[index] = contactData;
+        }
+      } else {
+        contacts.push(contactData);
+      }
+      
+      localStorage.setItem('spring94Contacts', JSON.stringify(contacts));
+      closeModal();
+      loadContacts();
+    }
+
+    // Close modal
+    function closeModal() {
+      document.getElementById('contactModal').classList.remove('active');
+      document.getElementById('contactForm').reset();
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('contactModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeContacts();
+      
+      // Auto-expand first section
+      setTimeout(() => {
+        toggleSection('contacts');
+      }, 300);
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
