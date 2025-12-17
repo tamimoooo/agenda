@@ -619,6 +619,55 @@
     .delete-btn:hover {
       background: #da190b;
     }
+
+    /* Subsection collapsible styles */
+    .subsection-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding: 15px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      transition: var(--transition);
+      border: 2px solid var(--border-color);
+    }
+
+    .subsection-header:hover {
+      border-color: var(--primary-color);
+      background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+    }
+
+    .subsection-title {
+      font-size: 1.3rem;
+      color: var(--primary-dark);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .subsection-toggle {
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+      color: var(--primary-color);
+    }
+
+    .subsection-toggle.expanded {
+      transform: rotate(90deg);
+    }
+
+    .subsection-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+    }
+
+    .subsection-content.expanded {
+      max-height: 5000px;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
@@ -746,15 +795,134 @@
           <p style="margin-top: 15px; font-size: 1.1rem;">Experience luxury camping in one of America's most iconic national parks! Glamping combines the beauty of nature with the comfort of a hotel.</p>
         </div>
 
+        <!-- Travel & Airport Information -->
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('travel')">
+            <h3 class="subsection-title">✈️ Travel & Airport Information</h3>
+            <span class="subsection-toggle" id="travel-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="travel-content">
+          
+          <h4 style="color: var(--primary-color); margin-bottom: 10px;">Nearest Airports:</h4>
+          <div style="display: grid; gap: 15px; margin-bottom: 20px;">
+            <div style="border-left: 4px solid var(--primary-color); padding-left: 15px;">
+              <strong>Bozeman Yellowstone International Airport (BZN)</strong><br>
+              <span style="color: var(--text-secondary);">Bozeman, Montana - Approximately 90 miles (1.5-2 hours drive)</span><br>
+              <em style="font-size: 0.9rem;">Most popular option with more flight options</em>
+            </div>
+            
+            <div style="border-left: 4px solid var(--secondary-color); padding-left: 15px;">
+              <strong>Yellowstone Airport (WYS)</strong><br>
+              <span style="color: var(--text-secondary);">West Yellowstone, Montana - Approximately 10 miles (15 minutes drive)</span><br>
+              <em style="font-size: 0.9rem;">Closest but seasonal (summer only) with limited flights</em>
+            </div>
+
+            <div style="border-left: 4px solid #4caf50; padding-left: 15px;">
+              <strong>Idaho Falls Regional Airport (IDA)</strong><br>
+              <span style="color: var(--text-secondary);">Idaho Falls, Idaho - Approximately 110 miles (2 hours drive)</span><br>
+              <em style="font-size: 0.9rem;">Alternative option</em>
+            </div>
+          </div>
+
+            <div class="info-box">
+              <strong>🚗 Transportation:</strong> Rental car recommended for flexibility. Group transportation options TBD.
+            </div>
+          </div>
+        </div>
+
+        <!-- Lodging Options & Pricing -->
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('lodging')">
+            <h3 class="subsection-title">🏕️ Lodging Options & Pricing</h3>
+            <span class="subsection-toggle" id="lodging-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="lodging-content">
+          <p style="margin-bottom: 20px;"><em>Hypothetically Sept 24 - Sept 28, 2026 (Dates TBD)</em></p>
+          
+          <div style="display: grid; gap: 15px;">
+            <!-- Delux Tent -->
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+              <h4 style="color: var(--primary-color); margin-bottom: 10px;">⛺ Delux Tent - $365.00/Night</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>One King Bed</li>
+                <li>One Bath - toilet, sep shower, sep sink</li>
+                <li>All within the tent</li>
+              </ul>
+            </div>
+
+            <!-- Delux Tent w/ Kids Tent -->
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+              <h4 style="color: var(--primary-color); margin-bottom: 10px;">⛺ Delux Tent w/ Kids Tent - $530.00/Night</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>One King Bed, separate but adjacent Kids tent w/ 2 Twin Beds</li>
+                <li>One Bath - toilet, sep shower, sep sink</li>
+                <li>All within the tent</li>
+              </ul>
+            </div>
+
+            <!-- Stargazer Tent -->
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+              <h4 style="color: var(--primary-color); margin-bottom: 10px;">⭐ Stargazer Tent - $435.00/Night</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>One King Bed & a night sky viewing window</li>
+                <li>Private ensuite bathroom</li>
+              </ul>
+            </div>
+
+            <!-- Stargazer Tent w/ Kids Tent -->
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+              <h4 style="color: var(--primary-color); margin-bottom: 10px;">⭐ Stargazer Tent w/ Kids Tent - $609.00/Night</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>One King Bed & night sky viewing window</li>
+                <li>Separate Kids tent with beds</li>
+                <li>Private ensuite bathroom</li>
+              </ul>
+            </div>
+
+            <!-- Suite Tent -->
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+              <h4 style="color: var(--primary-color); margin-bottom: 10px;">🌟 Suite Tent - $480.00/Night</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>Same as Stargazer but also has a queen sofa bed</li>
+              </ul>
+            </div>
+
+            <!-- Suite Tent w/ Kids Tent -->
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+              <h4 style="color: var(--primary-color); margin-bottom: 10px;">🌟 Suite Tent w/ Kids Tent - $662.00/Night</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>Suite tent with queen sofa bed</li>
+                <li>Separate Kids tent</li>
+              </ul>
+            </div>
+
+            <!-- Yellowstone River Suite -->
+            <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
+              <h4 style="color: var(--primary-color); margin-bottom: 10px;">🏞️ Yellowstone River Suite - $1,080.00/Night</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>2 Suite Tents, 2 Delux Tents w/ 2 Twin Beds</li>
+                <li>Connected by an expansive private deck</li>
+                <li>Yellowstone River Cabin - $480/Night</li>
+                <li>Alder Stargazer</li>
+              </ul>
+            </div>
+          </div>
+
+            <div class="info-box" style="margin-top: 20px;">
+              <strong>📝 Note:</strong> Prices are per night and subject to change. Final dates and total costs will be confirmed soon.
+            </div>
+          </div>
+        </div>
+
         <!-- Cost & Payment -->
         <div class="trip-card">
-          <h3 style="color: var(--primary-dark); margin-bottom: 15px;">💰 Cost & Payment Details</h3>
-          <div class="warning-box">
-            <strong>💵 Total Cost:</strong> <span style="color: var(--primary-color); font-weight: bold;">TBD</span><br>
-            <em>Final pricing will be announced soon. Stay tuned!</em>
+          <div class="subsection-header" onclick="toggleSubsection('payment')">
+            <h3 class="subsection-title">💰 Payment Details</h3>
+            <span class="subsection-toggle" id="payment-toggle">▶</span>
           </div>
+          <div class="subsection-content" id="payment-content">
           
-          <h4 style="margin-top: 20px; color: var(--primary-dark);">Payment Schedule (TBD):</h4>
+          <h4 style="color: var(--primary-dark);">Payment Schedule (TBD):</h4>
           <ul style="margin-left: 20px; margin-top: 10px;">
             <li><strong>Deposit:</strong> Amount & due date TBD</li>
             <li><strong>Second Payment:</strong> Amount & due date TBD</li>
@@ -767,20 +935,108 @@
             <li><strong>Cash App:</strong> Details TBD</li>
             <li><strong>Venmo:</strong> Details TBD</li>
           </ul>
+          </div>
+        </div>
+
+        <!-- Activities & Excursions -->
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('activities')">
+            <h3 class="subsection-title">🎯 Activities & Excursions</h3>
+            <span class="subsection-toggle" id="activities-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="activities-content">
+          <p style="margin-bottom: 20px;">Choose your adventure! Here are some exciting activities available:</p>
+
+          <!-- Featured Activity -->
+          <div style="border: 3px solid var(--primary-color); border-radius: 15px; padding: 20px; margin-bottom: 20px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
+            <h4 style="color: var(--primary-color); margin-bottom: 15px;">🌊 Group Whitewater Rafting - 18 Mile</h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+              <div>
+                <strong>💰 Price:</strong> $164.00 per person<br>
+                <strong>⏱️ Duration:</strong> 5-6 hours (stops & cafe for lunch)<br>
+                <strong>📍 Location:</strong> Yellowstone River
+              </div>
+            </div>
+            <p style="margin-top: 15px; font-style: italic; color: var(--text-secondary);">
+              Experience the thrill of whitewater rafting through stunning Yellowstone scenery!
+            </p>
+          </div>
+
+          <!-- Other Activities -->
+          <h4 style="color: var(--primary-dark); margin-bottom: 15px;">Other Honorable Mentions:</h4>
+          <div style="display: grid; gap: 15px;">
+            
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <h5 style="color: var(--primary-color); margin-bottom: 8px;">🛶 Private Yellowstone River Luxury Float</h5>
+              <p style="font-size: 0.95rem; margin-bottom: 8px;">
+                <strong>Price:</strong> $644.00 | <strong>Duration:</strong> 2.5 hours<br>
+                <strong>Location:</strong> Yellowstone River
+              </p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">Relaxing scenic float through pristine wilderness</p>
+            </div>
+
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <h5 style="color: var(--primary-color); margin-bottom: 8px;">🐴 Group Horseback Ride</h5>
+              <p style="font-size: 0.95rem; margin-bottom: 8px;">
+                <strong>Price:</strong> $244.00 per person | <strong>Duration:</strong> 2 hrs<br>
+                <strong>Location:</strong> Absaroka-Beartooth Wilderness
+              </p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">Explore the wilderness on horseback</p>
+            </div>
+
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <h5 style="color: var(--primary-color); margin-bottom: 8px;">🦬 Yellowstone Park Tours</h5>
+              <p style="font-size: 0.95rem; margin-bottom: 8px;">
+                See geysers, hot springs, wildlife (bison, elk, bears), and iconic landmarks
+              </p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">Details and pricing TBD</p>
+            </div>
+
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <h5 style="color: var(--primary-color); margin-bottom: 8px;">🥾 Hiking & Nature Walks</h5>
+              <p style="font-size: 0.95rem; margin-bottom: 8px;">
+                Various trails for all skill levels
+              </p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">Free - explore at your own pace</p>
+            </div>
+
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <h5 style="color: var(--primary-color); margin-bottom: 8px;">📸 Photography Tours</h5>
+              <p style="font-size: 0.95rem; margin-bottom: 8px;">
+                Capture stunning landscapes and wildlife
+              </p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">Details TBD</p>
+            </div>
+
+          </div>
+
+            <div class="warning-box" style="margin-top: 20px;">
+              <strong>📝 Note:</strong> Activities are optional and not included in base lodging cost. Book activities that interest you! More details and booking information coming soon.
+            </div>
+          </div>
         </div>
 
         <!-- Itinerary -->
         <div class="trip-card">
-          <h3 style="color: var(--primary-dark); margin-bottom: 15px;">📋 Itinerary</h3>
-          <div class="info-box">
-            <strong>🗓️ Detailed schedule coming soon!</strong><br>
-            <em>We're working on an amazing itinerary filled with adventure, relaxation, and sisterhood. Check back for updates!</em>
+          <div class="subsection-header" onclick="toggleSubsection('itinerary')">
+            <h3 class="subsection-title">📋 Itinerary</h3>
+            <span class="subsection-toggle" id="itinerary-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="itinerary-content">
+            <div class="info-box">
+              <strong>🗓️ Detailed schedule coming soon!</strong><br>
+              <em>We're working on an amazing itinerary filled with adventure, relaxation, and sisterhood. Check back for updates!</em>
+            </div>
           </div>
         </div>
 
         <!-- Packing Suggestions -->
         <div class="trip-card">
-          <h3 style="color: var(--primary-dark); margin-bottom: 15px;">🎒 Packing Suggestions</h3>
+          <div class="subsection-header" onclick="toggleSubsection('packing')">
+            <h3 class="subsection-title">🎒 Packing Suggestions</h3>
+            <span class="subsection-toggle" id="packing-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="packing-content">
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
             <div>
               <h4 style="color: var(--primary-color);">Clothing</h4>
@@ -804,11 +1060,16 @@
             </div>
           </div>
           <p style="margin-top: 15px;"><em>Full packing list will be provided closer to trip date.</em></p>
+          </div>
         </div>
 
-        <!-- Important Links -->
+        <!-- Important Links & Downloads -->
         <div class="trip-card">
-          <h3 style="color: var(--primary-dark); margin-bottom: 15px;">🔗 Important Links</h3>
+          <div class="subsection-header" onclick="toggleSubsection('links')">
+            <h3 class="subsection-title">🔗 Important Links & Downloads</h3>
+            <span class="subsection-toggle" id="links-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="links-content">
           <div class="trip-links">
             <a href="https://github.com/tamimoooo/agenda/raw/main/Dots%20Go%20Glamping.pdf" target="_blank" class="btn btn-primary btn-small">
               📄 View Presentation
@@ -820,17 +1081,26 @@
               🏕️ Under Canvas Website
             </a>
           </div>
+            <div class="info-box" style="margin-top: 15px;">
+              <strong>💡 Coming Soon:</strong> Downloadable trip details package with itinerary, packing list, and all important information!
+            </div>
+          </div>
         </div>
 
         <!-- Contact Info -->
         <div class="trip-card">
-          <h3 style="color: var(--primary-dark); margin-bottom: 15px;">📞 Questions?</h3>
+          <div class="subsection-header" onclick="toggleSubsection('contact')">
+            <h3 class="subsection-title">📞 Questions?</h3>
+            <span class="subsection-toggle" id="contact-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="contact-content">
           <p><strong>Trip Coordinators:</strong> Sherri Belk and Janita Moody</p>
           <p><strong>Email:</strong>
             <a href="mailto:sherribelklaw@gmail.com" style="color: var(--primary-color);">sherribelklaw@gmail.com</a> |
             <a href="mailto:freshnclean9@gmail.com" style="color: var(--primary-color);">freshnclean9@gmail.com</a>
           </p>
           <p style="margin-top: 10px;"><em>Don't hesitate to reach out with any questions or concerns!</em></p>
+          </div>
         </div>
 
       </div>
@@ -1012,6 +1282,20 @@
     function toggleSection(sectionId) {
       const content = document.getElementById(`${sectionId}-content`);
       const icon = document.getElementById(`${sectionId}-icon`);
+      
+      if (content.classList.contains('expanded')) {
+        content.classList.remove('expanded');
+        icon.classList.remove('expanded');
+      } else {
+        content.classList.add('expanded');
+        icon.classList.add('expanded');
+      }
+    }
+
+    // Toggle subsection visibility
+    function toggleSubsection(subsectionId) {
+      const content = document.getElementById(`${subsectionId}-content`);
+      const icon = document.getElementById(`${subsectionId}-toggle`);
       
       if (content.classList.contains('expanded')) {
         content.classList.remove('expanded');
