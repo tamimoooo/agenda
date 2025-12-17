@@ -819,26 +819,49 @@
   </div>
 
   <script>
+    // Default contacts embedded in HTML
+    const defaultContacts = [
+      { id: 1, name: "Errin", email: "errinmccomb@gmail.com", address: "14 Coan Street", city: "Greenville", state: "SC", zip: "29617", phone: "", birthday: "" },
+      { id: 2, name: "Melanie", email: "melaniebullock@yahoo.com", address: "3703 Burt Drive", city: "Raleigh", state: "NC", zip: "27606", phone: "", birthday: "" },
+      { id: 3, name: "Summer", email: "summer0316@example.com", address: "2408 Dulair Road", city: "Greensboro", state: "NC", zip: "27407", phone: "", birthday: "" },
+      { id: 4, name: "Dana", email: "missdana213@gmail.com", address: "8030 Stillmist Drive", city: "Fairburn", state: "Georgia", zip: "30213", phone: "", birthday: "" },
+      { id: 5, name: "Vernet", email: "vernet1@gmail.com", address: "105 Shadburn Ferry Rd", city: "Buford", state: "GA", zip: "30518", phone: "", birthday: "" },
+      { id: 6, name: "Monshaire", email: "mdfikes@gmail.com", address: "PO Box 6213", city: "Florence", state: "SC", zip: "29502", phone: "", birthday: "" },
+      { id: 7, name: "Tamika F.", email: "tamikalfrancis@gmail.com", address: "225 Riverdell North Mews", city: "Lancaster", state: "TX", zip: "75146", phone: "", birthday: "" },
+      { id: 8, name: "Tamika", email: "DST894@hotmail.com", address: "8304 Flat Keystone Drive", city: "Raleigh", state: "NC", zip: "", phone: "", birthday: "" },
+      { id: 9, name: "Tephia Lindsay", email: "tephia25@yahoo.com", address: "8612-202 Olde Station Dr.", city: "Raleigh", state: "NC", zip: "27615", phone: "", birthday: "" },
+      { id: 10, name: "Janita", email: "freshnclean9@gmail.com", address: "PO Box 415", city: "Wendell", state: "NC", zip: "27591", phone: "", birthday: "" },
+      { id: 11, name: "Carolyn", email: "carolyn@example.com", address: "", city: "", state: "Texas", zip: "", phone: "", birthday: "" },
+      { id: 12, name: "Sherri", email: "sherribelklaw@gmail.com", address: "143 Skylark Way", city: "Raleigh", state: "NC", zip: "27615", phone: "", birthday: "" },
+      { id: 13, name: "Michelle", email: "michelleyfoxx@yahoo.com", address: "11682 Mustang Creek Ct", city: "Waldorf", state: "Maryland", zip: "20602", phone: "", birthday: "" },
+      { id: 14, name: "Joeshun", email: "Joeshun@example.com", address: "", city: "", state: "", zip: "", phone: "", birthday: "" },
+      { id: 15, name: "Nicole", email: "kilpatrickn39@gmail.com", address: "141 Bayleigh Court", city: "Garner", state: "NC", zip: "27529", phone: "", birthday: "" },
+      { id: 16, name: "Rochelle", email: "iamadelta@yahoo.com", address: "9904 Orchard Grass Court", city: "Charlotte", state: "NC", zip: "28278", phone: "", birthday: "" }
+    ];
+
     let contactsData = [];
 
-    // Load contacts from JSON file
+    // Load contacts from JSON file or use defaults
     async function initializeContacts() {
       try {
         const response = await fetch('contacts.json');
         if (response.ok) {
           contactsData = await response.json();
-          // Also store in localStorage for editing
           localStorage.setItem('spring94Contacts', JSON.stringify(contactsData));
         } else {
-          // Fallback to localStorage if file not found
-          const stored = localStorage.getItem('spring94Contacts');
-          contactsData = stored ? JSON.parse(stored) : [];
+          throw new Error('JSON file not found');
         }
       } catch (error) {
-        console.error('Error loading contacts:', error);
-        // Fallback to localStorage
+        console.log('Loading from localStorage or defaults');
+        // Try localStorage first
         const stored = localStorage.getItem('spring94Contacts');
-        contactsData = stored ? JSON.parse(stored) : [];
+        if (stored) {
+          contactsData = JSON.parse(stored);
+        } else {
+          // Use default contacts
+          contactsData = defaultContacts;
+          localStorage.setItem('spring94Contacts', JSON.stringify(defaultContacts));
+        }
       }
       loadContacts();
     }
@@ -1031,14 +1054,14 @@ Phone: ${contactData.phone || 'Not provided'}
 
       const contactJSON = JSON.stringify(contactData, null, 2);
 
-      // Send via EmailJS only
+      // Send via EmailJS with mailto fallback
       const submitBtn = event.target;
       const originalText = submitBtn.innerHTML;
       submitBtn.innerHTML = '⏳ Sending...';
       submitBtn.disabled = true;
 
       try {
-        await emailjs.send(
+        const result = await emailjs.send(
           'service_tyw2ual',
           'template_fainkx7',
           {
@@ -1047,15 +1070,28 @@ Phone: ${contactData.phone || 'Not provided'}
           }
         );
 
+        console.log('EmailJS Success:', result);
         alert('✅ Contact information sent successfully to admin!');
         saveAndClose(contactData);
         
       } catch (error) {
-        console.error('EmailJS failed:', error);
-        alert('❌ Failed to send email. Please check your internet connection and try again.');
-      } finally {
+        console.error('EmailJS Error Details:', error);
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
+        
+        // Fallback to mailto
+        if (confirm('Email service unavailable. Would you like to send via your email client instead?')) {
+          const subject = `Spring 94 Contact Update: ${contactData.name}`;
+          const body = `Contact information has been updated:\n\n${contactInfo}\n\n---\nJSON Format:\n${contactJSON}`;
+          const mailtoLink = `mailto:dst894@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.location.href = mailtoLink;
+          saveAndClose(contactData);
+        }
+      } finally {
+        if (submitBtn.innerHTML === '⏳ Sending...') {
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        }
       }
     }
 
