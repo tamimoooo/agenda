@@ -769,26 +769,6 @@
           </ul>
         </div>
 
-        <!-- What's Included -->
-        <div class="trip-card">
-          <h3 style="color: var(--primary-dark); margin-bottom: 15px;">✅ What's Included</h3>
-          <ul style="margin-left: 20px;">
-            <li>Luxury glamping tent accommodations</li>
-            <li>Access to Under Canvas amenities</li>
-            <li>Yellowstone National Park entrance</li>
-            <li>Group activities (details TBD)</li>
-            <li>More details coming soon!</li>
-          </ul>
-
-          <h4 style="margin-top: 20px; color: var(--primary-dark);">❌ Not Included</h4>
-          <ul style="margin-left: 20px; margin-top: 10px;">
-            <li>Airfare/transportation to Montana</li>
-            <li>Meals (unless specified)</li>
-            <li>Personal expenses</li>
-            <li>Travel insurance (recommended)</li>
-          </ul>
-        </div>
-
         <!-- Itinerary -->
         <div class="trip-card">
           <h3 style="color: var(--primary-dark); margin-bottom: 15px;">📋 Itinerary</h3>
@@ -845,8 +825,11 @@
         <!-- Contact Info -->
         <div class="trip-card">
           <h3 style="color: var(--primary-dark); margin-bottom: 15px;">📞 Questions?</h3>
-          <p><strong>Trip Coordinator:</strong> TBD</p>
-          <p><strong>Email:</strong> <a href="mailto:dst894@hotmail.com" style="color: var(--primary-color);">dst894@hotmail.com</a></p>
+          <p><strong>Trip Coordinators:</strong> Sherri Belk and Janita Moody</p>
+          <p><strong>Email:</strong>
+            <a href="mailto:sherribelklaw@gmail.com" style="color: var(--primary-color);">sherribelklaw@gmail.com</a> |
+            <a href="mailto:freshnclean9@gmail.com" style="color: var(--primary-color);">freshnclean9@gmail.com</a>
+          </p>
           <p style="margin-top: 10px;"><em>Don't hesitate to reach out with any questions or concerns!</em></p>
         </div>
 
@@ -1228,10 +1211,7 @@ Phone: ${contactData.phone || 'Not provided'}
     document.addEventListener('DOMContentLoaded', function() {
       initializeContacts();
       
-      // Auto-expand first section
-      setTimeout(() => {
-        toggleSection('contacts');
-      }, 300);
+      // All sections start collapsed (no auto-expand)
     });
   </script>
 </body>
