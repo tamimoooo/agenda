@@ -795,42 +795,204 @@
           <p style="margin-top: 15px; font-size: 1.1rem;">Experience luxury camping in one of America's most iconic national parks! Glamping combines the beauty of nature with the comfort of a hotel.</p>
         </div>
 
-        <!-- Travel & Airport Information -->
+
+        <!-- Travel Estimates Section -->
         <div class="trip-card">
-          <div class="subsection-header" onclick="toggleSubsection('travel')">
-            <h3 class="subsection-title">✈️ Travel & Airport Information</h3>
-            <span class="subsection-toggle" id="travel-toggle">▶</span>
+          <div class="subsection-header" onclick="toggleSubsection('estimates')">
+            <h3 class="subsection-title">💰 Travel Estimates</h3>
+            <span class="subsection-toggle" id="estimates-toggle">▶</span>
           </div>
-          <div class="subsection-content" id="travel-content">
-          
-          <h4 style="color: var(--primary-color); margin-bottom: 10px;">Nearest Airports to North Yellowstone (Paradise Valley):</h4>
-          <div style="display: grid; gap: 15px; margin-bottom: 20px;">
-            <div style="border-left: 4px solid var(--primary-color); padding-left: 15px;">
-              <strong>Bozeman Yellowstone International Airport (BZN)</strong><br>
-              <span style="color: var(--text-secondary);">Bozeman, Montana - Approximately 90 miles (1.5-2 hours drive)</span><br>
-              <em style="font-size: 0.9rem;">Most popular option with more flight options</em>
-            </div>
+          <div class="subsection-content" id="estimates-content">
             
-            <div style="border-left: 4px solid var(--secondary-color); padding-left: 15px;">
-              <strong>Yellowstone Airport (WYS)</strong><br>
-              <span style="color: var(--text-secondary);">West Yellowstone, Montana - Approximately 10 miles (15 minutes drive)</span><br>
-              <em style="font-size: 0.9rem;">Closest but seasonal (summer only) with limited flights</em>
+            <!-- Summary Box -->
+            <div style="border: 3px solid var(--primary-color); border-radius: 15px; padding: 20px; margin-bottom: 25px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
+              <h4 style="color: var(--primary-color); margin-bottom: 10px; font-size: 1.3rem;">📊 Estimated Total Cost</h4>
+              <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary-dark); margin: 10px 0;">
+                $737 per person <span style="font-size: 1rem; font-weight: normal;">+ airfare</span>
+              </p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary); font-style: italic;">
+                Based on September 23-28, 2026 travel dates
+              </p>
             </div>
 
-            <div style="border-left: 4px solid #4caf50; padding-left: 15px;">
-              <strong>Idaho Falls Regional Airport (IDA)</strong><br>
-              <span style="color: var(--text-secondary);">Idaho Falls, Idaho - Approximately 110 miles (2 hours drive)</span><br>
-              <em style="font-size: 0.9rem;">Alternative option</em>
+            <!-- Transportation -->
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px solid var(--primary-color); padding-bottom: 8px;">
+                🚐 Transportation
+              </h4>
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+                <div style="display: grid; gap: 10px;">
+                  <div><strong>Vehicle:</strong> 12-passenger van</div>
+                  <div><strong>Total Cost:</strong> $782.00</div>
+                  <div><strong>Per Person:</strong> <span style="color: var(--primary-color); font-weight: bold;">$78.20</span></div>
+                  <div><strong>Pickup Location:</strong> Airport</div>
+                </div>
+              </div>
             </div>
-          </div>
 
+            <!-- Lodging -->
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px solid var(--primary-color); padding-bottom: 8px;">
+                🏨 Lodging
+              </h4>
+              
+              <!-- Glamping Option -->
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white; margin-bottom: 15px;">
+                <h5 style="color: var(--primary-color); margin-bottom: 10px;">⛺ Tent Deluxe</h5>
+                <div style="display: grid; gap: 8px;">
+                  <div><strong>Nightly Rate:</strong> $365.00</div>
+                  <div><strong>Occupancy:</strong> 2 persons</div>
+                  <div><strong>Per Person:</strong> <span style="color: var(--primary-color); font-weight: bold;">$182.50 each</span></div>
+                </div>
+              </div>
+
+              <!-- Hotel Option -->
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+                <h5 style="color: var(--primary-color); margin-bottom: 10px;">🏨 Home2 Suites</h5>
+                <div style="display: grid; gap: 8px;">
+                  <div><strong>Address:</strong> 1760 Baxter Ln, Bozeman, MT</div>
+                  <div><strong>Total Cost:</strong> $3,138.00</div>
+                  <div><strong>Rooms:</strong> 5 Double Queen Suites</div>
+                  <div><strong>Per Person:</strong> <span style="color: var(--primary-color); font-weight: bold;">$313.00</span> (based on 10 people)</div>
+                  <div style="margin-top: 5px; padding: 10px; background: #fff3cd; border-radius: 5px;">
+                    <strong>⚠️ Payment Deadline:</strong> September 20, 2026
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Activities -->
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px solid var(--primary-color); padding-bottom: 8px;">
+                🎯 Activities
+              </h4>
+              
+              <div style="display: grid; gap: 15px;">
+                <!-- White Water Rafting -->
+                <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+                  <h5 style="color: var(--primary-color); margin-bottom: 8px;">🌊 White Water Rafting</h5>
+                  <div><strong>Cost:</strong> <span style="color: var(--primary-color); font-weight: bold;">$164.00 per person</span></div>
+                </div>
+
+                <!-- Bike & Hike -->
+                <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+                  <h5 style="color: var(--primary-color); margin-bottom: 8px;">🚴 Bike & Hike to Osprey Falls</h5>
+                  <div style="display: grid; gap: 8px;">
+                    <div><strong>Tour Cost:</strong> $250.00 per person</div>
+                    <div><strong>3-Hour Rental:</strong> $95.00 per person</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flight Estimates -->
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px solid var(--primary-color); padding-bottom: 8px;">
+                ✈️ Flight Estimates
+              </h4>
+              <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 15px; font-style: italic;">
+                Prices as of December 17, 2025 for September 23-28, 2026 travel
+              </p>
+              
+              <div style="display: grid; gap: 12px;">
+                <!-- RDU -->
+                <div style="border-left: 4px solid var(--primary-color); padding: 10px 15px; background: #f8f9fa;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                    <div>
+                      <strong>RDU → BOZ</strong><br>
+                      <span style="font-size: 0.9rem; color: var(--text-secondary);">Delta, 1 stop (SEA)</span>
+                    </div>
+                    <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary-color);">$283.55</div>
+                  </div>
+                </div>
+
+                <!-- ATL -->
+                <div style="border-left: 4px solid var(--primary-color); padding: 10px 15px; background: #f8f9fa;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                    <div>
+                      <strong>ATL → BOZ</strong><br>
+                      <span style="font-size: 0.9rem; color: var(--text-secondary);">Southwest, 1 stop</span>
+                    </div>
+                    <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary-color);">$470.37</div>
+                  </div>
+                </div>
+
+                <!-- PHX -->
+                <div style="border-left: 4px solid var(--primary-color); padding: 10px 15px; background: #f8f9fa;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                    <div>
+                      <strong>PHX → BOZ</strong><br>
+                      <span style="font-size: 0.9rem; color: var(--text-secondary);">United, 1 stop (SFO)</span>
+                    </div>
+                    <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary-color);">$238.32</div>
+                  </div>
+                </div>
+
+                <!-- CHI -->
+                <div style="border-left: 4px solid var(--primary-color); padding: 10px 15px; background: #f8f9fa;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                    <div>
+                      <strong>CHI → BOZ</strong><br>
+                      <span style="font-size: 0.9rem; color: var(--text-secondary);">American, 1 stop</span>
+                    </div>
+                    <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary-color);">$343.72</div>
+                  </div>
+                </div>
+
+                <!-- GSP -->
+                <div style="border-left: 4px solid var(--primary-color); padding: 10px 15px; background: #f8f9fa;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                    <div>
+                      <strong>GSP → BOZ</strong><br>
+                      <span style="font-size: 0.9rem; color: var(--text-secondary);">United, 1 stop</span>
+                    </div>
+                    <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary-color);">$409.15</div>
+                  </div>
+                </div>
+
+                <!-- WAS -->
+                <div style="border-left: 4px solid var(--primary-color); padding: 10px 15px; background: #f8f9fa;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                    <div>
+                      <strong>WAS → BOZ</strong><br>
+                      <span style="font-size: 0.9rem; color: var(--text-secondary);">United, 1 stop</span>
+                    </div>
+                    <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary-color);">$283.06</div>
+                  </div>
+                </div>
+
+                <!-- WAS Alternative -->
+                <div style="border-left: 4px solid var(--primary-color); padding: 10px 15px; background: #f8f9fa;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                    <div>
+                      <strong>WAS → BOZ</strong><br>
+                      <span style="font-size: 0.9rem; color: var(--text-secondary);">United, 1 stop (alternate)</span>
+                    </div>
+                    <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary-color);">$299.04</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="warning-box" style="margin-top: 15px;">
+                <strong>⚠️ Important:</strong> Flight prices are estimates and subject to change. Book early for best rates!
+              </div>
+            </div>
+
+            <!-- Notes -->
             <div class="info-box">
-              <strong>🚗 Transportation:</strong> Rental car recommended for flexibility. Group transportation options TBD.
+              <strong>📝 Notes:</strong>
+              <ul style="margin: 10px 0 0 20px;">
+                <li>All prices are estimates and subject to change</li>
+                <li>Activities are optional and not included in base cost</li>
+                <li>Final costs will be confirmed upon booking</li>
+              </ul>
             </div>
+
           </div>
         </div>
 
-        <!-- Lodging Options & Pricing -->
+        <!-- Lodging Options & Pricing - TEMPORARILY COMMENTED OUT -->
+        <!--
         <div class="trip-card">
           <div class="subsection-header" onclick="toggleSubsection('lodging')">
             <h3 class="subsection-title">🏕️ Lodging Options & Pricing</h3>
@@ -840,7 +1002,6 @@
           <p style="margin-bottom: 20px;"><em>Hypothetically Sept 24 - Sept 28, 2026 (Dates TBD)</em></p>
           
           <div style="display: grid; gap: 15px;">
-            <!-- Delux Tent -->
             <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
               <h4 style="color: var(--primary-color); margin-bottom: 10px;">⛺ Delux Tent - $365.00/Night</h4>
               <ul style="margin-left: 20px; font-size: 0.95rem;">
@@ -850,7 +1011,6 @@
               </ul>
             </div>
 
-            <!-- Delux Tent w/ Kids Tent -->
             <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
               <h4 style="color: var(--primary-color); margin-bottom: 10px;">⛺ Delux Tent w/ Kids Tent - $530.00/Night</h4>
               <ul style="margin-left: 20px; font-size: 0.95rem;">
@@ -860,7 +1020,6 @@
               </ul>
             </div>
 
-            <!-- Stargazer Tent -->
             <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
               <h4 style="color: var(--primary-color); margin-bottom: 10px;">⭐ Stargazer Tent - $435.00/Night</h4>
               <ul style="margin-left: 20px; font-size: 0.95rem;">
@@ -869,7 +1028,6 @@
               </ul>
             </div>
 
-            <!-- Stargazer Tent w/ Kids Tent -->
             <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
               <h4 style="color: var(--primary-color); margin-bottom: 10px;">⭐ Stargazer Tent w/ Kids Tent - $609.00/Night</h4>
               <ul style="margin-left: 20px; font-size: 0.95rem;">
@@ -879,7 +1037,6 @@
               </ul>
             </div>
 
-            <!-- Suite Tent -->
             <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
               <h4 style="color: var(--primary-color); margin-bottom: 10px;">🌟 Suite Tent - $480.00/Night</h4>
               <ul style="margin-left: 20px; font-size: 0.95rem;">
@@ -887,7 +1044,6 @@
               </ul>
             </div>
 
-            <!-- Suite Tent w/ Kids Tent -->
             <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
               <h4 style="color: var(--primary-color); margin-bottom: 10px;">🌟 Suite Tent w/ Kids Tent - $662.00/Night</h4>
               <ul style="margin-left: 20px; font-size: 0.95rem;">
@@ -896,7 +1052,6 @@
               </ul>
             </div>
 
-            <!-- Yellowstone River Suite -->
             <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
               <h4 style="color: var(--primary-color); margin-bottom: 10px;">🏞️ Yellowstone River Suite - $1,080.00/Night</h4>
               <ul style="margin-left: 20px; font-size: 0.95rem;">
@@ -913,6 +1068,7 @@
             </div>
           </div>
         </div>
+        -->
 
         <!-- Cost & Payment - HIDDEN FOR NOW -->
         <!-- Uncomment when ready to show payment details
@@ -940,7 +1096,8 @@
         </div>
         -->
 
-        <!-- Activities & Excursions -->
+        <!-- Activities & Excursions - TEMPORARILY COMMENTED OUT -->
+        <!--
         <div class="trip-card">
           <div class="subsection-header" onclick="toggleSubsection('activities')">
             <h3 class="subsection-title">🎯 Activities & Excursions</h3>
@@ -949,7 +1106,6 @@
           <div class="subsection-content" id="activities-content">
           <p style="margin-bottom: 20px;">Choose your adventure! Here are some exciting activities available:</p>
 
-          <!-- Featured Activity -->
           <div style="border: 3px solid var(--primary-color); border-radius: 15px; padding: 20px; margin-bottom: 20px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
             <h4 style="color: var(--primary-color); margin-bottom: 15px;">🌊 Group Whitewater Rafting - 18 Mile</h4>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
@@ -964,7 +1120,6 @@
             </p>
           </div>
 
-          <!-- Other Activities -->
           <h4 style="color: var(--primary-dark); margin-bottom: 15px;">Other Honorable Mentions:</h4>
           <div style="display: grid; gap: 15px;">
             
@@ -1017,6 +1172,7 @@
             </div>
           </div>
         </div>
+        -->
 
         <!-- Itinerary - HIDDEN FOR NOW -->
         <!-- Uncomment when ready to show itinerary
@@ -1088,32 +1244,6 @@
             </a>
           </div>
           
-          <h4 style="color: var(--primary-dark); margin-top: 25px; margin-bottom: 15px;">📦 Complete Trip Package</h4>
-          <div class="info-box">
-            <strong>📄 Downloadable Trip Details Package - Coming Soon!</strong><br>
-            <p style="margin-top: 10px;">We're preparing a comprehensive downloadable file that will include:</p>
-            <ul style="margin-left: 20px; margin-top: 10px;">
-              <li>✅ Complete itinerary with daily schedule</li>
-              <li>✅ Detailed packing list</li>
-              <li>✅ Travel arrangements and transportation info</li>
-              <li>✅ Activity booking information</li>
-              <li>✅ Emergency contacts and important numbers</li>
-              <li>✅ Local area information and tips</li>
-              <li>✅ Group chat and communication details</li>
-            </ul>
-            <p style="margin-top: 15px; font-style: italic; color: var(--text-secondary);">
-              Once available, you'll be able to download a PDF with everything you need in one place. Check back soon!
-            </p>
-          </div>
-          
-          <!-- Placeholder for future download button -->
-          <!-- Uncomment and update link when file is ready:
-          <div style="text-align: center; margin-top: 15px;">
-            <a href="path/to/trip-details.pdf" download class="btn btn-primary">
-              📥 Download Complete Trip Package
-            </a>
-          </div>
-          -->
           </div>
         </div>
 
