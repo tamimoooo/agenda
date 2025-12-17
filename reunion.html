@@ -803,30 +803,140 @@
           </div>
           <div class="subsection-content" id="travel-content">
           
-          <h4 style="color: var(--primary-color); margin-bottom: 10px;">Nearest Airports to North Yellowstone (Paradise Valley):</h4>
-          <div style="display: grid; gap: 15px; margin-bottom: 20px;">
+          <h4 style="color: var(--primary-color); margin-bottom: 10px;">Primary Airport:</h4>
+          <div style="border: 3px solid var(--primary-color); border-radius: 10px; padding: 20px; margin-bottom: 20px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
             <div style="border-left: 4px solid var(--primary-color); padding-left: 15px;">
-              <strong>Bozeman Yellowstone International Airport (BZN)</strong><br>
-              <span style="color: var(--text-secondary);">Bozeman, Montana - Approximately 90 miles (1.5-2 hours drive)</span><br>
-              <em style="font-size: 0.9rem;">Most popular option with more flight options</em>
+              <strong style="font-size: 1.1rem;">Bozeman Yellowstone International Airport (BZN)</strong><br>
+              <span style="color: var(--text-secondary);">Bozeman, Montana</span><br>
+              <em style="font-size: 0.9rem; color: var(--primary-color);">✓ Most convenient option with direct access to Bozeman accommodations</em>
             </div>
-            
-            <div style="border-left: 4px solid var(--secondary-color); padding-left: 15px;">
+          </div>
+
+          <h4 style="color: var(--primary-color); margin-bottom: 10px;">🏨 Accommodation:</h4>
+          <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; margin-bottom: 20px; background: white;">
+            <strong style="font-size: 1.05rem;">Home2 Suites by Hilton Bozeman Midtown</strong><br>
+            <span style="color: var(--text-secondary);">📍 1740 Baxter Ln, Bozeman, MT 59718</span><br>
+            <span style="color: var(--text-secondary);">📅 Check-in: Sat 9/20/26 | Check-out: Mon 9/28/26</span>
+          </div>
+
+          <h4 style="color: var(--text-secondary); margin-bottom: 10px; font-size: 0.95rem;">Alternative Airports (if needed):</h4>
+          <div style="display: grid; gap: 10px; margin-bottom: 20px;">
+            <div style="border-left: 3px solid var(--text-secondary); padding-left: 12px; opacity: 0.7;">
               <strong>Yellowstone Airport (WYS)</strong><br>
-              <span style="color: var(--text-secondary);">West Yellowstone, Montana - Approximately 10 miles (15 minutes drive)</span><br>
-              <em style="font-size: 0.9rem;">Closest but seasonal (summer only) with limited flights</em>
+              <span style="color: var(--text-secondary); font-size: 0.9rem;">West Yellowstone, Montana - Seasonal (summer only), limited flights</span>
             </div>
 
-            <div style="border-left: 4px solid #4caf50; padding-left: 15px;">
+            <div style="border-left: 3px solid var(--text-secondary); padding-left: 12px; opacity: 0.7;">
               <strong>Idaho Falls Regional Airport (IDA)</strong><br>
-              <span style="color: var(--text-secondary);">Idaho Falls, Idaho - Approximately 110 miles (2 hours drive)</span><br>
-              <em style="font-size: 0.9rem;">Alternative option</em>
+              <span style="color: var(--text-secondary); font-size: 0.9rem;">Idaho Falls, Idaho - Alternative option</span>
             </div>
           </div>
 
             <div class="info-box">
-              <strong>🚗 Transportation:</strong> Rental car recommended for flexibility. Group transportation options TBD.
+              <strong>🚗 Transportation:</strong> Rental car recommended for flexibility. See Travel Cost Estimates section for car rental pricing and options.
             </div>
+          </div>
+        </div>
+
+        <!-- Travel Cost Breakdown -->
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('travelcosts')">
+            <h3 class="subsection-title">💵 Travel Cost Estimates</h3>
+            <span class="subsection-toggle" id="travelcosts-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="travelcosts-content">
+          
+          <p style="margin-bottom: 20px;"><em>Estimated costs as of 9/23 - 9/28 (prices subject to change)</em></p>
+          
+          <!-- Car Rental -->
+          <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 15px; margin-bottom: 15px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
+            <h4 style="color: var(--primary-color); margin-bottom: 10px;">🚗 Car Rental</h4>
+            <div style="display: grid; gap: 10px;">
+              <div style="padding: 10px; background: white; border-radius: 5px;">
+                <strong>Standard Car:</strong> $737 per person + AirShare<br>
+                <span style="color: var(--text-secondary); font-size: 0.9rem;">12 passengers, 4 cars @ $88 per person</span>
+              </div>
+              <div style="padding: 10px; background: white; border-radius: 5px;">
+                <strong>Pick-ups:</strong> <span style="text-decoration: line-through;">$88 per person</span> <span style="color: var(--primary-color); font-weight: bold;">$78.20 per person</span><br>
+                <span style="color: var(--text-secondary); font-size: 0.9rem;">Airport pickup service</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lodging Options -->
+          <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; margin-bottom: 15px; background: white;">
+            <h4 style="color: var(--primary-color); margin-bottom: 10px;">🏕️ Tent Options (Per Person)</h4>
+            <div style="display: grid; gap: 8px;">
+              <div style="padding: 8px; border-left: 3px solid var(--primary-color); padding-left: 12px;">
+                <strong>Delux Tent:</strong> $365.00 / 2 persons = <strong>$182.50 per person</strong>
+              </div>
+              <div style="padding: 8px; border-left: 3px solid var(--secondary-color); padding-left: 12px;">
+                <strong>Hot White Water Raft:</strong> $164 per person<br>
+                <span style="color: var(--text-secondary); font-size: 0.9rem;">Emmys Bike Hike - Sidney @ $50 per person</span>
+              </div>
+              <div style="padding: 8px; border-left: 3px solid #4caf50; padding-left: 12px;">
+                <strong>3 hr rental:</strong> $95.00 per person
+              </div>
+            </div>
+          </div>
+
+          <!-- HomeAway Suites -->
+          <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; margin-bottom: 15px; background: white;">
+            <h4 style="color: var(--primary-color); margin-bottom: 10px;">🏠 HomeAway Suites - Bozeman, MT</h4>
+            <div style="padding: 10px; background: #f8f9fa; border-radius: 5px;">
+              <strong>1740 Baxter Ln, Bozeman MT 59718</strong><br>
+              <strong>Cost:</strong> $1,500 / 2 nights (9/23 - 9/25) = <strong>$750 per night</strong><br>
+              <strong>Capacity:</strong> 5 Double Queen Suites<br>
+              <span style="color: var(--text-secondary); font-size: 0.9rem;">Check-in: Sat 9/20/26 - Mon 9/28/26</span>
+            </div>
+          </div>
+
+          <!-- Flight Estimates -->
+          <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
+            <h4 style="color: var(--primary-color); margin-bottom: 10px;">✈️ Flight Estimates (as of 12/17/25)</h4>
+            <p style="margin-bottom: 10px; font-style: italic; color: var(--text-secondary);">Dates: 9/23 - 9/28</p>
+            <div style="display: grid; gap: 8px;">
+              <div style="padding: 8px; background: white; border-radius: 5px;">
+                <strong>RDU → BOZ:</strong> $283.35 (Delta, 1 stop in SLC)
+              </div>
+              <div style="padding: 8px; background: white; border-radius: 5px;">
+                <strong>ATL → BOZ:</strong> $170.37 (Delta, 1 stop in SLC)
+              </div>
+              <div style="padding: 8px; background: white; border-radius: 5px;">
+                <strong>PHX → BOZ:</strong> $238.52 (United, 1 stop in SFO)
+              </div>
+              <div style="padding: 8px; background: white; border-radius: 5px;">
+                <strong>CHI → BOZ:</strong> $343.72 (AA, 1 stop in SFO)
+              </div>
+              <div style="padding: 8px; background: white; border-radius: 5px;">
+                <strong>GSP → BOZ:</strong> $409.15 (United, 1 stop in SFO)
+              </div>
+              <div style="padding: 8px; background: white; border-radius: 5px;">
+                <strong>CHS → BOZ:</strong> $283.04 (United, 1 stop in SFO)
+              </div>
+            </div>
+          </div>
+
+          <div class="info-box" style="margin-top: 20px;">
+            <strong>💡 Cost Saving Tips:</strong>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+              <li>Book flights early for better rates</li>
+              <li>Consider sharing car rentals to split costs</li>
+              <li>Bundle tent accommodations with friends</li>
+              <li>Monitor flight prices - they fluctuate frequently</li>
+            </ul>
+          </div>
+
+          <div class="warning-box" style="margin-top: 15px;">
+            <strong>⚠️ Important:</strong> All prices are estimates based on current rates and are subject to change. Final costs will be confirmed closer to the trip date.
+          </div>
+
+          <!-- Download Button -->
+          <div style="text-align: center; margin-top: 25px;">
+            <button onclick="downloadTravelCosts()" class="btn btn-primary" style="padding: 12px 30px; font-size: 1rem;">
+              📥 Download Travel Cost Estimates
+            </button>
+          </div>
           </div>
         </div>
 
@@ -1520,6 +1630,1832 @@ Phone: ${contactData.phone || 'Not provided'}
         closeModal();
       }
     });
+
+    // Download Travel Cost Estimates
+    function downloadTravelCosts() {
+      const content = `
+SPRING 94 DOTS - YELLOWSTONE GLAMPING TRIP
+TRAVEL COST ESTIMATES
+Generated: ${new Date().toLocaleDateString()}
+Estimated costs as of 9/23 - 9/28 (prices subject to change)
+
+═══════════════════════════════════════════════════════════════
+
+🚗 CAR RENTAL
+─────────────────────────────────────────────────────────────
+Standard Car: $737 per person + AirShare
+  • 12 passengers, 4 cars @ $88 per person
+
+Airport Pick-ups: $78.20 per person (was $88)
+  • Airport pickup service
+
+═══════════════════════════════════════════════════════════════
+
+🏕️ TENT OPTIONS (Per Person)
+─────────────────────────────────────────────────────────────
+Delux Tent: $365.00 / 2 persons = $182.50 per person
+
+Hot White Water Raft: $164 per person
+  • Emmy's Bike Hike - Sidney @ $50 per person
+
+3 hr rental: $95.00 per person
+
+═══════════════════════════════════════════════════════════════
+
+🏠 HOME2 SUITES BY HILTON - BOZEMAN, MT
+─────────────────────────────────────────────────────────────
+Address: 1740 Baxter Ln, Bozeman MT 59718
+Cost: $1,500 / 2 nights (9/23 - 9/25) = $750 per night
+Capacity: 5 Double Queen Suites
+Check-in: Sat 9/20/26 - Mon 9/28/26
+
+═══════════════════════════════════════════════════════════════
+
+✈️ FLIGHT ESTIMATES (as of 12/17/25)
+─────────────────────────────────────────────────────────────
+Dates: 9/23 - 9/28
+
+RDU → BOZ: $283.35 (Delta, 1 stop in SLC)
+ATL → BOZ: $170.37 (Delta, 1 stop in SLC)
+PHX → BOZ: $238.52 (United, 1 stop in SFO)
+CHI → BOZ: $343.72 (AA, 1 stop in SFO)
+GSP → BOZ: $409.15 (United, 1 stop in SFO)
+CHS → BOZ: $283.04 (United, 1 stop in SFO)
+
+═══════════════════════════════════════════════════════════════
+
+💡 COST SAVING TIPS
+─────────────────────────────────────────────────────────────
+• Book flights early for better rates
+• Consider sharing car rentals to split costs
+• Bundle tent accommodations with friends
+• Monitor flight prices - they fluctuate frequently
+
+═══════════════════════════════════════════════════════════════
+
+⚠️ IMPORTANT NOTICE
+─────────────────────────────────────────────────────────────
+All prices are estimates based on current rates and are subject
+to change. Final costs will be confirmed closer to the trip date.
+
+═══════════════════════════════════════════════════════════════
+
+For more information, visit:
+https://tamimoooo.github.io/agenda/reunion.html
+
+Questions? Contact:
+Sherri Belk - sherribelklaw@gmail.com
+Janita Moody - freshnclean9@gmail.com
+      `.trim();
+
+      // Create blob and download
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Spring94_Travel_Cost_Estimates.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+      
+      // Show confirmation
+      alert('✅ Travel Cost Estimates downloaded successfully!');
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeContacts();
+      
+      // All sections start collapsed (no auto-expand)
+    });
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Spring 94 Connect da Dots - In the Newz</title>
+  
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function(){
+      emailjs.init({
+        publicKey: "1aDc1YFIiPnbjb-CS",
+      });
+    })();
+  </script>
+  
+  <style>
+    :root {
+      --primary-color: #d32f2f;
+      --primary-light: #f06d6d;
+      --primary-dark: #b22222;
+      --secondary-color: #ff6f61;
+      --background: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-primary: #2c3e50;
+      --text-secondary: #7f8c8d;
+      --border-color: #e0e0e0;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Modern polka dots background */
+    .polka-dots {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(circle, rgba(211, 47, 47, 0.05) 10%, transparent 10%),
+        radial-gradient(circle, rgba(211, 47, 47, 0.05) 10%, transparent 10%);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+      color: white;
+      border-radius: 0 0 30px 30px;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.95;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 30px;
+      padding: 0 20px;
+    }
+
+    .nav-tab {
+      padding: 12px 24px;
+      background: var(--card-bg);
+      border: 2px solid var(--border-color);
+      border-radius: 25px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 600;
+      color: var(--text-primary);
+      box-shadow: var(--shadow);
+    }
+
+    .nav-tab:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-color);
+    }
+
+    .nav-tab.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+
+    /* Card Sections */
+    .section {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    .section:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      color: var(--primary-dark);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toggle-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+      color: var(--primary-color);
+    }
+
+    .toggle-icon.expanded {
+      transform: rotate(90deg);
+    }
+
+    .section-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+    }
+
+    .section-content.expanded {
+      max-height: 5000px;
+    }
+
+    /* Contact Cards */
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .contact-card {
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+      border: 2px solid var(--border-color);
+      border-radius: 15px;
+      padding: 20px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .contact-card:hover {
+      border-color: var(--primary-color);
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+    }
+
+    .contact-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+    }
+
+    .contact-info {
+      color: var(--text-secondary);
+      margin-bottom: 5px;
+      font-size: 0.95rem;
+    }
+
+    .contact-email {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .contact-email:hover {
+      color: var(--primary-light);
+      text-decoration: underline;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .btn-small {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .modal.active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      animation: slideUp 0.4s ease-out;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .modal-title {
+      font-size: 2rem;
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: var(--transition);
+      padding: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .close-btn:hover {
+      background: var(--background);
+      color: var(--primary-color);
+      transform: rotate(90deg);
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid var(--border-color);
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+    }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* Photo Gallery */
+    .photo-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .photo-link-card {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      transition: var(--transition);
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+    }
+
+    .photo-link-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .photo-link-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .photo-link-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    /* Trip Proposals */
+    .trip-card {
+      background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+      border: 2px solid var(--border-color);
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 20px;
+      transition: var(--transition);
+    }
+
+    .trip-card:hover {
+      border-color: var(--primary-color);
+      box-shadow: var(--shadow);
+    }
+
+    .trip-card.highlight {
+      border-color: var(--primary-color);
+      background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+    }
+
+    .trip-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 15px;
+    }
+
+    .trip-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    /* Alert/Info Box */
+    .info-box {
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+      border-left: 4px solid #2196f3;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    .warning-box {
+      background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+      border-left: 4px solid #ff9800;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+
+      header {
+        padding: 40px 20px 30px;
+        border-radius: 0 0 20px 20px;
+      }
+
+      .section {
+        padding: 20px;
+        border-radius: 15px;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+      }
+
+      .modal-content {
+        padding: 25px;
+      }
+
+      .contacts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-tabs {
+        gap: 8px;
+      }
+
+      .nav-tab {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Utility Classes */
+    .text-center {
+      text-align: center;
+    }
+
+    .mt-20 {
+      margin-top: 20px;
+    }
+
+    .mb-20 {
+      margin-bottom: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Loading State */
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-secondary);
+    }
+
+    .spinner {
+      border: 3px solid var(--border-color);
+      border-top: 3px solid var(--primary-color);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .edit-btn, .delete-btn {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .edit-btn {
+      background: #4caf50;
+      color: white;
+    }
+
+    .edit-btn:hover {
+      background: #45a049;
+    }
+
+    .delete-btn {
+      background: #f44336;
+      color: white;
+    }
+
+    .delete-btn:hover {
+      background: #da190b;
+    }
+
+    /* Subsection collapsible styles */
+    .subsection-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding: 15px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      transition: var(--transition);
+      border: 2px solid var(--border-color);
+    }
+
+    .subsection-header:hover {
+      border-color: var(--primary-color);
+      background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+    }
+
+    .subsection-title {
+      font-size: 1.3rem;
+      color: var(--primary-dark);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .subsection-toggle {
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+      color: var(--primary-color);
+    }
+
+    .subsection-toggle.expanded {
+      transform: rotate(90deg);
+    }
+
+    .subsection-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+    }
+
+    .subsection-content.expanded {
+      max-height: 5000px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="polka-dots"></div>
+
+  <header>
+    <h1>🔴 SPRING 94 Dot Connection</h1>
+    <p class="subtitle">Stay Connected, Share Memories, Plan Adventures</p>
+  </header>
+
+  <div class="container">
+    
+    <!-- Add Contact Button -->
+    <div class="text-center mb-20">
+      <button class="btn btn-primary" onclick="openAddContactModal()">
+        ➕ Add Your Contact Info
+      </button>
+    </div>
+
+    <!-- Contacts Section -->
+    <div class="section">
+      <div class="section-header" onclick="toggleSection('contacts')">
+        <h2 class="section-title">
+          <span class="toggle-icon" id="contacts-icon">▶</span>
+          📇 Contact Directory
+        </h2>
+      </div>
+      <div class="section-content" id="contacts-content">
+        <div class="info-box">
+          <strong>💡 Tip:</strong> Click on any contact to edit their information. Changes are saved automatically.
+        </div>
+        <div class="text-center mt-20">
+          <button class="btn btn-secondary btn-small" onclick="downloadContactsJSON()">
+            💾 Download All Contacts
+          </button>
+        </div>
+        <div class="contacts-grid" id="contacts-grid">
+          <!-- Contacts will be loaded here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Email List Section -->
+    <div class="section">
+      <div class="section-header" onclick="toggleSection('email')">
+        <h2 class="section-title">
+          <span class="toggle-icon" id="email-icon">▶</span>
+          📧 Email Everyone
+        </h2>
+      </div>
+      <div class="section-content" id="email-content">
+        <div class="info-box">
+          <h3 style="margin-bottom: 15px;">How to Email the Group</h3>
+          <ol style="margin-left: 20px;">
+            <li>Click the button below to open your email client</li>
+            <li>Your email will be in the "To" field</li>
+            <li>All other contacts will be in "CC"</li>
+            <li>Edit the subject and message as needed</li>
+          </ol>
+        </div>
+        <div class="text-center mt-20">
+          <a href="mailto:YOURADDRESS@example.com?cc=sum0316@gmail.com;dst894@hotmail.com;tamikalfrancis@gmail.com;errinmccomb@gmail.com;melaniebullock@yahoo.com;missdana213@gmail.com;vernet1@gmail.com;mdfikes@gmail.com;tephia25@yahoo.com;sherribelklaw@gmail.com;freshnclean9@gmail.com;kilpatrickn39@gmail.com;iamadelta@yahoo.com;michellelyfoxx@yahoo.com&subject=Spring%2094%20Dot%20Connection%20Updates&body=Hi%20everyone%2C%0D%0A%0D%0AHere%20are%20the%20latest%20updates%20for%20our%20Spring%2094%20Dot%20Connection%20group.%0D%0A%0D%0AThanks%2C%0D%0A[Your%20Name]" 
+             class="btn btn-primary">
+            📧 Open Email Client
+          </a>
+        </div>
+        <div class="warning-box mt-20">
+          <strong>📋 Copy & Paste Email List:</strong><br>
+          <code style="display: block; margin-top: 10px; padding: 10px; background: white; border-radius: 8px; word-break: break-all;">
+            sum0316@gmail.com; dst894@hotmail.com; tamikalfrancis@gmail.com; errinmccomb@gmail.com; melaniebullock@yahoo.com; missdana213@gmail.com; vernet1@gmail.com; mdfikes@gmail.com; tephia25@yahoo.com; sherribelklaw@gmail.com; freshnclean9@gmail.com; kilpatrickn39@gmail.com; iamadelta@yahoo.com; michellelyfoxx@yahoo.com
+          </code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Photo Albums Section -->
+    <div class="section">
+      <div class="section-header" onclick="toggleSection('photos')">
+        <h2 class="section-title">
+          <span class="toggle-icon" id="photos-icon">▶</span>
+          📸 Photo Albums
+        </h2>
+      </div>
+      <div class="section-content" id="photos-content">
+        <div class="photo-links">
+          <a href="https://link.shutterfly.com/AVu65l2xBJb" target="_blank" class="photo-link-card">
+            <div class="photo-link-icon">🎓</div>
+            <div class="photo-link-title">Spring 94 Old Photos</div>
+            <p>Throwback memories from our college days</p>
+          </a>
+          <a href="https://link.shutterfly.com/suiedxnxvNb" target="_blank" class="photo-link-card">
+            <div class="photo-link-icon">🏈</div>
+            <div class="photo-link-title">Homecoming 2024</div>
+            <p>Recent reunion photos</p>
+          </a>
+          <a href="https://link.shutterfly.com/lurzZCVsxNb" target="_blank" class="photo-link-card">
+            <div class="photo-link-icon">📷</div>
+            <div class="photo-link-title">Photoshoots</div>
+            <p>Professional group photos</p>
+          </a>
+        </div>
+        <div class="info-box mt-20">
+          <strong>🔐 Shared Account Access:</strong><br>
+          Email: <strong style="color: #2196f3;">dst894@yahoo.com</strong><br>
+          Password: <strong style="color: #f44336;">16connectdadots</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trip Details Section -->
+    <div class="section">
+      <div class="section-header" onclick="toggleSection('trips')">
+        <h2 class="section-title">
+          <span class="toggle-icon" id="trips-icon">▶</span>
+          ⛺ Dots Go Glamping - Yellowstone 2026
+        </h2>
+      </div>
+      <div class="section-content" id="trips-content">
+        
+        <!-- Trip Overview -->
+        <div class="trip-card highlight">
+          <div class="trip-title">⛺ Dots Go Glamping</div>
+          <p><strong>📍 Location:</strong> Under Canvas Yellowstone - North Yellowstone (Paradise Valley), MT</p>
+          <p><strong>📅 Dates:</strong> <span style="color: var(--primary-color); font-weight: bold;">Proposed dates to be voted on - Coming Soon!</span></p>
+          <p style="margin-top: 15px; font-size: 1.1rem;">Experience luxury camping in one of America's most iconic national parks! Glamping combines the beauty of nature with the comfort of a hotel.</p>
+        </div>
+
+        <!-- Travel & Airport Information -->
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('travel')">
+            <h3 class="subsection-title">✈️ Travel & Airport Information</h3>
+            <span class="subsection-toggle" id="travel-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="travel-content">
+          
+          <h4 style="color: var(--primary-color); margin-bottom: 10px;">Primary Airport:</h4>
+          <div style="border: 3px solid var(--primary-color); border-radius: 10px; padding: 20px; margin-bottom: 20px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
+            <div style="border-left: 4px solid var(--primary-color); padding-left: 15px;">
+              <strong style="font-size: 1.1rem;">Bozeman Yellowstone International Airport (BZN)</strong><br>
+              <span style="color: var(--text-secondary);">Bozeman, Montana</span><br>
+              <em style="font-size: 0.9rem; color: var(--primary-color);">✓ Most convenient option with direct access to Bozeman accommodations</em>
+            </div>
+          </div>
+
+          <h4 style="color: var(--primary-color); margin-bottom: 10px;">🏨 Accommodation:</h4>
+          <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; margin-bottom: 20px; background: white;">
+            <strong style="font-size: 1.05rem;">Home2 Suites by Hilton Bozeman Midtown</strong><br>
+            <span style="color: var(--text-secondary);">📍 1740 Baxter Ln, Bozeman, MT 59718</span><br>
+            <span style="color: var(--text-secondary);">📅 Check-in: Sat 9/20/26 | Check-out: Mon 9/28/26</span>
+          </div>
+
+          <h4 style="color: var(--text-secondary); margin-bottom: 10px; font-size: 0.95rem;">Alternative Airports (if needed):</h4>
+          <div style="display: grid; gap: 10px; margin-bottom: 20px;">
+            <div style="border-left: 3px solid var(--text-secondary); padding-left: 12px; opacity: 0.7;">
+              <strong>Yellowstone Airport (WYS)</strong><br>
+              <span style="color: var(--text-secondary); font-size: 0.9rem;">West Yellowstone, Montana - Seasonal (summer only), limited flights</span>
+            </div>
+
+            <div style="border-left: 3px solid var(--text-secondary); padding-left: 12px; opacity: 0.7;">
+              <strong>Idaho Falls Regional Airport (IDA)</strong><br>
+              <span style="color: var(--text-secondary); font-size: 0.9rem;">Idaho Falls, Idaho - Alternative option</span>
+            </div>
+          </div>
+
+            <div class="info-box">
+              <strong>🚗 Transportation:</strong> Rental car recommended for flexibility. See Travel Cost Estimates section for car rental pricing and options.
+            </div>
+          </div>
+        </div>
+
+        <!-- Travel Cost Breakdown -->
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('travelcosts')">
+            <h3 class="subsection-title">💵 Travel Cost Estimates</h3>
+            <span class="subsection-toggle" id="travelcosts-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="travelcosts-content">
+          
+          <p style="margin-bottom: 20px;"><em>Estimated costs as of 9/23 - 9/28 (prices subject to change)</em></p>
+          
+          <!-- Car Rental -->
+          <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 15px; margin-bottom: 15px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
+            <h4 style="color: var(--primary-color); margin-bottom: 10px;">🚗 Car Rental</h4>
+            <div style="display: grid; gap: 10px;">
+              <div style="padding: 10px; background: white; border-radius: 5px;">
+                <strong>Standard Car:</strong> $737 per person + AirShare<br>
+                <span style="color: var(--text-secondary); font-size: 0.9rem;">12 passengers, 4 cars @ $88 per person</span>
+              </div>
+              <div style="padding: 10px; background: white; border-radius: 5px;">
+                <strong>Pick-ups:</strong> <span style="text-decoration: line-through;">$88 per person</span> <span style="color: var(--primary-color); font-weight: bold;">$78.20 per person</span><br>
+                <span style="color: var(--text-secondary); font-size: 0.9rem;">Airport pickup service</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lodging Options -->
+          <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; margin-bottom: 15px; background: white;">
+            <h4 style="color: var(--primary-color); margin-bottom: 10px;">🏕️ Tent Options (Per Person)</h4>
+            <div style="display: grid; gap: 8px;">
+              <div style="padding: 8px; border-left: 3px solid var(--primary-color); padding-left: 12px;">
+                <strong>Delux Tent:</strong> $365.00 / 2 persons = <strong>$182.50 per person</strong>
+              </div>
+              <div style="padding: 8px; border-left: 3px solid var(--secondary-color); padding-left: 12px;">
+                <strong>Hot White Water Raft:</strong> $164 per person<br>
+                <span style="color: var(--text-secondary); font-size: 0.9rem;">Emmys Bike Hike - Sidney @ $50 per person</span>
+              </div>
+              <div style="padding: 8px; border-left: 3px solid #4caf50; padding-left: 12px;">
+                <strong>3 hr rental:</strong> $95.00 per person
+              </div>
+            </div>
+          </div>
+
+          <!-- HomeAway Suites -->
+          <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; margin-bottom: 15px; background: white;">
+            <h4 style="color: var(--primary-color); margin-bottom: 10px;">🏠 HomeAway Suites - Bozeman, MT</h4>
+            <div style="padding: 10px; background: #f8f9fa; border-radius: 5px;">
+              <strong>1740 Baxter Ln, Bozeman MT 59718</strong><br>
+              <strong>Cost:</strong> $1,500 / 2 nights (9/23 - 9/25) = <strong>$750 per night</strong><br>
+              <strong>Capacity:</strong> 5 Double Queen Suites<br>
+              <span style="color: var(--text-secondary); font-size: 0.9rem;">Check-in: Sat 9/20/26 - Mon 9/28/26</span>
+            </div>
+          </div>
+
+          <!-- Flight Estimates -->
+          <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
+            <h4 style="color: var(--primary-color); margin-bottom: 10px;">✈️ Flight Estimates (as of 12/17/25)</h4>
+            <p style="margin-bottom: 10px; font-style: italic; color: var(--text-secondary);">Dates: 9/23 - 9/28</p>
+            <div style="display: grid; gap: 8px;">
+              <div style="padding: 8px; background: white; border-radius: 5px;">
+                <strong>RDU → BOZ:</strong> $283.35 (Delta, 1 stop in SLC)
+              </div>
+              <div style="padding: 8px; background: white; border-radius: 5px;">
+                <strong>ATL → BOZ:</strong> $170.37 (Delta, 1 stop in SLC)
+              </div>
+              <div style="padding: 8px; background: white; border-radius: 5px;">
+                <strong>PHX → BOZ:</strong> $238.52 (United, 1 stop in SFO)
+              </div>
+              <div style="padding: 8px; background: white; border-radius: 5px;">
+                <strong>CHI → BOZ:</strong> $343.72 (AA, 1 stop in SFO)
+              </div>
+              <div style="padding: 8px; background: white; border-radius: 5px;">
+                <strong>GSP → BOZ:</strong> $409.15 (United, 1 stop in SFO)
+              </div>
+              <div style="padding: 8px; background: white; border-radius: 5px;">
+                <strong>CHS → BOZ:</strong> $283.04 (United, 1 stop in SFO)
+              </div>
+            </div>
+          </div>
+
+          <div class="info-box" style="margin-top: 20px;">
+            <strong>💡 Cost Saving Tips:</strong>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+              <li>Book flights early for better rates</li>
+              <li>Consider sharing car rentals to split costs</li>
+              <li>Bundle tent accommodations with friends</li>
+              <li>Monitor flight prices - they fluctuate frequently</li>
+            </ul>
+          </div>
+
+          <div class="warning-box" style="margin-top: 15px;">
+            <strong>⚠️ Important:</strong> All prices are estimates based on current rates and are subject to change. Final costs will be confirmed closer to the trip date.
+          </div>
+
+          <!-- Download Button -->
+          <div style="text-align: center; margin-top: 25px;">
+            <button onclick="downloadTravelCosts()" class="btn btn-primary" style="padding: 12px 30px; font-size: 1rem;">
+              📥 Download Travel Cost Estimates
+            </button>
+          </div>
+          </div>
+        </div>
+
+        <!-- Lodging Options & Pricing -->
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('lodging')">
+            <h3 class="subsection-title">🏕️ Lodging Options & Pricing</h3>
+            <span class="subsection-toggle" id="lodging-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="lodging-content">
+          <p style="margin-bottom: 20px;"><em>Hypothetically Sept 24 - Sept 28, 2026 (Dates TBD)</em></p>
+          
+          <div style="display: grid; gap: 15px;">
+            <!-- Delux Tent -->
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+              <h4 style="color: var(--primary-color); margin-bottom: 10px;">⛺ Delux Tent - $365.00/Night</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>One King Bed</li>
+                <li>One Bath - toilet, sep shower, sep sink</li>
+                <li>All within the tent</li>
+              </ul>
+            </div>
+
+            <!-- Delux Tent w/ Kids Tent -->
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+              <h4 style="color: var(--primary-color); margin-bottom: 10px;">⛺ Delux Tent w/ Kids Tent - $530.00/Night</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>One King Bed, separate but adjacent Kids tent w/ 2 Twin Beds</li>
+                <li>One Bath - toilet, sep shower, sep sink</li>
+                <li>All within the tent</li>
+              </ul>
+            </div>
+
+            <!-- Stargazer Tent -->
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+              <h4 style="color: var(--primary-color); margin-bottom: 10px;">⭐ Stargazer Tent - $435.00/Night</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>One King Bed & a night sky viewing window</li>
+                <li>Private ensuite bathroom</li>
+              </ul>
+            </div>
+
+            <!-- Stargazer Tent w/ Kids Tent -->
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+              <h4 style="color: var(--primary-color); margin-bottom: 10px;">⭐ Stargazer Tent w/ Kids Tent - $609.00/Night</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>One King Bed & night sky viewing window</li>
+                <li>Separate Kids tent with beds</li>
+                <li>Private ensuite bathroom</li>
+              </ul>
+            </div>
+
+            <!-- Suite Tent -->
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+              <h4 style="color: var(--primary-color); margin-bottom: 10px;">🌟 Suite Tent - $480.00/Night</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>Same as Stargazer but also has a queen sofa bed</li>
+              </ul>
+            </div>
+
+            <!-- Suite Tent w/ Kids Tent -->
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+              <h4 style="color: var(--primary-color); margin-bottom: 10px;">🌟 Suite Tent w/ Kids Tent - $662.00/Night</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>Suite tent with queen sofa bed</li>
+                <li>Separate Kids tent</li>
+              </ul>
+            </div>
+
+            <!-- Yellowstone River Suite -->
+            <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
+              <h4 style="color: var(--primary-color); margin-bottom: 10px;">🏞️ Yellowstone River Suite - $1,080.00/Night</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>2 Suite Tents, 2 Delux Tents w/ 2 Twin Beds</li>
+                <li>Connected by an expansive private deck</li>
+                <li>Yellowstone River Cabin - $480/Night</li>
+                <li>Alder Stargazer</li>
+              </ul>
+            </div>
+          </div>
+
+            <div class="info-box" style="margin-top: 20px;">
+              <strong>📝 Note:</strong> Prices are per night and subject to change. Final dates and total costs will be confirmed soon.
+            </div>
+          </div>
+        </div>
+
+        <!-- Cost & Payment - HIDDEN FOR NOW -->
+        <!-- Uncomment when ready to show payment details
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('payment')">
+            <h3 class="subsection-title">💰 Payment Details</h3>
+            <span class="subsection-toggle" id="payment-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="payment-content">
+          
+          <h4 style="color: var(--primary-dark);">Payment Schedule (TBD):</h4>
+          <ul style="margin-left: 20px; margin-top: 10px;">
+            <li><strong>Deposit:</strong> Amount & due date TBD</li>
+            <li><strong>Second Payment:</strong> Amount & due date TBD</li>
+            <li><strong>Final Payment:</strong> Amount & due date TBD</li>
+          </ul>
+
+          <h4 style="margin-top: 20px; color: var(--primary-dark);">Payment Methods:</h4>
+          <ul style="margin-left: 20px; margin-top: 10px;">
+            <li><strong>Zelle:</strong> Details TBD</li>
+            <li><strong>Cash App:</strong> Details TBD</li>
+            <li><strong>Venmo:</strong> Details TBD</li>
+          </ul>
+          </div>
+        </div>
+        -->
+
+        <!-- Activities & Excursions -->
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('activities')">
+            <h3 class="subsection-title">🎯 Activities & Excursions</h3>
+            <span class="subsection-toggle" id="activities-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="activities-content">
+          <p style="margin-bottom: 20px;">Choose your adventure! Here are some exciting activities available:</p>
+
+          <!-- Featured Activity -->
+          <div style="border: 3px solid var(--primary-color); border-radius: 15px; padding: 20px; margin-bottom: 20px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
+            <h4 style="color: var(--primary-color); margin-bottom: 15px;">🌊 Group Whitewater Rafting - 18 Mile</h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+              <div>
+                <strong>💰 Price:</strong> $164.00 per person<br>
+                <strong>⏱️ Duration:</strong> 5-6 hours (stops & cafe for lunch)<br>
+                <strong>📍 Location:</strong> Yellowstone River
+              </div>
+            </div>
+            <p style="margin-top: 15px; font-style: italic; color: var(--text-secondary);">
+              Experience the thrill of whitewater rafting through stunning Yellowstone scenery!
+            </p>
+          </div>
+
+          <!-- Other Activities -->
+          <h4 style="color: var(--primary-dark); margin-bottom: 15px;">Other Honorable Mentions:</h4>
+          <div style="display: grid; gap: 15px;">
+            
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <h5 style="color: var(--primary-color); margin-bottom: 8px;">🛶 Private Yellowstone River Luxury Float</h5>
+              <p style="font-size: 0.95rem; margin-bottom: 8px;">
+                <strong>Price:</strong> $644.00 | <strong>Duration:</strong> 2.5 hours<br>
+                <strong>Location:</strong> Yellowstone River
+              </p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">Relaxing scenic float through pristine wilderness</p>
+            </div>
+
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <h5 style="color: var(--primary-color); margin-bottom: 8px;">🐴 Group Horseback Ride</h5>
+              <p style="font-size: 0.95rem; margin-bottom: 8px;">
+                <strong>Price:</strong> $244.00 per person | <strong>Duration:</strong> 2 hrs<br>
+                <strong>Location:</strong> Absaroka-Beartooth Wilderness
+              </p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">Explore the wilderness on horseback</p>
+            </div>
+
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <h5 style="color: var(--primary-color); margin-bottom: 8px;">🦬 Yellowstone Park Tours</h5>
+              <p style="font-size: 0.95rem; margin-bottom: 8px;">
+                See geysers, hot springs, wildlife (bison, elk, bears), and iconic landmarks
+              </p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">Details and pricing TBD</p>
+            </div>
+
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <h5 style="color: var(--primary-color); margin-bottom: 8px;">🥾 Hiking & Nature Walks</h5>
+              <p style="font-size: 0.95rem; margin-bottom: 8px;">
+                Various trails for all skill levels
+              </p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">Free - explore at your own pace</p>
+            </div>
+
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <h5 style="color: var(--primary-color); margin-bottom: 8px;">📸 Photography Tours</h5>
+              <p style="font-size: 0.95rem; margin-bottom: 8px;">
+                Capture stunning landscapes and wildlife
+              </p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">Details TBD</p>
+            </div>
+
+          </div>
+
+            <div class="warning-box" style="margin-top: 20px;">
+              <strong>📝 Note:</strong> Activities are optional and not included in base lodging cost. Book activities that interest you! More details and booking information coming soon.
+            </div>
+          </div>
+        </div>
+
+        <!-- Itinerary - HIDDEN FOR NOW -->
+        <!-- Uncomment when ready to show itinerary
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('itinerary')">
+            <h3 class="subsection-title">📋 Itinerary</h3>
+            <span class="subsection-toggle" id="itinerary-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="itinerary-content">
+            <div class="info-box">
+              <strong>🗓️ Detailed schedule coming soon!</strong><br>
+              <em>We're working on an amazing itinerary filled with adventure, relaxation, and sisterhood. Check back for updates!</em>
+            </div>
+          </div>
+        </div>
+        -->
+
+        <!-- Packing Suggestions - HIDDEN FOR NOW -->
+        <!-- Uncomment when ready to show packing list
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('packing')">
+            <h3 class="subsection-title">🎒 Packing Suggestions</h3>
+            <span class="subsection-toggle" id="packing-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="packing-content">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+            <div>
+              <h4 style="color: var(--primary-color);">Clothing</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>Layers (mornings/evenings are cool)</li>
+                <li>Comfortable hiking shoes</li>
+                <li>Rain jacket</li>
+                <li>Sun hat & sunglasses</li>
+                <li>Casual evening wear</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="color: var(--primary-color);">Essentials</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>Sunscreen & bug spray</li>
+                <li>Reusable water bottle</li>
+                <li>Camera/phone charger</li>
+                <li>Personal medications</li>
+                <li>Toiletries</li>
+              </ul>
+            </div>
+          </div>
+          <p style="margin-top: 15px;"><em>Full packing list will be provided closer to trip date.</em></p>
+          </div>
+        </div>
+        -->
+
+        <!-- Important Links & Downloads -->
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('links')">
+            <h3 class="subsection-title">🔗 Important Links & Downloads</h3>
+            <span class="subsection-toggle" id="links-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="links-content">
+          <div class="trip-links">
+            <a href="https://github.com/tamimoooo/agenda/raw/main/Dots%20Go%20Glamping.pdf" target="_blank" class="btn btn-primary btn-small">
+              📄 View Presentation
+            </a>
+            <a href="https://drive.google.com/file/d/1yv554UjX1m8c1OL3E1XrwWtILhKnabvm/view?usp=drive_link" target="_blank" class="btn btn-secondary btn-small">
+              🎥 Watch Video
+            </a>
+            <a href="https://www.undercanvas.com/camps/north-yellowstone" target="_blank" class="btn btn-secondary btn-small">
+              🏕️ Under Canvas Website
+            </a>
+          </div>
+          
+          <h4 style="color: var(--primary-dark); margin-top: 25px; margin-bottom: 15px;">📦 Complete Trip Package</h4>
+          <div class="info-box">
+            <strong>📄 Downloadable Trip Details Package - Coming Soon!</strong><br>
+            <p style="margin-top: 10px;">We're preparing a comprehensive downloadable file that will include:</p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+              <li>✅ Complete itinerary with daily schedule</li>
+              <li>✅ Detailed packing list</li>
+              <li>✅ Travel arrangements and transportation info</li>
+              <li>✅ Activity booking information</li>
+              <li>✅ Emergency contacts and important numbers</li>
+              <li>✅ Local area information and tips</li>
+              <li>✅ Group chat and communication details</li>
+            </ul>
+            <p style="margin-top: 15px; font-style: italic; color: var(--text-secondary);">
+              Once available, you'll be able to download a PDF with everything you need in one place. Check back soon!
+            </p>
+          </div>
+          
+          <!-- Placeholder for future download button -->
+          <!-- Uncomment and update link when file is ready:
+          <div style="text-align: center; margin-top: 15px;">
+            <a href="path/to/trip-details.pdf" download class="btn btn-primary">
+              📥 Download Complete Trip Package
+            </a>
+          </div>
+          -->
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('contact')">
+            <h3 class="subsection-title">📞 Questions?</h3>
+            <span class="subsection-toggle" id="contact-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="contact-content">
+          <p><strong>Trip Coordinators:</strong> Sherri Belk and Janita Moody</p>
+          <p><strong>Email:</strong>
+            <a href="mailto:sherribelklaw@gmail.com" style="color: var(--primary-color);">sherribelklaw@gmail.com</a> |
+            <a href="mailto:freshnclean9@gmail.com" style="color: var(--primary-color);">freshnclean9@gmail.com</a>
+          </p>
+          <p style="margin-top: 10px;"><em>Don't hesitate to reach out with any questions or concerns!</em></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Add/Edit Contact Modal -->
+  <div class="modal" id="contactModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle">Add Your Contact Info</h2>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+      <form id="contactForm" onsubmit="saveContact(event)">
+        <input type="hidden" id="contactId">
+        
+        <div class="form-group">
+          <label class="form-label" for="contactName">Name *</label>
+          <input type="text" id="contactName" class="form-input" required placeholder="Enter your name">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactEmail">Email *</label>
+          <input type="email" id="contactEmail" class="form-input" required placeholder="your.email@example.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactAddress">Street Address</label>
+          <input type="text" id="contactAddress" class="form-input" placeholder="123 Main Street">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactCity">City</label>
+          <input type="text" id="contactCity" class="form-input" placeholder="City">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactState">State</label>
+          <input type="text" id="contactState" class="form-input" placeholder="State">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactZip">ZIP Code</label>
+          <input type="text" id="contactZip" class="form-input" placeholder="12345">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactPhone">Phone Number</label>
+          <input type="tel" id="contactPhone" class="form-input" placeholder="(555) 123-4567">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactBirthday">Birthday (Month & Day)</label>
+          <input type="text" id="contactBirthday" class="form-input" placeholder="MM/DD (e.g., 03/15)" pattern="(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])">
+          <small style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 5px; display: block;">Format: MM/DD (e.g., 03/15 for March 15th)</small>
+        </div>
+
+        <div class="action-buttons">
+          <button type="submit" class="btn btn-primary">💾 Save Contact</button>
+          <button type="button" class="btn btn-secondary" onclick="submitContactToAdmin(event)">📧 Submit to Admin</button>
+          <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Default contacts embedded in HTML
+    const defaultContacts = [
+      { id: 1, name: "Errin", email: "errinmccomb@gmail.com", address: "14 Coan Street", city: "Greenville", state: "SC", zip: "29617", phone: "", birthday: "" },
+      { id: 2, name: "Melanie", email: "melaniebullock@yahoo.com", address: "3703 Burt Drive", city: "Raleigh", state: "NC", zip: "27606", phone: "", birthday: "" },
+      { id: 3, name: "Summer", email: "summer0316@example.com", address: "2408 Dulair Road", city: "Greensboro", state: "NC", zip: "27407", phone: "", birthday: "" },
+      { id: 4, name: "Dana", email: "missdana213@gmail.com", address: "8030 Stillmist Drive", city: "Fairburn", state: "Georgia", zip: "30213", phone: "", birthday: "" },
+      { id: 5, name: "Vernet", email: "vernet1@gmail.com", address: "105 Shadburn Ferry Rd", city: "Buford", state: "GA", zip: "30518", phone: "", birthday: "" },
+      { id: 6, name: "Monshaire", email: "mdfikes@gmail.com", address: "PO Box 6213", city: "Florence", state: "SC", zip: "29502", phone: "", birthday: "" },
+      { id: 7, name: "Tamika F.", email: "tamikalfrancis@gmail.com", address: "225 Riverdell North Mews", city: "Lancaster", state: "TX", zip: "75146", phone: "", birthday: "" },
+      { id: 8, name: "Tamika", email: "DST894@hotmail.com", address: "8304 Flat Keystone Drive", city: "Raleigh", state: "NC", zip: "", phone: "", birthday: "" },
+      { id: 9, name: "Tephia Lindsay", email: "tephia25@yahoo.com", address: "8612-202 Olde Station Dr.", city: "Raleigh", state: "NC", zip: "27615", phone: "", birthday: "" },
+      { id: 10, name: "Janita", email: "freshnclean9@gmail.com", address: "PO Box 415", city: "Wendell", state: "NC", zip: "27591", phone: "", birthday: "" },
+      { id: 11, name: "Carolyn", email: "carolyn@example.com", address: "", city: "", state: "Texas", zip: "", phone: "", birthday: "" },
+      { id: 12, name: "Sherri", email: "sherribelklaw@gmail.com", address: "143 Skylark Way", city: "Raleigh", state: "NC", zip: "27615", phone: "", birthday: "" },
+      { id: 13, name: "Michelle", email: "michelleyfoxx@yahoo.com", address: "11682 Mustang Creek Ct", city: "Waldorf", state: "Maryland", zip: "20602", phone: "", birthday: "" },
+      { id: 14, name: "Joeshun", email: "Joeshun@example.com", address: "", city: "", state: "", zip: "", phone: "", birthday: "" },
+      { id: 15, name: "Nicole", email: "kilpatrickn39@gmail.com", address: "141 Bayleigh Court", city: "Garner", state: "NC", zip: "27529", phone: "", birthday: "" },
+      { id: 16, name: "Rochelle", email: "iamadelta@yahoo.com", address: "9904 Orchard Grass Court", city: "Charlotte", state: "NC", zip: "28278", phone: "", birthday: "" }
+    ];
+
+    let contactsData = [];
+
+    // Load contacts from JSON file or use defaults
+    async function initializeContacts() {
+      try {
+        const response = await fetch('contacts.json');
+        if (response.ok) {
+          contactsData = await response.json();
+          localStorage.setItem('spring94Contacts', JSON.stringify(contactsData));
+        } else {
+          throw new Error('JSON file not found');
+        }
+      } catch (error) {
+        console.log('Loading from localStorage or defaults');
+        // Try localStorage first
+        const stored = localStorage.getItem('spring94Contacts');
+        if (stored) {
+          contactsData = JSON.parse(stored);
+        } else {
+          // Use default contacts
+          contactsData = defaultContacts;
+          localStorage.setItem('spring94Contacts', JSON.stringify(defaultContacts));
+        }
+      }
+      loadContacts();
+    }
+
+    // Load and display contacts
+    function loadContacts() {
+      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      const grid = document.getElementById('contacts-grid');
+      
+      if (contacts.length === 0) {
+        grid.innerHTML = '<p class="text-center">No contacts yet. Click "Add Your Contact Info" to get started!</p>';
+        return;
+      }
+
+      grid.innerHTML = contacts.map(contact => `
+        <div class="contact-card">
+          <div class="contact-name">${contact.name}</div>
+          ${contact.birthday ? `<div class="contact-info">🎂 ${formatBirthday(contact.birthday)}</div>` : ''}
+          ${contact.address ? `<div class="contact-info">📍 ${contact.address}</div>` : ''}
+          ${contact.city || contact.state || contact.zip ? `<div class="contact-info">${[contact.city, contact.state, contact.zip].filter(Boolean).join(', ')}</div>` : ''}
+          ${contact.phone ? `<div class="contact-info">📞 ${contact.phone}</div>` : ''}
+          <div class="contact-info">
+            <a href="mailto:${contact.email}" class="contact-email">✉️ ${contact.email}</a>
+          </div>
+          <div class="action-buttons">
+            <button class="edit-btn" onclick="editContact(${contact.id})">✏️ Edit</button>
+            <button class="delete-btn" onclick="deleteContact(${contact.id})">🗑️ Delete</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Format birthday for display
+    function formatBirthday(birthday) {
+      if (!birthday) return '';
+      // Handle MM/DD format
+      const parts = birthday.split('/');
+      if (parts.length === 2) {
+        const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                       'July', 'August', 'September', 'October', 'November', 'December'];
+        const month = parseInt(parts[0]) - 1;
+        const day = parseInt(parts[1]);
+        if (month >= 0 && month < 12 && day >= 1 && day <= 31) {
+          return `${months[month]} ${day}`;
+        }
+      }
+      return birthday;
+    }
+
+    // Download contacts as JSON file
+    function downloadContactsJSON() {
+      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      const dataStr = JSON.stringify(contacts, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(dataBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'contacts.json';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      
+      alert('✅ Contacts downloaded! Please send this file to the group admin to update the website.');
+    }
+
+    // Toggle section visibility
+    function toggleSection(sectionId) {
+      const content = document.getElementById(`${sectionId}-content`);
+      const icon = document.getElementById(`${sectionId}-icon`);
+      
+      if (content.classList.contains('expanded')) {
+        content.classList.remove('expanded');
+        icon.classList.remove('expanded');
+      } else {
+        content.classList.add('expanded');
+        icon.classList.add('expanded');
+      }
+    }
+
+    // Toggle subsection visibility
+    function toggleSubsection(subsectionId) {
+      const content = document.getElementById(`${subsectionId}-content`);
+      const icon = document.getElementById(`${subsectionId}-toggle`);
+      
+      if (content.classList.contains('expanded')) {
+        content.classList.remove('expanded');
+        icon.classList.remove('expanded');
+      } else {
+        content.classList.add('expanded');
+        icon.classList.add('expanded');
+      }
+    }
+
+    // Open modal for adding contact
+    function openAddContactModal() {
+      document.getElementById('modalTitle').textContent = 'Add Your Contact Info';
+      document.getElementById('contactForm').reset();
+      document.getElementById('contactId').value = '';
+      document.getElementById('contactModal').classList.add('active');
+    }
+
+    // Edit contact
+    function editContact(id) {
+      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      const contact = contacts.find(c => c.id === id);
+      
+      if (contact) {
+        document.getElementById('modalTitle').textContent = 'Edit Contact Info';
+        document.getElementById('contactId').value = contact.id;
+        document.getElementById('contactName').value = contact.name;
+        document.getElementById('contactEmail').value = contact.email;
+        document.getElementById('contactAddress').value = contact.address || '';
+        document.getElementById('contactCity').value = contact.city || '';
+        document.getElementById('contactState').value = contact.state || '';
+        document.getElementById('contactZip').value = contact.zip || '';
+        document.getElementById('contactPhone').value = contact.phone || '';
+        document.getElementById('contactBirthday').value = contact.birthday || '';
+        document.getElementById('contactModal').classList.add('active');
+      }
+    }
+
+    // Delete contact
+    function deleteContact(id) {
+      if (confirm('Are you sure you want to delete this contact?')) {
+        let contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+        contacts = contacts.filter(c => c.id !== id);
+        localStorage.setItem('spring94Contacts', JSON.stringify(contacts));
+        loadContacts();
+      }
+    }
+
+    // Save contact (no email)
+    function saveContact(event) {
+      event.preventDefault();
+      
+      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      const id = document.getElementById('contactId').value;
+      
+      const contactData = {
+        id: id ? parseInt(id) : Date.now(),
+        name: document.getElementById('contactName').value,
+        email: document.getElementById('contactEmail').value,
+        address: document.getElementById('contactAddress').value,
+        city: document.getElementById('contactCity').value,
+        state: document.getElementById('contactState').value,
+        zip: document.getElementById('contactZip').value,
+        phone: document.getElementById('contactPhone').value,
+        birthday: document.getElementById('contactBirthday').value
+      };
+      
+      if (id) {
+        // Update existing contact
+        const index = contacts.findIndex(c => c.id === parseInt(id));
+        if (index !== -1) {
+          contacts[index] = contactData;
+        }
+      } else {
+        // Add new contact
+        contacts.push(contactData);
+      }
+
+      localStorage.setItem('spring94Contacts', JSON.stringify(contacts));
+      closeModal();
+      loadContacts();
+      
+      alert('✅ Contact saved locally!');
+    }
+
+    // Submit contact to admin (uses mailto as fallback)
+    async function submitContactToAdmin(event) {
+      event.preventDefault();
+      
+      // Get the current contact data from the form
+      const contactData = {
+        id: document.getElementById('contactId').value || Date.now(),
+        name: document.getElementById('contactName').value,
+        email: document.getElementById('contactEmail').value,
+        address: document.getElementById('contactAddress').value,
+        city: document.getElementById('contactCity').value,
+        state: document.getElementById('contactState').value,
+        zip: document.getElementById('contactZip').value,
+        phone: document.getElementById('contactPhone').value,
+        birthday: document.getElementById('contactBirthday').value
+      };
+
+      // Validate required fields
+      if (!contactData.name || !contactData.email) {
+        alert('❌ Please fill in at least Name and Email before submitting.');
+        return;
+      }
+
+      // Format contact info for email
+      const contactInfo = `
+Name: ${contactData.name}
+Email: ${contactData.email}
+Birthday: ${contactData.birthday || 'Not provided'}
+Address: ${contactData.address || 'Not provided'}
+City: ${contactData.city || 'Not provided'}
+State: ${contactData.state || 'Not provided'}
+ZIP: ${contactData.zip || 'Not provided'}
+Phone: ${contactData.phone || 'Not provided'}
+      `.trim();
+
+      const contactJSON = JSON.stringify(contactData, null, 2);
+
+      // Send via EmailJS with mailto fallback
+      const submitBtn = event.target;
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '⏳ Sending...';
+      submitBtn.disabled = true;
+
+      try {
+        const result = await emailjs.send(
+          'service_tyw2ual',
+          'template_fainkx7',
+          {
+            name: contactData.name,
+            message: `Contact information has been updated:\n\n${contactInfo}\n\n---\nJSON Format:\n${contactJSON}`
+          }
+        );
+
+        console.log('EmailJS Success:', result);
+        alert('✅ Contact information sent successfully to admin!');
+        saveAndClose(contactData);
+        
+      } catch (error) {
+        console.error('EmailJS Error Details:', error);
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        
+        // Fallback to mailto
+        if (confirm('Email service unavailable. Would you like to send via your email client instead?')) {
+          const subject = `Spring 94 Contact Update: ${contactData.name}`;
+          const body = `Contact information has been updated:\n\n${contactInfo}\n\n---\nJSON Format:\n${contactJSON}`;
+          const mailtoLink = `mailto:dst894@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.location.href = mailtoLink;
+          saveAndClose(contactData);
+        }
+      } finally {
+        if (submitBtn.innerHTML === '⏳ Sending...') {
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        }
+      }
+    }
+
+    // Helper function to save and close modal
+    function saveAndClose(contactData) {
+      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      const id = document.getElementById('contactId').value;
+      
+      if (id) {
+        const index = contacts.findIndex(c => c.id === parseInt(id));
+        if (index !== -1) {
+          contacts[index] = contactData;
+        }
+      } else {
+        contacts.push(contactData);
+      }
+      
+      localStorage.setItem('spring94Contacts', JSON.stringify(contacts));
+      closeModal();
+      loadContacts();
+    }
+
+    // Close modal
+    function closeModal() {
+      document.getElementById('contactModal').classList.remove('active');
+      document.getElementById('contactForm').reset();
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('contactModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    // Download Travel Cost Estimates
+    function downloadTravelCosts() {
+      const content = `
+SPRING 94 DOTS - YELLOWSTONE GLAMPING TRIP
+TRAVEL COST ESTIMATES
+Generated: ${new Date().toLocaleDateString()}
+Estimated costs as of 9/23 - 9/28 (prices subject to change)
+
+═══════════════════════════════════════════════════════════════
+
+🚗 CAR RENTAL
+─────────────────────────────────────────────────────────────
+Standard Car: $737 per person + AirShare
+  • 12 passengers, 4 cars @ $88 per person
+
+Airport Pick-ups: $78.20 per person (was $88)
+  • Airport pickup service
+
+═══════════════════════════════════════════════════════════════
+
+🏕️ TENT OPTIONS (Per Person)
+─────────────────────────────────────────────────────────────
+Delux Tent: $365.00 / 2 persons = $182.50 per person
+
+Hot White Water Raft: $164 per person
+  • Emmy's Bike Hike - Sidney @ $50 per person
+
+3 hr rental: $95.00 per person
+
+═══════════════════════════════════════════════════════════════
+
+🏠 HOME2 SUITES BY HILTON - BOZEMAN, MT
+─────────────────────────────────────────────────────────────
+Address: 1740 Baxter Ln, Bozeman MT 59718
+Cost: $1,500 / 2 nights (9/23 - 9/25) = $750 per night
+Capacity: 5 Double Queen Suites
+Check-in: Sat 9/20/26 - Mon 9/28/26
+
+═══════════════════════════════════════════════════════════════
+
+✈️ FLIGHT ESTIMATES (as of 12/17/25)
+─────────────────────────────────────────────────────────────
+Dates: 9/23 - 9/28
+
+RDU → BOZ: $283.35 (Delta, 1 stop in SLC)
+ATL → BOZ: $170.37 (Delta, 1 stop in SLC)
+PHX → BOZ: $238.52 (United, 1 stop in SFO)
+CHI → BOZ: $343.72 (AA, 1 stop in SFO)
+GSP → BOZ: $409.15 (United, 1 stop in SFO)
+CHS → BOZ: $283.04 (United, 1 stop in SFO)
+
+═══════════════════════════════════════════════════════════════
+
+💡 COST SAVING TIPS
+─────────────────────────────────────────────────────────────
+• Book flights early for better rates
+• Consider sharing car rentals to split costs
+• Bundle tent accommodations with friends
+• Monitor flight prices - they fluctuate frequently
+
+═══════════════════════════════════════════════════════════════
+
+⚠️ IMPORTANT NOTICE
+─────────────────────────────────────────────────────────────
+All prices are estimates based on current rates and are subject
+to change. Final costs will be confirmed closer to the trip date.
+
+═══════════════════════════════════════════════════════════════
+
+For more information, visit:
+https://tamimoooo.github.io/agenda/reunion.html
+
+Questions? Contact:
+Sherri Belk - sherribelklaw@gmail.com
+Janita Moody - freshnclean9@gmail.com
+      `.trim();
+
+      // Create blob and download
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Spring94_Travel_Cost_Estimates.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+      
+      // Show confirmation
+      alert('✅ Travel Cost Estimates downloaded successfully!');
+    }
 
     // Initialize on page load
     document.addEventListener('DOMContentLoaded', function() {
