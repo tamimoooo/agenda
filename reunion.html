@@ -1059,6 +1059,16 @@
             <span class="subsection-toggle" id="lodging-toggle">▶</span>
           </div>
           <div class="subsection-content" id="lodging-content">
+
+          <!-- Campsite Map -->
+          <div style="margin-bottom: 30px; border: 3px solid var(--primary-color); border-radius: 10px; padding: 20px; background: white;">
+            <h4 style="color: var(--primary-color); margin-bottom: 15px; text-align: center;">📍 Under Canvas Yellowstone Campsite Map</h4>
+            <img src="map.webp"
+                 alt="Under Canvas Yellowstone Campsite Layout Map"
+                 style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px;">
+            
+          </div>
+
           <p style="margin-bottom: 20px;"><em>Tent Stay: September 10-12, 2026 (2 nights)</em></p>
           
           <div style="display: grid; gap: 15px;">
@@ -1569,6 +1579,150 @@
               🏕️ Map of Canvas
             </a>
           </div>
+        </div>
+
+        <!-- My Trip Details & Itinerary Generator -->
+        <div class="trip-card" style="display: none;">
+          <div class="subsection-header" onclick="toggleSubsection('tripdetails')">
+            <h3 class="subsection-title">✈️ My Trip Details</h3>
+            <span class="subsection-toggle" id="tripdetails-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="tripdetails-content">
+            <p style="margin-bottom: 20px; color: var(--text-secondary);">
+              Fill out your personal trip information below. Once complete, you can download a personalized Word document with all your trip details, hotel addresses, and important information in one place!
+            </p>
+
+            <!-- Form -->
+            <form id="tripDetailsForm" style="display: grid; gap: 20px;">
+              
+              <!-- Flight Information Section -->
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
+                <h4 style="color: var(--primary-dark); margin-bottom: 15px;">✈️ Flight Information</h4>
+                
+                <div style="display: grid; gap: 15px;">
+                  <!-- Outbound Flight -->
+                  <div>
+                    <h5 style="color: var(--secondary-color); margin-bottom: 10px;">Outbound Flight</h5>
+                    <div style="display: grid; gap: 10px;">
+                      <input type="text" id="outboundDepartureCity"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Departure City (e.g., Atlanta, GA)">
+                      <input type="text" id="outboundArrivalCity"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Arrival City (Bozeman, MT)">
+                      <input type="text" id="outboundAirline"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Airline (e.g., Delta, United)">
+                      <input type="text" id="outboundFlightNumber"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Flight Number (e.g., DL1234)">
+                      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <input type="datetime-local" id="outboundDeparture"
+                               style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                               placeholder="Departure Date/Time">
+                        <input type="datetime-local" id="outboundArrival"
+                               style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                               placeholder="Arrival Date/Time">
+                      </div>
+                      <input type="text" id="outboundConfirmation"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Confirmation Number">
+                    </div>
+                  </div>
+
+                  <!-- Return Flight -->
+                  <div>
+                    <h5 style="color: var(--secondary-color); margin-bottom: 10px;">Return Flight</h5>
+                    <div style="display: grid; gap: 10px;">
+                      <input type="text" id="returnDepartureCity"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Departure City (Bozeman, MT)">
+                      <input type="text" id="returnArrivalCity"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Arrival City (e.g., Atlanta, GA)">
+                      <input type="text" id="returnAirline"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Airline (e.g., Delta, United)">
+                      <input type="text" id="returnFlightNumber"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Flight Number (e.g., DL5678)">
+                      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <input type="datetime-local" id="returnDeparture"
+                               style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                               placeholder="Departure Date/Time">
+                        <input type="datetime-local" id="returnArrival"
+                               style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                               placeholder="Arrival Date/Time">
+                      </div>
+                      <input type="text" id="returnConfirmation"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Confirmation Number">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tent Selection -->
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
+                <h4 style="color: var(--primary-dark); margin-bottom: 15px;">🏕️ Tent Selection</h4>
+                <select id="selectedTent"
+                        style="width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem; margin-bottom: 10px;">
+                  <option value="">Select your tent type</option>
+                  <option value="Stargazer">Stargazer Tent</option>
+                  <option value="Deluxe">Deluxe Tent</option>
+                  <option value="Suite">Suite Tent</option>
+                  <option value="Yellowstone River">Yellowstone River Tent</option>
+                  <option value="Tipi">Tipi Tent</option>
+                  <option value="Safari">Safari Tent</option>
+                  <option value="Family">Family Tent</option>
+                </select>
+                <input type="number" id="tentPricePerPerson"
+                       style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                       placeholder="Price per person (e.g., 550)" min="0" step="0.01">
+              </div>
+
+              <!-- Activities Selection -->
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
+                <h4 style="color: var(--primary-dark); margin-bottom: 15px;">🎯 Activities I'm Interested In</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 15px;">
+                  Check the activities you plan to participate in:
+                </p>
+                <div id="activitiesCheckboxList" style="display: grid; gap: 10px;">
+                  <!-- Activities will be dynamically populated from the Activities & Excursions section -->
+                  <p style="color: var(--text-secondary); font-style: italic;">Loading activities...</p>
+                </div>
+              </div>
+
+            <!-- Emergency Contact -->
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
+              <h4 style="color: var(--primary-dark); margin-bottom: 15px;">🚨 Emergency Contact</h4>
+              <div style="display: grid; gap: 10px;">
+                <input type="text" id="emergencyName" 
+                       style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                       placeholder="Emergency Contact Name">
+                <input type="tel" id="emergencyPhone" 
+                       style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                       placeholder="Emergency Contact Phone">
+                <input type="text" id="emergencyRelationship" 
+                       style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                       placeholder="Relationship (e.g., Spouse, Parent, Sibling)">
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+              <button type="button" onclick="saveTripDetails()" class="btn btn-primary" style="padding: 15px; font-size: 1.1rem;">
+                💾 Save My Details
+              </button>
+              <button type="button" onclick="downloadTripItinerary()" class="btn btn-secondary" style="padding: 15px; font-size: 1.1rem;">
+                📥 Download Itinerary (Word)
+              </button>
+            </div>
+
+            <div class="info-box" style="margin-top: 10px;">
+              <strong>📝 Note:</strong> Your information is saved locally in your browser. The Word document will include all trip details, hotel addresses, your tent info, selected activities, and emergency contact.
+            </div>
+          </form>
         </div>
 
         <!-- Itinerary - HIDDEN FOR NOW -->
@@ -2320,13 +2474,302 @@ Phone: ${contactData.phone || 'Not provided'}
       loadSubmittedActivities();
     });
 
+
+    // ===== TRIP DETAILS & ITINERARY FUNCTIONS =====
+    
+    // Populate activities dynamically from the Activities section
+    function populateActivitiesCheckboxes() {
+      const activitiesList = document.getElementById('activitiesCheckboxList');
+      if (!activitiesList) return;
+
+      // Define activities with their details (matching the Activities & Excursions section)
+      const activities = [
+        { id: 'rafting', name: 'Group Whitewater Rafting - 18 Mile', icon: '🌊', price: '$164/person' },
+        { id: 'float', name: 'Private Yellowstone River Luxury Float', icon: '🛶', price: '$644 total' },
+        { id: 'horseback', name: 'Group Horseback Ride', icon: '🐴', price: '$244/person' },
+        { id: 'park', name: 'Yellowstone Park Tours', icon: '🦬', price: 'TBD' },
+        { id: 'hiking', name: 'Hiking & Nature Walks', icon: '🥾', price: 'Free' },
+        { id: 'photo', name: 'Photography Tours', icon: '📸', price: 'TBD' }
+      ];
+
+      activitiesList.innerHTML = activities.map(activity => `
+        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+          <input type="checkbox" id="activity_${activity.id}" value="${activity.name}"
+                 data-price="${activity.price}" style="width: 18px; height: 18px;">
+          <span>${activity.icon} ${activity.name} (${activity.price})</span>
+        </label>
+      `).join('');
+    }
+
+    function saveTripDetails() {
+      const tripDetails = {
+        outbound: {
+          departureCity: document.getElementById('outboundDepartureCity').value,
+          arrivalCity: document.getElementById('outboundArrivalCity').value,
+          airline: document.getElementById('outboundAirline').value,
+          flightNumber: document.getElementById('outboundFlightNumber').value,
+          departure: document.getElementById('outboundDeparture').value,
+          arrival: document.getElementById('outboundArrival').value,
+          confirmation: document.getElementById('outboundConfirmation').value
+        },
+        return: {
+          departureCity: document.getElementById('returnDepartureCity').value,
+          arrivalCity: document.getElementById('returnArrivalCity').value,
+          airline: document.getElementById('returnAirline').value,
+          flightNumber: document.getElementById('returnFlightNumber').value,
+          departure: document.getElementById('returnDeparture').value,
+          arrival: document.getElementById('returnArrival').value,
+          confirmation: document.getElementById('returnConfirmation').value
+        },
+        tent: {
+          type: document.getElementById('selectedTent').value,
+          pricePerPerson: document.getElementById('tentPricePerPerson').value
+        },
+        activities: [],
+        emergency: {
+          name: document.getElementById('emergencyName').value,
+          phone: document.getElementById('emergencyPhone').value,
+          relationship: document.getElementById('emergencyRelationship').value
+        }
+      };
+
+      // Collect selected activities with their prices
+      const activityCheckboxes = document.querySelectorAll('[id^="activity_"]');
+      activityCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+          tripDetails.activities.push({
+            name: checkbox.value,
+            price: checkbox.getAttribute('data-price')
+          });
+        }
+      });
+
+      // Save to localStorage
+      localStorage.setItem('myTripDetails', JSON.stringify(tripDetails));
+      
+      alert('✅ Your trip details have been saved successfully!');
+    }
+
+    function loadTripDetails() {
+      const saved = localStorage.getItem('myTripDetails');
+      if (!saved) return;
+
+      const tripDetails = JSON.parse(saved);
+
+      // Load outbound flight
+      if (tripDetails.outbound) {
+        if (document.getElementById('outboundDepartureCity'))
+          document.getElementById('outboundDepartureCity').value = tripDetails.outbound.departureCity || '';
+        if (document.getElementById('outboundArrivalCity'))
+          document.getElementById('outboundArrivalCity').value = tripDetails.outbound.arrivalCity || '';
+        document.getElementById('outboundAirline').value = tripDetails.outbound.airline || '';
+        document.getElementById('outboundFlightNumber').value = tripDetails.outbound.flightNumber || '';
+        document.getElementById('outboundDeparture').value = tripDetails.outbound.departure || '';
+        document.getElementById('outboundArrival').value = tripDetails.outbound.arrival || '';
+        document.getElementById('outboundConfirmation').value = tripDetails.outbound.confirmation || '';
+      }
+
+      // Load return flight
+      if (tripDetails.return) {
+        if (document.getElementById('returnDepartureCity'))
+          document.getElementById('returnDepartureCity').value = tripDetails.return.departureCity || '';
+        if (document.getElementById('returnArrivalCity'))
+          document.getElementById('returnArrivalCity').value = tripDetails.return.arrivalCity || '';
+        document.getElementById('returnAirline').value = tripDetails.return.airline || '';
+        document.getElementById('returnFlightNumber').value = tripDetails.return.flightNumber || '';
+        document.getElementById('returnDeparture').value = tripDetails.return.departure || '';
+        document.getElementById('returnArrival').value = tripDetails.return.arrival || '';
+        document.getElementById('returnConfirmation').value = tripDetails.return.confirmation || '';
+      }
+
+      // Load tent selection
+      if (tripDetails.tent) {
+        if (typeof tripDetails.tent === 'string') {
+          // Old format compatibility
+          document.getElementById('selectedTent').value = tripDetails.tent;
+        } else {
+          document.getElementById('selectedTent').value = tripDetails.tent.type || '';
+          if (document.getElementById('tentPricePerPerson'))
+            document.getElementById('tentPricePerPerson').value = tripDetails.tent.pricePerPerson || '';
+        }
+      }
+
+      // Load activities
+      if (tripDetails.activities) {
+        tripDetails.activities.forEach(activity => {
+          const activityName = typeof activity === 'string' ? activity : activity.name;
+          const checkbox = Array.from(document.querySelectorAll('[id^="activity_"]'))
+            .find(cb => cb.value === activityName);
+          if (checkbox) checkbox.checked = true;
+        });
+      }
+
+      // Load emergency contact
+      if (tripDetails.emergency) {
+        document.getElementById('emergencyName').value = tripDetails.emergency.name || '';
+        document.getElementById('emergencyPhone').value = tripDetails.emergency.phone || '';
+        document.getElementById('emergencyRelationship').value = tripDetails.emergency.relationship || '';
+      }
+    }
+
+    function downloadTripItinerary() {
+      const saved = localStorage.getItem('myTripDetails');
+      if (!saved) {
+        alert('⚠️ Please save your trip details first before downloading!');
+        return;
+      }
+
+      const tripDetails = JSON.parse(saved);
+      
+      // Format dates nicely
+      const formatDateTime = (dateStr) => {
+        if (!dateStr) return 'Not specified';
+        const date = new Date(dateStr);
+        return date.toLocaleString('en-US', { 
+          weekday: 'short', 
+          month: 'short', 
+          day: 'numeric', 
+          year: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true
+        });
+      };
+
+      // Create document content
+      let content = `DOTS GO GLAMPING - YELLOWSTONE 2026
+Personal Trip Itinerary
+Generated: ${new Date().toLocaleDateString()}
+
+═══════════════════════════════════════════════════════════════
+
+TRIP OVERVIEW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Dates: September 9-13, 2026
+Location: Under Canvas Yellowstone, Montana
+Trip Coordinators: Sherri Belk & Janita Moody
+
+═══════════════════════════════════════════════════════════════
+
+FLIGHT INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+OUTBOUND FLIGHT
+  From: ${tripDetails.outbound.departureCity || 'Not specified'}
+  To: ${tripDetails.outbound.arrivalCity || 'Not specified'}
+  Airline: ${tripDetails.outbound.airline || 'Not specified'}
+  Flight Number: ${tripDetails.outbound.flightNumber || 'Not specified'}
+  Departure: ${formatDateTime(tripDetails.outbound.departure)}
+  Arrival: ${formatDateTime(tripDetails.outbound.arrival)}
+  Confirmation: ${tripDetails.outbound.confirmation || 'Not specified'}
+
+RETURN FLIGHT
+  From: ${tripDetails.return.departureCity || 'Not specified'}
+  To: ${tripDetails.return.arrivalCity || 'Not specified'}
+  Airline: ${tripDetails.return.airline || 'Not specified'}
+  Flight Number: ${tripDetails.return.flightNumber || 'Not specified'}
+  Departure: ${formatDateTime(tripDetails.return.departure)}
+  Arrival: ${formatDateTime(tripDetails.return.arrival)}
+  Confirmation: ${tripDetails.return.confirmation || 'Not specified'}
+
+═══════════════════════════════════════════════════════════════
+
+ACCOMMODATION DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SPLIT-STAY HOTELS (Sept 9-10 & Sept 12-13)
+
+Night 1-2 (Sept 9-10):
+  Home2 Suites by Hilton Bozeman
+  Address: 5320 Tschache Ln, Bozeman, MT 59718
+  Phone: (406) 582-8800
+  Check-in: 3:00 PM | Check-out: 11:00 AM
+
+Night 4-5 (Sept 12-13):
+  Home2 Suites by Hilton Belgrade
+  Address: 6261 Jackrabbit Ln, Belgrade, MT 59714
+  Phone: (406) 813-3000
+  Check-in: 3:00 PM | Check-out: 11:00 AM
+
+GLAMPING (Sept 10-12):
+  Under Canvas Yellowstone
+  Address: 890 US-89, Emigrant, MT 59027
+  Phone: (888) 496-1148
+  Check-in: 4:00 PM | Check-out: 11:00 AM
+
+MY TENT SELECTION
+  Type: ${tripDetails.tent?.type || tripDetails.tent || 'Not selected yet'}
+  Price per Person: ${tripDetails.tent?.pricePerPerson ? '$' + tripDetails.tent.pricePerPerson : 'Not specified'}
+
+═══════════════════════════════════════════════════════════════
+
+MY SELECTED ACTIVITIES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${tripDetails.activities.length > 0 ? tripDetails.activities.map(a => {
+  const activityName = typeof a === 'string' ? a : a.name;
+  const activityPrice = typeof a === 'string' ? '' : ` (${a.price})`;
+  return `  ✓ ${activityName}${activityPrice}`;
+}).join('\n') : '  No activities selected yet'}
+
+═══════════════════════════════════════════════════════════════
+
+EMERGENCY CONTACT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Name: ${tripDetails.emergency.name || 'Not specified'}
+  Phone: ${tripDetails.emergency.phone || 'Not specified'}
+  Relationship: ${tripDetails.emergency.relationship || 'Not specified'}
+
+═══════════════════════════════════════════════════════════════
+
+TRIP COORDINATORS CONTACT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Sherri Belk: sherribelklaw@gmail.com
+  Janita Moody: freshnclean9@gmail.com
+
+═══════════════════════════════════════════════════════════════
+
+IMPORTANT REMINDERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  • Bring valid ID for flights and hotel check-in
+  • Pack layers - Montana weather can be unpredictable
+  • Bring sunscreen, bug spray, and comfortable hiking shoes
+  • Camera/phone for capturing memories
+  • Reusable water bottle
+  • Any personal medications
+
+═══════════════════════════════════════════════════════════════
+
+Have an amazing trip! 🏕️✨
+
+For the latest updates, visit:
+https://tamimoooo.github.io/agenda/reunion.html
+`;
+
+      // Create and download the file
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Yellowstone_Trip_Itinerary_2026.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+
+      alert('📥 Your trip itinerary has been downloaded!\n\nNote: This is a text file mockup. In the full version, this would be a formatted Word document (.docx) with proper styling, images, and layout.');
+    }
+
     // Initialize on page load
     document.addEventListener('DOMContentLoaded', function() {
       initializeContacts();
       loadSubmittedRoommates();
       loadSubmittedActivities();
+      populateActivitiesCheckboxes();
       
       // All sections start collapsed (no auto-expand)
+
+      // Load saved trip details on page load
+      loadTripDetails();
     });
   </script>
 </body>
