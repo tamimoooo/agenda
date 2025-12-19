@@ -661,12 +661,52 @@
     .subsection-content {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease-out;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 0.3s ease-out,
+                  transform 0.3s ease-out;
+      opacity: 0;
+      transform: translateY(-10px);
     }
 
     .subsection-content.expanded {
       max-height: 5000px;
       margin-bottom: 20px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Smooth rotation for toggle icons */
+    .subsection-toggle {
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+    
+    .subsection-toggle.expanded {
+      transform: rotate(90deg);
+    }
+    
+    /* Card hover effects */
+    .trip-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .trip-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Button animations */
+    .btn {
+      transition: all 0.3s ease;
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn:active {
+      transform: translateY(0);
     }
 
     /* Mobile-specific styles for better spacing */
@@ -679,6 +719,39 @@
         margin-bottom: 60px;
       }
     }
+    
+    /* Print styles */
+    @media print {
+      .polka-dots,
+      #quickLinks,
+      .btn,
+      button,
+      .subsection-toggle {
+        display: none !important;
+      }
+      
+      .subsection-content {
+        max-height: none !important;
+        overflow: visible !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      
+      .trip-card {
+        page-break-inside: avoid;
+        box-shadow: none !important;
+      }
+      
+      body {
+        background: white !important;
+      }
+      
+      header {
+        background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
   </style>
 </head>
 <body>
@@ -689,15 +762,49 @@
     <p class="subtitle">Stay Connected, Share Memories, Plan Adventures</p>
   </header>
 
+  <!-- Sticky Quick Links Navigation -->
+  <nav id="quickLinks" style="position: sticky; top: 0; z-index: 999; background: linear-gradient(135deg, #8B0000 0%, #5C0000 100%); box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 12px 0; transition: all 0.3s ease;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+      <div style="display: flex; gap: 10px; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: thin;">
+        <a href="#contacts-content" onclick="scrollToSection('contacts', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 0.9rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">📇 Contacts</a>
+        <a href="#estimates-content" onclick="scrollToSection('estimates', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 0.9rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">💰 Costs</a>
+        <a href="#lodging-content" onclick="scrollToSection('lodging', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 0.9rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">⛺ Tents</a>
+        <a href="#bookYourTent" onclick="scrollToElement('bookYourTent', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 0.9rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">📞 Book Your Tent</a>
+        <a href="#activities-content" onclick="scrollToSection('activities', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 0.9rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">🎯 Activities & Excursions</a>
+        <a href="#roommateForm" onclick="scrollToElement('roommateForm', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 0.9rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">👥 Submit your Roommate</a>
+        <a href="#itinerary-content" onclick="scrollToSection('itinerary', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 0.9rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">📋 Next Meeting</a>
+        <button onclick="collapseAll()" style="background: rgba(255,255,255,0.3); color: white; padding: 8px 16px; border-radius: 20px; border: none; font-size: 0.9rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0; cursor: pointer; font-weight: 500;">📦 Collapse All</button>
+      </div>
+    </div>
+  </nav>
+
   <div class="container">
     
-    <!-- Add Contact Button -->
-    <div class="text-center mb-20">
-      <button class="btn btn-primary" onclick="openAddContactModal()">
-        ➕ Add Your Contact Info
-      </button>
+    <!-- Countdown Timer -->
+    <div style="background: linear-gradient(135deg, #8B0000 0%, #5C0000 100%); border-radius: 15px; padding: 25px; margin-bottom: 30px; text-align: center; box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);">
+      <h2 style="color: white; margin-bottom: 15px; font-size: 1.5rem;">⏰ Countdown to Yellowstone Reunion</h2>
+      <div id="countdown" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; max-width: 600px; margin: 0 auto;">
+        <div style="background: rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 15px; backdrop-filter: blur(10px);">
+          <div id="days" style="font-size: 2.5rem; font-weight: bold; color: white;">--</div>
+          <div style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; text-transform: uppercase;">Days</div>
+        </div>
+        <div style="background: rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 15px; backdrop-filter: blur(10px);">
+          <div id="hours" style="font-size: 2.5rem; font-weight: bold; color: white;">--</div>
+          <div style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; text-transform: uppercase;">Hours</div>
+        </div>
+        <div style="background: rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 15px; backdrop-filter: blur(10px);">
+          <div id="minutes" style="font-size: 2.5rem; font-weight: bold; color: white;">--</div>
+          <div style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; text-transform: uppercase;">Minutes</div>
+        </div>
+        <div style="background: rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 15px; backdrop-filter: blur(10px);">
+          <div id="seconds" style="font-size: 2.5rem; font-weight: bold; color: white;">--</div>
+          <div style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; text-transform: uppercase;">Seconds</div>
+        </div>
+      </div>
+      <p style="color: rgba(255, 255, 255, 0.9); margin-top: 15px; font-size: 1.1rem;">📅 September 9, 2026</p>
     </div>
-
+    
+    <!-- Add Contact Button -->
     <!-- Contacts Section -->
     <div class="section">
       <div class="section-header" onclick="toggleSection('contacts')">
@@ -708,7 +815,7 @@
       </div>
       <div class="section-content" id="contacts-content">
         <div class="info-box">
-          <strong>💡 Tip:</strong> Click on any contact to edit their information. Changes are saved automatically.
+          <strong>💡 Tip:</strong> Click on any contact to edit their information. Don't forget to add your birthday! Changes are saved automatically.
         </div>
         <div class="text-center mt-20">
           <button class="btn btn-secondary btn-small" onclick="downloadContactsJSON()">
@@ -817,19 +924,6 @@
                    target="_blank"
                    style="display: inline-block; margin-top: 10px; padding: 10px 20px; background: #5b5fc7; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
                   💻 Join Teams Meeting
-                </a>
-              </div>
-
-              <!-- Divider -->
-              <hr style="border: none; border-top: 1px solid var(--border-color); margin: 0;">
-
-              <!-- Questions -->
-              <div>
-                <h4 style="color: var(--primary-color); margin-bottom: 10px;">❓ Have Questions?</h4>
-                <p style="margin: 5px 0; color: var(--text-secondary);">Contact Sherri & Janita with any questions or concerns.</p>
-                <a href="mailto:sherribelklaw@gmail.com,freshnclean9@gmail.com?bcc=dst894@hotmail.com&subject=Question%20About%20Yellowstone%20Glamping%20Trip"
-                   style="display: inline-block; margin-top: 10px; padding: 10px 20px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
-                  📧 Send Question
                 </a>
               </div>
 
@@ -956,98 +1050,6 @@
               </div>
             </div>
 
-            <!-- Flight Estimates -->
-            <div style="margin-bottom: 25px;">
-              <h4 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px solid var(--primary-color); padding-bottom: 8px;">
-                ✈️ Flight Estimates
-              </h4>
-              <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 15px; font-style: italic;">
-                Prices as of December 17, 2025 for September 9-13, 2026 travel
-              </p>
-              
-              <div style="display: grid; gap: 12px;">
-                <!-- RDU -->
-                <div style="border-left: 4px solid var(--primary-color); padding: 10px 15px; background: #f8f9fa;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                    <div>
-                      <strong>RDU → BZN</strong><br>
-                      <span style="font-size: 0.9rem; color: var(--text-secondary);">Delta, 1 stop (SEA)</span>
-                    </div>
-                    <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary-color);">$283.55</div>
-                  </div>
-                </div>
-
-                <!-- ATL -->
-                <div style="border-left: 4px solid var(--primary-color); padding: 10px 15px; background: #f8f9fa;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                    <div>
-                      <strong>ATL → BZN</strong><br>
-                      <span style="font-size: 0.9rem; color: var(--text-secondary);">Southwest, 1 stop</span>
-                    </div>
-                    <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary-color);">$470.37</div>
-                  </div>
-                </div>
-
-                <!-- PHX -->
-                <div style="border-left: 4px solid var(--primary-color); padding: 10px 15px; background: #f8f9fa;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                    <div>
-                      <strong>PHX → BZN</strong><br>
-                      <span style="font-size: 0.9rem; color: var(--text-secondary);">United, 1 stop (SFO)</span>
-                    </div>
-                    <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary-color);">$238.32</div>
-                  </div>
-                </div>
-
-                <!-- CHI -->
-                <div style="border-left: 4px solid var(--primary-color); padding: 10px 15px; background: #f8f9fa;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                    <div>
-                      <strong>CHI → BZN</strong><br>
-                      <span style="font-size: 0.9rem; color: var(--text-secondary);">American, 1 stop</span>
-                    </div>
-                    <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary-color);">$343.72</div>
-                  </div>
-                </div>
-
-                <!-- GSP -->
-                <div style="border-left: 4px solid var(--primary-color); padding: 10px 15px; background: #f8f9fa;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                    <div>
-                      <strong>GSP → BZN</strong><br>
-                      <span style="font-size: 0.9rem; color: var(--text-secondary);">United, 1 stop</span>
-                    </div>
-                    <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary-color);">$409.15</div>
-                  </div>
-                </div>
-
-                <!-- WAS -->
-                <div style="border-left: 4px solid var(--primary-color); padding: 10px 15px; background: #f8f9fa;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                    <div>
-                      <strong>WAS → BZN</strong><br>
-                      <span style="font-size: 0.9rem; color: var(--text-secondary);">United, 1 stop</span>
-                    </div>
-                    <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary-color);">$283.06</div>
-                  </div>
-                </div>
-
-                <!-- WAS Alternative -->
-                <div style="border-left: 4px solid var(--primary-color); padding: 10px 15px; background: #f8f9fa;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                    <div>
-                      <strong>WAS → BZN</strong><br>
-                      <span style="font-size: 0.9rem; color: var(--text-secondary);">United, 1 stop (alternate)</span>
-                    </div>
-                    <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary-color);">$299.04</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="warning-box" style="margin-top: 15px;">
-                <strong>⚠️ Important:</strong> Flight prices are estimates and subject to change. Book early for best rates!
-              </div>
-            </div>
 
             <!-- Notes -->
             <div class="info-box">
@@ -1072,130 +1074,139 @@
           <div class="subsection-content" id="lodging-content">
 
           <!-- Campsite Map -->
-          <div style="margin-bottom: 30px; border: 3px solid var(--primary-color); border-radius: 10px; padding: 20px; background: white;">
-            <h4 style="color: var(--primary-color); margin-bottom: 15px; text-align: center;">📍 Under Canvas Yellowstone Campsite Map</h4>
-            <img src="map_.png"
-                 alt="Under Canvas Yellowstone Campsite Layout Map"
-                 style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 15px;">
-            
-            <!-- Collapsible Zoomed Map -->
-            <details style="margin-top: 10px;">
-              <summary style="cursor: pointer; padding: 10px; background: #f0f0f0; border-radius: 5px; color: var(--primary-color); font-weight: 500; font-size: 0.9rem;">
-                ⛺ Map with Tent Grouping - Click Here
-              </summary>
-              <div style="margin-top: 10px; padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px;">
-                <img src="map_zoom.png"
-                     alt="Under Canvas Yellowstone Campsite Layout Map - Zoomed View"
-                     style="width: 100%; height: auto; border-radius: 5px;">
+          <details style="margin-bottom: 30px;">
+            <summary style="cursor: pointer; padding: 12px 15px; background: #f0f0f0; color: var(--primary-color); border: 2px solid var(--border-color); border-radius: 8px; font-weight: normal; font-size: 1rem; text-align: center;">
+              📍 Under Canvas Yellowstone Campsite Map - Click to View
+            </summary>
+            <div style="margin-top: 15px; border: 3px solid var(--primary-color); border-radius: 10px; padding: 20px; background: white;">
+              <img src="map_.png"
+                   alt="Under Canvas Yellowstone Campsite Layout Map"
+                   style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 15px;">
+              
+              <!-- Collapsible Zoomed Map -->
+              <details style="margin-top: 10px;">
+                <summary style="cursor: pointer; padding: 10px; background: #f0f0f0; border-radius: 5px; color: var(--primary-color); font-weight: 500; font-size: 0.9rem;">
+                  ⛺ Map with Tent Grouping - Click Here
+                </summary>
+                <div style="margin-top: 10px; padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px;">
+                  <img src="map_zoom.png"
+                       alt="Under Canvas Yellowstone Campsite Layout Map - Zoomed View"
+                       style="width: 100%; height: auto; border-radius: 5px;">
+                </div>
+              </details>
+              
+              <!-- Collapsible Color Highlighted Map -->
+              <details style="margin-top: 10px;">
+                <summary style="cursor: pointer; padding: 10px; background: #f0f0f0; border-radius: 5px; color: var(--primary-color); font-weight: 500; font-size: 0.9rem;">
+                  🎨 Map with Color Highlighted - Click Here
+                </summary>
+                <div style="margin-top: 10px; padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px;">
+                  <img src="map2.png"
+                       alt="Under Canvas Yellowstone Campsite Layout Map - Color Highlighted"
+                       style="width: 100%; height: auto; border-radius: 5px;">
+                </div>
+              </details>
+              
+              <!-- Map Link -->
+              <div style="margin-top: 15px; text-align: center;">
+                <a href="https://www.undercanvas.com/camps/north-yellowstone/#tab-6-2"
+                   target="_blank"
+                   style="display: inline-block; padding: 10px 20px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 5px; font-weight: 500; font-size: 0.9rem;">
+                  🗺️ View Interactive Map on Under Canvas Website
+                </a>
               </div>
-            </details>
-            
-            <!-- Collapsible Color Highlighted Map -->
-            <details style="margin-top: 10px;">
-              <summary style="cursor: pointer; padding: 10px; background: #f0f0f0; border-radius: 5px; color: var(--primary-color); font-weight: 500; font-size: 0.9rem;">
-                🎨 Map with Color Highlighted - Click Here
-              </summary>
-              <div style="margin-top: 10px; padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px;">
-                <img src="map2.png"
-                     alt="Under Canvas Yellowstone Campsite Layout Map - Color Highlighted"
-                     style="width: 100%; height: auto; border-radius: 5px;">
+              
+              <!-- Booking Contact Information -->
+              <div id="bookYourTent" style="margin-top: 20px; padding: 15px; background: #f0f8ff; border: 2px solid var(--primary-color); border-radius: 8px;">
+                <h5 style="color: var(--primary-dark); margin-bottom: 10px; text-align: center;">📞 Book Your Tent - Contact Tavia</h5>
+                <div style="text-align: center; font-size: 0.95rem;">
+                  <p style="margin: 5px 0;">
+                    <strong>Phone:</strong> <a href="tel:+18884961148,049" style="color: var(--primary-color); text-decoration: none;">1-888-496-1148 ext. 049</a>
+                  </p>
+                  <p style="margin: 5px 0;">
+                    <strong>Email:</strong> <a href="mailto:tavia.neal@undercanvas.com" style="color: var(--primary-color); text-decoration: none;">tavia.neal@undercanvas.com</a>
+                  </p>
+                  <p style="margin: 10px 0 0 0; font-style: italic; color: var(--text-secondary); font-size: 0.9rem;">
+                    Ask for Tavia when booking for our group
+                  </p>
+                </div>
               </div>
-            </details>
-            
-            <!-- Map Link -->
-            <div style="margin-top: 15px; text-align: center;">
-              <a href="https://www.undercanvas.com/camps/north-yellowstone/#tab-6-2"
-                 target="_blank"
-                 style="display: inline-block; padding: 10px 20px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 5px; font-weight: 500; font-size: 0.9rem;">
-                🗺️ View Interactive Map on Under Canvas Website
-              </a>
             </div>
-            
-            <!-- Booking Contact Information -->
-            <div style="margin-top: 20px; padding: 15px; background: #f0f8ff; border: 2px solid var(--primary-color); border-radius: 8px;">
-              <h5 style="color: var(--primary-dark); margin-bottom: 10px; text-align: center;">📞 Book Your Tent - Contact Tavia</h5>
-              <div style="text-align: center; font-size: 0.95rem;">
-                <p style="margin: 5px 0;">
-                  <strong>Phone:</strong> <a href="tel:+18884961148,049" style="color: var(--primary-color); text-decoration: none;">1-888-496-1148 ext. 049</a>
-                </p>
-                <p style="margin: 5px 0;">
-                  <strong>Email:</strong> <a href="mailto:tavia.neal@undercanvas.com" style="color: var(--primary-color); text-decoration: none;">tavia.neal@undercanvas.com</a>
-                </p>
-                <p style="margin: 10px 0 0 0; font-style: italic; color: var(--text-secondary); font-size: 0.9rem;">
-                  Ask for Tavia when booking for our group
-                </p>
-              </div>
-            </div>
-            
-          </div>
+          </details>
 
           <p style="margin-bottom: 20px;"><em>Tent Stay: September 10-12, 2026 (2 nights)</em></p>
           
-          <div style="display: grid; gap: 15px;">
-            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
-              <h4 style="color: var(--primary-color); margin-bottom: 10px;">⛺ Delux Tent - $365.00/Night</h4>
-              <ul style="margin-left: 20px; font-size: 0.95rem;">
-                <li>One King Bed</li>
-                <li>One Bath - toilet, sep shower, sep sink</li>
-                <li>All within the tent</li>
-              </ul>
-            </div>
+          <!-- Tent Options Collapsible -->
+          <details style="margin-bottom: 20px;">
+            <summary style="cursor: pointer; padding: 12px 15px; background: #f0f0f0; color: var(--primary-color); border: 2px solid var(--border-color); border-radius: 8px; font-weight: normal; font-size: 1rem; text-align: center;">
+              ⛺ Tent Options - Click to View All Options
+            </summary>
+            <div style="margin-top: 15px; display: grid; gap: 15px;">
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">⛺ Delux Tent - $365.00/Night</h4>
+                <ul style="margin-left: 20px; font-size: 0.95rem;">
+                  <li>One King Bed</li>
+                  <li>One Bath - toilet, sep shower, sep sink</li>
+                  <li>All within the tent</li>
+                </ul>
+              </div>
 
-            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
-              <h4 style="color: var(--primary-color); margin-bottom: 10px;">⛺ Delux Tent w/ Kids Tent - $530.00/Night</h4>
-              <ul style="margin-left: 20px; font-size: 0.95rem;">
-                <li>One King Bed, separate but adjacent Kids tent w/ 2 Twin Beds</li>
-                <li>One Bath - toilet, sep shower, sep sink</li>
-                <li>All within the tent</li>
-              </ul>
-            </div>
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">⛺ Delux Tent w/ Kids Tent - $530.00/Night</h4>
+                <ul style="margin-left: 20px; font-size: 0.95rem;">
+                  <li>One King Bed, separate but adjacent Kids tent w/ 2 Twin Beds</li>
+                  <li>One Bath - toilet, sep shower, sep sink</li>
+                  <li>All within the tent</li>
+                </ul>
+              </div>
 
-            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
-              <h4 style="color: var(--primary-color); margin-bottom: 10px;">⭐ Stargazer Tent - $435.00/Night</h4>
-              <ul style="margin-left: 20px; font-size: 0.95rem;">
-                <li>One King Bed & a night sky viewing window</li>
-                <li>Private ensuite bathroom</li>
-              </ul>
-            </div>
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">⭐ Stargazer Tent - $435.00/Night</h4>
+                <ul style="margin-left: 20px; font-size: 0.95rem;">
+                  <li>One King Bed & a night sky viewing window</li>
+                  <li>Private ensuite bathroom</li>
+                </ul>
+              </div>
 
-            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
-              <h4 style="color: var(--primary-color); margin-bottom: 10px;">⭐ Stargazer Tent w/ Kids Tent - $609.00/Night</h4>
-              <ul style="margin-left: 20px; font-size: 0.95rem;">
-                <li>One King Bed & night sky viewing window</li>
-                <li>Separate Kids tent with beds</li>
-                <li>Private ensuite bathroom</li>
-              </ul>
-            </div>
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">⭐ Stargazer Tent w/ Kids Tent - $609.00/Night</h4>
+                <ul style="margin-left: 20px; font-size: 0.95rem;">
+                  <li>One King Bed & night sky viewing window</li>
+                  <li>Separate Kids tent with beds</li>
+                  <li>Private ensuite bathroom</li>
+                </ul>
+              </div>
 
-            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
-              <h4 style="color: var(--primary-color); margin-bottom: 10px;">🌟 Suite Tent - $480.00/Night</h4>
-              <ul style="margin-left: 20px; font-size: 0.95rem;">
-                <li>Same as Stargazer but also has a queen sofa bed</li>
-              </ul>
-            </div>
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">🌟 Suite Tent - $480.00/Night</h4>
+                <ul style="margin-left: 20px; font-size: 0.95rem;">
+                  <li>Same as Stargazer but also has a queen sofa bed</li>
+                </ul>
+              </div>
 
-            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
-              <h4 style="color: var(--primary-color); margin-bottom: 10px;">🌟 Suite Tent w/ Kids Tent - $662.00/Night</h4>
-              <ul style="margin-left: 20px; font-size: 0.95rem;">
-                <li>Suite tent with queen sofa bed</li>
-                <li>Separate Kids tent</li>
-              </ul>
-            </div>
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">🌟 Suite Tent w/ Kids Tent - $662.00/Night</h4>
+                <ul style="margin-left: 20px; font-size: 0.95rem;">
+                  <li>Suite tent with queen sofa bed</li>
+                  <li>Separate Kids tent</li>
+                </ul>
+              </div>
 
-            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
-              <h4 style="color: var(--primary-color); margin-bottom: 10px;">🏞️ Yellowstone River Suite - $1,080.00/Night</h4>
-              <ul style="margin-left: 20px; font-size: 0.95rem;">
-                <li>2 Suite Tents, 2 Delux Tents w/ 2 Twin Beds</li>
-                <li>Connected by an expansive private deck</li>
-                <li>Yellowstone River Cabin - $480/Night</li>
-                <li>Alder Stargazer</li>
-              </ul>
-            </div>
-          </div>
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">🏞️ Yellowstone River Suite - $1,080.00/Night</h4>
+                <ul style="margin-left: 20px; font-size: 0.95rem;">
+                  <li>2 Suite Tents, 2 Delux Tents w/ 2 Twin Beds</li>
+                  <li>Connected by an expansive private deck</li>
+                  <li>Yellowstone River Cabin - $480/Night</li>
+                  <li>Alder Stargazer</li>
+                </ul>
+              </div>
 
-            <div class="info-box" style="margin-top: 20px;">
-              <strong>📝 Note:</strong> Prices are per night and subject to change. Final dates and total costs will be confirmed soon.
+              <div class="info-box" style="margin-top: 20px;">
+                <strong>📝 Note:</strong> Prices are per night and subject to change. Final dates and total costs will be confirmed soon.
+              </div>
             </div>
+          </details>
           </div>
 
         <!-- Action Items / To Do List -->
@@ -1841,6 +1852,18 @@
         </div>
         -->
 
+        <!-- Questions Section - Moved to bottom for better visibility -->
+        <div class="trip-card" style="margin-top: 30px;">
+          <div style="padding: 25px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%); border: 3px solid var(--primary-color); border-radius: 15px; text-align: center;">
+            <h4 style="color: var(--primary-color); margin-bottom: 15px; font-size: 1.3rem;">❓ Have Questions?</h4>
+            <p style="margin: 10px 0 20px 0; color: var(--text-secondary); font-size: 1.05rem;">Contact Sherri & Janita with any questions or concerns.</p>
+            <a href="mailto:sherribelklaw@gmail.com,freshnclean9@gmail.com?bcc=dst894@hotmail.com&subject=Question%20About%20Yellowstone%20Glamping%20Trip"
+               style="display: inline-block; padding: 15px 30px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(192, 108, 132, 0.3); transition: all 0.3s ease;">
+              📧 Send Question
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -1999,6 +2022,134 @@
       return birthday;
     }
 
+    // Print page function
+    function printPage() {
+      // Expand all sections before printing
+      const allContent = document.querySelectorAll('.subsection-content');
+      const allIcons = document.querySelectorAll('.subsection-toggle');
+      
+      allContent.forEach(content => content.classList.add('expanded'));
+      allIcons.forEach(icon => icon.classList.add('expanded'));
+      
+      // Wait a moment for sections to expand, then print
+      setTimeout(() => {
+        window.print();
+      }, 300);
+    }
+
+    // Smooth scroll to section and expand it
+    function scrollToSection(sectionId, event) {
+      if (event) event.preventDefault();
+      
+      // Map of subsections to their parent sections
+      const parentSections = {
+        'estimates': 'trips',
+        'lodging': 'trips',
+        'actionitems': 'trips',
+        'payment': 'trips',
+        'activities': 'trips',
+        'importantlinks': 'trips',
+        'tripdetails': 'trips',
+        'itinerary': 'trips',
+        'packing': 'trips'
+      };
+      
+      // First, open parent section if this is a subsection
+      if (parentSections[sectionId]) {
+        const parentContent = document.getElementById(`${parentSections[sectionId]}-content`);
+        if (parentContent && (!parentContent.style.display || parentContent.style.display === 'none')) {
+          toggleSection(parentSections[sectionId]);
+        }
+      }
+      
+      // Now handle the target section
+      let content = document.getElementById(`${sectionId}-content`);
+      let icon = document.getElementById(`${sectionId}-toggle`) || document.getElementById(`${sectionId}-icon`);
+      
+      if (!content) {
+        console.error(`Section ${sectionId}-content not found`);
+        return;
+      }
+      
+      // For main sections, use toggleSection
+      if (sectionId === 'contacts' || sectionId === 'email' || sectionId === 'photos' || sectionId === 'trips') {
+        if (!content.style.display || content.style.display === 'none') {
+          toggleSection(sectionId);
+        }
+      } else {
+        // For subsections, expand if not already expanded
+        if (icon && !content.classList.contains('expanded')) {
+          content.classList.add('expanded');
+          icon.classList.add('expanded');
+        }
+      }
+      
+      // Smooth scroll to the section
+      setTimeout(() => {
+        content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 200);
+    }
+
+    // Smooth scroll to a specific element (like a form)
+    function scrollToElement(elementId, event) {
+      if (event) event.preventDefault();
+      
+      const element = document.getElementById(elementId);
+      if (!element) {
+        console.error(`Element ${elementId} not found`);
+        return;
+      }
+      
+      // Open all parent <details> elements
+      let currentElement = element;
+      while (currentElement) {
+        if (currentElement.tagName === 'DETAILS') {
+          currentElement.setAttribute('open', '');
+        }
+        currentElement = currentElement.parentElement;
+      }
+      
+      // Find and expand parent sections if needed
+      let parent = element.closest('.subsection-content');
+      if (parent) {
+        // Get the subsection ID from the parent
+        const subsectionId = parent.id.replace('-content', '');
+        
+        // Check if this subsection has a parent section
+        const parentSections = {
+          'estimates': 'trips',
+          'lodging': 'trips',
+          'actionitems': 'trips',
+          'payment': 'trips',
+          'activities': 'trips',
+          'importantlinks': 'trips',
+          'tripdetails': 'trips',
+          'itinerary': 'trips',
+          'packing': 'trips'
+        };
+        
+        // Open parent section first
+        if (parentSections[subsectionId]) {
+          const parentContent = document.getElementById(`${parentSections[subsectionId]}-content`);
+          if (parentContent && (!parentContent.style.display || parentContent.style.display === 'none')) {
+            toggleSection(parentSections[subsectionId]);
+          }
+        }
+        
+        // Then expand the subsection
+        if (!parent.classList.contains('expanded')) {
+          const icon = document.getElementById(`${subsectionId}-toggle`);
+          parent.classList.add('expanded');
+          if (icon) icon.classList.add('expanded');
+        }
+      }
+      
+      // Smooth scroll to the element
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 400);
+    }
+
     // Download contacts as JSON file
     function downloadContactsJSON() {
       const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
@@ -2042,6 +2193,38 @@
         content.classList.add('expanded');
         icon.classList.add('expanded');
       }
+    }
+
+    // Collapse all sections
+    function collapseAll() {
+      // Collapse all main sections (contacts, email, photos, trips)
+      const mainSections = ['contacts', 'email', 'photos', 'trips'];
+      mainSections.forEach(sectionId => {
+        const content = document.getElementById(`${sectionId}-content`);
+        const icon = document.getElementById(`${sectionId}-icon`);
+        if (content && content.classList.contains('expanded')) {
+          content.classList.remove('expanded');
+          if (icon) icon.classList.remove('expanded');
+        }
+      });
+
+      // Collapse all subsection-content elements
+      const allContent = document.querySelectorAll('.subsection-content');
+      const allIcons = document.querySelectorAll('.subsection-toggle');
+      
+      allContent.forEach(content => {
+        content.classList.remove('expanded');
+      });
+      
+      allIcons.forEach(icon => {
+        icon.classList.remove('expanded');
+      });
+
+      // Close all details elements (for collapsible maps and tent options)
+      const allDetails = document.querySelectorAll('details');
+      allDetails.forEach(detail => {
+        detail.removeAttribute('open');
+      });
     }
 
     // Open modal for adding contact
@@ -2824,6 +3007,28 @@ https://tamimoooo.github.io/agenda/reunion.html
       alert('📥 Your trip itinerary has been downloaded!\n\nNote: This is a text file mockup. In the full version, this would be a formatted Word document (.docx) with proper styling, images, and layout.');
     }
 
+    // Countdown Timer Function
+    function updateCountdown() {
+      const reunionDate = new Date('September 9, 2026 00:00:00').getTime();
+      const now = new Date().getTime();
+      const distance = reunionDate - now;
+
+      if (distance < 0) {
+        document.getElementById('countdown').innerHTML = '<div style="font-size: 2rem; color: white; grid-column: 1/-1;">🎉 The Reunion is Here! 🎉</div>';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
+    }
+
     // Initialize on page load
     document.addEventListener('DOMContentLoaded', function() {
       initializeContacts();
@@ -2835,6 +3040,10 @@ https://tamimoooo.github.io/agenda/reunion.html
 
       // Load saved trip details on page load
       loadTripDetails();
+      
+      // Start countdown timer
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
     });
   </script>
 </body>
