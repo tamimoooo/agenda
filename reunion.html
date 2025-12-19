@@ -668,6 +668,17 @@
       max-height: 5000px;
       margin-bottom: 20px;
     }
+
+    /* Mobile-specific styles for better spacing */
+    @media (max-width: 768px) {
+      .subsection-content.expanded {
+        margin-bottom: 40px;
+      }
+      
+      #estimates-content.expanded {
+        margin-bottom: 60px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1613,8 +1624,12 @@
 
         <!-- Important Links & Downloads -->
         <div class="trip-card">
-          <h3 style="color: var(--primary-color); margin-bottom: 15px;">🔗 Important Links & Downloads</h3>
-          <div class="trip-links">
+          <div class="subsection-header" onclick="toggleSubsection('importantlinks')">
+            <h3 class="subsection-title">🔗 Important Links & Downloads</h3>
+            <span class="subsection-toggle" id="importantlinks-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="importantlinks-content">
+            <div class="trip-links">
             <a href="https://github.com/tamimoooo/agenda/raw/main/Dots%20Go%20Glamping.pdf" target="_blank" class="btn btn-primary btn-small">
               📄 View Presentation
             </a>
@@ -1627,6 +1642,7 @@
             <a href="https://www.undercanvas.com/camps/north-yellowstone/#tab-6-2" target="_blank" class="btn btn-secondary btn-small">
               🏕️ Map of Canvas
             </a>
+            </div>
           </div>
         </div>
 
