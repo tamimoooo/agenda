@@ -24,7 +24,7 @@
   {
     "id": 3,
     "name": "Summer",
-    "email": "summer0316@example.com",
+    "email": "summer0316@gmail.com",
     "address": "2408 Dulair Road",
     "city": "Greensboro",
     "state": "NC",
@@ -176,3 +176,4 @@
     "birthday": ""
   }
 ]
+
