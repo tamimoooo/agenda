@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reunion Agenda</title>
+
+  <!-- Required for responsive design -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Modern font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --accent: #22c55e;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), #1e40af);
+      color: white;
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 0.5rem;
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    header p {
+      margin: 0;
+      opacity: 0.9;
+      font-size: 1.1rem;
+    }
+
+    main {
+      max-width: 900px;
+      margin: -2rem auto 3rem;
+      padding: 0 1.25rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    details {
+      margin-top: 1rem;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 1rem;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      list-style: none;
+      position: relative;
+      padding-right: 1.5rem;
+    }
+
+    summary::after {
+      content: "›";
+      position: absolute;
+      right: 0;
+      transform: rotate(90deg);
+      transition: transform 0.2s ease;
+      color: var(--muted);
+    }
+
+    details[open] summary::after {
+      transform: rotate(-90deg);
+    }
+
+    ul {
+      padding-left: 1.2rem;
+      margin: 0.75rem 0 0;
+    }
+
+    li {
+      margin-bottom: 0.4rem;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 2rem 1rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Reunion Agenda</h1>
+  <p>Everything you need, clearly organized</p>
+</header>
+
+<main>
+  <div class="grid">
+
+    <section class="card">
+      <h2>📍 Location</h2>
+      <p>Paris, France</p>
+
+      <details>
+        <summary>View details</summary>
+        <ul>
+          <li>Hotel information</li>
+          <li>Meeting point</li>
+          <li>Local transport</li>
+        </ul>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2>🗓️ Schedule</h2>
+      <p>Planned activities & timeline</p>
+
+      <details>
+        <summary>Expand schedule</summary>
+        <ul>
+          <li>Friday – Arrival & dinner</li>
+          <li>Saturday – Activities</li>
+          <li>Sunday – Farewell brunch</li>
+        </ul>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2>👥 Participants</h2>
+      <p>Who’s coming</p>
+
+      <details>
+        <summary>Participant list</summary>
+        <ul>
+          <li>Alice</li>
+          <li>Bob</li>
+          <li>Charlie</li>
+        </ul>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2>📞 Contacts</h2>
+      <p>Important numbers</p>
+
+      <details>
+        <summary>Show contacts</summary>
+        <ul>
+          <li>Organizer: +33...</li>
+          <li>Hotel reception</li>
+        </ul>
+      </details>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  © 2025 Reunion Agenda
+</footer>
+
+</body>
+</html>
