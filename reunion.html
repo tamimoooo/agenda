@@ -1032,18 +1032,28 @@
       </li>
 	    <li style="margin-top: 10px;">
 	       <strong>Committees, Questions</strong><br>
-	       Have questions before the meeting? Submit them below and we'll address them.
+	       Have questions before the meeting? Click below to submit them.
 	     </li>
 	  
 	  
 	   </ul>
 	   
-	   <!-- Submit Questions Form -->
-	   <div style="margin-top: 20px; padding: 20px; background: white; border-radius: 10px; border: 2px solid var(--primary-color);">
-	     <h5 style="color: var(--primary-color); margin-bottom: 15px;">
-	       ❓ Submit Your Questions
-	     </h5>
-	     <form id="questionsForm" style="display: flex; flex-direction: column; gap: 15px;">
+	   <!-- Submit Questions Form (Collapsible) -->
+	   <div style="margin-top: 20px; background: white; border-radius: 10px; border: 2px solid var(--primary-color); overflow: hidden;">
+	     <div
+	       onclick="toggleQuestionsForm()"
+	       style="padding: 15px 20px; background: linear-gradient(135deg, #DAA520 0%, #B8860B 100%); color: white; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: var(--transition);"
+	       onmouseover="this.style.background='linear-gradient(135deg, #B8860B 0%, #8B6914 100%)'"
+	       onmouseout="this.style.background='linear-gradient(135deg, #DAA520 0%, #B8860B 100%)'"
+	     >
+	       <h5 style="margin: 0; font-size: 1.1rem;">
+	         ❓ Submit Your Questions
+	       </h5>
+	       <span id="questionsToggle" style="font-size: 1.2rem; font-weight: bold; transition: transform 0.3s;">▶</span>
+	     </div>
+	     
+	     <div id="questionsFormContent" style="display: none; padding: 20px;">
+	       <form id="questionsForm" style="display: flex; flex-direction: column; gap: 15px;">
 	       <div>
 	         <label for="questionName" style="display: block; margin-bottom: 5px; font-weight: 600; color: var(--text-primary);">
 	           Your Name <span style="color: red;">*</span>
@@ -1091,8 +1101,9 @@
 	       >
 	         📤 Submit Question
 	       </button>
-	     </form>
-	     <div id="questionStatus" style="margin-top: 15px; padding: 10px; border-radius: 5px; display: none;"></div>
+	       </form>
+	       <div id="questionStatus" style="margin-top: 15px; padding: 10px; border-radius: 5px; display: none;"></div>
+	     </div>
 	   </div>
 	 </div>
 
@@ -1698,7 +1709,7 @@
                 <summary style="padding: 15px; font-weight: bold; color: var(--primary-color); font-size: 1.1rem; list-style: none;">
                   <span style="display: inline-block;">💡 Suggest an Activity (Click to expand)</span>
                 </summary>
-                <div style="padding: 20px; border-top: 1px solid var(--border-color);">
+                <div style="padding: 20px 20px 40px 20px; border-top: 1px solid var(--border-color);">
                   <p style="margin-bottom: 20px; color: var(--text-secondary);">
                     Have an activity idea? Share it with the group! Your suggestions will be displayed below for everyone to see.
                   </p>
@@ -1779,11 +1790,11 @@
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 1.1rem;">
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 1.1rem; margin-bottom: 10px;">
                   ✨ Submit Activity Suggestion
                 </button>
 
-                <p style="font-size: 0.9rem; color: var(--text-secondary); text-align: center; margin: 0;">
+                <p style="font-size: 0.9rem; color: var(--text-secondary); text-align: center; margin: 0 0 20px 0;">
                   Your suggestion will be displayed below and emailed to the link admin
                 </p>
               </form>
@@ -3600,6 +3611,22 @@ https://tamimoooo.github.io/agenda/reunion.html
       hoursElement.textContent = hours.toString().padStart(2, '0');
       
       console.log(`Countdown updated: ${days} days, ${hours} hours`);
+    }
+
+    // Toggle Questions Form visibility
+    function toggleQuestionsForm() {
+      const content = document.getElementById('questionsFormContent');
+      const toggle = document.getElementById('questionsToggle');
+      
+      if (content.style.display === 'none' || content.style.display === '') {
+        content.style.display = 'block';
+        toggle.style.transform = 'rotate(90deg)';
+        toggle.textContent = '▼';
+      } else {
+        content.style.display = 'none';
+        toggle.style.transform = 'rotate(0deg)';
+        toggle.textContent = '▶';
+      }
     }
 
     // Handle Questions Form Submission
