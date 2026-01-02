@@ -756,10 +756,18 @@
     @media (max-width: 768px) {
       .subsection-content.expanded {
         margin-bottom: 40px;
+        max-height: 70vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
       }
       
       #estimates-content.expanded {
         margin-bottom: 60px;
+      }
+      
+      /* Allow My Trip Details to be taller since it's a form */
+      #mytrip-content.expanded {
+        max-height: 80vh;
       }
     }
     
