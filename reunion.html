@@ -98,6 +98,49 @@
       animation: fadeInUp 0.8s ease-out;
     }
 
+    /* Countdown Timer */
+    .countdown-container {
+      margin-top: 20px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      display: inline-block;
+    }
+
+    .countdown-title {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    .countdown-timer {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .countdown-item {
+      text-align: center;
+      min-width: 70px;
+    }
+
+    .countdown-number {
+      font-size: 2rem;
+      font-weight: 700;
+      display: block;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .countdown-label {
+      font-size: 0.8rem;
+      opacity: 0.9;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
     /* Navigation Tabs */
     .nav-tabs {
       display: flex;
@@ -760,12 +803,28 @@
   <header>
     <h1>🔴 SPRING 94 Dot Connection</h1>
     <p class="subtitle">Stay Connected, Share Memories, Plan Adventures</p>
+    
+    <!-- Countdown Timer -->
+    <div class="countdown-container">
+      <div class="countdown-title">⏰ Countdown to Montana Glamping Adventure</div>
+      <div class="countdown-timer" id="countdown">
+        <div class="countdown-item">
+          <span class="countdown-number" id="days">--</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="hours">--</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+      </div>
+    </div>
   </header>
 
   <!-- Sticky Quick Links Navigation -->
   <nav id="quickLinks" style="position: sticky; top: 0; z-index: 999; background: linear-gradient(135deg, #8B0000 0%, #5C0000 100%); box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 8px 0; transition: all 0.3s ease;">
     <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 10px;">
       <div style="display: flex; gap: 6px; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: thin; padding: 4px 0;">
+        <a href="trip-dashboard.html" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #8B0000; padding: 6px 16px; border-radius: 15px; text-decoration: none; font-size: 0.85rem; font-weight: bold; transition: all 0.2s ease; flex-shrink: 0; box-shadow: 0 2px 8px rgba(255,215,0,0.3);">📊 TRIP DASHBOARD</a>
         <a href="#contacts-content" onclick="scrollToSection('contacts', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">📇 Contacts</a>
         <a href="#estimates-content" onclick="scrollToSection('estimates', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">💰 Costs</a>
         <a href="#lodging-content" onclick="scrollToSection('lodging', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">⛺ Tents</a>
@@ -1089,6 +1148,105 @@
           </div>
         </div>
 
+        <!-- What You Need to Decide Section -->
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('decisions')">
+            <h3 class="subsection-title">✅ What You Need to Decide</h3>
+            <span class="subsection-toggle" id="decisions-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="decisions-content">
+            
+            <div class="info-box" style="margin-bottom: 20px;">
+              <strong>📋 Important:</strong> Please make these decisions and submit your information as soon as possible to help with planning and reservations.
+            </div>
+
+            <!-- Decision Items -->
+            <div style="display: grid; gap: 20px;">
+              
+              <!-- 1. Tent Selection -->
+              <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 20px; background: white;">
+                <h4 style="color: var(--primary-color); margin-bottom: 15px;">
+                  ⛺ 1. Choose Your Tent Type
+                </h4>
+                <p style="margin-bottom: 10px;">Select which tent accommodation you prefer for September 10-12, 2026 (2 nights).</p>
+                <div style="padding: 10px; background: #f8f9fa; border-radius: 5px; margin-bottom: 10px;">
+                  <strong>Options:</strong> Stargazer, Deluxe, Suite, Yellowstone River, Tipi, Safari, or Family Tent
+                </div>
+                <a href="#tentOptionsDetails" onclick="openSectionAndScroll('lodging', 'tentOptionsDetails', event)" class="btn btn-secondary" style="display: inline-block; margin-top: 10px; text-decoration: none;">
+                  View Tent Options
+                </a>
+              </div>
+
+              <!-- 2. Roommate Selection -->
+              <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 20px; background: white;">
+                <h4 style="color: var(--primary-color); margin-bottom: 15px;">
+                  👥 2. Select Your Roommate(s)
+                </h4>
+                <p style="margin-bottom: 10px;">Decide who you'll be sharing your tent with (most tents accommodate 2 people).</p>
+                <a href="#roommateFormSection" onclick="openSectionAndScroll('roommate', 'roommateFormSection', event)" class="btn btn-secondary" style="display: inline-block; margin-top: 10px; text-decoration: none;">
+                  Submit Roommate Info
+                </a>
+              </div>
+
+              <!-- 3. Activities -->
+              <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 20px; background: white;">
+                <h4 style="color: var(--primary-color); margin-bottom: 15px;">
+                  🎯 3. Choose Your Activities
+                </h4>
+                <p style="margin-bottom: 10px;">Select which optional activities you'd like to participate in during the trip.</p>
+                <div style="padding: 10px; background: #f8f9fa; border-radius: 5px; margin-bottom: 10px;">
+                  <strong>Options:</strong> White Water Rafting ($164), Bike & Hike to Osprey Falls ($250 or $95 rental)
+                </div>
+                <a href="#activities-content" onclick="openSectionAndScroll('activities', 'activities-content', event)" class="btn btn-secondary" style="display: inline-block; margin-top: 10px; text-decoration: none;">
+                  View Activities
+                </a>
+              </div>
+
+              <!-- 4. Travel Plans -->
+              <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 20px; background: white;">
+                <h4 style="color: var(--primary-color); margin-bottom: 15px;">
+                  ✈️ 4. Book Your Flights
+                </h4>
+                <p style="margin-bottom: 10px;">Arrange your travel to/from Bozeman, Montana for September 9-13, 2026.</p>
+                <div style="padding: 10px; background: #fff3cd; border-radius: 5px; margin-bottom: 10px;">
+                  <strong>⚠️ Reminder:</strong> Coordinate arrival times for van pickup from the airport
+                </div>
+                <a href="#mytrip-content" onclick="openSectionAndScroll('mytrip', 'mytrip-content', event)" class="btn btn-secondary" style="display: inline-block; margin-top: 10px; text-decoration: none;">
+                  Book Your Flights
+                </a>
+              </div>
+
+              <!-- 5. Payment Deadline -->
+              <div style="border: 2px solid #ffc107; border-radius: 10px; padding: 20px; background: #fff3cd;">
+                <h4 style="color: #856404; margin-bottom: 15px;">
+                  💰 5. Payment Deadline
+                </h4>
+                <p style="margin-bottom: 10px; color: #856404;">
+                  <strong>Hotel payment due by:</strong> September 6, 2026
+                </p>
+                <p style="color: #856404; font-size: 0.9rem;">
+                  Payment details and instructions will be provided once all reservations are confirmed.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- Action Summary -->
+            <div style="margin-top: 25px; padding: 20px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%); border: 3px solid var(--primary-color); border-radius: 10px;">
+              <h4 style="color: var(--primary-color); margin-bottom: 15px;">📝 Quick Action Checklist</h4>
+              <ul style="margin-left: 20px; line-height: 1.8;">
+                <li>✅ Review tent options and pricing</li>
+                <li>✅ Confirm your roommate</li>
+                <li>✅ Select activities you want to join</li>
+                <li>✅ Book your flights to Bozeman</li>
+                <li>✅ Submit all your information using the forms on this page</li>
+                <li>✅ Mark your calendar for payment deadline</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
         <!-- Tent  Options & Pricing - TEMPORARILY COMMENTED OUT -->
         
         <div class="trip-card">
@@ -1172,7 +1330,7 @@
           </details>
 
           <!-- Tent Options Collapsible -->
-          <details style="margin-bottom: 20px;">
+          <details id="tentOptionsDetails" style="margin-bottom: 20px;">
             <summary style="cursor: pointer; padding: 12px 15px; background: #f0f0f0; color: var(--primary-color); border: 2px solid var(--border-color); border-radius: 8px; font-weight: normal; font-size: 1rem; text-align: center;">
               ⛺ Tent Options - Click to View All Options
             </summary>
@@ -1282,61 +1440,17 @@
           </div>
           <div class="subsection-content" id="roommate-content">
             
-            <!-- Submitted Roommates Display -->
-            <div id="submittedRoommatesSection" style="margin-bottom: 25px; display: none;">
-              <h4 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px solid var(--primary-color); padding-bottom: 8px;">
-                👥 Submitted Tent Reservations
-              </h4>
-              <div id="submittedRoommatesList" style="display: grid; gap: 15px;">
-                <!-- Submitted roommates will appear here -->
-              </div>
-
-            <!-- Admin: Add Reservations from Email (Hidden) -->
-            <div style="margin-bottom: 25px; display: none;">
-              <details style="border: 2px solid #6c757d; border-radius: 10px; padding: 15px; background: #f8f9fa;">
-                <summary style="cursor: pointer; font-weight: bold; color: #6c757d; font-size: 1.1rem;">
-                  🔐 Admin: Add Reservations from Email
-                </summary>
-                <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #dee2e6;">
-                  <p style="color: var(--text-secondary); margin-bottom: 15px;">
-                    <strong>Instructions:</strong> Copy the JSON from each email you receive and paste them here. You can paste multiple JSON objects at once (one per email).
-                  </p>
-                  <textarea id="adminJsonInput" rows="12"
-                            style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-family: monospace; font-size: 0.85rem;"
-                            placeholder='Paste one or more JSON objects here (one per email):
-
-{
-  "confirmationNumber": "ABC123",
-  "tentType": "Delux Tent",
-  "roommates": [{"name": "Jane Doe"}],
-  "additionalNotes": "",
-  "submittedDate": "2025-12-18T16:00:00.000Z"
-}
-{
-  "confirmationNumber": "XYZ789",
-  "tentType": "Stargazer Tent",
-  "roommates": [{"name": "John Smith"}],
-  "additionalNotes": "Arriving late",
-  "submittedDate": "2025-12-18T17:00:00.000Z"
-}'></textarea>
-                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
-                    <button onclick="addReservationsFromJson()"
-                            style="padding: 12px; background: var(--primary-color); color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; font-weight: bold;">
-                      ➕ Add Reservations
-                    </button>
-                    <button onclick="clearAllReservations()"
-                            style="padding: 12px; background: #dc3545; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; font-weight: bold;">
-                      🗑️ Clear All Data
-                    </button>
-                  </div>
-                  <div id="adminMessage" style="margin-top: 10px; padding: 10px; border-radius: 5px; display: none;"></div>
-                </div>
-              </details>
-            </div>
+            <!-- Link to Dashboard -->
+            <div style="margin-bottom: 25px; padding: 20px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%); border: 3px solid var(--primary-color); border-radius: 15px; text-align: center;">
+              <h4 style="color: var(--primary-dark); margin-bottom: 10px;">👥 View All Roommate Assignments</h4>
+              <p style="color: var(--text-secondary); margin-bottom: 15px;">See who's rooming with whom and tent assignments</p>
+              <a href="trip-dashboard.html" class="btn btn-primary" style="display: inline-block; text-decoration: none; padding: 15px 30px; font-size: 1.1rem;">
+                📊 Go to Trip Dashboard
+              </a>
             </div>
 
             <!-- Roommate & Tent Reservation Form -->
-            <div>
+            <div id="roommateFormSection">
               <h4 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px solid var(--primary-color); padding-bottom: 8px;">
                 📝 Submit Roommate & Tent Details
               </h4>
@@ -1500,27 +1614,13 @@
                     Have an activity idea? Share it with the group! Your suggestions will be displayed below for everyone to see.
                   </p>
 
-              <!-- Submitted Activities Display -->
-              <div id="submittedActivitiesSection" style="margin-bottom: 25px; display: none;">
-                <h5 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px solid var(--primary-color); padding-bottom: 8px;">
-                  🎯 Suggested Activities
-                </h5>
-                
-                <!-- Bozeman Activities -->
-                <div id="bozemanActivitiesSection" style="margin-bottom: 20px; display: none;">
-                  <h6 style="color: var(--secondary-color); margin-bottom: 10px;">📍 Bozeman Area</h6>
-                  <div id="bozemanActivitiesList" style="display: grid; gap: 10px; margin-bottom: 15px;">
-                    <!-- Bozeman activities will appear here -->
-                  </div>
-                </div>
-
-                <!-- Yellowstone Activities -->
-                <div id="yellowstoneActivitiesSection" style="margin-bottom: 20px; display: none;">
-                  <h6 style="color: var(--secondary-color); margin-bottom: 10px;">🏞️ Yellowstone Park Area</h6>
-                  <div id="yellowstoneActivitiesList" style="display: grid; gap: 10px;">
-                    <!-- Yellowstone activities will appear here -->
-                  </div>
-                </div>
+              <!-- Link to Dashboard -->
+              <div style="margin-bottom: 25px; padding: 20px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%); border: 3px solid var(--primary-color); border-radius: 15px; text-align: center;">
+                <h5 style="color: var(--primary-dark); margin-bottom: 10px;">🎯 View All Activity Suggestions</h5>
+                <p style="color: var(--text-secondary); margin-bottom: 15px;">See what activities others have suggested and who wants to join</p>
+                <a href="trip-dashboard.html" class="btn btn-primary" style="display: inline-block; text-decoration: none; padding: 15px 30px; font-size: 1.1rem;">
+                  📊 Go to Trip Dashboard
+                </a>
               </div>
 
               <!-- Activity Suggestion Form -->
@@ -1607,12 +1707,12 @@
 
 
         <!-- My Trip Details & Itinerary Generator -->
-        <div class="trip-card" style="display: none;">
-          <div class="subsection-header" onclick="toggleSubsection('tripdetails')">
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('mytrip')">
             <h3 class="subsection-title">✈️ My Trip Details</h3>
-            <span class="subsection-toggle" id="tripdetails-toggle">▶</span>
+            <span class="subsection-toggle" id="mytrip-toggle">▶</span>
           </div>
-          <div class="subsection-content" id="tripdetails-content">
+          <div class="subsection-content" id="mytrip-content">
             <p style="margin-bottom: 20px; color: var(--text-secondary);">
               Fill out your personal trip information below. Once complete, you can download a personalized Word document with all your trip details, hotel addresses, and important information in one place!
             </p>
@@ -1620,6 +1720,21 @@
             <!-- Form -->
             <form id="tripDetailsForm" style="display: grid; gap: 20px;">
               
+              <!-- User Identification Section -->
+              <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 20px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
+                <h4 style="color: var(--primary-dark); margin-bottom: 15px;">👤 Your Information</h4>
+                <div style="display: grid; gap: 10px;">
+                  <label style="font-weight: bold; color: var(--primary-dark);">
+                    Select Your Name: <span style="color: red;">*</span>
+                  </label>
+                  <select id="tripUserName" required
+                          style="width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem;">
+                    <option value="">-- Select your name --</option>
+                  </select>
+                  <input type="hidden" id="tripUserId">
+                </div>
+              </div>
+
               <!-- Flight Information Section -->
               <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
                 <h4 style="color: var(--primary-dark); margin-bottom: 15px;">✈️ Flight Information</h4>
@@ -1706,46 +1821,45 @@
                        placeholder="Price per person (e.g., 550)" min="0" step="0.01">
               </div>
 
-              <!-- Activities Selection -->
+              <!-- Transportation Needs Section -->
               <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
-                <h4 style="color: var(--primary-dark); margin-bottom: 15px;">🎯 Activities I'm Interested In</h4>
-                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 15px;">
-                  Check the activities you plan to participate in:
-                </p>
-                <div id="activitiesCheckboxList" style="display: grid; gap: 10px;">
-                  <!-- Activities will be dynamically populated from the Activities & Excursions section -->
-                  <p style="color: var(--text-secondary); font-style: italic;">Loading activities...</p>
+                <h4 style="color: var(--primary-dark); margin-bottom: 15px;">🚐 Transportation</h4>
+                <div style="display: grid; gap: 15px;">
+                  <div>
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                      <input type="checkbox" id="needsAirportPickup" style="width: 20px; height: 20px;">
+                      <span style="font-weight: bold;">I need airport pickup</span>
+                    </label>
+                  </div>
+                  <div>
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                      <input type="checkbox" id="willingToRentCar" style="width: 20px; height: 20px;">
+                      <span style="font-weight: bold;">I'm willing to rent a car</span>
+                    </label>
+                  </div>
                 </div>
               </div>
 
-            <!-- Emergency Contact -->
-            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
-              <h4 style="color: var(--primary-dark); margin-bottom: 15px;">🚨 Emergency Contact</h4>
-              <div style="display: grid; gap: 10px;">
-                <input type="text" id="emergencyName" 
-                       style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                       placeholder="Emergency Contact Name">
-                <input type="tel" id="emergencyPhone" 
-                       style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                       placeholder="Emergency Contact Phone">
-                <input type="text" id="emergencyRelationship" 
-                       style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                       placeholder="Relationship (e.g., Spouse, Parent, Sibling)">
+              <!-- Special Requests Section -->
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
+                <h4 style="color: var(--primary-dark); margin-bottom: 15px;">💬 Special Requests</h4>
+                <textarea id="specialRequests" rows="4"
+                          style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-family: inherit; font-size: 1rem;"
+                          placeholder="Any dietary restrictions, accessibility needs, or other special requests..."></textarea>
               </div>
-            </div>
 
             <!-- Action Buttons -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-              <button type="button" onclick="saveTripDetails()" class="btn btn-primary" style="padding: 15px; font-size: 1.1rem;">
-                💾 Save My Details
+              <button type="button" onclick="submitFlightDetails()" class="btn btn-primary" style="padding: 15px; font-size: 1.1rem;">
+                📧 Submit to Admin
               </button>
               <button type="button" onclick="downloadTripItinerary()" class="btn btn-secondary" style="padding: 15px; font-size: 1.1rem;">
-                📥 Download Itinerary (Word)
+                📥 Download Itinerary
               </button>
             </div>
 
             <div class="info-box" style="margin-top: 10px;">
-              <strong>📝 Note:</strong> Your information is saved locally in your browser. The Word document will include all trip details, hotel addresses, your tent info, selected activities, and emergency contact.
+              <strong>📝 Note:</strong> Click "Submit to Admin" to email your flight details to the organizer. The itinerary download includes all your trip information.
             </div>
           </form>
         </div>
@@ -1814,7 +1928,7 @@
         <h2 class="modal-title" id="modalTitle">Add Your Contact Info</h2>
         <button class="close-btn" onclick="closeModal()">&times;</button>
       </div>
-      <form id="contactForm" onsubmit="saveContact(event)">
+      <form id="contactForm" onsubmit="submitContactToAdmin(event)">
         <input type="hidden" id="contactId">
         
         <div class="form-group">
@@ -1859,8 +1973,7 @@
         </div>
 
         <div class="action-buttons">
-          <button type="submit" class="btn btn-primary">💾 Save Contact</button>
-          <button type="button" class="btn btn-secondary" onclick="submitContactToAdmin(event)">📧 Submit to Admin</button>
+          <button type="submit" class="btn btn-primary">📧 Submit</button>
           <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
         </div>
       </form>
@@ -2057,11 +2170,14 @@
         // Check if this subsection has a parent section
         const parentSections = {
           'estimates': 'trips',
+          'decisions': 'trips',
           'lodging': 'trips',
+          'roommate': 'trips',
           'actionitems': 'trips',
           'payment': 'trips',
           'activities': 'trips',
           'importantlinks': 'trips',
+          'mytrip': 'trips',
           'tripdetails': 'trips',
           'itinerary': 'trips',
           'packing': 'trips'
@@ -2087,6 +2203,42 @@
       setTimeout(() => {
         element.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 400);
+    }
+
+    // Open section and scroll to element
+    function openSectionAndScroll(subsectionId, elementId, event) {
+      if (event) event.preventDefault();
+      
+      // First, open the main "trips" section if it's not open
+      const tripsContent = document.getElementById('trips-content');
+      const tripsIcon = document.getElementById('trips-icon');
+      if (tripsContent && !tripsContent.classList.contains('expanded')) {
+        toggleSection('trips');
+      }
+      
+      // Then open the subsection
+      const subsectionContent = document.getElementById(`${subsectionId}-content`);
+      const subsectionIcon = document.getElementById(`${subsectionId}-toggle`);
+      if (subsectionContent && !subsectionContent.classList.contains('expanded')) {
+        toggleSubsection(subsectionId);
+      }
+      
+      // Open any parent <details> elements
+      const element = document.getElementById(elementId);
+      if (element) {
+        let currentElement = element;
+        while (currentElement) {
+          if (currentElement.tagName === 'DETAILS') {
+            currentElement.setAttribute('open', '');
+          }
+          currentElement = currentElement.parentElement;
+        }
+        
+        // Scroll to the element after a short delay to allow sections to expand
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 400);
+      }
     }
 
     // Download contacts as JSON file
@@ -2286,7 +2438,7 @@ Phone: ${contactData.phone || 'Not provided'}
 
       try {
         const result = await emailjs.send(
-          'service_o3w0ewk',
+          'service_3dxq4tg',
           'template_fainkx7',
           {
             name: contactData.name,
@@ -2498,7 +2650,7 @@ Phone: ${contactData.phone || 'Not provided'}
     }
 
     // Handle roommate form submission
-    document.getElementById('roommateForm')?.addEventListener('submit', function(e) {
+    document.getElementById('roommateForm')?.addEventListener('submit', async function(e) {
       e.preventDefault();
       
       // Collect form data
@@ -2521,17 +2673,68 @@ Phone: ${contactData.phone || 'Not provided'}
         }
       }
       
-      // Save to localStorage
-      const submitted = JSON.parse(localStorage.getItem('submittedRoommates') || '[]');
-      submitted.push(formData);
-      localStorage.setItem('submittedRoommates', JSON.stringify(submitted));
-      
-      // Show success message
-      alert('✅ Your roommate details have been saved successfully!');
-      
-      // Reset form and reload submitted list
-      this.reset();
-      loadSubmittedRoommates();
+      // Format roommate info for email
+      const roommateInfo = `
+Confirmation Number: ${formData.confirmationNumber}
+Tent Type: ${formData.tentType}
+Roommates: ${formData.roommates.map(r => r.name).join(', ')}
+Additional Notes: ${formData.additionalNotes || 'None'}
+Submitted: ${new Date(formData.submittedDate).toLocaleString()}
+      `.trim();
+
+      const roommateJSON = JSON.stringify(formData, null, 2);
+
+      // Send via EmailJS
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '⏳ Sending...';
+      submitBtn.disabled = true;
+
+      try {
+        const result = await emailjs.send(
+          'service_3dxq4tg',
+          'template_fainkx7',
+          {
+            name: formData.roommates[0]?.name || 'Unknown',
+            message: `Roommate & Tent Reservation:\n\n${roommateInfo}\n\n---\nJSON Format:\n${roommateJSON}`
+          }
+        );
+
+        console.log('EmailJS Success:', result);
+        
+        // Save to localStorage
+        const submitted = JSON.parse(localStorage.getItem('submittedRoommates') || '[]');
+        submitted.push(formData);
+        localStorage.setItem('submittedRoommates', JSON.stringify(submitted));
+        
+        alert('✅ Your roommate details have been sent to admin and saved successfully!');
+        
+        // Reset form and reload submitted list
+        e.target.reset();
+        loadSubmittedRoommates();
+        
+      } catch (error) {
+        console.error('EmailJS Error:', error);
+        
+        // Fallback to mailto
+        if (confirm('Email service unavailable. Would you like to send via your email client instead?')) {
+          const subject = `Roommate Reservation: ${formData.confirmationNumber}`;
+          const body = `Roommate & Tent Reservation:\n\n${roommateInfo}\n\n---\nJSON Format:\n${roommateJSON}`;
+          const mailtoLink = `mailto:dst894@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.location.href = mailtoLink;
+          
+          // Save to localStorage anyway
+          const submitted = JSON.parse(localStorage.getItem('submittedRoommates') || '[]');
+          submitted.push(formData);
+          localStorage.setItem('submittedRoommates', JSON.stringify(submitted));
+          
+          e.target.reset();
+          loadSubmittedRoommates();
+        }
+      } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
     });
 
     // Load submitted activities from localStorage
@@ -2605,8 +2808,34 @@ Phone: ${contactData.phone || 'Not provided'}
       }
     }
 
+    // Initialize activity suggestions data
+    let activitySuggestionsData = [];
+
+    // Load activity suggestions from JSON file or use localStorage
+    async function initializeActivitySuggestions() {
+      try {
+        const response = await fetch('activity_suggestions.json');
+        if (response.ok) {
+          activitySuggestionsData = await response.json();
+          localStorage.setItem('submittedActivities', JSON.stringify(activitySuggestionsData));
+        } else {
+          throw new Error('JSON file not found');
+        }
+      } catch (error) {
+        console.log('Loading activity suggestions from localStorage');
+        const stored = localStorage.getItem('submittedActivities');
+        if (stored) {
+          activitySuggestionsData = JSON.parse(stored);
+        } else {
+          activitySuggestionsData = [];
+          localStorage.setItem('submittedActivities', JSON.stringify(activitySuggestionsData));
+        }
+      }
+      loadSubmittedActivities();
+    }
+
     // Handle activity suggestion form submission
-    document.getElementById('activitySuggestionForm')?.addEventListener('submit', function(e) {
+    document.getElementById('activitySuggestionForm')?.addEventListener('submit', async function(e) {
       e.preventDefault();
       
       const activityData = {
@@ -2619,33 +2848,104 @@ Phone: ${contactData.phone || 'Not provided'}
         submittedDate: new Date().toISOString()
       };
       
-      // Save to localStorage
-      const activities = JSON.parse(localStorage.getItem('submittedActivities') || '[]');
-      activities.push(activityData);
-      localStorage.setItem('submittedActivities', JSON.stringify(activities));
-      
-      // Create email body with JSON
-      const emailBody = JSON.stringify(activityData, null, 2);
-      
-      // Create mailto link
-      const recipient = 'dst894@hotmail.com';
-      const subject = encodeURIComponent('Activity Suggestion - Yellowstone Glamping Trip');
-      const body = encodeURIComponent(emailBody);
-      const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
-      
-      // Open email client
-      window.location.href = mailtoLink;
-      
-      // Show success message
-      alert('Your email client will open with the activity suggestion. Please send the email to complete your submission!');
-      
-      // Reset form and reload display
-      this.reset();
-      loadSubmittedActivities();
+      // Format activity info for email
+      const activityInfo = `
+Location: ${activityData.location === 'bozeman' ? '📍 Bozeman Area' : '🏞️ Yellowstone Park Area'}
+Activity Name: ${activityData.name}
+Description: ${activityData.description}
+Estimated Cost: ${activityData.cost || 'Not specified'}
+Website/Link: ${activityData.link || 'Not provided'}
+Suggested by: ${activityData.suggester}
+Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
+      `.trim();
+
+      const activityJSON = JSON.stringify(activityData, null, 2);
+
+      // Send via EmailJS
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '⏳ Sending...';
+      submitBtn.disabled = true;
+
+      try {
+        const result = await emailjs.send(
+          'service_3dxq4tg',
+          'template_fainkx7',
+          {
+            name: activityData.suggester,
+            message: `Activity Suggestion:\n\n${activityInfo}\n\n---\nJSON Format:\n${activityJSON}`
+          }
+        );
+
+        console.log('EmailJS Success:', result);
+        
+        // Save to localStorage
+        const activities = JSON.parse(localStorage.getItem('submittedActivities') || '[]');
+        activities.push(activityData);
+        localStorage.setItem('submittedActivities', JSON.stringify(activities));
+        
+        alert('✅ Your activity suggestion has been sent to admin and saved successfully!');
+        
+        // Reset form and reload display
+        e.target.reset();
+        loadSubmittedActivities();
+        
+      } catch (error) {
+        console.error('EmailJS Error:', error);
+        
+        // Fallback to mailto
+        if (confirm('Email service unavailable. Would you like to send via your email client instead?')) {
+          const subject = `Activity Suggestion: ${activityData.name}`;
+          const body = `Activity Suggestion:\n\n${activityInfo}\n\n---\nJSON Format:\n${activityJSON}`;
+          const mailtoLink = `mailto:dst894@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.location.href = mailtoLink;
+          
+          // Save to localStorage anyway
+          const activities = JSON.parse(localStorage.getItem('submittedActivities') || '[]');
+          activities.push(activityData);
+          localStorage.setItem('submittedActivities', JSON.stringify(activities));
+          
+          e.target.reset();
+          loadSubmittedActivities();
+        }
+      } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
     });
 
 
     // ===== TRIP DETAILS & ITINERARY FUNCTIONS =====
+    
+    // Populate name dropdown from contacts.json
+    async function populateNameDropdown() {
+      try {
+        const response = await fetch('contacts.json');
+        const contacts = await response.json();
+        const dropdown = document.getElementById('tripUserName');
+        
+        if (dropdown) {
+          // Clear existing options except the first one
+          dropdown.innerHTML = '<option value="">-- Select your name --</option>';
+          
+          // Add all contacts as options
+          contacts.forEach(contact => {
+            const option = document.createElement('option');
+            option.value = contact.id;
+            option.textContent = contact.name;
+            option.dataset.email = contact.email;
+            dropdown.appendChild(option);
+          });
+          
+          // Add change event listener to store user ID
+          dropdown.addEventListener('change', function() {
+            document.getElementById('tripUserId').value = this.value;
+          });
+        }
+      } catch (error) {
+        console.error('Error loading contacts:', error);
+      }
+    }
     
     // Populate activities dynamically from the Activities section
     function populateActivitiesCheckboxes() {
@@ -2669,6 +2969,168 @@ Phone: ${contactData.phone || 'Not provided'}
           <span>${activity.icon} ${activity.name} (${activity.price})</span>
         </label>
       `).join('');
+    }
+
+    // Submit flight details to admin via email
+    async function submitFlightDetails() {
+      // Get user information
+      const userNameDropdown = document.getElementById('tripUserName');
+      const userId = document.getElementById('tripUserId').value;
+      const userName = userNameDropdown.options[userNameDropdown.selectedIndex]?.text || '';
+      
+      // Validate user selection
+      if (!userId || !userName) {
+        alert('❌ Please select your name from the dropdown first.');
+        return;
+      }
+      
+      const tripDetails = {
+        userId: parseInt(userId),
+        name: userName,
+        outbound: {
+          departureCity: document.getElementById('outboundDepartureCity').value,
+          arrivalCity: document.getElementById('outboundArrivalCity').value,
+          airline: document.getElementById('outboundAirline').value,
+          flightNumber: document.getElementById('outboundFlightNumber').value,
+          departure: document.getElementById('outboundDeparture').value,
+          arrival: document.getElementById('outboundArrival').value,
+          confirmation: document.getElementById('outboundConfirmation').value
+        },
+        return: {
+          departureCity: document.getElementById('returnDepartureCity').value,
+          arrivalCity: document.getElementById('returnArrivalCity').value,
+          airline: document.getElementById('returnAirline').value,
+          flightNumber: document.getElementById('returnFlightNumber').value,
+          departure: document.getElementById('returnDeparture').value,
+          arrival: document.getElementById('returnArrival').value,
+          confirmation: document.getElementById('returnConfirmation').value
+        },
+        tent: {
+          type: document.getElementById('selectedTent').value,
+          pricePerPerson: document.getElementById('tentPricePerPerson').value
+        },
+        transportation: {
+          needsAirportPickup: document.getElementById('needsAirportPickup').checked,
+          willingToRentCar: document.getElementById('willingToRentCar').checked,
+          arrivalTime: document.getElementById('outboundArrival').value,
+          departureTime: document.getElementById('returnDeparture').value
+        },
+        specialRequests: document.getElementById('specialRequests').value,
+        submittedDate: new Date().toISOString(),
+        lastUpdated: new Date().toISOString(),
+        confirmationStatus: 'pending'
+      };
+
+      // Validate at least flight info
+      if (!tripDetails.outbound.airline && !tripDetails.return.airline) {
+        alert('❌ Please fill in at least some flight information before submitting.');
+        return;
+      }
+
+      // Format flight info for email
+      const formatDateTime = (dateStr) => {
+        if (!dateStr) return 'Not specified';
+        const date = new Date(dateStr);
+        return date.toLocaleString('en-US', {
+          weekday: 'short',
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit'
+        });
+      };
+
+      const flightInfo = `
+OUTBOUND FLIGHT:
+  From: ${tripDetails.outbound.departureCity || 'Not specified'}
+  To: ${tripDetails.outbound.arrivalCity || 'Not specified'}
+  Airline: ${tripDetails.outbound.airline || 'Not specified'}
+  Flight #: ${tripDetails.outbound.flightNumber || 'Not specified'}
+  Departure: ${formatDateTime(tripDetails.outbound.departure)}
+  Arrival: ${formatDateTime(tripDetails.outbound.arrival)}
+  Confirmation: ${tripDetails.outbound.confirmation || 'Not specified'}
+
+RETURN FLIGHT:
+  From: ${tripDetails.return.departureCity || 'Not specified'}
+  To: ${tripDetails.return.arrivalCity || 'Not specified'}
+  Airline: ${tripDetails.return.airline || 'Not specified'}
+  Flight #: ${tripDetails.return.flightNumber || 'Not specified'}
+  Departure: ${formatDateTime(tripDetails.return.departure)}
+  Arrival: ${formatDateTime(tripDetails.return.arrival)}
+  Confirmation: ${tripDetails.return.confirmation || 'Not specified'}
+
+TENT: ${tripDetails.tent.type || 'Not selected'} ${tripDetails.tent.pricePerPerson ? `($${tripDetails.tent.pricePerPerson}/person)` : ''}
+      `.trim();
+
+      const flightJSON = JSON.stringify(tripDetails, null, 2);
+
+      // Send via EmailJS
+      const submitBtn = event.target;
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '⏳ Sending...';
+      submitBtn.disabled = true;
+
+      try {
+        const result = await emailjs.send(
+          'service_3dxq4tg',
+          'template_fainkx7',
+          {
+            name: tripDetails.name,
+            message: `Flight & Trip Details:\n\n${flightInfo}\n\n---\nJSON Format:\n${flightJSON}`
+          }
+        );
+
+        console.log('EmailJS Success:', result);
+        
+        // Save to localStorage
+        localStorage.setItem('myTripDetails', JSON.stringify(tripDetails));
+        
+        // Also save to tripcontacts array in localStorage
+        const tripContacts = JSON.parse(localStorage.getItem('tripContacts') || '[]');
+        const existingIndex = tripContacts.findIndex(tc => tc.userId === tripDetails.userId);
+        
+        if (existingIndex >= 0) {
+          // Update existing entry
+          tripContacts[existingIndex] = tripDetails;
+        } else {
+          // Add new entry
+          tripContacts.push(tripDetails);
+        }
+        
+        localStorage.setItem('tripContacts', JSON.stringify(tripContacts));
+        
+        alert('✅ Your flight and trip details have been sent to admin and saved successfully!');
+        
+      } catch (error) {
+        console.error('EmailJS Error:', error);
+        
+        // Fallback to mailto
+        if (confirm('Email service unavailable. Would you like to send via your email client instead?')) {
+          const subject = `Flight Details: ${tripDetails.name}`;
+          const body = `Flight & Trip Details:\n\n${flightInfo}\n\n---\nJSON Format:\n${flightJSON}`;
+          const mailtoLink = `mailto:dst894@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.location.href = mailtoLink;
+          
+          // Save to localStorage
+          localStorage.setItem('myTripDetails', JSON.stringify(tripDetails));
+          
+          // Also save to tripcontacts array
+          const tripContacts = JSON.parse(localStorage.getItem('tripContacts') || '[]');
+          const existingIndex = tripContacts.findIndex(tc => tc.userId === tripDetails.userId);
+          
+          if (existingIndex >= 0) {
+            tripContacts[existingIndex] = tripDetails;
+          } else {
+            tripContacts.push(tripDetails);
+          }
+          
+          localStorage.setItem('tripContacts', JSON.stringify(tripContacts));
+        }
+      } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
     }
 
     function saveTripDetails() {
@@ -2862,8 +3324,8 @@ Night 4-5 (Sept 12-13):
   Check-in: 3:00 PM | Check-out: 11:00 AM
 
 GLAMPING (Sept 10-12):
-  Under Canvas Yellowstone
-  Address: 890 US-89, Emigrant, MT 59027
+  Under Canvas North Yellowstone – Paradise Valley
+  Address: 139 Pine Creek Road, Livingston, Montana 59047
   Phone: (888) 496-1148
   Check-in: 4:00 PM | Check-out: 11:00 AM
 
@@ -2936,36 +3398,34 @@ https://tamimoooo.github.io/agenda/reunion.html
       const distance = reunionDate - now;
 
       if (distance < 0) {
-        document.getElementById('countdown').innerHTML = '<div style="font-size: 2rem; color: white; grid-column: 1/-1;">🎉 The Reunion is Here! 🎉</div>';
+        document.getElementById('countdown').innerHTML = '<div style="font-size: 1.5rem; font-weight: bold;">🎉 The Adventure Has Begun! 🎉</div>';
         return;
       }
 
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       document.getElementById('days').textContent = days;
-      document.getElementById('hours').textContent = hours;
-      document.getElementById('minutes').textContent = minutes;
-      document.getElementById('seconds').textContent = seconds;
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
     }
 
     // Initialize on page load
     document.addEventListener('DOMContentLoaded', function() {
       initializeContacts();
-      loadSubmittedRoommates();
-      loadSubmittedActivities();
+      initializeRoommates();
+      initializeActivitySuggestions();
       populateActivitiesCheckboxes();
+      populateNameDropdown();
+      loadTripDetails();
       
       // All sections start collapsed (no auto-expand)
 
       // Load saved trip details on page load
       loadTripDetails();
       
-      // Start countdown timer
+      // Start countdown timer (update every hour)
       updateCountdown();
-      setInterval(updateCountdown, 1000);
+      setInterval(updateCountdown, 3600000);
     });
   </script>
 </body>
