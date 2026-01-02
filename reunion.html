@@ -2006,7 +2006,7 @@
     // Load contacts from JSON file or use defaults
     async function initializeContacts() {
       try {
-        const response = await fetch('contacts.json');
+        const response = await fetch('whosgoing.json');
         if (response.ok) {
           contactsData = await response.json();
           localStorage.setItem('spring94Contacts', JSON.stringify(contactsData));
