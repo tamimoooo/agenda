@@ -252,23 +252,26 @@
       }
 
       /* Make tables horizontally scrollable on mobile */
-      table {
-        display: block;
+      .section {
         overflow-x: auto;
-        white-space: nowrap;
-        font-size: 0.85rem;
         -webkit-overflow-scrolling: touch;
       }
 
-      thead, tbody, tr {
+      table {
         display: table;
         width: 100%;
-        table-layout: fixed;
+        min-width: 600px;
+        font-size: 0.8rem;
       }
 
       th, td {
-        padding: 8px 5px;
-        font-size: 0.85rem;
+        padding: 8px 4px;
+        font-size: 0.75rem;
+        min-width: 60px;
+      }
+
+      th {
+        font-size: 0.8rem;
       }
 
       /* Stack activity cards vertically on mobile */
@@ -314,11 +317,18 @@
       }
 
       table {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
+        min-width: 500px;
       }
 
       th, td {
-        padding: 6px 3px;
+        padding: 6px 2px;
+        font-size: 0.7rem;
+        min-width: 50px;
+      }
+
+      th {
+        font-size: 0.75rem;
       }
     }
   </style>
@@ -408,15 +418,13 @@
           return;
         }
 
-        let html = '<table><thead><tr><th>Name</th><th>Email</th><th>City, State</th><th>Phone</th></tr></thead><tbody>';
+        let html = '<table><thead><tr><th>Name</th><th>Email</th></tr></thead><tbody>';
         
         contacts.forEach(contact => {
           html += `
             <tr>
               <td><strong>${contact.name}</strong></td>
               <td>${contact.email || 'N/A'}</td>
-              <td>${contact.city ? contact.city + ', ' + contact.state : 'N/A'}</td>
-              <td>${contact.phone || 'N/A'}</td>
             </tr>
           `;
         });
