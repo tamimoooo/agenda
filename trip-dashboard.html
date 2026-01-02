@@ -212,16 +212,113 @@
     }
 
     @media (max-width: 768px) {
-      .dashboard-grid {
-        grid-template-columns: 1fr;
+      .container {
+        padding: 10px;
       }
 
+      header {
+        padding: 20px 10px;
+        border-radius: 0 0 15px 15px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .stat-card {
+        padding: 15px;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+      }
+
+      .section {
+        padding: 15px;
+        margin-bottom: 15px;
+      }
+
+      .section h2 {
+        font-size: 1.3rem;
+      }
+
+      /* Make tables horizontally scrollable on mobile */
       table {
-        font-size: 0.9rem;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        font-size: 0.85rem;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      thead, tbody, tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
       }
 
       th, td {
-        padding: 8px;
+        padding: 8px 5px;
+        font-size: 0.85rem;
+      }
+
+      /* Stack activity cards vertically on mobile */
+      .activity-card {
+        margin-bottom: 15px;
+      }
+
+      .activity-card h4 {
+        font-size: 1rem;
+      }
+
+      .activity-card p {
+        font-size: 0.9rem;
+      }
+
+      /* Adjust back link */
+      .back-link {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Extra small devices */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.3rem;
+      }
+
+      .subtitle {
+        font-size: 0.9rem;
+      }
+
+      .stat-card {
+        padding: 12px;
+      }
+
+      .stat-number {
+        font-size: 1.8rem;
+      }
+
+      .stat-label {
+        font-size: 0.85rem;
+      }
+
+      table {
+        font-size: 0.75rem;
+      }
+
+      th, td {
+        padding: 6px 3px;
       }
     }
   </style>
