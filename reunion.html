@@ -3418,7 +3418,7 @@ MY TENT SELECTION
 
 MY SELECTED ACTIVITIES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-${tripDetails.activities.length > 0 ? tripDetails.activities.map(a => {
+${tripDetails.activities && tripDetails.activities.length > 0 ? tripDetails.activities.map(a => {
   const activityName = typeof a === 'string' ? a : a.name;
   const activityPrice = typeof a === 'string' ? '' : ` (${a.price})`;
   return `  ✓ ${activityName}${activityPrice}`;
