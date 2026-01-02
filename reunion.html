@@ -2037,26 +2037,44 @@
     // Load contacts from JSON file or use defaults
     async function initializeContacts() {
       try {
-        const response = await fetch('whosgoing.json');
+        const response = await fetch('whosgoing.json?t=' + Date.now()); // Cache-busting
         if (response.ok) {
           contactsData = await response.json();
-          // Force update localStorage with whosgoing.json data
-          localStorage.setItem('spring94Contacts', JSON.stringify(contactsData));
-          console.log('Loaded contacts from whosgoing.json:', contactsData.length, 'people');
+          // Save to localStorage with timestamp
+          const dataWithTimestamp = {
+            data: contactsData,
+            timestamp: Date.now(),
+            source: 'whosgoing.json'
+          };
+          localStorage.setItem('spring94Contacts', JSON.stringify(dataWithTimestamp));
+          console.log('✅ Loaded contacts from whosgoing.json:', contactsData.length, 'people');
         } else {
           throw new Error('JSON file not found');
         }
       } catch (error) {
-        console.error('Error loading whosgoing.json:', error);
-        console.log('Loading from localStorage or defaults');
-        // Try localStorage first
+        console.warn('⚠️ Could not load whosgoing.json, using localStorage backup:', error.message);
+        // Use localStorage as emergency backup
         const stored = localStorage.getItem('spring94Contacts');
         if (stored) {
-          contactsData = JSON.parse(stored);
+          try {
+            const parsed = JSON.parse(stored);
+            // Check if it's the new format with timestamp
+            if (parsed.data && parsed.timestamp) {
+              contactsData = parsed.data;
+              const age = Math.floor((Date.now() - parsed.timestamp) / (1000 * 60 * 60 * 24));
+              console.log(`📦 Using cached data from ${parsed.source} (${age} days old)`);
+            } else {
+              // Old format without timestamp
+              contactsData = parsed;
+              console.log('📦 Using cached data (unknown age)');
+            }
+          } catch (e) {
+            contactsData = defaultContacts;
+          }
         } else {
-          // Use default contacts
+          // Use default contacts as last resort
           contactsData = defaultContacts;
-          localStorage.setItem('spring94Contacts', JSON.stringify(defaultContacts));
+          console.log('📋 Using default contacts');
         }
       }
       loadContacts();
@@ -2848,24 +2866,43 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
     // Load activity suggestions from JSON file or use localStorage
     async function initializeActivitySuggestions() {
       try {
-        const response = await fetch('activity_suggestions.json');
+        const response = await fetch('activity_suggestions.json?t=' + Date.now()); // Cache-busting
         if (response.ok) {
           activitySuggestionsData = await response.json();
-          // Force update localStorage with activity_suggestions.json data
-          localStorage.setItem('submittedActivities', JSON.stringify(activitySuggestionsData));
-          console.log('Loaded activity suggestions from activity_suggestions.json:', activitySuggestionsData.length, 'activities');
+          // Save to localStorage with timestamp
+          const dataWithTimestamp = {
+            data: activitySuggestionsData,
+            timestamp: Date.now(),
+            source: 'activity_suggestions.json'
+          };
+          localStorage.setItem('submittedActivities', JSON.stringify(dataWithTimestamp));
+          console.log('✅ Loaded activity suggestions from activity_suggestions.json:', activitySuggestionsData.length, 'activities');
         } else {
           throw new Error('JSON file not found');
         }
       } catch (error) {
-        console.error('Error loading activity_suggestions.json:', error);
-        console.log('Loading activity suggestions from localStorage');
+        console.warn('⚠️ Could not load activity_suggestions.json, using localStorage backup:', error.message);
+        // Use localStorage as emergency backup
         const stored = localStorage.getItem('submittedActivities');
         if (stored) {
-          activitySuggestionsData = JSON.parse(stored);
+          try {
+            const parsed = JSON.parse(stored);
+            // Check if it's the new format with timestamp
+            if (parsed.data && parsed.timestamp) {
+              activitySuggestionsData = parsed.data;
+              const age = Math.floor((Date.now() - parsed.timestamp) / (1000 * 60 * 60 * 24));
+              console.log(`📦 Using cached activities from ${parsed.source} (${age} days old)`);
+            } else {
+              // Old format without timestamp
+              activitySuggestionsData = parsed;
+              console.log('📦 Using cached activities (unknown age)');
+            }
+          } catch (e) {
+            activitySuggestionsData = [];
+          }
         } else {
           activitySuggestionsData = [];
-          localStorage.setItem('submittedActivities', JSON.stringify(activitySuggestionsData));
+          console.log('📋 No activities available');
         }
       }
       loadSubmittedActivities();
