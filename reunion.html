@@ -3426,8 +3426,8 @@ MY TENT SELECTION
 MY SELECTED ACTIVITIES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ${tripDetails.activities && tripDetails.activities.length > 0 ? tripDetails.activities.map(a => {
-  const activityName = typeof a === 'string' ? a : a.name;
-  const activityPrice = typeof a === 'string' ? '' : ` (${a.price})`;
+  const activityName = typeof a === 'string' ? a : (a && a.name ? a.name : 'Unknown activity');
+  const activityPrice = typeof a === 'string' ? '' : (a && a.price ? ` (${a.price})` : '');
   return `  ✓ ${activityName}${activityPrice}`;
 }).join('\n') : '  No activities selected yet'}
 
