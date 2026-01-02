@@ -2791,7 +2791,13 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
 
     // Load submitted activities from localStorage
     function loadSubmittedActivities() {
-      const activities = JSON.parse(localStorage.getItem('submittedActivities') || '[]');
+      let activities = JSON.parse(localStorage.getItem('submittedActivities') || '[]');
+      
+      // Ensure activities is an array
+      if (!Array.isArray(activities)) {
+        activities = [];
+      }
+      
       const section = document.getElementById('submittedActivitiesSection');
       const bozemanSection = document.getElementById('bozemanActivitiesSection');
       const yellowstoneSection = document.getElementById('yellowstoneActivitiesSection');
