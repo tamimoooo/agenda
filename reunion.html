@@ -2994,9 +2994,12 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
     // Populate name dropdown from whosgoing.json
     async function populateNameDropdown() {
       try {
-        const response = await fetch('whosgoing.json');
+        const timestamp = new Date().getTime();
+        const response = await fetch(`whosgoing.json?t=${timestamp}`);
         const contacts = await response.json();
         const dropdown = document.getElementById('tripUserName');
+        
+        console.log('Fetching whosgoing.json for dropdown...', contacts);
         
         if (dropdown) {
           // Clear existing options except the first one
@@ -3016,10 +3019,12 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
             document.getElementById('tripUserId').value = this.value;
           });
           
-          console.log('Loaded names from whosgoing.json:', contacts.length, 'people');
+          console.log('✅ Loaded', contacts.length, 'names into dropdown from whosgoing.json');
+        } else {
+          console.error('❌ Dropdown element #tripUserName not found!');
         }
       } catch (error) {
-        console.error('Error loading whosgoing.json:', error);
+        console.error('❌ Error loading whosgoing.json for dropdown:', error);
       }
     }
     
