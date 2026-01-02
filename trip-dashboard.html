@@ -211,6 +211,30 @@
       font-style: italic;
     }
 
+    /* Mobile card layout for participants */
+    .mobile-card {
+      display: none;
+      border: 2px solid var(--border-color);
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 12px;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .mobile-card-name {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 8px;
+    }
+
+    .mobile-card-email {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      word-break: break-all;
+    }
+
     @media (max-width: 768px) {
       .container {
         padding: 10px;
@@ -251,7 +275,16 @@
         font-size: 1.3rem;
       }
 
-      /* Make tables horizontally scrollable on mobile */
+      /* Hide desktop table, show mobile cards */
+      .desktop-table {
+        display: none !important;
+      }
+
+      .mobile-card {
+        display: block !important;
+      }
+
+      /* Make other tables horizontally scrollable on mobile */
       .section {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
@@ -418,10 +451,11 @@
           return;
         }
 
-        let html = '<table><thead><tr><th>Name</th><th>Email</th></tr></thead><tbody>';
+        // Desktop table view
+        let tableHtml = '<table class="desktop-table"><thead><tr><th>Name</th><th>Email</th></tr></thead><tbody>';
         
         contacts.forEach(contact => {
-          html += `
+          tableHtml += `
             <tr>
               <td><strong>${contact.name}</strong></td>
               <td>${contact.email || 'N/A'}</td>
@@ -429,8 +463,21 @@
           `;
         });
         
-        html += '</tbody></table>';
-        container.innerHTML = html;
+        tableHtml += '</tbody></table>';
+
+        // Mobile card view
+        let cardsHtml = '<div class="mobile-cards">';
+        contacts.forEach(contact => {
+          cardsHtml += `
+            <div class="mobile-card">
+              <div class="mobile-card-name">👤 ${contact.name}</div>
+              <div class="mobile-card-email">✉️ ${contact.email || 'N/A'}</div>
+            </div>
+          `;
+        });
+        cardsHtml += '</div>';
+
+        container.innerHTML = tableHtml + cardsHtml;
         
         console.log('Loaded participants from whosgoing.json:', contacts.length, 'people');
         
