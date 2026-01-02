@@ -1031,12 +1031,70 @@
         Coordinate departure airport, arrival times, and booking plans.
       </li>
 	    <li style="margin-top: 10px;">
-        <strong>Committees, Questions</strong><br>
-      </li>
+	       <strong>Committees, Questions</strong><br>
+	       Have questions before the meeting? Submit them below and we'll address them.
+	     </li>
 	  
 	  
-    </ul>
-  </div>
+	   </ul>
+	   
+	   <!-- Submit Questions Form -->
+	   <div style="margin-top: 20px; padding: 20px; background: white; border-radius: 10px; border: 2px solid var(--primary-color);">
+	     <h5 style="color: var(--primary-color); margin-bottom: 15px;">
+	       ❓ Submit Your Questions
+	     </h5>
+	     <form id="questionsForm" style="display: flex; flex-direction: column; gap: 15px;">
+	       <div>
+	         <label for="questionName" style="display: block; margin-bottom: 5px; font-weight: 600; color: var(--text-primary);">
+	           Your Name <span style="color: red;">*</span>
+	         </label>
+	         <input
+	           type="text"
+	           id="questionName"
+	           required
+	           style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem;"
+	           placeholder="Enter your name"
+	         />
+	       </div>
+	       
+	       <div>
+	         <label for="questionEmail" style="display: block; margin-bottom: 5px; font-weight: 600; color: var(--text-primary);">
+	           Your Email <span style="color: red;">*</span>
+	         </label>
+	         <input
+	           type="email"
+	           id="questionEmail"
+	           required
+	           style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem;"
+	           placeholder="your.email@example.com"
+	         />
+	       </div>
+	       
+	       <div>
+	         <label for="questionText" style="display: block; margin-bottom: 5px; font-weight: 600; color: var(--text-primary);">
+	           Your Question(s) <span style="color: red;">*</span>
+	         </label>
+	         <textarea
+	           id="questionText"
+	           required
+	           rows="5"
+	           style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem; resize: vertical;"
+	           placeholder="Enter your questions or concerns here..."
+	         ></textarea>
+	       </div>
+	       
+	       <button
+	         type="submit"
+	         style="padding: 12px 24px; background: #DAA520; color: white; border: none; border-radius: 5px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: var(--transition);"
+	         onmouseover="this.style.background='#B8860B'"
+	         onmouseout="this.style.background='#DAA520'"
+	       >
+	         📤 Submit Question
+	       </button>
+	     </form>
+	     <div id="questionStatus" style="margin-top: 15px; padding: 10px; border-radius: 5px; display: none;"></div>
+	   </div>
+	 </div>
 
 </div>
 
@@ -3544,6 +3602,78 @@ https://tamimoooo.github.io/agenda/reunion.html
       console.log(`Countdown updated: ${days} days, ${hours} hours`);
     }
 
+    // Handle Questions Form Submission
+    async function handleQuestionsSubmit(event) {
+      event.preventDefault();
+      
+      const form = document.getElementById('questionsForm');
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const statusDiv = document.getElementById('questionStatus');
+      const originalBtnText = submitBtn.innerHTML;
+      
+      // Get form values
+      const name = document.getElementById('questionName').value.trim();
+      const email = document.getElementById('questionEmail').value.trim();
+      const question = document.getElementById('questionText').value.trim();
+      
+      // Validate
+      if (!name || !email || !question) {
+        statusDiv.style.display = 'block';
+        statusDiv.style.background = '#ffebee';
+        statusDiv.style.color = '#c62828';
+        statusDiv.innerHTML = '❌ Please fill in all required fields.';
+        return;
+      }
+      
+      // Disable button and show loading
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '⏳ Sending...';
+      statusDiv.style.display = 'none';
+      
+      try {
+        // Send email via EmailJS
+        // Note: EmailJS template should include cc_email parameter for BCC functionality
+        const result = await emailjs.send(
+          'service_3dxq4tg',
+          'template_fainkx7',
+          {
+            name: name,
+            from_email: email,
+            message: `Question submitted by ${name} (${email}):\n\n${question}`,
+            cc_email: 'dst894@hotmail.com,sherribelklaw@gmail.com,freshnclean9@gmail.com'
+          }
+        );
+        
+        console.log('Question submitted successfully:', result);
+        
+        // Show success message
+        statusDiv.style.display = 'block';
+        statusDiv.style.background = '#e8f5e9';
+        statusDiv.style.color = '#2e7d32';
+        statusDiv.innerHTML = '✅ Your question has been submitted successfully! We\'ll address it at the meeting.';
+        
+        // Reset form
+        form.reset();
+        
+        // Re-enable button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+        
+      } catch (error) {
+        console.error('Error submitting question:', error);
+        
+        // Show error message
+        statusDiv.style.display = 'block';
+        statusDiv.style.background = '#ffebee';
+        statusDiv.style.color = '#c62828';
+        statusDiv.innerHTML = '❌ Failed to submit question. Please try again or email directly to dst894@hotmail.com';
+        
+        // Re-enable button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+      }
+    }
+
     // Initialize on page load
     document.addEventListener('DOMContentLoaded', function() {
       initializeContacts();
@@ -3551,6 +3681,12 @@ https://tamimoooo.github.io/agenda/reunion.html
       populateActivitiesCheckboxes();
       populateNameDropdown();
       loadTripDetails();
+      
+      // Initialize questions form
+      const questionsForm = document.getElementById('questionsForm');
+      if (questionsForm) {
+        questionsForm.addEventListener('submit', handleQuestionsSubmit);
+      }
       
       // All sections start collapsed (no auto-expand)
 
