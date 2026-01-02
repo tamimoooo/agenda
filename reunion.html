@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trip Dashboard - Montana Glamping 2026</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Spring 94 Connect da Dots - In the Newz</title>
+  
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function(){
+      emailjs.init({
+        publicKey: "1aDc1YFIiPnbjb-CS",
+      });
+    })();
+  </script>
+  
   <style>
     :root {
       --primary-color: #d32f2f;
@@ -17,6 +31,7 @@
       --border-color: #e0e0e0;
       --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     * {
@@ -31,651 +46,3486 @@
       color: var(--text-primary);
       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
       min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
     }
 
+    /* Modern polka dots background */
+    .polka-dots {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(circle, rgba(211, 47, 47, 0.05) 10%, transparent 10%),
+        radial-gradient(circle, rgba(211, 47, 47, 0.05) 10%, transparent 10%);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Container */
     .container {
-      max-width: 1400px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 20px;
     }
 
+    /* Header */
     header {
       text-align: center;
-      padding: 40px 20px;
+      padding: 60px 20px 40px;
       background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
       color: white;
       border-radius: 0 0 30px 30px;
       box-shadow: var(--shadow-lg);
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
 
     h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
       margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      animation: fadeInDown 0.8s ease-out;
     }
 
     .subtitle {
       font-size: 1.2rem;
       opacity: 0.95;
+      animation: fadeInUp 0.8s ease-out;
     }
 
-    .back-link {
+    /* Countdown Timer */
+    .countdown-container {
+      margin-top: 20px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
       display: inline-block;
-      margin-bottom: 15px;
-      padding: 10px 20px;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      text-decoration: none;
-      border-radius: 20px;
-      transition: all 0.3s ease;
     }
 
-    .back-link:hover {
-      background: rgba(255,255,255,0.3);
-      transform: translateY(-2px);
+    .countdown-title {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      opacity: 0.9;
+      font-weight: 500;
     }
 
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin-bottom: 30px;
+    .countdown-timer {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
-    .stat-card {
-      background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
-      border: 2px solid var(--border-color);
-      border-radius: 15px;
-      padding: 25px;
+    .countdown-item {
       text-align: center;
-      transition: all 0.3s ease;
+      min-width: 70px;
     }
 
-    .stat-card:hover {
-      border-color: var(--primary-color);
+    .countdown-number {
+      font-size: 2rem;
+      font-weight: 700;
+      display: block;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .countdown-label {
+      font-size: 0.8rem;
+      opacity: 0.9;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 30px;
+      padding: 0 20px;
+    }
+
+    .nav-tab {
+      padding: 12px 24px;
+      background: var(--card-bg);
+      border: 2px solid var(--border-color);
+      border-radius: 25px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 600;
+      color: var(--text-primary);
       box-shadow: var(--shadow);
-      transform: translateY(-3px);
     }
 
-    .stat-number {
-      font-size: 3rem;
-      font-weight: bold;
-      color: var(--primary-color);
-      margin: 10px 0;
+    .nav-tab:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-color);
     }
 
-    .stat-label {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
+    .nav-tab.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
     }
 
+    /* Card Sections */
     .section {
-      background: white;
-      border-radius: 15px;
+      background: var(--card-bg);
+      border-radius: 20px;
       padding: 30px;
       margin-bottom: 30px;
       box-shadow: var(--shadow);
+      transition: var(--transition);
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    .section:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      cursor: pointer;
+      user-select: none;
     }
 
     .section-title {
       font-size: 1.8rem;
       color: var(--primary-dark);
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 3px solid var(--primary-color);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-    }
-
-    th, td {
-      padding: 12px;
-      text-align: left;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    th {
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
-      color: white;
-      font-weight: 600;
-    }
-
-    tr:hover {
-      background: #f8f9fa;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 12px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-
-    .badge-success {
-      background: #d4edda;
-      color: #155724;
-    }
-
-    .badge-warning {
-      background: #fff3cd;
-      color: #856404;
-    }
-
-    .badge-info {
-      background: #d1ecf1;
-      color: #0c5460;
-    }
-
-    .activity-card {
-      border: 2px solid var(--border-color);
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 15px;
-      background: #f8f9fa;
-    }
-
-    .activity-card h4 {
+    .toggle-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
       color: var(--primary-color);
+    }
+
+    .toggle-icon.expanded {
+      transform: rotate(90deg);
+    }
+
+    .section-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+    }
+
+    .section-content.expanded {
+      max-height: 5000px;
+    }
+
+    /* Contact Cards */
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .contact-card {
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+      border: 2px solid var(--border-color);
+      border-radius: 15px;
+      padding: 20px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .contact-card:hover {
+      border-color: var(--primary-color);
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+    }
+
+    .contact-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary-dark);
       margin-bottom: 10px;
     }
 
-    .participant-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
+    .contact-info {
+      color: var(--text-secondary);
+      margin-bottom: 5px;
+      font-size: 0.95rem;
     }
 
-    .participant-tag {
+    .contact-email {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .contact-email:hover {
+      color: var(--primary-light);
+      text-decoration: underline;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+
+    .btn-secondary:hover {
       background: var(--primary-color);
       color: white;
-      padding: 5px 12px;
-      border-radius: 15px;
+    }
+
+    .btn-small {
+      padding: 8px 16px;
       font-size: 0.9rem;
     }
 
-    .loading {
-      text-align: center;
-      padding: 40px;
-      color: var(--text-secondary);
-    }
-
-    .empty-state {
-      text-align: center;
-      padding: 40px;
-      color: var(--text-secondary);
-      font-style: italic;
-    }
-
-    /* Mobile card layout for participants */
-    .mobile-card {
+    /* Modal */
+    .modal {
       display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .modal.active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      animation: slideUp 0.4s ease-out;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .modal-title {
+      font-size: 2rem;
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: var(--transition);
+      padding: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .close-btn:hover {
+      background: var(--background);
+      color: var(--primary-color);
+      transform: rotate(90deg);
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
       border: 2px solid var(--border-color);
       border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 12px;
-      background: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      font-size: 1rem;
+      transition: var(--transition);
+      font-family: inherit;
     }
 
-    .mobile-card-name {
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: var(--primary-color);
-      margin-bottom: 8px;
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
     }
 
-    .mobile-card-email {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      word-break: break-all;
+    textarea.form-input {
+      resize: vertical;
+      min-height: 100px;
     }
 
+    /* Photo Gallery */
+    .photo-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .photo-link-card {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      transition: var(--transition);
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+    }
+
+    .photo-link-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .photo-link-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .photo-link-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    /* Trip Proposals */
+    .trip-card {
+      background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+      border: 2px solid var(--border-color);
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 20px;
+      transition: var(--transition);
+    }
+
+    .trip-card:hover {
+      border-color: var(--primary-color);
+      box-shadow: var(--shadow);
+    }
+
+    .trip-card.highlight {
+      border-color: var(--primary-color);
+      background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+    }
+
+    .trip-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 15px;
+    }
+
+    .trip-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    /* Alert/Info Box */
+    .info-box {
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+      border-left: 4px solid #2196f3;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    .warning-box {
+      background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+      border-left: 4px solid #ff9800;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
       .container {
         padding: 10px;
       }
 
       header {
-        padding: 20px 10px;
-        border-radius: 0 0 15px 15px;
+        padding: 40px 20px 30px;
+        border-radius: 0 0 20px 20px;
       }
 
-      h1 {
-        font-size: 1.5rem;
+      .section {
+        padding: 20px;
+        border-radius: 15px;
       }
 
-      .subtitle {
-        font-size: 1rem;
+      .section-title {
+        font-size: 1.4rem;
       }
 
-      .dashboard-grid {
+      .modal-content {
+        padding: 25px;
+      }
+
+      .contacts-grid {
         grid-template-columns: 1fr;
-        gap: 15px;
       }
 
-      .stat-card {
-        padding: 15px;
+      .nav-tabs {
+        gap: 8px;
       }
 
-      .stat-number {
-        font-size: 2rem;
-      }
-
-      .section {
-        padding: 15px;
-        margin-bottom: 15px;
-      }
-
-      .section h2 {
-        font-size: 1.3rem;
-      }
-
-      /* Hide desktop table, show mobile cards */
-      .desktop-table {
-        display: none !important;
-      }
-
-      .mobile-card {
-        display: block !important;
-      }
-
-      /* Make other tables horizontally scrollable on mobile */
-      .section {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      table {
-        display: table;
-        width: 100%;
-        min-width: 600px;
-        font-size: 0.8rem;
-      }
-
-      th, td {
-        padding: 8px 4px;
-        font-size: 0.75rem;
-        min-width: 60px;
-      }
-
-      th {
-        font-size: 0.8rem;
-      }
-
-      /* Stack activity cards vertically on mobile */
-      .activity-card {
-        margin-bottom: 15px;
-      }
-
-      .activity-card h4 {
-        font-size: 1rem;
-      }
-
-      .activity-card p {
-        font-size: 0.9rem;
-      }
-
-      /* Adjust back link */
-      .back-link {
-        padding: 8px 15px;
+      .nav-tab {
+        padding: 10px 16px;
         font-size: 0.9rem;
       }
     }
 
-    /* Extra small devices */
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.3rem;
-      }
+    /* Utility Classes */
+    .text-center {
+      text-align: center;
+    }
 
-      .subtitle {
-        font-size: 0.9rem;
-      }
+    .mt-20 {
+      margin-top: 20px;
+    }
 
-      .stat-card {
-        padding: 12px;
-      }
+    .mb-20 {
+      margin-bottom: 20px;
+    }
 
-      .stat-number {
-        font-size: 1.8rem;
-      }
+    .hidden {
+      display: none;
+    }
 
-      .stat-label {
-        font-size: 0.85rem;
-      }
+    /* Loading State */
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-secondary);
+    }
 
-      table {
-        font-size: 0.7rem;
-        min-width: 500px;
-      }
+    .spinner {
+      border: 3px solid var(--border-color);
+      border-top: 3px solid var(--primary-color);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
 
-      th, td {
-        padding: 6px 2px;
-        font-size: 0.7rem;
-        min-width: 50px;
-      }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
-      th {
-        font-size: 0.75rem;
+    /* Action Buttons */
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .edit-btn, .delete-btn {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .edit-btn {
+      background: #4caf50;
+      color: white;
+    }
+
+    .edit-btn:hover {
+      background: #45a049;
+    }
+
+    .delete-btn {
+      background: #f44336;
+      color: white;
+    }
+
+    .delete-btn:hover {
+      background: #da190b;
+    }
+
+    /* Subsection collapsible styles */
+    .subsection-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding: 15px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      transition: var(--transition);
+      border: 2px solid var(--border-color);
+    }
+
+    .subsection-header:hover {
+      border-color: var(--primary-color);
+      background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+    }
+
+    .subsection-title {
+      font-size: 1.3rem;
+      color: var(--primary-dark);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .subsection-toggle {
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+      color: var(--primary-color);
+    }
+
+    .subsection-toggle.expanded {
+      transform: rotate(90deg);
+    }
+
+    .subsection-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 0.3s ease-out,
+                  transform 0.3s ease-out;
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    .subsection-content.expanded {
+      max-height: 5000px;
+      margin-bottom: 20px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Smooth rotation for toggle icons */
+    .subsection-toggle {
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+    
+    .subsection-toggle.expanded {
+      transform: rotate(90deg);
+    }
+    
+    /* Card hover effects */
+    .trip-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .trip-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Button animations */
+    .btn {
+      transition: all 0.3s ease;
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    /* Mobile-specific styles for better spacing */
+    @media (max-width: 768px) {
+      .subsection-content.expanded {
+        margin-bottom: 40px;
+      }
+      
+      #estimates-content.expanded {
+        margin-bottom: 60px;
+      }
+    }
+    
+    /* Print styles */
+    @media print {
+      .polka-dots,
+      #quickLinks,
+      .btn,
+      button,
+      .subsection-toggle {
+        display: none !important;
+      }
+      
+      .subsection-content {
+        max-height: none !important;
+        overflow: visible !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      
+      .trip-card {
+        page-break-inside: avoid;
+        box-shadow: none !important;
+      }
+      
+      body {
+        background: white !important;
+      }
+      
+      header {
+        background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
     }
   </style>
 </head>
 <body>
+  <div class="polka-dots"></div>
+
   <header>
-    <a href="reunion.html" class="back-link">← Back to Main Page</a>
-    <h1>📊 Trip Dashboard</h1>
-    <p class="subtitle">Montana Glamping Adventure - September 9-13, 2026</p>
+    <h1>🔴 SPRING 94 Dot Connection</h1>
+    <p class="subtitle">Stay Connected, Share Memories, Plan Adventures</p>
+    
+    <!-- Countdown Timer -->
+    <div class="countdown-container">
+      <div class="countdown-title">⏰ Countdown to Montana Glamping Adventure</div>
+      <div class="countdown-timer" id="countdown">
+        <div class="countdown-item">
+          <span class="countdown-number" id="days">250</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="hours">00</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+      </div>
+    </div>
+    <script>
+    // Inline countdown to ensure it runs immediately
+    (function() {
+      function updateCountdown() {
+        const reunionDate = new Date('September 9, 2026 00:00:00').getTime();
+        const now = new Date().getTime();
+        const distance = reunionDate - now;
+
+        const daysElement = document.getElementById('days');
+        const hoursElement = document.getElementById('hours');
+        
+        if (!daysElement || !hoursElement) return;
+
+        if (distance < 0) {
+          document.getElementById('countdown').innerHTML = '<div style="font-size: 1.5rem; font-weight: bold;">🎉 The Adventure Has Begun! 🎉</div>';
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+        daysElement.textContent = days;
+        hoursElement.textContent = hours.toString().padStart(2, '0');
+      }
+      
+      // Run immediately
+      updateCountdown();
+      // Update every minute
+      setInterval(updateCountdown, 60000);
+    })();
+    </script>
   </header>
+
+  <!-- Sticky Quick Links Navigation -->
+  <nav id="quickLinks" style="position: sticky; top: 0; z-index: 999; background: linear-gradient(135deg, #8B0000 0%, #5C0000 100%); box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 8px 0; transition: all 0.3s ease;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 10px;">
+      <div style="display: flex; gap: 6px; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: thin; padding: 4px 0;">
+        <a href="trip-dashboard.html" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #8B0000; padding: 6px 16px; border-radius: 15px; text-decoration: none; font-size: 0.85rem; font-weight: bold; transition: all 0.2s ease; flex-shrink: 0; box-shadow: 0 2px 8px rgba(255,215,0,0.3);">📊 TRIP DASHBOARD</a>
+        <a href="#contacts-content" onclick="scrollToSection('contacts', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">📇 Contacts</a>
+        <a href="#estimates-content" onclick="scrollToSection('estimates', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">💰 Costs</a>
+        <a href="#lodging-content" onclick="scrollToSection('lodging', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">⛺ Tents</a>
+        <a href="#bookYourTent" onclick="scrollToElement('bookYourTent', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">📞 Book</a>
+        <a href="#roommate-content" onclick="scrollToSection('roommate', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">👥 Roommate</a>
+        <a href="#activities-content" onclick="scrollToSection('activities', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">🎯 Activities</a>
+        <button onclick="collapseAll()" style="background: rgba(255,255,255,0.3); color: white; padding: 6px 12px; border-radius: 15px; border: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0; cursor: pointer; font-weight: 500;">📦 Collapse</button>
+      </div>
+    </div>
+  </nav>
 
   <div class="container">
     
-    <!-- Statistics Overview -->
-    <div class="dashboard-grid">
-      <div class="stat-card">
-        <div class="stat-label">👥 Total Participants</div>
-        <div class="stat-number" id="totalParticipants">16</div>
+    
+    <!-- Add Contact Button -->
+    <!-- Contacts Section -->
+    <div class="section">
+      <div class="section-header" onclick="toggleSection('contacts')">
+        <h2 class="section-title">
+          <span class="toggle-icon" id="contacts-icon">▶</span>
+          📇 Contact Directory
+        </h2>
       </div>
-      <div class="stat-card">
-        <div class="stat-label">✈️ Flight Details Submitted</div>
-        <div class="stat-number" id="flightsSubmitted">0</div>
+      <div class="section-content" id="contacts-content">
+        <div class="info-box">
+          <strong>💡 Tip:</strong> Click on any contact to edit their information. Don't forget to add your birthday! Changes are saved automatically.
+        </div>
+        <div class="text-center mt-20">
+          <button class="btn btn-secondary btn-small" onclick="downloadContactsJSON()">
+            💾 Download All Contacts
+          </button>
+        </div>
+        <div class="contacts-grid" id="contacts-grid">
+          <!-- Contacts will be loaded here -->
+        </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-label">🏕️ Roommate Info Submitted</div>
-        <div class="stat-number" id="roommatesSubmitted">0</div>
+    </div>
+
+    <!-- Email List Section -->
+    <div class="section">
+      <div class="section-header" onclick="toggleSection('email')">
+        <h2 class="section-title">
+          <span class="toggle-icon" id="email-icon">▶</span>
+          📧 Email Everyone
+        </h2>
       </div>
-      <div class="stat-card">
-        <div class="stat-label">🎯 Activity Suggestions</div>
-        <div class="stat-number" id="activitiesCount">0</div>
+      <div class="section-content" id="email-content">
+        <div class="info-box">
+          <h3 style="margin-bottom: 15px;">How to Email the Group</h3>
+          <ol style="margin-left: 20px;">
+            <li>Click the button below to open your email client</li>
+            <li>Your email will be in the "To" field</li>
+            <li>All other contacts will be in "bcc"</li>
+            <li>Edit the subject and message as needed</li>
+          </ol>
+        </div>
+       <div class="text-center mt-20">
+  <a class="btn btn-primary"
+    href="mailto:YOURADDRESS@example.com?bcc=sum0316@gmail.com,dst894@hotmail.com,tamikalfrancis@gmail.com,errinmccomb@gmail.com,melaniebullock@yahoo.com,missdana213@gmail.com,vernet1@gmail.com,mdfikes@gmail.com,tephia25@yahoo.com,sherribelklaw@gmail.com,freshnclean9@gmail.com,kilpatrickn39@gmail.com,iamadelta@yahoo.com,michelleyfoxx@yahoo.com&subject=Spring%2094%20Dot%20Connection%20Updates&body=Hi%20everyone,%0A%0AHere%20are%20the%20latest%20updates%20for%20our%20Spring%2094%20Dot%20Connection%20group.%0A%0AThanks,%0A[Your%20Name]">
+    📧 Open Email Client
+  </a>
+</div>
+
+        <div class="warning-box mt-20">
+          <strong>📋 Copy & Paste Email List:</strong><br>
+          <code style="display: block; margin-top: 10px; padding: 10px; background: white; border-radius: 8px; word-break: break-all;">
+          sum0316@gmail.com; dst894@hotmail.com; tamikalfrancis@gmail.com; errinmccomb@gmail.com; melaniebullock@yahoo.com; missdana213@gmail.com; vernet1@gmail.com; mdfikes@gmail.com; tephia25@yahoo.com; sherribelklaw@gmail.com; freshnclean9@gmail.com; kilpatrickn39@gmail.com; iamadelta@yahoo.com; michelleyfoxx@yahoo.com
+          </code>
+        </div>
       </div>
     </div>
 
-    <!-- Who's Going -->
+    <!-- Photo Albums Section -->
     <div class="section">
-      <h2 class="section-title">👥 Who's Going</h2>
-      <div id="participantsList" class="loading">Loading participants...</div>
+      <div class="section-header" onclick="toggleSection('photos')">
+        <h2 class="section-title">
+          <span class="toggle-icon" id="photos-icon">▶</span>
+          📸 Photo Albums
+        </h2>
+      </div>
+      <div class="section-content" id="photos-content">
+        <div class="photo-links">
+          <a href="https://link.shutterfly.com/AVu65l2xBJb" target="_blank" class="photo-link-card">
+            <div class="photo-link-icon">🎓</div>
+            <div class="photo-link-title">Spring 94 Old Photos</div>
+            <p>Throwback memories from our college days</p>
+          </a>
+          <a href="https://link.shutterfly.com/suiedxnxvNb" target="_blank" class="photo-link-card">
+            <div class="photo-link-icon">🏈</div>
+            <div class="photo-link-title">Homecoming 2024</div>
+            <p>Recent reunion photos</p>
+          </a>
+          <a href="https://link.shutterfly.com/lurzZCVsxNb" target="_blank" class="photo-link-card">
+            <div class="photo-link-icon">📷</div>
+            <div class="photo-link-title">Photoshoots</div>
+            <p>Professional group photos</p>
+          </a>
+        </div>
+        <div class="info-box mt-20">
+          <strong>🔐 Shared Account Access:</strong><br>
+          Email: <strong style="color: #2196f3;">dst894@yahoo.com</strong><br>
+          Password: <strong style="color: #f44336;">BigSisterTr0ll!</strong>
+        </div>
+      </div>
     </div>
 
-    <!-- Flight Details -->
+    <!-- Trip Details Section -->
     <div class="section">
-      <h2 class="section-title">✈️ Travel Details</h2>
-      <div id="flightsList" class="loading">Loading flight information...</div>
-    </div>
+      <div class="section-header" onclick="toggleSection('trips')">
+        <h2 class="section-title">
+          <span class="toggle-icon" id="trips-icon">▶</span>
+          ⛺ Dots Go Glamping - Yellowstone 2026 (Last Update 12/23/2026)
+        </h2>
+      </div>
+      <div class="section-content" id="trips-content">
+        
+   <!-- Trip Overview -->
+<div class="trip-card highlight">
+  <div class="trip-title">⛺ Dots Go Glamping</div>
+  <p><strong>📍 Location:</strong> Under Canvas Yellowstone - North Yellowstone (Paradise Valley), MT</p>
+  <p><strong>✈️ Airport:</strong> Bozeman Yellowstone International Airport BZN</p>
+  <p><strong>📅 Dates:</strong><span style="color: var(--primary-color); font-weight: bold;">September 9-13, 2026</span></p>
+  <p style="margin-top: 15px; font-size: 1.1rem;">
+    Experience luxury camping in one of America's most iconic national parks! 
+    Glamping combines the beauty of nature with the comfort of a hotel.
+  </p>
 
-    <!-- Roommate Assignments -->
-    <div class="section">
-      <h2 class="section-title">🏕️ Roommate & Tent Assignments</h2>
-      <div id="roommatesList" class="loading">Loading roommate assignments...</div>
-    </div>
+  <!-- Meeting & Questions -->
+  <div style="margin-top: 25px; padding: 20px; border: 2px solid var(--border-color); border-radius: 10px; background: white;">
+    <div style="display: grid; gap: 20px;">
 
-    <!-- Activity Suggestions -->
-    <div class="section">
-      <h2 class="section-title">🎯 Activity Suggestions</h2>
-      <div id="activitiesList" class="loading">Loading activities...</div>
-    </div>
+      <!-- Next Meeting Info -->
+      <div>
+        <h4 style="color: var(--primary-color); margin-bottom: 10px;">
+          📅 Next Planning Meeting
+        </h4>
+        <p style="margin: 5px 0;">
+          <strong>Sunday, February 1, 2026 at 6:00 PM</strong>
+        </p>
+        <a href="https://teams.microsoft.com/l/meetup-join/19%3ameeting_MGNmZmQzOWQtOTMwZi00OGI2LTk3NWQtYTM1MTg0N2E0NTk5%40thread.v2/0?context=%7b%22Tid%22%3a%22fcf67057-50c9-4ad4-98f3-ffca64add9e9%22%2c%22Oid%22%3a%22dad87919-9df2-42ae-ae08-b386dcdc75da%22%7d"
+           target="_blank"
+           style="display: inline-block; margin-top: 10px; padding: 10px 20px; background: #5b5fc7; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+          💻 Join Teams Meeting
+        </a>
+      </div>
 
-    <!-- Transportation Coordination -->
-    <div class="section">
-      <h2 class="section-title">🚐 Transportation Needs</h2>
-      <div id="transportationList" class="loading">Loading transportation info...</div>
+    </div>
+  </div>
+
+  <!-- Action Items -->
+  <div style="margin-top: 25px; padding: 20px; border: 2px dashed var(--border-color); border-radius: 10px; background: #fafafa;">
+    <h4 style="color: var(--primary-color); margin-bottom: 15px;">
+      ✅ Action Items
+    </h4>
+    <ul style="margin: 0; padding-left: 20px; line-height: 1.6;">
+	 <li>
+        <strong>Fill Out Survey By Jan 16 EOD </strong><br>
+       <a
+    href="https://www.surveymonkey.com/r/7T67D6B"
+    target="_blank"
+    rel="noopener"
+    style="display: inline-block; margin-top: 6px; padding: 6px 12px; background: var(--primary-color); color: #fff; text-decoration: none; border-radius: 4px; font-weight: bold;"
+  >
+    📋 Click Here to  Take the Survey
+  </a>
+      </li>
+      <li>
+        <strong>Pick a roommate</strong><br>
+        Confirm who you’ll be sharing accommodations with.
+      </li>
+      <li style="margin-top: 10px;">
+        <strong>Discuss flight details</strong><br>
+        Coordinate departure airport, arrival times, and booking plans.
+      </li>
+	    <li style="margin-top: 10px;">
+        <strong>Committees, Questions</strong><br>
+      </li>
+	  
+	  
+    </ul>
+  </div>
+
+</div>
+
+
+        <!-- Travel Estimates Section -->
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('estimates')">
+            <h3 class="subsection-title">💰 Travel Estimates</h3>
+            <span class="subsection-toggle" id="estimates-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="estimates-content">
+            
+            <!-- Summary Box -->
+            <div style="border: 3px solid var(--primary-color); border-radius: 15px; padding: 20px; margin-bottom: 25px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
+              <h4 style="color: var(--primary-color); margin-bottom: 10px; font-size: 1.3rem;">📊 Estimated Total Cost</h4>
+              <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary-dark); margin: 10px 0;">
+                $573 per person <span style="font-size: 1rem; font-weight: normal;">+ airfare</span>
+              </p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary); font-style: italic;">
+                Based on September 9-13, 2026 travel dates
+              </p>
+            </div>
+
+            <!-- Transportation -->
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px solid var(--primary-color); padding-bottom: 8px;">
+                🚐 Transportation
+              </h4>
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+                <div style="display: grid; gap: 10px;">
+                  <div><strong>Vehicle:</strong> 12-passenger van</div>
+                  <div><strong>Total Cost:</strong> $782.00</div>
+                  <div><strong>Per Person:</strong> <span style="color: var(--primary-color); font-weight: bold;">$78.20</span></div>
+                  <div><strong>Pickup Location:</strong> Airport</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lodging -->
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px solid var(--primary-color); padding-bottom: 8px;">
+                🏨 Lodging -  Split Stay Information
+              </h4>
+              
+              <!-- Split Stay Information -->
+              <div style="border: 3px solid var(--primary-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%); margin-bottom: 15px;">
+                <h5 style="color: var(--primary-color); margin-bottom: 10px;">📅 Accommodation Schedule</h5>
+                <div style="display: grid; gap: 10px;">
+                  <div><strong>🏨 Hotel Nights:</strong> September 9-10 </div>
+                  <div><strong>⛺ Tent Nights:</strong> September 10-12, 2026</div>
+				   <div><strong>🏨 Hotel Nights:</strong> September 12-13, 2026</div>
+                </div>
+              </div>
+
+              <!-- Hotel 1: September 9-10 -->
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white; margin-bottom: 15px;">
+                <h5 style="color: var(--primary-color); margin-bottom: 10px;">
+                  🏨 <a href="https://www.hilton.com/en/hotels/bznhtht-home2-suites-bozeman-midtown/" target="_blank" style="color: var(--primary-color); text-decoration: none;">Home2 Suites by Hilton Bozeman Midtown</a>
+                </h5>
+                <div style="display: grid; gap: 8px;">
+				   <div><strong>🏨 Night 1</strong> September 9-10 </div>
+                  <div><strong>Address:</strong> 1760 Baxter Ln, Bozeman, MT</div>
+                  <div><strong>Dates:</strong> September 9-10, 2026 (1 night)</div>
+                  <div><strong>Check-in:</strong> 3:00 PM | <strong>Check-out:</strong> 11:00 AM</div>
+                </div>
+              </div>
+			  
+			     <!-- Glamping Option -->
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+                <h5 style="color: var(--primary-color); margin-bottom: 10px;">⛺ Tent Deluxe</h5>
+                <div style="display: grid; gap: 8px;">
+				   <div><strong>⛺ Night 2 and 3:</strong> September 10-12, 2026</div>
+                  <div><strong>Dates:</strong> September 10-12, 2026 (2 nights)</div>
+                  <div><strong>Nightly Rate:</strong> $365.00</div>
+                  <div><strong>Occupancy:</strong> 2 persons</div>
+                  <div><strong>Per Person:</strong> <span style="color: var(--primary-color); font-weight: bold;">$365.00</span> (for 2 nights)</div>
+                </div>
+              </div>
+
+              <!-- Hotel 2: September 12-13 -->
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white; margin-bottom: 15px;">
+                <h5 style="color: var(--primary-color); margin-bottom: 10px;">
+                  🏨 <a href="https://www.hilton.com/en/hotels/bznbxhw-home2-suites-bozeman-four-corners/" target="_blank" style="color: var(--primary-color); text-decoration: none;">Home2 Suites By Hilton Bozeman Four Corners</a>
+                </h5>
+                <div style="display: grid; gap: 8px;">
+				   <div><strong>🏨 Night 4</strong> September 12-13, 2026 </div>
+                  <div><strong>Address:</strong> 110 Homestake Drive, Bozeman, MT 59718</div>
+                  <div><strong>Dates:</strong> September 12-13, 2026 (1 night)</div>
+                  <div><strong>Check-in:</strong> 3:00 PM | <strong>Check-out:</strong> 11:00 AM</div>
+                  <div style="margin-top: 5px; padding: 10px; background: #e7f3ff; border-radius: 5px;">
+                    <strong>ℹ️ Note:</strong> Different location from first hotel
+                  </div>
+                </div>
+              </div>
+
+              <div style="border: 2px solid #ffc107; border-radius: 10px; padding: 15px; background: #fff3cd; margin-bottom: 15px;">
+                <strong>💰 Total Hotel Cost:</strong> $358.00 per person (for both nights combined)<br>
+                <strong>⚠️ Payment Deadline:</strong> September 6, 2026
+              </div>
+
+           
+
+            </div>
+
+            <!-- Activities -->
+            <div style="margin-bottom: 25px;">
+              <h4 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px solid var(--primary-color); padding-bottom: 8px;">
+                🎯 Activities
+              </h4>
+              
+              <div style="display: grid; gap: 15px;">
+                <!-- White Water Rafting -->
+                <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+                  <h5 style="color: var(--primary-color); margin-bottom: 8px;">🌊 White Water Rafting</h5>
+                  <div><strong>Cost:</strong> <span style="color: var(--primary-color); font-weight: bold;">$164.00 per person</span></div>
+                </div>
+
+                <!-- Bike & Hike -->
+                <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+                  <h5 style="color: var(--primary-color); margin-bottom: 8px;">🚴 Bike & Hike to Osprey Falls</h5>
+                  <div style="display: grid; gap: 8px;">
+                    <div><strong>Tour Cost:</strong> $250.00 per person</div>
+                    <div><strong>3-Hour Rental:</strong> $95.00 per person</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- Notes -->
+            <div class="info-box">
+              <strong>📝 Notes:</strong>
+              <ul style="margin: 10px 0 0 20px;">
+                <li>All prices are estimates and subject to change</li>
+                <li>Activities are optional and not included in base cost</li>
+                <li>Final costs will be confirmed upon booking</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- What You Need to Decide Section -->
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('decisions')">
+            <h3 class="subsection-title">✅ What You Need to Decide</h3>
+            <span class="subsection-toggle" id="decisions-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="decisions-content">
+            
+            <div class="info-box" style="margin-bottom: 20px;">
+              <strong>📋 Important:</strong> Please make these decisions and submit your information as soon as possible to help with planning and reservations.
+            </div>
+
+            <!-- Decision Items -->
+            <div style="display: grid; gap: 20px;">
+              
+              <!-- 1. Tent Selection -->
+              <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 20px; background: white;">
+                <h4 style="color: var(--primary-color); margin-bottom: 15px;">
+                  ⛺ 1. Choose Your Tent Type
+                </h4>
+                <p style="margin-bottom: 10px;">Select which tent accommodation you prefer for September 10-12, 2026 (2 nights).</p>
+                <div style="padding: 10px; background: #f8f9fa; border-radius: 5px; margin-bottom: 10px;">
+                  <strong>Options:</strong> Stargazer, Deluxe, Suite, Yellowstone River, Tipi, Safari, or Family Tent
+                </div>
+                <a href="#tentOptionsDetails" onclick="openSectionAndScroll('lodging', 'tentOptionsDetails', event)" class="btn btn-secondary" style="display: inline-block; margin-top: 10px; text-decoration: none;">
+                  View Tent Options
+                </a>
+              </div>
+
+              <!-- 2. Roommate Selection -->
+              <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 20px; background: white;">
+                <h4 style="color: var(--primary-color); margin-bottom: 15px;">
+                  👥 2. Select Your Roommate(s)
+                </h4>
+                <p style="margin-bottom: 10px;">Decide who you'll be sharing your tent with (most tents accommodate 2 people).</p>
+                <a href="#roommateFormSection" onclick="openSectionAndScroll('roommate', 'roommateFormSection', event)" class="btn btn-secondary" style="display: inline-block; margin-top: 10px; text-decoration: none;">
+                  Submit Roommate Info
+                </a>
+              </div>
+
+              <!-- 3. Activities -->
+              <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 20px; background: white;">
+                <h4 style="color: var(--primary-color); margin-bottom: 15px;">
+                  🎯 3. Choose Your Activities
+                </h4>
+                <p style="margin-bottom: 10px;">Select which optional activities you'd like to participate in during the trip.</p>
+                <div style="padding: 10px; background: #f8f9fa; border-radius: 5px; margin-bottom: 10px;">
+                  <strong>Options:</strong> White Water Rafting ($164), Bike & Hike to Osprey Falls ($250 or $95 rental)
+                </div>
+                <a href="#activities-content" onclick="openSectionAndScroll('activities', 'activities-content', event)" class="btn btn-secondary" style="display: inline-block; margin-top: 10px; text-decoration: none;">
+                  View Activities
+                </a>
+              </div>
+
+              <!-- 4. Travel Plans -->
+              <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 20px; background: white;">
+                <h4 style="color: var(--primary-color); margin-bottom: 15px;">
+                  ✈️ 4. Book Your Flights
+                </h4>
+                <p style="margin-bottom: 10px;">Arrange your travel to/from Bozeman, Montana for September 9-13, 2026.</p>
+                <div style="padding: 10px; background: #fff3cd; border-radius: 5px; margin-bottom: 10px;">
+                  <strong>⚠️ Reminder:</strong> Coordinate arrival times for van pickup from the airport
+                </div>
+                <a href="#mytrip-content" onclick="openSectionAndScroll('mytrip', 'mytrip-content', event)" class="btn btn-secondary" style="display: inline-block; margin-top: 10px; text-decoration: none;">
+                  Book Your Flights
+                </a>
+              </div>
+
+              <!-- 5. Payment Deadline -->
+              <div style="border: 2px solid #ffc107; border-radius: 10px; padding: 20px; background: #fff3cd;">
+                <h4 style="color: #856404; margin-bottom: 15px;">
+                  💰 5. Payment Deadline
+                </h4>
+                <p style="margin-bottom: 10px; color: #856404;">
+                  <strong>Hotel payment due by:</strong> September 6, 2026
+                </p>
+                <p style="color: #856404; font-size: 0.9rem;">
+                  Payment details and instructions will be provided once all reservations are confirmed.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- Action Summary -->
+            <div style="margin-top: 25px; padding: 20px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%); border: 3px solid var(--primary-color); border-radius: 10px;">
+              <h4 style="color: var(--primary-color); margin-bottom: 15px;">📝 Quick Action Checklist</h4>
+              <ul style="margin-left: 20px; line-height: 1.8;">
+                <li>✅ Review tent options and pricing</li>
+                <li>✅ Confirm your roommate</li>
+                <li>✅ Select activities you want to join</li>
+                <li>✅ Book your flights to Bozeman</li>
+                <li>✅ Submit all your information using the forms on this page</li>
+                <li>✅ Mark your calendar for payment deadline</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tent  Options & Pricing - TEMPORARILY COMMENTED OUT -->
+        
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('lodging')">
+            <h3 class="subsection-title">🏕️ Tent Options & Pricing <span style="background: #ff4444; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; margin-left: 10px; font-weight: bold;">NEW INFO</span></h3>
+            <span class="subsection-toggle" id="lodging-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="lodging-content">
+
+          <p style="margin-bottom: 20px;"><em>Tent Stay: September 10-12, 2026 (2 nights)</em></p>
+
+          <!-- Campsite Map -->
+          <details style="margin-bottom: 30px;">
+            <summary style="cursor: pointer; padding: 12px 15px; background: #f0f0f0; color: var(--primary-color); border: 2px solid var(--border-color); border-radius: 8px; font-weight: normal; font-size: 1rem; text-align: center;">
+              📍 Under Canvas Yellowstone Campsite Map - Click to View
+            </summary>
+            <div style="margin-top: 15px; border: 3px solid var(--primary-color); border-radius: 10px; padding: 20px; background: white;">
+              <img src="map_.png"
+                   alt="Under Canvas Yellowstone Campsite Layout Map"
+                   style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 15px;">
+              
+              <!-- Collapsible Zoomed Map -->
+              <details style="margin-top: 10px;">
+                <summary style="cursor: pointer; padding: 10px; background: #f0f0f0; border-radius: 5px; color: var(--primary-color); font-weight: 500; font-size: 0.9rem;">
+                  ⛺ Map with Tent Grouping - Click Here
+                </summary>
+                <div style="margin-top: 10px; padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px;">
+                  <img src="map_zoom.png"
+                       alt="Under Canvas Yellowstone Campsite Layout Map - Zoomed View"
+                       style="width: 100%; height: auto; border-radius: 5px;">
+                </div>
+              </details>
+              
+              <!-- Collapsible Color Highlighted Map -->
+              <details style="margin-top: 10px;">
+                <summary style="cursor: pointer; padding: 10px; background: #f0f0f0; border-radius: 5px; color: var(--primary-color); font-weight: 500; font-size: 0.9rem;">
+                  🎨 Map with Color Highlighted - Click Here
+                </summary>
+                <div style="margin-top: 10px; padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px;">
+                  <img src="map2.png"
+                       alt="Under Canvas Yellowstone Campsite Layout Map - Color Highlighted"
+                       style="width: 100%; height: auto; border-radius: 5px;">
+                </div>
+              </details>
+              
+              <!-- Map Link -->
+              <div style="margin-top: 15px; text-align: center;">
+                <a href="https://www.undercanvas.com/camps/north-yellowstone/#tab-6-2"
+                   target="_blank"
+                   style="display: inline-block; padding: 10px 20px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 5px; font-weight: 500; font-size: 0.9rem;">
+                  🗺️ View Interactive Map on Under Canvas Website
+                </a>
+              </div>
+            </div>
+          </details>
+
+          <!-- Book Your Tent -->
+          <details id="bookYourTent" style="margin-bottom: 20px;">
+            <summary style="cursor: pointer; padding: 12px 15px; background: #f0f0f0; color: var(--primary-color); border: 2px solid var(--border-color); border-radius: 8px; font-weight: normal; font-size: 1rem; text-align: center;">
+              📞 Book Your Tent - Click to View Contact Info
+            </summary>
+            <div style="margin-top: 15px; padding: 20px; background: #f0f8ff; border: 2px solid var(--primary-color); border-radius: 8px;">
+              <h5 style="color: var(--primary-dark); margin-bottom: 15px; text-align: center;">Contact Tavia to Book</h5>
+              <div style="text-align: center; font-size: 0.95rem;">
+                <p style="margin: 5px 0;">
+                  <strong>Phone:</strong> <a href="tel:+18884961148,049" style="color: var(--primary-color); text-decoration: none;">1-888-496-1148 ext. 049</a>
+                </p>
+                <p style="margin: 5px 0;">
+                  <strong>Email:</strong> <a href="mailto:tavia.neal@undercanvas.com" style="color: var(--primary-color); text-decoration: none;">tavia.neal@undercanvas.com</a>
+                </p>
+                <p style="margin: 10px 0 0 0; font-style: italic; color: var(--text-secondary); font-size: 0.9rem;">
+                  Ask for Tavia when booking for our group
+                </p>
+                <p style="margin: 15px 0 0 0;">
+                  <a href="https://www.undercanvas.com/camps/north-yellowstone/" target="_blank" style="display: inline-block; padding: 10px 20px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                    🏕️ Book on Under Canvas Website
+                  </a>
+                </p>
+              </div>
+            </div>
+          </details>
+
+          <!-- Tent Options Collapsible -->
+          <details id="tentOptionsDetails" style="margin-bottom: 20px;">
+            <summary style="cursor: pointer; padding: 12px 15px; background: #f0f0f0; color: var(--primary-color); border: 2px solid var(--border-color); border-radius: 8px; font-weight: normal; font-size: 1rem; text-align: center;">
+              ⛺ Tent Options - Click to View All Options
+            </summary>
+            <div style="margin-top: 15px; display: grid; gap: 15px;">
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">⛺ Delux Tent - $365.00/Night</h4>
+                <ul style="margin-left: 20px; font-size: 0.95rem;">
+                  <li>One King Bed</li>
+                  <li>One Bath - toilet, sep shower, sep sink</li>
+                  <li>All within the tent</li>
+                </ul>
+              </div>
+
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">⛺ Delux Tent w/ Kids Tent - $530.00/Night</h4>
+                <ul style="margin-left: 20px; font-size: 0.95rem;">
+                  <li>One King Bed, separate but adjacent Kids tent w/ 2 Twin Beds</li>
+                  <li>One Bath - toilet, sep shower, sep sink</li>
+                  <li>All within the tent</li>
+                  <li style="color: #ff6b6b; font-weight: bold;">⚠️ Note: Kids tent does not have heat</li>
+                </ul>
+              </div>
+
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">⭐ Stargazer Tent - $435.00/Night</h4>
+                <ul style="margin-left: 20px; font-size: 0.95rem;">
+                  <li>One King Bed & a night sky viewing window</li>
+                  <li>Private ensuite bathroom</li>
+                </ul>
+              </div>
+
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">⭐ Stargazer Tent w/ Kids Tent - $609.00/Night</h4>
+                <ul style="margin-left: 20px; font-size: 0.95rem;">
+                  <li>One King Bed & night sky viewing window</li>
+                  <li>Separate Kids tent with beds</li>
+                  <li>Private ensuite bathroom</li>
+                  <li style="color: #ff6b6b; font-weight: bold;">⚠️ Note: Kids tent does not have heat</li>
+                </ul>
+              </div>
+
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">🌟 Suite Tent - $480.00/Night</h4>
+                <ul style="margin-left: 20px; font-size: 0.95rem;">
+                  <li>Same as Stargazer but also has a queen sofa bed</li>
+                </ul>
+              </div>
+
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">🌟 Suite Tent w/ Kids Tent - $662.00/Night</h4>
+                <ul style="margin-left: 20px; font-size: 0.95rem;">
+                  <li>Suite tent with queen sofa bed</li>
+                  <li>Separate Kids tent</li>
+                  <li style="color: #ff6b6b; font-weight: bold;">⚠️ Note: Kids tent does not have heat</li>
+                </ul>
+              </div>
+
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+                <h4 style="color: var(--primary-color); margin-bottom: 10px;">🏞️ Yellowstone River Suite - $1,080.00/Night</h4>
+                <ul style="margin-left: 20px; font-size: 0.95rem;">
+                  <li>2 Suite Tents, 2 Delux Tents w/ 2 Twin Beds</li>
+                  <li>Connected by an expansive private deck</li>
+                  <li>Yellowstone River Cabin - $480/Night</li>
+                  <li>Alder Stargazer</li>
+                </ul>
+              </div>
+
+              <div class="info-box" style="margin-top: 20px;">
+                <strong>📝 Note:</strong> Prices are per night and subject to change. Final dates and total costs will be confirmed soon.
+              </div>
+            </div>
+          </details>
+          </div>
+        </div>
+
+        <!-- Cost & Payment - HIDDEN FOR NOW -->
+        <!-- Uncomment when ready to show payment details
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('payment')">
+            <h3 class="subsection-title">💰 Payment Details</h3>
+            <span class="subsection-toggle" id="payment-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="payment-content">
+          
+          <h4 style="color: var(--primary-dark);">Payment Schedule (TBD):</h4>
+          <ul style="margin-left: 20px; margin-top: 10px;">
+            <li><strong>Deposit:</strong> Amount & due date TBD</li>
+            <li><strong>Second Payment:</strong> Amount & due date TBD</li>
+            <li><strong>Final Payment:</strong> Amount & due date TBD</li>
+          </ul>
+
+          <h4 style="margin-top: 20px; color: var(--primary-dark);">Payment Methods:</h4>
+          <ul style="margin-left: 20px; margin-top: 10px;">
+            <li><strong>Zelle:</strong> Details TBD</li>
+            <li><strong>Cash App:</strong> Details TBD</li>
+            <li><strong>Venmo:</strong> Details TBD</li>
+          </ul>
+          </div>
+        </div>
+        -->
+
+        <!-- Update Your Roommate -->
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('roommate')">
+            <h3 class="subsection-title">👥 Update Your Roommate & Tent Info</h3>
+            <span class="subsection-toggle" id="roommate-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="roommate-content">
+            
+            <!-- Link to Dashboard -->
+            <div style="margin-bottom: 25px; padding: 20px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%); border: 3px solid var(--primary-color); border-radius: 15px; text-align: center;">
+              <h4 style="color: var(--primary-dark); margin-bottom: 10px;">👥 View All Roommate Assignments</h4>
+              <p style="color: var(--text-secondary); margin-bottom: 15px;">See who's rooming with whom and tent assignments</p>
+              <a href="trip-dashboard.html" class="btn btn-primary" style="display: inline-block; text-decoration: none; padding: 15px 30px; font-size: 1.1rem;">
+                📊 Go to Trip Dashboard
+              </a>
+            </div>
+
+            <!-- Roommate & Tent Reservation Form -->
+            <div id="roommateFormSection">
+              <h4 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px solid var(--primary-color); padding-bottom: 8px;">
+                📝 Submit Roommate & Tent Details
+              </h4>
+              
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: white;">
+                <div style="padding: 12px; background: #e7f3ff; border-left: 4px solid #2196f3; border-radius: 5px; margin-bottom: 20px;">
+                  <strong>💡 Note:</strong> Only fill out fields for people in your tent (up to 4 people).
+                </div>
+                <form id="roommateForm" style="display: grid; gap: 15px;">
+                  
+                  <!-- Tent Confirmation Number -->
+                  <div>
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold; color: var(--primary-dark);">
+                      Tent Confirmation Number: <span style="color: red;">*</span>
+                    </label>
+                    <input type="text" id="confirmationNumber" required
+                           style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem;"
+                           placeholder="Enter your tent booking confirmation number">
+                  </div>
+
+                  <!-- Tent Type -->
+                  <div>
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold; color: var(--primary-dark);">
+                      Tent Type: <span style="color: red;">*</span>
+                    </label>
+                    <select id="tentType" required
+                            style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem;">
+                      <option value="">Select tent type</option>
+                      <option value="Delux Tent">⛺ Delux Tent</option>
+                      <option value="Delux Tent w/ Kids Tent">⛺ Delux Tent w/ Kids Tent</option>
+                      <option value="Stargazer Tent">⭐ Stargazer Tent</option>
+                      <option value="Stargazer Tent w/ Kids Tent">⭐ Stargazer Tent w/ Kids Tent</option>
+                      <option value="Suite Tent">🌟 Suite Tent</option>
+                      <option value="Suite Tent w/ Kids Tent">🌟 Suite Tent w/ Kids Tent</option>
+                      <option value="Yellowstone River Suite">🏞️ Yellowstone River Suite</option>
+                    </select>
+                  </div>
+
+                  <!-- Roommates -->
+                  <div style="border-top: 2px solid var(--border-color); padding-top: 15px;">
+                    <h5 style="color: var(--primary-color); margin-bottom: 15px;">👥 Roommate Names</h5>
+                    <div style="display: grid; gap: 10px;">
+                      <input type="text" id="roommate1Name" required
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Roommate 1 (You) - Full Name *">
+                      <input type="text" id="roommate2Name"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Roommate 2 - Full Name">
+                      <input type="text" id="roommate3Name"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Roommate 3 - Full Name (Optional)">
+                      <input type="text" id="roommate4Name"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Roommate 4 - Full Name (Optional)">
+                    </div>
+                  </div>
+
+                  <!-- Additional Notes -->
+                  <div>
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold; color: var(--primary-dark);">
+                      Additional Notes (Optional)
+                    </label>
+                    <textarea id="additionalNotes" rows="3"
+                              style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem; font-family: inherit;"
+                              placeholder="Any special requests or information..."></textarea>
+                  </div>
+
+                  <!-- Submit Button -->
+                  <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 1.1rem;">
+                    ✅ Save Roommate Details
+                  </button>
+
+                  <p style="font-size: 0.9rem; color: var(--text-secondary); text-align: center; margin: 0;">
+                    Your information will be saved and displayed below
+                  </p>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Activities & Excursions -->
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('activities')">
+            <h3 class="subsection-title">🎯 Activities & Excursions <span style="background: #ff4444; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; margin-left: 10px; font-weight: bold;">NEW INFO</span></h3>
+            <span class="subsection-toggle" id="activities-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="activities-content">
+          <p style="margin-bottom: 20px;">Choose your adventure! Here are some exciting activities available:</p>
+
+          <div style="display: grid; gap: 15px;">
+            
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <h5 style="color: var(--primary-color); margin-bottom: 10px;">🌊 Group Whitewater Rafting - 18 Mile</h5>
+              <div style="display: grid; gap: 8px;">
+                <div><strong>💰 Price:</strong> $164.00 per person</div>
+                <div><strong>⏱️ Duration:</strong> 5-6 hours (stops & cafe for lunch)</div>
+                <div><strong>📍 Location:</strong> Yellowstone River</div>
+                <div style="margin-top: 5px; font-style: italic; color: var(--text-secondary);">
+                  Experience the thrill of whitewater rafting through stunning Yellowstone scenery!
+                </div>
+              </div>
+            </div>
+            
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <h5 style="color: var(--primary-color); margin-bottom: 8px;">🛶 Private Yellowstone River Luxury Float</h5>
+              <p style="font-size: 0.95rem; margin-bottom: 8px;">
+                <strong>Price:</strong> $644.00 | <strong>Duration:</strong> 2.5 hours<br>
+                <strong>Location:</strong> Yellowstone River
+              </p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">Relaxing scenic float through pristine wilderness</p>
+            </div>
+
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <h5 style="color: var(--primary-color); margin-bottom: 8px;">🐴 Group Horseback Ride</h5>
+              <p style="font-size: 0.95rem; margin-bottom: 8px;">
+                <strong>Price:</strong> $244.00 per person | <strong>Duration:</strong> 2 hrs<br>
+                <strong>Location:</strong> Absaroka-Beartooth Wilderness
+              </p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">Explore the wilderness on horseback</p>
+            </div>
+
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <h5 style="color: var(--primary-color); margin-bottom: 8px;">🦬 Yellowstone Park Tours</h5>
+              <p style="font-size: 0.95rem; margin-bottom: 8px;">
+                See geysers, hot springs, wildlife (bison, elk, bears), and iconic landmarks
+              </p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">Details and pricing TBD</p>
+            </div>
+
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <h5 style="color: var(--primary-color); margin-bottom: 8px;">🥾 Hiking & Nature Walks</h5>
+              <p style="font-size: 0.95rem; margin-bottom: 8px;">
+                Various trails for all skill levels
+              </p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">Free - explore at your own pace</p>
+            </div>
+
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <h5 style="color: var(--primary-color); margin-bottom: 8px;">📸 Photography Tours</h5>
+              <p style="font-size: 0.95rem; margin-bottom: 8px;">
+                Capture stunning landscapes and wildlife
+              </p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">Details TBD</p>
+            </div>
+
+          </div>
+
+            <div class="warning-box" style="margin-top: 20px;">
+              <strong>📝 Note:</strong> Activities are optional and not included in base lodging cost. Book activities that interest you! More details and booking information coming soon.
+
+            <!-- Activity Suggestions Section -->
+            <div style="margin-top: 30px; border: 2px solid var(--border-color); border-radius: 10px; background: white;">
+              <details style="cursor: pointer;">
+                <summary style="padding: 15px; font-weight: bold; color: var(--primary-color); font-size: 1.1rem; list-style: none;">
+                  <span style="display: inline-block;">💡 Suggest an Activity (Click to expand)</span>
+                </summary>
+                <div style="padding: 20px; border-top: 1px solid var(--border-color);">
+                  <p style="margin-bottom: 20px; color: var(--text-secondary);">
+                    Have an activity idea? Share it with the group! Your suggestions will be displayed below for everyone to see.
+                  </p>
+
+              <!-- Link to Dashboard -->
+              <div style="margin-bottom: 25px; padding: 20px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%); border: 3px solid var(--primary-color); border-radius: 15px; text-align: center;">
+                <h5 style="color: var(--primary-dark); margin-bottom: 10px;">🎯 View All Activity Suggestions</h5>
+                <p style="color: var(--text-secondary); margin-bottom: 15px;">See what activities others have suggested and who wants to join</p>
+                <a href="trip-dashboard.html" class="btn btn-primary" style="display: inline-block; text-decoration: none; padding: 15px 30px; font-size: 1.1rem;">
+                  📊 Go to Trip Dashboard
+                </a>
+              </div>
+
+              <!-- Activity Suggestion Form -->
+              <form id="activitySuggestionForm" style="display: grid; gap: 15px;">
+                
+                <!-- Location Selection -->
+                <div>
+                  <label style="display: block; margin-bottom: 5px; font-weight: bold; color: var(--primary-dark);">
+                    📍 Activity Location: <span style="color: red;">*</span>
+                  </label>
+                  <select id="activityLocation" required 
+                          style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem;">
+                    <option value="">Select location</option>
+                    <option value="bozeman">📍 Bozeman Area</option>
+                    <option value="yellowstone">🏞️ Yellowstone Park Area</option>
+                  </select>
+                </div>
+
+                <!-- Activity Name -->
+                <div>
+                  <label style="display: block; margin-bottom: 5px; font-weight: bold; color: var(--primary-dark);">
+                    Activity Name: <span style="color: red;">*</span>
+                  </label>
+                  <input type="text" id="activityName" required 
+                         style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem;"
+                         placeholder="e.g., Hot Springs Visit, Museum Tour, etc.">
+                </div>
+
+                <!-- Activity Description -->
+                <div>
+                  <label style="display: block; margin-bottom: 5px; font-weight: bold; color: var(--primary-dark);">
+                    Description: <span style="color: red;">*</span>
+                  </label>
+                  <textarea id="activityDescription" required rows="3"
+                            style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem; font-family: inherit;"
+                            placeholder="Describe the activity and why you think the group would enjoy it..."></textarea>
+                </div>
+
+                <!-- Estimated Cost (Optional) -->
+                <div>
+                  <label style="display: block; margin-bottom: 5px; font-weight: bold; color: var(--primary-dark);">
+                    Estimated Cost (Optional)
+                  </label>
+                  <input type="text" id="activityCost" 
+                         style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem;"
+                         placeholder="e.g., $50 per person, Free, etc.">
+                </div>
+
+                <!-- Website/Link (Optional) -->
+                <div>
+                  <label style="display: block; margin-bottom: 5px; font-weight: bold; color: var(--primary-dark);">
+                    Website or Link (Optional)
+                  </label>
+                  <input type="url" id="activityLink" 
+                         style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem;"
+                         placeholder="https://...">
+                </div>
+
+                <!-- Your Name -->
+                <div>
+                  <label style="display: block; margin-bottom: 5px; font-weight: bold; color: var(--primary-dark);">
+                    Your Name: <span style="color: red;">*</span>
+                  </label>
+                  <input type="text" id="suggesterName" required 
+                         style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem;"
+                         placeholder="Your name">
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 1.1rem;">
+                  ✨ Submit Activity Suggestion
+                </button>
+
+                <p style="font-size: 0.9rem; color: var(--text-secondary); text-align: center; margin: 0;">
+                  Your suggestion will be displayed below and emailed to the link admin
+                </p>
+              </form>
+                </div>
+              </details>
+            </div>
+          </div>
+          </div>
+        </div>
+
+
+        <!-- My Trip Details & Itinerary Generator -->
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('mytrip')">
+            <h3 class="subsection-title">✈️ My Trip Details</h3>
+            <span class="subsection-toggle" id="mytrip-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="mytrip-content">
+            <p style="margin-bottom: 20px; color: var(--text-secondary);">
+              Fill out your personal trip information below. Once complete, you can download a personalized Word document with all your trip details, hotel addresses, and important information in one place!
+            </p>
+
+            <!-- Form -->
+            <form id="tripDetailsForm" style="display: grid; gap: 20px;">
+              
+              <!-- User Identification Section -->
+              <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 20px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
+                <h4 style="color: var(--primary-dark); margin-bottom: 15px;">👤 Your Information</h4>
+                <div style="display: grid; gap: 10px;">
+                  <label style="font-weight: bold; color: var(--primary-dark);">
+                    Select Your Name: <span style="color: red;">*</span>
+                  </label>
+                  <select id="tripUserName" required
+                          style="width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem;">
+                    <option value="">-- Select your name --</option>
+                  </select>
+                  <input type="hidden" id="tripUserId">
+                </div>
+              </div>
+
+              <!-- Flight Information Section -->
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
+                <h4 style="color: var(--primary-dark); margin-bottom: 15px;">✈️ Flight Information</h4>
+                
+                <div style="display: grid; gap: 15px;">
+                  <!-- Outbound Flight -->
+                  <div>
+                    <h5 style="color: var(--secondary-color); margin-bottom: 10px;">Outbound Flight</h5>
+                    <div style="display: grid; gap: 10px;">
+                      <input type="text" id="outboundDepartureCity"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Departure City (e.g., Atlanta, GA)">
+                      <input type="text" id="outboundArrivalCity"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Arrival City (Bozeman, MT)">
+                      <input type="text" id="outboundAirline"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Airline (e.g., Delta, United)">
+                      <input type="text" id="outboundFlightNumber"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Flight Number (e.g., DL1234)">
+                      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <input type="datetime-local" id="outboundDeparture"
+                               style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                               placeholder="Departure Date/Time">
+                        <input type="datetime-local" id="outboundArrival"
+                               style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                               placeholder="Arrival Date/Time">
+                      </div>
+                      <input type="text" id="outboundConfirmation"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Confirmation Number">
+                    </div>
+                  </div>
+
+                  <!-- Return Flight -->
+                  <div>
+                    <h5 style="color: var(--secondary-color); margin-bottom: 10px;">Return Flight</h5>
+                    <div style="display: grid; gap: 10px;">
+                      <input type="text" id="returnDepartureCity"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Departure City (Bozeman, MT)">
+                      <input type="text" id="returnArrivalCity"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Arrival City (e.g., Atlanta, GA)">
+                      <input type="text" id="returnAirline"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Airline (e.g., Delta, United)">
+                      <input type="text" id="returnFlightNumber"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Flight Number (e.g., DL5678)">
+                      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <input type="datetime-local" id="returnDeparture"
+                               style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                               placeholder="Departure Date/Time">
+                        <input type="datetime-local" id="returnArrival"
+                               style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                               placeholder="Arrival Date/Time">
+                      </div>
+                      <input type="text" id="returnConfirmation"
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Confirmation Number">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tent Selection -->
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
+                <h4 style="color: var(--primary-dark); margin-bottom: 15px;">🏕️ Tent Selection</h4>
+                <select id="selectedTent"
+                        style="width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem; margin-bottom: 10px;">
+                  <option value="">Select your tent type</option>
+                  <option value="Stargazer">Stargazer Tent</option>
+                  <option value="Deluxe">Deluxe Tent</option>
+                  <option value="Suite">Suite Tent</option>
+                  <option value="Yellowstone River">Yellowstone River Tent</option>
+                  <option value="Tipi">Tipi Tent</option>
+                  <option value="Safari">Safari Tent</option>
+                  <option value="Family">Family Tent</option>
+                </select>
+                <input type="number" id="tentPricePerPerson"
+                       style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                       placeholder="Price per person (e.g., 550)" min="0" step="0.01">
+              </div>
+
+              <!-- Transportation Needs Section -->
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
+                <h4 style="color: var(--primary-dark); margin-bottom: 15px;">🚐 Transportation</h4>
+                <div style="display: grid; gap: 15px;">
+                  <div>
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                      <input type="checkbox" id="needsAirportPickup" style="width: 20px; height: 20px;">
+                      <span style="font-weight: bold;">I need airport pickup</span>
+                    </label>
+                  </div>
+                  <div>
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                      <input type="checkbox" id="willingToRentCar" style="width: 20px; height: 20px;">
+                      <span style="font-weight: bold;">I'm willing to rent a car</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Special Requests Section -->
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
+                <h4 style="color: var(--primary-dark); margin-bottom: 15px;">💬 Special Requests</h4>
+                <textarea id="specialRequests" rows="4"
+                          style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-family: inherit; font-size: 1rem;"
+                          placeholder="Any dietary restrictions, accessibility needs, or other special requests..."></textarea>
+              </div>
+
+            <!-- Action Buttons -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+              <button type="button" onclick="submitFlightDetails()" class="btn btn-primary" style="padding: 15px; font-size: 1.1rem;">
+                📧 Submit to Admin
+              </button>
+              <button type="button" onclick="downloadTripItinerary()" class="btn btn-secondary" style="padding: 15px; font-size: 1.1rem;">
+                📥 Download Itinerary
+              </button>
+            </div>
+
+            <div class="info-box" style="margin-top: 10px;">
+              <strong>📝 Note:</strong> Click "Submit to Admin" to email your flight details to the organizer. The itinerary download includes all your trip information.
+            </div>
+          </form>
+        </div>
+
+        <!-- Itinerary - HIDDEN FOR NOW -->
+        <!-- Uncomment when ready to show itinerary
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('itinerary')">
+            <h3 class="subsection-title">📋 Itinerary</h3>
+            <span class="subsection-toggle" id="itinerary-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="itinerary-content">
+            <div class="info-box">
+              <strong>🗓️ Detailed schedule coming soon!</strong><br>
+              <em>We're working on an amazing itinerary filled with adventure, relaxation, and sisterhood. Check back for updates!</em>
+            </div>
+          </div>
+        </div>
+        -->
+
+        <!-- Packing Suggestions - HIDDEN FOR NOW -->
+        <!-- Uncomment when ready to show packing list
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('packing')">
+            <h3 class="subsection-title">🎒 Packing Suggestions</h3>
+            <span class="subsection-toggle" id="packing-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="packing-content">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+            <div>
+              <h4 style="color: var(--primary-color);">Clothing</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>Layers (mornings/evenings are cool)</li>
+                <li>Comfortable hiking shoes</li>
+                <li>Rain jacket</li>
+                <li>Sun hat & sunglasses</li>
+                <li>Casual evening wear</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="color: var(--primary-color);">Essentials</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>Sunscreen & bug spray</li>
+                <li>Reusable water bottle</li>
+                <li>Camera/phone charger</li>
+                <li>Personal medications</li>
+                <li>Toiletries</li>
+              </ul>
+            </div>
+          </div>
+          <p style="margin-top: 15px;"><em>Full packing list will be provided closer to trip date.</em></p>
+          </div>
+        </div>
+        -->
+
+
+      </div>
     </div>
 
   </div>
 
+  <!-- Add/Edit Contact Modal -->
+  <div class="modal" id="contactModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle">Add Your Contact Info</h2>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+      <form id="contactForm" onsubmit="submitContactToAdmin(event)">
+        <input type="hidden" id="contactId">
+        
+        <div class="form-group">
+          <label class="form-label" for="contactName">Name *</label>
+          <input type="text" id="contactName" class="form-input" required placeholder="Enter your name">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactEmail">Email *</label>
+          <input type="email" id="contactEmail" class="form-input" required placeholder="your.email@example.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactAddress">Street Address</label>
+          <input type="text" id="contactAddress" class="form-input" placeholder="123 Main Street">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactCity">City</label>
+          <input type="text" id="contactCity" class="form-input" placeholder="City">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactState">State</label>
+          <input type="text" id="contactState" class="form-input" placeholder="State">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactZip">ZIP Code</label>
+          <input type="text" id="contactZip" class="form-input" placeholder="12345">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactPhone">Phone Number</label>
+          <input type="tel" id="contactPhone" class="form-input" placeholder="(555) 123-4567">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactBirthday">Birthday (Month & Day)</label>
+          <input type="text" id="contactBirthday" class="form-input" placeholder="MM/DD (e.g., 03/15)" pattern="(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])">
+          <small style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 5px; display: block;">Format: MM/DD (e.g., 03/15 for March 15th)</small>
+        </div>
+
+        <div class="action-buttons">
+          <button type="submit" class="btn btn-primary">📧 Submit</button>
+          <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script>
-    // Load all data when page loads
-    document.addEventListener('DOMContentLoaded', function() {
-      loadParticipants();
-      loadFlights();
-      loadRoommates();
-      loadActivities();
-      loadTransportation();
-      updateStatistics();
+    // Default contacts embedded in HTML
+    const defaultContacts = [
+      { id: 1, name: "Errin", email: "errinmccomb@gmail.com", address: "14 Coan Street", city: "Greenville", state: "SC", zip: "29617", phone: "", birthday: "" },
+      { id: 2, name: "Melanie", email: "melaniebullock@yahoo.com", address: "3703 Burt Drive", city: "Raleigh", state: "NC", zip: "27606", phone: "", birthday: "" },
+      { id: 3, name: "Summer", email: "summer0316@example.com", address: "2408 Dulair Road", city: "Greensboro", state: "NC", zip: "27407", phone: "", birthday: "" },
+      { id: 4, name: "Dana", email: "missdana213@gmail.com", address: "8030 Stillmist Drive", city: "Fairburn", state: "Georgia", zip: "30213", phone: "", birthday: "" },
+      { id: 5, name: "Vernet", email: "vernet1@gmail.com", address: "105 Shadburn Ferry Rd", city: "Buford", state: "GA", zip: "30518", phone: "", birthday: "" },
+      { id: 6, name: "Monshaire", email: "mdfikes@gmail.com", address: "PO Box 6213", city: "Florence", state: "SC", zip: "29502", phone: "", birthday: "" },
+      { id: 7, name: "Tamika F.", email: "tamikalfrancis@gmail.com", address: "225 Riverdell North Mews", city: "Lancaster", state: "TX", zip: "75146", phone: "", birthday: "" },
+      { id: 8, name: "Tamika", email: "DST894@hotmail.com", address: "8304 Flat Keystone Drive", city: "Raleigh", state: "NC", zip: "", phone: "", birthday: "" },
+      { id: 9, name: "Tephia Lindsay", email: "tephia25@yahoo.com", address: "8612-202 Olde Station Dr.", city: "Raleigh", state: "NC", zip: "27615", phone: "", birthday: "" },
+      { id: 10, name: "Janita", email: "freshnclean9@gmail.com", address: "PO Box 415", city: "Wendell", state: "NC", zip: "27591", phone: "", birthday: "" },
+      { id: 11, name: "Carolyn", email: "carolyn@example.com", address: "", city: "", state: "Texas", zip: "", phone: "", birthday: "" },
+      { id: 12, name: "Sherri", email: "sherribelklaw@gmail.com", address: "143 Skylark Way", city: "Raleigh", state: "NC", zip: "27615", phone: "", birthday: "" },
+      { id: 13, name: "Michelle", email: "michelleyfoxx@yahoo.com", address: "11682 Mustang Creek Ct", city: "Waldorf", state: "Maryland", zip: "20602", phone: "", birthday: "" },
+      { id: 14, name: "Joeshun", email: "Joeshun@example.com", address: "", city: "", state: "", zip: "", phone: "", birthday: "" },
+      { id: 15, name: "Nicole", email: "kilpatrickn39@gmail.com", address: "141 Bayleigh Court", city: "Garner", state: "NC", zip: "27529", phone: "", birthday: "" },
+      { id: 16, name: "Rochelle", email: "iamadelta@yahoo.com", address: "9904 Orchard Grass Court", city: "Charlotte", state: "NC", zip: "28278", phone: "", birthday: "" }
+    ];
+
+    let contactsData = [];
+
+    // Load contacts from JSON file or use defaults
+    async function initializeContacts() {
+      try {
+        const response = await fetch('whosgoing.json?t=' + Date.now()); // Cache-busting
+        if (response.ok) {
+          contactsData = await response.json();
+          // Save to localStorage with timestamp
+          const dataWithTimestamp = {
+            data: contactsData,
+            timestamp: Date.now(),
+            source: 'whosgoing.json'
+          };
+          localStorage.setItem('spring94Contacts', JSON.stringify(dataWithTimestamp));
+          console.log('✅ Loaded contacts from whosgoing.json:', contactsData.length, 'people');
+        } else {
+          throw new Error('JSON file not found');
+        }
+      } catch (error) {
+        console.warn('⚠️ Could not load whosgoing.json, using localStorage backup:', error.message);
+        // Use localStorage as emergency backup
+        const stored = localStorage.getItem('spring94Contacts');
+        if (stored) {
+          try {
+            const parsed = JSON.parse(stored);
+            // Check if it's the new format with timestamp
+            if (parsed.data && parsed.timestamp) {
+              contactsData = parsed.data;
+              const age = Math.floor((Date.now() - parsed.timestamp) / (1000 * 60 * 60 * 24));
+              console.log(`📦 Using cached data from ${parsed.source} (${age} days old)`);
+            } else {
+              // Old format without timestamp
+              contactsData = parsed;
+              console.log('📦 Using cached data (unknown age)');
+            }
+          } catch (e) {
+            contactsData = defaultContacts;
+          }
+        } else {
+          // Use default contacts as last resort
+          contactsData = defaultContacts;
+          console.log('📋 Using default contacts');
+        }
+      }
+      loadContacts();
+    }
+
+    // Load and display contacts
+    function loadContacts() {
+      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      const grid = document.getElementById('contacts-grid');
+      
+      if (contacts.length === 0) {
+        grid.innerHTML = '<p class="text-center">No contacts yet. Click "Add Your Contact Info" to get started!</p>';
+        return;
+      }
+
+      grid.innerHTML = contacts.map(contact => `
+        <div class="contact-card">
+          <div class="contact-name">${contact.name}</div>
+          ${contact.birthday ? `<div class="contact-info">🎂 ${formatBirthday(contact.birthday)}</div>` : ''}
+          ${contact.address ? `<div class="contact-info">📍 ${contact.address}</div>` : ''}
+          ${contact.city || contact.state || contact.zip ? `<div class="contact-info">${[contact.city, contact.state, contact.zip].filter(Boolean).join(', ')}</div>` : ''}
+          ${contact.phone ? `<div class="contact-info">📞 ${contact.phone}</div>` : ''}
+          <div class="contact-info">
+            <a href="mailto:${contact.email}" class="contact-email">✉️ ${contact.email}</a>
+          </div>
+          <div class="action-buttons">
+            <button class="edit-btn" onclick="editContact(${contact.id})">✏️ Edit</button>
+            <button class="delete-btn" onclick="deleteContact(${contact.id})">🗑️ Delete</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Format birthday for display
+    function formatBirthday(birthday) {
+      if (!birthday) return '';
+      // Handle MM/DD format
+      const parts = birthday.split('/');
+      if (parts.length === 2) {
+        const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                       'July', 'August', 'September', 'October', 'November', 'December'];
+        const month = parseInt(parts[0]) - 1;
+        const day = parseInt(parts[1]);
+        if (month >= 0 && month < 12 && day >= 1 && day <= 31) {
+          return `${months[month]} ${day}`;
+        }
+      }
+      return birthday;
+    }
+
+    // Print page function
+    function printPage() {
+      // Expand all sections before printing
+      const allContent = document.querySelectorAll('.subsection-content');
+      const allIcons = document.querySelectorAll('.subsection-toggle');
+      
+      allContent.forEach(content => content.classList.add('expanded'));
+      allIcons.forEach(icon => icon.classList.add('expanded'));
+      
+      // Wait a moment for sections to expand, then print
+      setTimeout(() => {
+        window.print();
+      }, 300);
+    }
+
+    // Smooth scroll to section and expand it
+    function scrollToSection(sectionId, event) {
+      if (event) event.preventDefault();
+      
+      // Map of subsections to their parent sections
+      const parentSections = {
+        'estimates': 'trips',
+        'lodging': 'trips',
+        'roommate': 'trips',
+        'actionitems': 'trips',
+        'payment': 'trips',
+        'activities': 'trips',
+        'importantlinks': 'trips',
+        'tripdetails': 'trips',
+        'itinerary': 'trips',
+        'packing': 'trips'
+      };
+      
+      // First, open parent section if this is a subsection
+      if (parentSections[sectionId]) {
+        const parentContent = document.getElementById(`${parentSections[sectionId]}-content`);
+        if (parentContent && (!parentContent.style.display || parentContent.style.display === 'none')) {
+          toggleSection(parentSections[sectionId]);
+        }
+      }
+      
+      // Now handle the target section
+      let content = document.getElementById(`${sectionId}-content`);
+      let icon = document.getElementById(`${sectionId}-toggle`) || document.getElementById(`${sectionId}-icon`);
+      
+      if (!content) {
+        console.error(`Section ${sectionId}-content not found`);
+        return;
+      }
+      
+      // For main sections, use toggleSection
+      if (sectionId === 'contacts' || sectionId === 'email' || sectionId === 'photos' || sectionId === 'trips') {
+        if (!content.style.display || content.style.display === 'none') {
+          toggleSection(sectionId);
+        }
+      } else {
+        // For subsections, expand if not already expanded
+        if (icon && !content.classList.contains('expanded')) {
+          content.classList.add('expanded');
+          icon.classList.add('expanded');
+        }
+      }
+      
+      // Smooth scroll to the section
+      setTimeout(() => {
+        content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 200);
+    }
+
+    // Smooth scroll to a specific element (like a form)
+    function scrollToElement(elementId, event) {
+      if (event) event.preventDefault();
+      
+      const element = document.getElementById(elementId);
+      if (!element) {
+        console.error(`Element ${elementId} not found`);
+        return;
+      }
+      
+      // Open all parent <details> elements
+      let currentElement = element;
+      while (currentElement) {
+        if (currentElement.tagName === 'DETAILS') {
+          currentElement.setAttribute('open', '');
+        }
+        currentElement = currentElement.parentElement;
+      }
+      
+      // Find and expand parent sections if needed
+      let parent = element.closest('.subsection-content');
+      if (parent) {
+        // Get the subsection ID from the parent
+        const subsectionId = parent.id.replace('-content', '');
+        
+        // Check if this subsection has a parent section
+        const parentSections = {
+          'estimates': 'trips',
+          'decisions': 'trips',
+          'lodging': 'trips',
+          'roommate': 'trips',
+          'actionitems': 'trips',
+          'payment': 'trips',
+          'activities': 'trips',
+          'importantlinks': 'trips',
+          'mytrip': 'trips',
+          'tripdetails': 'trips',
+          'itinerary': 'trips',
+          'packing': 'trips'
+        };
+        
+        // Open parent section first
+        if (parentSections[subsectionId]) {
+          const parentContent = document.getElementById(`${parentSections[subsectionId]}-content`);
+          if (parentContent && (!parentContent.style.display || parentContent.style.display === 'none')) {
+            toggleSection(parentSections[subsectionId]);
+          }
+        }
+        
+        // Then expand the subsection
+        if (!parent.classList.contains('expanded')) {
+          const icon = document.getElementById(`${subsectionId}-toggle`);
+          parent.classList.add('expanded');
+          if (icon) icon.classList.add('expanded');
+        }
+      }
+      
+      // Smooth scroll to the element
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 400);
+    }
+
+    // Open section and scroll to element
+    function openSectionAndScroll(subsectionId, elementId, event) {
+      if (event) event.preventDefault();
+      
+      // First, open the main "trips" section if it's not open
+      const tripsContent = document.getElementById('trips-content');
+      const tripsIcon = document.getElementById('trips-icon');
+      if (tripsContent && !tripsContent.classList.contains('expanded')) {
+        toggleSection('trips');
+      }
+      
+      // Then open the subsection
+      const subsectionContent = document.getElementById(`${subsectionId}-content`);
+      const subsectionIcon = document.getElementById(`${subsectionId}-toggle`);
+      if (subsectionContent && !subsectionContent.classList.contains('expanded')) {
+        toggleSubsection(subsectionId);
+      }
+      
+      // Open any parent <details> elements
+      const element = document.getElementById(elementId);
+      if (element) {
+        let currentElement = element;
+        while (currentElement) {
+          if (currentElement.tagName === 'DETAILS') {
+            currentElement.setAttribute('open', '');
+          }
+          currentElement = currentElement.parentElement;
+        }
+        
+        // Scroll to the element after a short delay to allow sections to expand
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 400);
+      }
+    }
+
+    // Download contacts as JSON file
+    function downloadContactsJSON() {
+      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      const dataStr = JSON.stringify(contacts, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(dataBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'contacts.json';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      
+      alert('✅ Contacts downloaded! Please send this file to the group admin to update the website.');
+    }
+
+    // Toggle section visibility
+    function toggleSection(sectionId) {
+      const content = document.getElementById(`${sectionId}-content`);
+      const icon = document.getElementById(`${sectionId}-icon`);
+      
+      if (content.classList.contains('expanded')) {
+        content.classList.remove('expanded');
+        icon.classList.remove('expanded');
+      } else {
+        content.classList.add('expanded');
+        icon.classList.add('expanded');
+      }
+    }
+
+    // Toggle subsection visibility
+    function toggleSubsection(subsectionId) {
+      const content = document.getElementById(`${subsectionId}-content`);
+      const icon = document.getElementById(`${subsectionId}-toggle`);
+      
+      if (content.classList.contains('expanded')) {
+        content.classList.remove('expanded');
+        icon.classList.remove('expanded');
+      } else {
+        content.classList.add('expanded');
+        icon.classList.add('expanded');
+      }
+    }
+
+    // Collapse all sections
+    function collapseAll() {
+      // Collapse all main sections (contacts, email, photos, trips)
+      const mainSections = ['contacts', 'email', 'photos', 'trips'];
+      mainSections.forEach(sectionId => {
+        const content = document.getElementById(`${sectionId}-content`);
+        const icon = document.getElementById(`${sectionId}-icon`);
+        if (content && content.classList.contains('expanded')) {
+          content.classList.remove('expanded');
+          if (icon) icon.classList.remove('expanded');
+        }
+      });
+
+      // Collapse all subsection-content elements
+      const allContent = document.querySelectorAll('.subsection-content');
+      const allIcons = document.querySelectorAll('.subsection-toggle');
+      
+      allContent.forEach(content => {
+        content.classList.remove('expanded');
+      });
+      
+      allIcons.forEach(icon => {
+        icon.classList.remove('expanded');
+      });
+
+      // Close all details elements (for collapsible maps and tent options)
+      const allDetails = document.querySelectorAll('details');
+      allDetails.forEach(detail => {
+        detail.removeAttribute('open');
+      });
+    }
+
+    // Open modal for adding contact
+    function openAddContactModal() {
+      document.getElementById('modalTitle').textContent = 'Add Your Contact Info';
+      document.getElementById('contactForm').reset();
+      document.getElementById('contactId').value = '';
+      document.getElementById('contactModal').classList.add('active');
+    }
+
+    // Edit contact
+    function editContact(id) {
+      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      const contact = contacts.find(c => c.id === id);
+      
+      if (contact) {
+        document.getElementById('modalTitle').textContent = 'Edit Contact Info';
+        document.getElementById('contactId').value = contact.id;
+        document.getElementById('contactName').value = contact.name;
+        document.getElementById('contactEmail').value = contact.email;
+        document.getElementById('contactAddress').value = contact.address || '';
+        document.getElementById('contactCity').value = contact.city || '';
+        document.getElementById('contactState').value = contact.state || '';
+        document.getElementById('contactZip').value = contact.zip || '';
+        document.getElementById('contactPhone').value = contact.phone || '';
+        document.getElementById('contactBirthday').value = contact.birthday || '';
+        document.getElementById('contactModal').classList.add('active');
+      }
+    }
+
+    // Delete contact
+    function deleteContact(id) {
+      if (confirm('Are you sure you want to delete this contact?')) {
+        let contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+        contacts = contacts.filter(c => c.id !== id);
+        localStorage.setItem('spring94Contacts', JSON.stringify(contacts));
+        loadContacts();
+      }
+    }
+
+    // Save contact (no email)
+    function saveContact(event) {
+      event.preventDefault();
+      
+      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      const id = document.getElementById('contactId').value;
+      
+      const contactData = {
+        id: id ? parseInt(id) : Date.now(),
+        name: document.getElementById('contactName').value,
+        email: document.getElementById('contactEmail').value,
+        address: document.getElementById('contactAddress').value,
+        city: document.getElementById('contactCity').value,
+        state: document.getElementById('contactState').value,
+        zip: document.getElementById('contactZip').value,
+        phone: document.getElementById('contactPhone').value,
+        birthday: document.getElementById('contactBirthday').value
+      };
+      
+      if (id) {
+        // Update existing contact
+        const index = contacts.findIndex(c => c.id === parseInt(id));
+        if (index !== -1) {
+          contacts[index] = contactData;
+        }
+      } else {
+        // Add new contact
+        contacts.push(contactData);
+      }
+
+      localStorage.setItem('spring94Contacts', JSON.stringify(contacts));
+      closeModal();
+      loadContacts();
+      
+      alert('✅ Contact saved locally!');
+    }
+
+    // Submit contact to admin (uses mailto as fallback)
+    async function submitContactToAdmin(event) {
+      event.preventDefault();
+      
+      // Get the current contact data from the form
+      const contactData = {
+        id: document.getElementById('contactId').value || Date.now(),
+        name: document.getElementById('contactName').value,
+        email: document.getElementById('contactEmail').value,
+        address: document.getElementById('contactAddress').value,
+        city: document.getElementById('contactCity').value,
+        state: document.getElementById('contactState').value,
+        zip: document.getElementById('contactZip').value,
+        phone: document.getElementById('contactPhone').value,
+        birthday: document.getElementById('contactBirthday').value
+      };
+
+      // Validate required fields
+      if (!contactData.name || !contactData.email) {
+        alert('❌ Please fill in at least Name and Email before submitting.');
+        return;
+      }
+
+      // Format contact info for email
+      const contactInfo = `
+Name: ${contactData.name}
+Email: ${contactData.email}
+Birthday: ${contactData.birthday || 'Not provided'}
+Address: ${contactData.address || 'Not provided'}
+City: ${contactData.city || 'Not provided'}
+State: ${contactData.state || 'Not provided'}
+ZIP: ${contactData.zip || 'Not provided'}
+Phone: ${contactData.phone || 'Not provided'}
+      `.trim();
+
+      const contactJSON = JSON.stringify(contactData, null, 2);
+
+      // Send via EmailJS with mailto fallback
+      const submitBtn = event.target;
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '⏳ Sending...';
+      submitBtn.disabled = true;
+
+      try {
+        const result = await emailjs.send(
+          'service_3dxq4tg',
+          'template_fainkx7',
+          {
+            name: contactData.name,
+            message: `Contact information has been updated:\n\n${contactInfo}\n\n---\nJSON Format:\n${contactJSON}`
+          }
+        );
+
+        console.log('EmailJS Success:', result);
+        alert('✅ Contact information sent successfully to admin!');
+        saveAndClose(contactData);
+        
+      } catch (error) {
+        console.error('EmailJS Error Details:', error);
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        
+        // Fallback to mailto
+        if (confirm('Email service unavailable. Would you like to send via your email client instead?')) {
+          const subject = `Spring 94 Contact Update: ${contactData.name}`;
+          const body = `Contact information has been updated:\n\n${contactInfo}\n\n---\nJSON Format:\n${contactJSON}`;
+          const mailtoLink = `mailto:dst894@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.location.href = mailtoLink;
+          saveAndClose(contactData);
+        }
+      } finally {
+        if (submitBtn.innerHTML === '⏳ Sending...') {
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        }
+      }
+    }
+
+    // Helper function to save and close modal
+    function saveAndClose(contactData) {
+      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      const id = document.getElementById('contactId').value;
+      
+      if (id) {
+        const index = contacts.findIndex(c => c.id === parseInt(id));
+        if (index !== -1) {
+          contacts[index] = contactData;
+        }
+      } else {
+        contacts.push(contactData);
+      }
+      
+      localStorage.setItem('spring94Contacts', JSON.stringify(contacts));
+      closeModal();
+      loadContacts();
+    }
+
+    // Close modal
+    function closeModal() {
+      document.getElementById('contactModal').classList.remove('active');
+      document.getElementById('contactForm').reset();
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('contactModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
     });
 
-    // Load participants from whosgoing.json
-    async function loadParticipants() {
+    // Load submitted roommates from localStorage
+    function loadSubmittedRoommates() {
+      const submitted = JSON.parse(localStorage.getItem('submittedRoommates') || '[]');
+      const listContainer = document.getElementById('submittedRoommatesList');
+      const section = document.getElementById('submittedRoommatesSection');
+      
+      if (submitted.length > 0) {
+        section.style.display = 'block';
+        listContainer.innerHTML = submitted.map((reservation, index) => `
+          <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+              <h5 style="color: var(--primary-color); margin: 0;">${reservation.tentType}</h5>
+              <button onclick="deleteReservation(${index})" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.9rem;">Delete</button>
+            </div>
+            <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px;">
+              <strong>Confirmation:</strong> ${reservation.confirmationNumber}
+            </div>
+            <div style="display: grid; gap: 8px;">
+              ${reservation.roommates.map((r, i) => `
+                <div style="padding: 8px; background: white; border-radius: 5px; border-left: 3px solid var(--primary-color);">
+                  <strong>${r.name}</strong>
+                </div>
+              `).join('')}
+            </div>
+            ${reservation.additionalNotes ? `<div style="margin-top: 10px; padding: 10px; background: #fff3cd; border-radius: 5px; font-size: 0.9rem;"><strong>Notes:</strong> ${reservation.additionalNotes}</div>` : ''}
+          </div>
+        `).join('');
+      } else {
+        section.style.display = 'none';
+      }
+    }
+
+    // Delete reservation
+    function deleteReservation(index) {
+      if (confirm('Are you sure you want to delete this reservation?')) {
+        const submitted = JSON.parse(localStorage.getItem('submittedRoommates') || '[]');
+        submitted.splice(index, 1);
+        localStorage.setItem('submittedRoommates', JSON.stringify(submitted));
+        loadSubmittedRoommates();
+      }
+    }
+
+    // Admin: Clear all reservations
+    function clearAllReservations() {
+      if (confirm('⚠️ Are you sure you want to delete ALL reservations? This cannot be undone!')) {
+        localStorage.removeItem('submittedRoommates');
+        loadSubmittedRoommates();
+        
+        const messageDiv = document.getElementById('adminMessage');
+        messageDiv.style.display = 'block';
+        messageDiv.style.background = '#d4edda';
+        messageDiv.style.color = '#155724';
+        messageDiv.textContent = '✅ All reservations cleared successfully!';
+        
+        setTimeout(() => {
+          messageDiv.style.display = 'none';
+        }, 3000);
+      }
+    }
+
+    // Admin: Add reservations from JSON (handles multiple objects)
+    function addReservationsFromJson() {
+      const jsonInput = document.getElementById('adminJsonInput').value.trim();
+      const messageDiv = document.getElementById('adminMessage');
+      
+      if (!jsonInput) {
+        messageDiv.style.display = 'block';
+        messageDiv.style.background = '#fff3cd';
+        messageDiv.style.color = '#856404';
+        messageDiv.textContent = '⚠️ Please paste JSON data first';
+        return;
+      }
+      
+      try {
+        // Split by }{ to handle multiple JSON objects
+        let jsonObjects = jsonInput.split(/\}\s*\{/);
+        
+        // Fix the split objects by adding back the braces
+        if (jsonObjects.length > 1) {
+          jsonObjects = jsonObjects.map((obj, index) => {
+            if (index === 0) return obj + '}';
+            if (index === jsonObjects.length - 1) return '{' + obj;
+            return '{' + obj + '}';
+          });
+        }
+        
+        const submitted = JSON.parse(localStorage.getItem('submittedRoommates') || '[]');
+        let successCount = 0;
+        let errors = [];
+        
+        // Process each JSON object
+        jsonObjects.forEach((jsonStr, index) => {
+          try {
+            const reservationData = JSON.parse(jsonStr.trim());
+            
+            // Validate required fields
+            if (!reservationData.confirmationNumber || !reservationData.tentType || !reservationData.roommates || reservationData.roommates.length === 0) {
+              errors.push(`Object ${index + 1}: Missing required fields`);
+              return;
+            }
+            
+            // Add to array
+            submitted.push(reservationData);
+            successCount++;
+            
+          } catch (err) {
+            errors.push(`Object ${index + 1}: ${err.message}`);
+          }
+        });
+        
+        // Save to localStorage
+        if (successCount > 0) {
+          localStorage.setItem('submittedRoommates', JSON.stringify(submitted));
+          loadSubmittedRoommates();
+        }
+        
+        // Show results
+        messageDiv.style.display = 'block';
+        if (errors.length === 0) {
+          messageDiv.style.background = '#d4edda';
+          messageDiv.style.color = '#155724';
+          messageDiv.textContent = `✅ Successfully added ${successCount} reservation${successCount > 1 ? 's' : ''}!`;
+          document.getElementById('adminJsonInput').value = '';
+        } else if (successCount > 0) {
+          messageDiv.style.background = '#fff3cd';
+          messageDiv.style.color = '#856404';
+          messageDiv.textContent = `⚠️ Added ${successCount} reservation(s), but ${errors.length} failed:\n${errors.join('\n')}`;
+        } else {
+          messageDiv.style.background = '#f8d7da';
+          messageDiv.style.color = '#721c24';
+          messageDiv.textContent = `❌ All reservations failed:\n${errors.join('\n')}`;
+        }
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+          messageDiv.style.display = 'none';
+        }, 5000);
+        
+      } catch (error) {
+        messageDiv.style.display = 'block';
+        messageDiv.style.background = '#f8d7da';
+        messageDiv.style.color = '#721c24';
+        messageDiv.textContent = '❌ Error: ' + error.message + '. Please check the JSON format.';
+      }
+    }
+
+    // Handle roommate form submission
+    document.getElementById('roommateForm')?.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // Collect form data
+      const formData = {
+        confirmationNumber: document.getElementById('confirmationNumber').value,
+        tentType: document.getElementById('tentType').value,
+        roommates: [],
+        additionalNotes: document.getElementById('additionalNotes').value,
+        submittedDate: new Date().toISOString()
+      };
+      
+      // Collect roommate data
+      for (let i = 1; i <= 4; i++) {
+        const name = document.getElementById(`roommate${i}Name`).value;
+        
+        if (name) {
+          formData.roommates.push({
+            name: name
+          });
+        }
+      }
+      
+      // Format roommate info for email
+      const roommateInfo = `
+Confirmation Number: ${formData.confirmationNumber}
+Tent Type: ${formData.tentType}
+Roommates: ${formData.roommates.map(r => r.name).join(', ')}
+Additional Notes: ${formData.additionalNotes || 'None'}
+Submitted: ${new Date(formData.submittedDate).toLocaleString()}
+      `.trim();
+
+      const roommateJSON = JSON.stringify(formData, null, 2);
+
+      // Send via EmailJS
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '⏳ Sending...';
+      submitBtn.disabled = true;
+
+      try {
+        const result = await emailjs.send(
+          'service_3dxq4tg',
+          'template_fainkx7',
+          {
+            name: formData.roommates[0]?.name || 'Unknown',
+            message: `Roommate & Tent Reservation:\n\n${roommateInfo}\n\n---\nJSON Format:\n${roommateJSON}`
+          }
+        );
+
+        console.log('EmailJS Success:', result);
+        
+        // Save to localStorage
+        const submitted = JSON.parse(localStorage.getItem('submittedRoommates') || '[]');
+        submitted.push(formData);
+        localStorage.setItem('submittedRoommates', JSON.stringify(submitted));
+        
+        alert('✅ Your roommate details have been sent to admin and saved successfully!');
+        
+        // Reset form and reload submitted list
+        e.target.reset();
+        loadSubmittedRoommates();
+        
+      } catch (error) {
+        console.error('EmailJS Error:', error);
+        
+        // Fallback to mailto
+        if (confirm('Email service unavailable. Would you like to send via your email client instead?')) {
+          const subject = `Roommate Reservation: ${formData.confirmationNumber}`;
+          const body = `Roommate & Tent Reservation:\n\n${roommateInfo}\n\n---\nJSON Format:\n${roommateJSON}`;
+          const mailtoLink = `mailto:dst894@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.location.href = mailtoLink;
+          
+          // Save to localStorage anyway
+          const submitted = JSON.parse(localStorage.getItem('submittedRoommates') || '[]');
+          submitted.push(formData);
+          localStorage.setItem('submittedRoommates', JSON.stringify(submitted));
+          
+          e.target.reset();
+          loadSubmittedRoommates();
+        }
+      } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+
+    // Load submitted activities from localStorage
+    function loadSubmittedActivities() {
+      const activities = JSON.parse(localStorage.getItem('submittedActivities') || '[]');
+      const section = document.getElementById('submittedActivitiesSection');
+      const bozemanSection = document.getElementById('bozemanActivitiesSection');
+      const yellowstoneSection = document.getElementById('yellowstoneActivitiesSection');
+      const bozemanList = document.getElementById('bozemanActivitiesList');
+      const yellowstoneList = document.getElementById('yellowstoneActivitiesList');
+      
+      const bozemanActivities = activities.filter(a => a.location === 'bozeman');
+      const yellowstoneActivities = activities.filter(a => a.location === 'yellowstone');
+      
+      if (activities.length > 0) {
+        section.style.display = 'block';
+        
+        // Display Bozeman activities
+        if (bozemanActivities.length > 0) {
+          bozemanSection.style.display = 'block';
+          bozemanList.innerHTML = bozemanActivities.map((activity, index) => `
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                <h6 style="color: var(--primary-color); margin: 0;">${activity.name}</h6>
+                <button onclick="deleteActivity(${activities.indexOf(activity)})" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.85rem;">Delete</button>
+              </div>
+              <p style="margin: 10px 0; color: var(--text-secondary);">${activity.description}</p>
+              ${activity.cost ? `<div style="margin: 5px 0;"><strong>💰 Cost:</strong> ${activity.cost}</div>` : ''}
+              ${activity.link ? `<div style="margin: 5px 0;"><strong>🔗 Link:</strong> <a href="${activity.link}" target="_blank" style="color: var(--primary-color);">${activity.link}</a></div>` : ''}
+              <div style="margin-top: 10px; font-size: 0.9rem; color: var(--text-secondary); font-style: italic;">
+                Suggested by: ${activity.suggester}
+              </div>
+            </div>
+          `).join('');
+        } else {
+          bozemanSection.style.display = 'none';
+        }
+        
+        // Display Yellowstone activities
+        if (yellowstoneActivities.length > 0) {
+          yellowstoneSection.style.display = 'block';
+          yellowstoneList.innerHTML = yellowstoneActivities.map((activity, index) => `
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                <h6 style="color: var(--primary-color); margin: 0;">${activity.name}</h6>
+                <button onclick="deleteActivity(${activities.indexOf(activity)})" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.85rem;">Delete</button>
+              </div>
+              <p style="margin: 10px 0; color: var(--text-secondary);">${activity.description}</p>
+              ${activity.cost ? `<div style="margin: 5px 0;"><strong>💰 Cost:</strong> ${activity.cost}</div>` : ''}
+              ${activity.link ? `<div style="margin: 5px 0;"><strong>🔗 Link:</strong> <a href="${activity.link}" target="_blank" style="color: var(--primary-color);">${activity.link}</a></div>` : ''}
+              <div style="margin-top: 10px; font-size: 0.9rem; color: var(--text-secondary); font-style: italic;">
+                Suggested by: ${activity.suggester}
+              </div>
+            </div>
+          `).join('');
+        } else {
+          yellowstoneSection.style.display = 'none';
+        }
+      } else {
+        section.style.display = 'none';
+      }
+    }
+
+    // Delete activity
+    function deleteActivity(index) {
+      if (confirm('Are you sure you want to delete this activity suggestion?')) {
+        const activities = JSON.parse(localStorage.getItem('submittedActivities') || '[]');
+        activities.splice(index, 1);
+        localStorage.setItem('submittedActivities', JSON.stringify(activities));
+        loadSubmittedActivities();
+      }
+    }
+
+    // Initialize activity suggestions data
+    let activitySuggestionsData = [];
+
+    // Load activity suggestions from JSON file or use localStorage
+    async function initializeActivitySuggestions() {
+      try {
+        const response = await fetch('activity_suggestions.json?t=' + Date.now()); // Cache-busting
+        if (response.ok) {
+          activitySuggestionsData = await response.json();
+          // Save to localStorage with timestamp
+          const dataWithTimestamp = {
+            data: activitySuggestionsData,
+            timestamp: Date.now(),
+            source: 'activity_suggestions.json'
+          };
+          localStorage.setItem('submittedActivities', JSON.stringify(dataWithTimestamp));
+          console.log('✅ Loaded activity suggestions from activity_suggestions.json:', activitySuggestionsData.length, 'activities');
+        } else {
+          throw new Error('JSON file not found');
+        }
+      } catch (error) {
+        console.warn('⚠️ Could not load activity_suggestions.json, using localStorage backup:', error.message);
+        // Use localStorage as emergency backup
+        const stored = localStorage.getItem('submittedActivities');
+        if (stored) {
+          try {
+            const parsed = JSON.parse(stored);
+            // Check if it's the new format with timestamp
+            if (parsed.data && parsed.timestamp) {
+              activitySuggestionsData = parsed.data;
+              const age = Math.floor((Date.now() - parsed.timestamp) / (1000 * 60 * 60 * 24));
+              console.log(`📦 Using cached activities from ${parsed.source} (${age} days old)`);
+            } else {
+              // Old format without timestamp
+              activitySuggestionsData = parsed;
+              console.log('📦 Using cached activities (unknown age)');
+            }
+          } catch (e) {
+            activitySuggestionsData = [];
+          }
+        } else {
+          activitySuggestionsData = [];
+          console.log('📋 No activities available');
+        }
+      }
+      loadSubmittedActivities();
+    }
+
+    // Handle activity suggestion form submission
+    document.getElementById('activitySuggestionForm')?.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const activityData = {
+        location: document.getElementById('activityLocation').value,
+        name: document.getElementById('activityName').value,
+        description: document.getElementById('activityDescription').value,
+        cost: document.getElementById('activityCost').value,
+        link: document.getElementById('activityLink').value,
+        suggester: document.getElementById('suggesterName').value,
+        submittedDate: new Date().toISOString()
+      };
+      
+      // Format activity info for email
+      const activityInfo = `
+Location: ${activityData.location === 'bozeman' ? '📍 Bozeman Area' : '🏞️ Yellowstone Park Area'}
+Activity Name: ${activityData.name}
+Description: ${activityData.description}
+Estimated Cost: ${activityData.cost || 'Not specified'}
+Website/Link: ${activityData.link || 'Not provided'}
+Suggested by: ${activityData.suggester}
+Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
+      `.trim();
+
+      const activityJSON = JSON.stringify(activityData, null, 2);
+
+      // Send via EmailJS
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '⏳ Sending...';
+      submitBtn.disabled = true;
+
+      try {
+        const result = await emailjs.send(
+          'service_3dxq4tg',
+          'template_fainkx7',
+          {
+            name: activityData.suggester,
+            message: `Activity Suggestion:\n\n${activityInfo}\n\n---\nJSON Format:\n${activityJSON}`
+          }
+        );
+
+        console.log('EmailJS Success:', result);
+        
+        // Save to localStorage
+        const activities = JSON.parse(localStorage.getItem('submittedActivities') || '[]');
+        activities.push(activityData);
+        localStorage.setItem('submittedActivities', JSON.stringify(activities));
+        
+        alert('✅ Your activity suggestion has been sent to admin and saved successfully!');
+        
+        // Reset form and reload display
+        e.target.reset();
+        loadSubmittedActivities();
+        
+      } catch (error) {
+        console.error('EmailJS Error:', error);
+        
+        // Fallback to mailto
+        if (confirm('Email service unavailable. Would you like to send via your email client instead?')) {
+          const subject = `Activity Suggestion: ${activityData.name}`;
+          const body = `Activity Suggestion:\n\n${activityInfo}\n\n---\nJSON Format:\n${activityJSON}`;
+          const mailtoLink = `mailto:dst894@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.location.href = mailtoLink;
+          
+          // Save to localStorage anyway
+          const activities = JSON.parse(localStorage.getItem('submittedActivities') || '[]');
+          activities.push(activityData);
+          localStorage.setItem('submittedActivities', JSON.stringify(activities));
+          
+          e.target.reset();
+          loadSubmittedActivities();
+        }
+      } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+
+
+    // ===== TRIP DETAILS & ITINERARY FUNCTIONS =====
+    
+    // Populate name dropdown from whosgoing.json
+    async function populateNameDropdown() {
       try {
         const response = await fetch('whosgoing.json');
         const contacts = await response.json();
+        const dropdown = document.getElementById('tripUserName');
         
-        const container = document.getElementById('participantsList');
-        
-        if (contacts.length === 0) {
-          container.innerHTML = '<div class="empty-state">No participants yet</div>';
-          return;
-        }
-
-        // Desktop table view
-        let tableHtml = '<table class="desktop-table"><thead><tr><th>Name</th></tr></thead><tbody>';
-        
-        contacts.forEach(contact => {
-          tableHtml += `
-            <tr>
-              <td><strong>${contact.name}</strong></td>
-            </tr>
-          `;
-        });
-        
-        tableHtml += '</tbody></table>';
-
-        // Mobile card view - names only
-        let cardsHtml = '<div class="mobile-cards">';
-        contacts.forEach(contact => {
-          cardsHtml += `
-            <div class="mobile-card">
-              <div class="mobile-card-name">${contact.name}</div>
-            </div>
-          `;
-        });
-        cardsHtml += '</div>';
-
-        container.innerHTML = tableHtml + cardsHtml;
-        
-        console.log('Loaded participants from whosgoing.json:', contacts.length, 'people');
-        
-      } catch (error) {
-        console.error('Error loading participants:', error);
-        document.getElementById('participantsList').innerHTML = '<div class="empty-state">Unable to load participants</div>';
-      }
-    }
-
-    // Load flight details from tripcontacts.json
-    async function loadFlights() {
-      try {
-        const response = await fetch('tripcontacts.json');
-        const tripContacts = await response.json();
-        const container = document.getElementById('flightsList');
-        
-        if (tripContacts.length === 0) {
-          container.innerHTML = '<div class="empty-state">No flight details submitted yet</div>';
-          return;
-        }
-
-        // Mobile card view
-        let html = '<div class="mobile-cards">';
-        tripContacts.forEach(trip => {
-          const arrivalTime = trip.outbound.arrival ? new Date(trip.outbound.arrival).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : 'N/A';
-          const departureTime = trip.return.departure ? new Date(trip.return.departure).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : 'N/A';
+        if (dropdown) {
+          // Clear existing options except the first one
+          dropdown.innerHTML = '<option value="">-- Select your name --</option>';
           
-          html += `
-            <div class="mobile-card">
-              <div class="mobile-card-name">${trip.name}</div>
-              <div style="margin-top: 10px; font-size: 0.9rem;">
-                <div><strong>✈️ Arrival:</strong> ${arrivalTime}</div>
-                <div><strong>Flight:</strong> ${trip.outbound.airline || 'N/A'} ${trip.outbound.flightNumber || ''}</div>
-                <div style="margin-top: 8px;"><strong>🛫 Departure:</strong> ${departureTime}</div>
-                <div><strong>Flight:</strong> ${trip.return.airline || 'N/A'} ${trip.return.flightNumber || ''}</div>
-                ${trip.transportation?.needsAirportPickup ? '<div style="margin-top: 8px;"><span class="badge badge-warning">Needs Pickup</span></div>' : ''}
-              </div>
-            </div>
-          `;
-        });
-        html += '</div>';
-        container.innerHTML = html;
-        
-      } catch (error) {
-        console.error('Error loading flights:', error);
-        document.getElementById('flightsList').innerHTML = '<div class="empty-state">Unable to load flight details</div>';
-      }
-    }
-
-    // Load roommate assignments from roommates.json
-    async function loadRoommates() {
-      try {
-        const response = await fetch('roommates.json');
-        const roommates = await response.json();
-        const container = document.getElementById('roommatesList');
-        
-        if (roommates.length === 0) {
-          container.innerHTML = '<div class="empty-state">No roommate assignments yet</div>';
-          return;
-        }
-
-        // Mobile card view
-        let html = '<div class="mobile-cards">';
-        roommates.forEach(room => {
-          const roommateNames = room.roommates.map(r => r.name).join(', ');
-          html += `
-            <div class="mobile-card">
-              <div class="mobile-card-name">${room.tentType}</div>
-              <div style="margin-top: 10px; font-size: 0.9rem;">
-                <div><strong>Confirmation:</strong> ${room.confirmationNumber}</div>
-                <div style="margin-top: 8px;"><strong>Roommates:</strong> ${roommateNames}</div>
-                ${room.additionalNotes ? `<div style="margin-top: 8px;"><strong>Notes:</strong> ${room.additionalNotes}</div>` : ''}
-              </div>
-            </div>
-          `;
-        });
-        html += '</div>';
-        container.innerHTML = html;
-        
-      } catch (error) {
-        console.error('Error loading roommates:', error);
-        document.getElementById('roommatesList').innerHTML = '<div class="empty-state">Unable to load roommate assignments</div>';
-      }
-    }
-
-    // Load activity suggestions from activity_suggestions.json
-    async function loadActivities() {
-      try {
-        const response = await fetch('activity_suggestions.json');
-        const activities = await response.json();
-        const container = document.getElementById('activitiesList');
-        
-        if (activities.length === 0) {
-          container.innerHTML = '<div class="empty-state">No activity suggestions yet</div>';
-          return;
-        }
-
-        let html = '';
-        
-        activities.forEach(activity => {
-          html += `
-            <div class="activity-card">
-              <h4>${activity.location === 'bozeman' ? '📍' : '🏞️'} ${activity.name}</h4>
-              <p>${activity.description}</p>
-              ${activity.cost ? `<p><strong>Cost:</strong> ${activity.cost}</p>` : ''}
-              ${activity.link ? `<p><strong>Link:</strong> <a href="${activity.link}" target="_blank">${activity.link}</a></p>` : ''}
-              <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-secondary);"><em>Suggested by: ${activity.suggester}</em></p>
-            </div>
-          `;
-        });
-        
-        container.innerHTML = html;
-        
-        console.log('Loaded activities from activity_suggestions.json:', activities.length, 'activities');
-        
-      } catch (error) {
-        console.error('Error loading activities:', error);
-        document.getElementById('activitiesList').innerHTML = '<div class="empty-state">Unable to load activities</div>';
-      }
-    }
-
-    // Load transportation needs from tripcontacts.json
-    async function loadTransportation() {
-      try {
-        const response = await fetch('tripcontacts.json');
-        const tripContacts = await response.json();
-        const container = document.getElementById('transportationList');
-        
-        if (tripContacts.length === 0) {
-          container.innerHTML = '<div class="empty-state">No transportation information yet</div>';
-          return;
-        }
-
-        const needsPickup = tripContacts.filter(t => t.transportation?.needsAirportPickup);
-        const willingToRent = tripContacts.filter(t => t.transportation?.willingToRentCar);
-
-        let html = '<h3 style="color: var(--primary-color); margin-bottom: 15px;">🚐 Needs Airport Pickup</h3>';
-        
-        if (needsPickup.length > 0) {
-          html += '<div class="mobile-cards">';
-          needsPickup.forEach(trip => {
-            const arrivalTime = trip.outbound.arrival ? new Date(trip.outbound.arrival).toLocaleString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : 'N/A';
-            html += `
-              <div class="mobile-card">
-                <div class="mobile-card-name">${trip.name}</div>
-                <div style="margin-top: 8px; font-size: 0.9rem;">
-                  <div><strong>Arrival:</strong> ${arrivalTime}</div>
-                  <div><strong>Flight:</strong> ${trip.outbound.airline || 'N/A'} ${trip.outbound.flightNumber || ''}</div>
-                </div>
-              </div>
-            `;
+          // Add all contacts as options
+          contacts.forEach(contact => {
+            const option = document.createElement('option');
+            option.value = contact.id;
+            option.textContent = contact.name;
+            option.dataset.email = contact.email;
+            dropdown.appendChild(option);
           });
-          html += '</div>';
-        } else {
-          html += '<p class="empty-state">No one needs airport pickup yet</p>';
-        }
-
-        html += '<h3 style="color: var(--primary-color); margin: 30px 0 15px;">🚗 Willing to Rent Car</h3>';
-        
-        if (willingToRent.length > 0) {
-          html += '<div class="participant-list">';
-          willingToRent.forEach(trip => {
-            html += `<span class="participant-tag">${trip.name}</span>`;
+          
+          // Add change event listener to store user ID
+          dropdown.addEventListener('change', function() {
+            document.getElementById('tripUserId').value = this.value;
           });
-          html += '</div>';
-        } else {
-          html += '<p class="empty-state">No one willing to rent a car yet</p>';
+          
+          console.log('Loaded names from whosgoing.json:', contacts.length, 'people');
         }
+      } catch (error) {
+        console.error('Error loading whosgoing.json:', error);
+      }
+    }
+    
+    // Populate activities dynamically from the Activities section
+    function populateActivitiesCheckboxes() {
+      const activitiesList = document.getElementById('activitiesCheckboxList');
+      if (!activitiesList) return;
 
-        container.innerHTML = html;
+      // Define activities with their details (matching the Activities & Excursions section)
+      const activities = [
+        { id: 'rafting', name: 'Group Whitewater Rafting - 18 Mile', icon: '🌊', price: '$164/person' },
+        { id: 'float', name: 'Private Yellowstone River Luxury Float', icon: '🛶', price: '$644 total' },
+        { id: 'horseback', name: 'Group Horseback Ride', icon: '🐴', price: '$244/person' },
+        { id: 'park', name: 'Yellowstone Park Tours', icon: '🦬', price: 'TBD' },
+        { id: 'hiking', name: 'Hiking & Nature Walks', icon: '🥾', price: 'Free' },
+        { id: 'photo', name: 'Photography Tours', icon: '📸', price: 'TBD' }
+      ];
+
+      activitiesList.innerHTML = activities.map(activity => `
+        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+          <input type="checkbox" id="activity_${activity.id}" value="${activity.name}"
+                 data-price="${activity.price}" style="width: 18px; height: 18px;">
+          <span>${activity.icon} ${activity.name} (${activity.price})</span>
+        </label>
+      `).join('');
+    }
+
+    // Submit flight details to admin via email
+    async function submitFlightDetails() {
+      // Get user information
+      const userNameDropdown = document.getElementById('tripUserName');
+      const userId = document.getElementById('tripUserId').value;
+      const userName = userNameDropdown.options[userNameDropdown.selectedIndex]?.text || '';
+      
+      // Validate user selection
+      if (!userId || !userName) {
+        alert('❌ Please select your name from the dropdown first.');
+        return;
+      }
+      
+      const tripDetails = {
+        userId: parseInt(userId),
+        name: userName,
+        outbound: {
+          departureCity: document.getElementById('outboundDepartureCity').value,
+          arrivalCity: document.getElementById('outboundArrivalCity').value,
+          airline: document.getElementById('outboundAirline').value,
+          flightNumber: document.getElementById('outboundFlightNumber').value,
+          departure: document.getElementById('outboundDeparture').value,
+          arrival: document.getElementById('outboundArrival').value,
+          confirmation: document.getElementById('outboundConfirmation').value
+        },
+        return: {
+          departureCity: document.getElementById('returnDepartureCity').value,
+          arrivalCity: document.getElementById('returnArrivalCity').value,
+          airline: document.getElementById('returnAirline').value,
+          flightNumber: document.getElementById('returnFlightNumber').value,
+          departure: document.getElementById('returnDeparture').value,
+          arrival: document.getElementById('returnArrival').value,
+          confirmation: document.getElementById('returnConfirmation').value
+        },
+        tent: {
+          type: document.getElementById('selectedTent').value,
+          pricePerPerson: document.getElementById('tentPricePerPerson').value
+        },
+        transportation: {
+          needsAirportPickup: document.getElementById('needsAirportPickup').checked,
+          willingToRentCar: document.getElementById('willingToRentCar').checked,
+          arrivalTime: document.getElementById('outboundArrival').value,
+          departureTime: document.getElementById('returnDeparture').value
+        },
+        specialRequests: document.getElementById('specialRequests').value,
+        submittedDate: new Date().toISOString(),
+        lastUpdated: new Date().toISOString(),
+        confirmationStatus: 'pending'
+      };
+
+      // Validate at least flight info
+      if (!tripDetails.outbound.airline && !tripDetails.return.airline) {
+        alert('❌ Please fill in at least some flight information before submitting.');
+        return;
+      }
+
+      // Format flight info for email
+      const formatDateTime = (dateStr) => {
+        if (!dateStr) return 'Not specified';
+        const date = new Date(dateStr);
+        return date.toLocaleString('en-US', {
+          weekday: 'short',
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit'
+        });
+      };
+
+      const flightInfo = `
+OUTBOUND FLIGHT:
+  From: ${tripDetails.outbound.departureCity || 'Not specified'}
+  To: ${tripDetails.outbound.arrivalCity || 'Not specified'}
+  Airline: ${tripDetails.outbound.airline || 'Not specified'}
+  Flight #: ${tripDetails.outbound.flightNumber || 'Not specified'}
+  Departure: ${formatDateTime(tripDetails.outbound.departure)}
+  Arrival: ${formatDateTime(tripDetails.outbound.arrival)}
+  Confirmation: ${tripDetails.outbound.confirmation || 'Not specified'}
+
+RETURN FLIGHT:
+  From: ${tripDetails.return.departureCity || 'Not specified'}
+  To: ${tripDetails.return.arrivalCity || 'Not specified'}
+  Airline: ${tripDetails.return.airline || 'Not specified'}
+  Flight #: ${tripDetails.return.flightNumber || 'Not specified'}
+  Departure: ${formatDateTime(tripDetails.return.departure)}
+  Arrival: ${formatDateTime(tripDetails.return.arrival)}
+  Confirmation: ${tripDetails.return.confirmation || 'Not specified'}
+
+TENT: ${tripDetails.tent.type || 'Not selected'} ${tripDetails.tent.pricePerPerson ? `($${tripDetails.tent.pricePerPerson}/person)` : ''}
+      `.trim();
+
+      const flightJSON = JSON.stringify(tripDetails, null, 2);
+
+      // Send via EmailJS
+      const submitBtn = event.target;
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '⏳ Sending...';
+      submitBtn.disabled = true;
+
+      try {
+        const result = await emailjs.send(
+          'service_3dxq4tg',
+          'template_fainkx7',
+          {
+            name: tripDetails.name,
+            message: `Flight & Trip Details:\n\n${flightInfo}\n\n---\nJSON Format:\n${flightJSON}`
+          }
+        );
+
+        console.log('EmailJS Success:', result);
+        
+        // Save to localStorage
+        localStorage.setItem('myTripDetails', JSON.stringify(tripDetails));
+        
+        // Also save to tripcontacts array in localStorage
+        const tripContacts = JSON.parse(localStorage.getItem('tripContacts') || '[]');
+        const existingIndex = tripContacts.findIndex(tc => tc.userId === tripDetails.userId);
+        
+        if (existingIndex >= 0) {
+          // Update existing entry
+          tripContacts[existingIndex] = tripDetails;
+        } else {
+          // Add new entry
+          tripContacts.push(tripDetails);
+        }
+        
+        localStorage.setItem('tripContacts', JSON.stringify(tripContacts));
+        
+        alert('✅ Your flight and trip details have been sent to admin and saved successfully!');
         
       } catch (error) {
-        console.error('Error loading transportation:', error);
-        document.getElementById('transportationList').innerHTML = '<div class="empty-state">Unable to load transportation info</div>';
+        console.error('EmailJS Error:', error);
+        
+        // Fallback to mailto
+        if (confirm('Email service unavailable. Would you like to send via your email client instead?')) {
+          const subject = `Flight Details: ${tripDetails.name}`;
+          const body = `Flight & Trip Details:\n\n${flightInfo}\n\n---\nJSON Format:\n${flightJSON}`;
+          const mailtoLink = `mailto:dst894@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.location.href = mailtoLink;
+          
+          // Save to localStorage
+          localStorage.setItem('myTripDetails', JSON.stringify(tripDetails));
+          
+          // Also save to tripcontacts array
+          const tripContacts = JSON.parse(localStorage.getItem('tripContacts') || '[]');
+          const existingIndex = tripContacts.findIndex(tc => tc.userId === tripDetails.userId);
+          
+          if (existingIndex >= 0) {
+            tripContacts[existingIndex] = tripDetails;
+          } else {
+            tripContacts.push(tripDetails);
+          }
+          
+          localStorage.setItem('tripContacts', JSON.stringify(tripContacts));
+        }
+      } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
       }
     }
 
-    // Update statistics from JSON files
-    async function updateStatistics() {
-      try {
-        const [whosgoingResponse, tripResponse, roommatesResponse, activitiesResponse] = await Promise.all([
-          fetch('whosgoing.json'),
-          fetch('tripcontacts.json'),
-          fetch('roommates.json'),
-          fetch('activity_suggestions.json')
-        ]);
+    function saveTripDetails() {
+      const tripDetails = {
+        outbound: {
+          departureCity: document.getElementById('outboundDepartureCity').value,
+          arrivalCity: document.getElementById('outboundArrivalCity').value,
+          airline: document.getElementById('outboundAirline').value,
+          flightNumber: document.getElementById('outboundFlightNumber').value,
+          departure: document.getElementById('outboundDeparture').value,
+          arrival: document.getElementById('outboundArrival').value,
+          confirmation: document.getElementById('outboundConfirmation').value
+        },
+        return: {
+          departureCity: document.getElementById('returnDepartureCity').value,
+          arrivalCity: document.getElementById('returnArrivalCity').value,
+          airline: document.getElementById('returnAirline').value,
+          flightNumber: document.getElementById('returnFlightNumber').value,
+          departure: document.getElementById('returnDeparture').value,
+          arrival: document.getElementById('returnArrival').value,
+          confirmation: document.getElementById('returnConfirmation').value
+        },
+        tent: {
+          type: document.getElementById('selectedTent').value,
+          pricePerPerson: document.getElementById('tentPricePerPerson').value
+        },
+        activities: [],
+        emergency: {
+          name: document.getElementById('emergencyName').value,
+          phone: document.getElementById('emergencyPhone').value,
+          relationship: document.getElementById('emergencyRelationship').value
+        }
+      };
 
-        const whosgoing = await whosgoingResponse.json();
-        const tripContacts = await tripResponse.json();
-        const roommates = await roommatesResponse.json();
-        const activities = await activitiesResponse.json();
+      // Collect selected activities with their prices
+      const activityCheckboxes = document.querySelectorAll('[id^="activity_"]');
+      activityCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+          tripDetails.activities.push({
+            name: checkbox.value,
+            price: checkbox.getAttribute('data-price')
+          });
+        }
+      });
 
-        document.getElementById('totalParticipants').textContent = whosgoing.length;
-        document.getElementById('flightsSubmitted').textContent = tripContacts.length;
-        document.getElementById('roommatesSubmitted').textContent = roommates.length;
-        document.getElementById('activitiesCount').textContent = activities.length;
-      } catch (error) {
-        console.error('Error updating statistics:', error);
+      // Save to localStorage
+      localStorage.setItem('myTripDetails', JSON.stringify(tripDetails));
+      
+      alert('✅ Your trip details have been saved successfully!');
+    }
+
+    function loadTripDetails() {
+      const saved = localStorage.getItem('myTripDetails');
+      if (!saved) return;
+
+      const tripDetails = JSON.parse(saved);
+
+      // Load outbound flight
+      if (tripDetails.outbound) {
+        if (document.getElementById('outboundDepartureCity'))
+          document.getElementById('outboundDepartureCity').value = tripDetails.outbound.departureCity || '';
+        if (document.getElementById('outboundArrivalCity'))
+          document.getElementById('outboundArrivalCity').value = tripDetails.outbound.arrivalCity || '';
+        document.getElementById('outboundAirline').value = tripDetails.outbound.airline || '';
+        document.getElementById('outboundFlightNumber').value = tripDetails.outbound.flightNumber || '';
+        document.getElementById('outboundDeparture').value = tripDetails.outbound.departure || '';
+        document.getElementById('outboundArrival').value = tripDetails.outbound.arrival || '';
+        document.getElementById('outboundConfirmation').value = tripDetails.outbound.confirmation || '';
+      }
+
+      // Load return flight
+      if (tripDetails.return) {
+        if (document.getElementById('returnDepartureCity'))
+          document.getElementById('returnDepartureCity').value = tripDetails.return.departureCity || '';
+        if (document.getElementById('returnArrivalCity'))
+          document.getElementById('returnArrivalCity').value = tripDetails.return.arrivalCity || '';
+        document.getElementById('returnAirline').value = tripDetails.return.airline || '';
+        document.getElementById('returnFlightNumber').value = tripDetails.return.flightNumber || '';
+        document.getElementById('returnDeparture').value = tripDetails.return.departure || '';
+        document.getElementById('returnArrival').value = tripDetails.return.arrival || '';
+        document.getElementById('returnConfirmation').value = tripDetails.return.confirmation || '';
+      }
+
+      // Load tent selection
+      if (tripDetails.tent) {
+        if (typeof tripDetails.tent === 'string') {
+          // Old format compatibility
+          document.getElementById('selectedTent').value = tripDetails.tent;
+        } else {
+          document.getElementById('selectedTent').value = tripDetails.tent.type || '';
+          if (document.getElementById('tentPricePerPerson'))
+            document.getElementById('tentPricePerPerson').value = tripDetails.tent.pricePerPerson || '';
+        }
+      }
+
+      // Load activities
+      if (tripDetails.activities) {
+        tripDetails.activities.forEach(activity => {
+          const activityName = typeof activity === 'string' ? activity : activity.name;
+          const checkbox = Array.from(document.querySelectorAll('[id^="activity_"]'))
+            .find(cb => cb.value === activityName);
+          if (checkbox) checkbox.checked = true;
+        });
+      }
+
+      // Load emergency contact
+      if (tripDetails.emergency) {
+        document.getElementById('emergencyName').value = tripDetails.emergency.name || '';
+        document.getElementById('emergencyPhone').value = tripDetails.emergency.phone || '';
+        document.getElementById('emergencyRelationship').value = tripDetails.emergency.relationship || '';
       }
     }
+
+    function downloadTripItinerary() {
+      const saved = localStorage.getItem('myTripDetails');
+      if (!saved) {
+        alert('⚠️ Please save your trip details first before downloading!');
+        return;
+      }
+
+      const tripDetails = JSON.parse(saved);
+      
+      // Format dates nicely
+      const formatDateTime = (dateStr) => {
+        if (!dateStr) return 'Not specified';
+        const date = new Date(dateStr);
+        return date.toLocaleString('en-US', { 
+          weekday: 'short', 
+          month: 'short', 
+          day: 'numeric', 
+          year: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true
+        });
+      };
+
+      // Create document content
+      let content = `DOTS GO GLAMPING - YELLOWSTONE 2026
+Personal Trip Itinerary
+Generated: ${new Date().toLocaleDateString()}
+
+═══════════════════════════════════════════════════════════════
+
+TRIP OVERVIEW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Dates: September 9-13, 2026
+Location: Under Canvas Yellowstone, Montana
+Trip Coordinators: Sherri Belk & Janita Moody
+
+═══════════════════════════════════════════════════════════════
+
+FLIGHT INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+OUTBOUND FLIGHT
+  From: ${tripDetails.outbound.departureCity || 'Not specified'}
+  To: ${tripDetails.outbound.arrivalCity || 'Not specified'}
+  Airline: ${tripDetails.outbound.airline || 'Not specified'}
+  Flight Number: ${tripDetails.outbound.flightNumber || 'Not specified'}
+  Departure: ${formatDateTime(tripDetails.outbound.departure)}
+  Arrival: ${formatDateTime(tripDetails.outbound.arrival)}
+  Confirmation: ${tripDetails.outbound.confirmation || 'Not specified'}
+
+RETURN FLIGHT
+  From: ${tripDetails.return.departureCity || 'Not specified'}
+  To: ${tripDetails.return.arrivalCity || 'Not specified'}
+  Airline: ${tripDetails.return.airline || 'Not specified'}
+  Flight Number: ${tripDetails.return.flightNumber || 'Not specified'}
+  Departure: ${formatDateTime(tripDetails.return.departure)}
+  Arrival: ${formatDateTime(tripDetails.return.arrival)}
+  Confirmation: ${tripDetails.return.confirmation || 'Not specified'}
+
+═══════════════════════════════════════════════════════════════
+
+ACCOMMODATION DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SPLIT-STAY HOTELS (Sept 9-10 & Sept 12-13)
+
+Night 1-2 (Sept 9-10):
+  Home2 Suites by Hilton Bozeman
+  Address: 5320 Tschache Ln, Bozeman, MT 59718
+  Phone: (406) 582-8800
+  Check-in: 3:00 PM | Check-out: 11:00 AM
+
+Night 4-5 (Sept 12-13):
+  Home2 Suites by Hilton Belgrade
+  Address: 6261 Jackrabbit Ln, Belgrade, MT 59714
+  Phone: (406) 813-3000
+  Check-in: 3:00 PM | Check-out: 11:00 AM
+
+GLAMPING (Sept 10-12):
+  Under Canvas North Yellowstone – Paradise Valley
+  Address: 139 Pine Creek Road, Livingston, Montana 59047
+  Phone: (888) 496-1148
+  Check-in: 4:00 PM | Check-out: 11:00 AM
+
+MY TENT SELECTION
+  Type: ${tripDetails.tent?.type || tripDetails.tent || 'Not selected yet'}
+  Price per Person: ${tripDetails.tent?.pricePerPerson ? '$' + tripDetails.tent.pricePerPerson : 'Not specified'}
+
+═══════════════════════════════════════════════════════════════
+
+MY SELECTED ACTIVITIES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${tripDetails.activities.length > 0 ? tripDetails.activities.map(a => {
+  const activityName = typeof a === 'string' ? a : a.name;
+  const activityPrice = typeof a === 'string' ? '' : ` (${a.price})`;
+  return `  ✓ ${activityName}${activityPrice}`;
+}).join('\n') : '  No activities selected yet'}
+
+═══════════════════════════════════════════════════════════════
+
+EMERGENCY CONTACT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Name: ${tripDetails.emergency.name || 'Not specified'}
+  Phone: ${tripDetails.emergency.phone || 'Not specified'}
+  Relationship: ${tripDetails.emergency.relationship || 'Not specified'}
+
+═══════════════════════════════════════════════════════════════
+
+TRIP COORDINATORS CONTACT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Sherri Belk: sherribelklaw@gmail.com
+  Janita Moody: freshnclean9@gmail.com
+
+═══════════════════════════════════════════════════════════════
+
+IMPORTANT REMINDERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  • Bring valid ID for flights and hotel check-in
+  • Pack layers - Montana weather can be unpredictable
+  • Bring sunscreen, bug spray, and comfortable hiking shoes
+  • Camera/phone for capturing memories
+  • Reusable water bottle
+  • Any personal medications
+
+═══════════════════════════════════════════════════════════════
+
+Have an amazing trip! 🏕️✨
+
+For the latest updates, visit:
+https://tamimoooo.github.io/agenda/reunion.html
+`;
+
+      // Create and download the file
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Yellowstone_Trip_Itinerary_2026.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+
+      alert('📥 Your trip itinerary has been downloaded!\n\nNote: This is a text file mockup. In the full version, this would be a formatted Word document (.docx) with proper styling, images, and layout.');
+    }
+
+    // Countdown Timer Function
+    function updateCountdown() {
+      const reunionDate = new Date('September 9, 2026 00:00:00').getTime();
+      const now = new Date().getTime();
+      const distance = reunionDate - now;
+
+      const daysElement = document.getElementById('days');
+      const hoursElement = document.getElementById('hours');
+      
+      if (!daysElement || !hoursElement) {
+        console.error('Countdown elements not found');
+        return;
+      }
+
+      if (distance < 0) {
+        document.getElementById('countdown').innerHTML = '<div style="font-size: 1.5rem; font-weight: bold;">🎉 The Adventure Has Begun! 🎉</div>';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+      daysElement.textContent = days;
+      hoursElement.textContent = hours.toString().padStart(2, '0');
+      
+      console.log(`Countdown updated: ${days} days, ${hours} hours`);
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeContacts();
+      initializeRoommates();
+      initializeActivitySuggestions();
+      populateActivitiesCheckboxes();
+      populateNameDropdown();
+      loadTripDetails();
+      
+      // All sections start collapsed (no auto-expand)
+
+      // Load saved trip details on page load
+      loadTripDetails();
+      
+      // Start countdown timer immediately and update every minute for testing
+      setTimeout(updateCountdown, 100); // Small delay to ensure DOM is ready
+      setInterval(updateCountdown, 60000); // Update every minute
+    });
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
