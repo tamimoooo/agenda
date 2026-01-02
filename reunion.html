@@ -2042,56 +2042,36 @@
 
     let contactsData = [];
 
-    // Load contacts from JSON file or use defaults
+    // Load contacts from JSON file
     async function initializeContacts() {
       try {
         const response = await fetch('contacts.json?t=' + Date.now()); // Cache-busting
         if (response.ok) {
-          const jsonContacts = await response.json();
-          
-          // Check if localStorage already has contacts
-          const stored = localStorage.getItem('spring94Contacts');
-          
-          if (!stored) {
-            // First time - populate localStorage from contacts.json
-            localStorage.setItem('spring94Contacts', JSON.stringify(jsonContacts));
-            console.log('✅ Initialized Contact Directory with', jsonContacts.length, 'people from contacts.json');
-          }
-          
-          // Always load from localStorage for display (so user edits are preserved)
-          contactsData = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
-          console.log('📇 Loaded', contactsData.length, 'contacts from localStorage');
+          contactsData = await response.json();
+          console.log('✅ Loaded', contactsData.length, 'contacts from contacts.json');
         } else {
           throw new Error('contacts.json not found');
         }
       } catch (error) {
-        console.warn('⚠️ Could not load contacts.json, using localStorage:', error.message);
-        // Use localStorage
-        const stored = localStorage.getItem('spring94Contacts');
-        if (stored) {
-          contactsData = JSON.parse(stored);
-          console.log('📦 Using cached contacts from localStorage');
-        } else {
-          // Use default contacts as last resort
-          contactsData = defaultContacts;
-          localStorage.setItem('spring94Contacts', JSON.stringify(defaultContacts));
-          console.log('📋 Using default contacts');
-        }
+        console.error('❌ Could not load contacts.json:', error.message);
+        // Use default contacts as fallback
+        contactsData = defaultContacts;
+        console.log('📋 Using default contacts');
       }
       loadContacts();
     }
 
     // Load and display contacts
     function loadContacts() {
-      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
       const grid = document.getElementById('contacts-grid');
       
-      if (contacts.length === 0) {
-        grid.innerHTML = '<p class="text-center">No contacts yet. Click "Add Your Contact Info" to get started!</p>';
+      // Use contactsData from JSON file
+      if (!Array.isArray(contactsData) || contactsData.length === 0) {
+        grid.innerHTML = '<p class="text-center">No contacts available.</p>';
         return;
       }
 
-      grid.innerHTML = contacts.map(contact => `
+      grid.innerHTML = contactsData.map(contact => `
         <div class="contact-card">
           <div class="contact-name">${contact.name}</div>
           ${contact.birthday ? `<div class="contact-info">🎂 ${formatBirthday(contact.birthday)}</div>` : ''}
