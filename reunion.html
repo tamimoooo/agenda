@@ -2805,6 +2805,12 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
       const bozemanList = document.getElementById('bozemanActivitiesList');
       const yellowstoneList = document.getElementById('yellowstoneActivitiesList');
       
+      // Check if elements exist before accessing them
+      if (!section || !bozemanSection || !yellowstoneSection || !bozemanList || !yellowstoneList) {
+        console.warn('Activity sections not found in DOM');
+        return;
+      }
+      
       const bozemanActivities = activities.filter(a => a.location === 'bozeman');
       const yellowstoneActivities = activities.filter(a => a.location === 'yellowstone');
       
