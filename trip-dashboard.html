@@ -451,31 +451,14 @@
           return;
         }
 
-        // Desktop table view
-        let tableHtml = '<table class="desktop-table"><thead><tr><th>Name</th></tr></thead><tbody>';
-        
+        // Simple list of names without boxes
+        let namesHtml = '<div style="line-height: 1.8;">';
         contacts.forEach(contact => {
-          tableHtml += `
-            <tr>
-              <td><strong>${contact.name}</strong></td>
-            </tr>
-          `;
+          namesHtml += `<div style="padding: 4px 0;">${contact.name}</div>`;
         });
-        
-        tableHtml += '</tbody></table>';
+        namesHtml += '</div>';
 
-        // Mobile card view - names only
-        let cardsHtml = '<div class="mobile-cards">';
-        contacts.forEach(contact => {
-          cardsHtml += `
-            <div class="mobile-card">
-              <div class="mobile-card-name">${contact.name}</div>
-            </div>
-          `;
-        });
-        cardsHtml += '</div>';
-
-        container.innerHTML = tableHtml + cardsHtml;
+        container.innerHTML = namesHtml;
         
         console.log('Loaded participants from whosgoing.json:', contacts.length, 'people');
         
