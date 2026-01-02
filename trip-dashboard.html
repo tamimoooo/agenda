@@ -471,9 +471,12 @@
     // Load flight details from tripcontacts.json
     async function loadFlights() {
       try {
-        const response = await fetch('tripcontacts.json');
+        const timestamp = new Date().getTime();
+        const response = await fetch(`tripcontacts.json?t=${timestamp}`);
         const tripContacts = await response.json();
         const container = document.getElementById('flightsList');
+        
+        console.log('Loading flights from tripcontacts.json:', tripContacts);
         
         if (tripContacts.length === 0) {
           container.innerHTML = '<div class="empty-state">No flight details submitted yet</div>';
@@ -502,8 +505,10 @@
         html += '</div>';
         container.innerHTML = html;
         
+        console.log('✅ Loaded', tripContacts.length, 'flight details');
+        
       } catch (error) {
-        console.error('Error loading flights:', error);
+        console.error('❌ Error loading flights:', error);
         document.getElementById('flightsList').innerHTML = '<div class="empty-state">Unable to load flight details</div>';
       }
     }
@@ -511,9 +516,12 @@
     // Load roommate assignments from roommates.json
     async function loadRoommates() {
       try {
-        const response = await fetch('roommates.json');
+        const timestamp = new Date().getTime();
+        const response = await fetch(`roommates.json?t=${timestamp}`);
         const roommates = await response.json();
         const container = document.getElementById('roommatesList');
+        
+        console.log('Loading roommates from roommates.json:', roommates);
         
         if (roommates.length === 0) {
           container.innerHTML = '<div class="empty-state">No roommate assignments yet</div>';
@@ -538,8 +546,10 @@
         html += '</div>';
         container.innerHTML = html;
         
+        console.log('✅ Loaded', roommates.length, 'roommate assignments');
+        
       } catch (error) {
-        console.error('Error loading roommates:', error);
+        console.error('❌ Error loading roommates:', error);
         document.getElementById('roommatesList').innerHTML = '<div class="empty-state">Unable to load roommate assignments</div>';
       }
     }
@@ -583,9 +593,12 @@
     // Load transportation needs from tripcontacts.json
     async function loadTransportation() {
       try {
-        const response = await fetch('tripcontacts.json');
+        const timestamp = new Date().getTime();
+        const response = await fetch(`tripcontacts.json?t=${timestamp}`);
         const tripContacts = await response.json();
         const container = document.getElementById('transportationList');
+        
+        console.log('Loading transportation from tripcontacts.json:', tripContacts);
         
         if (tripContacts.length === 0) {
           container.innerHTML = '<div class="empty-state">No transportation information yet</div>';
