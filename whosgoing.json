@@ -2,144 +2,61 @@
   {
     "id": 1,
     "name": "Errin",
-    "email": "errinmccomb@gmail.com",
-    "address": "14 Coan Street",
-    "city": "Greenville",
-    "state": "SC",
-    "zip": "29617",
-    "phone": "",
-    "birthday": ""
+    "email": "errinmccomb@gmail.com"
   },
   {
     "id": 2,
     "name": "Melanie",
-    "email": "melaniebullock@yahoo.com",
-    "address": "3703 Burt Drive",
-    "city": "Raleigh",
-    "state": "NC",
-    "zip": "27606",
-    "phone": "",
-    "birthday": ""
+    "email": "melaniebullock@yahoo.com"
   },
   {
     "id": 3,
     "name": "Summer",
-    "email": "sum0316@gmail.com",
-    "address": "2408 Dulair Road",
-    "city": "Greensboro",
-    "state": "NC",
-    "zip": "27407",
-    "phone": "",
-    "birthday": ""
+    "email": "sum0316@gmail.com"
   },
   {
     "id": 4,
     "name": "Dana",
-    "email": "missdana213@gmail.com",
-    "address": "8030 Stillmist Drive",
-    "city": "Fairburn",
-    "state": "Georgia",
-    "zip": "30213",
-    "phone": "",
-    "birthday": ""
+    "email": "missdana213@gmail.com"
   },
   {
     "id": 6,
     "name": "Monshaire",
-    "email": "mdfikes@gmail.com",
-    "address": "PO Box 6213",
-    "city": "Florence",
-    "state": "SC",
-    "zip": "29502",
-    "phone": "",
-    "birthday": ""
-  },
-  {
-    "id": 7,
-    "name": "Tamika F.",
-    "email": "tamikalfrancis@gmail.com",
-    "address": "225 Riverdell North Mews",
-    "city": "Lancaster",
-    "state": "TX",
-    "zip": "75146",
-    "phone": "",
-    "birthday": ""
+    "email": "mdfikes@gmail.com"
   },
   {
     "id": 8,
     "name": "Tamika",
-    "email": "DST894@hotmail.com",
-    "address": "8304 Flat Keystone Drive",
-    "city": "Raleigh",
-    "state": "NC",
-    "zip": "",
-    "phone": "",
-    "birthday": "05/01"
+    "email": "DST894@hotmail.com"
   },
   {
     "id": 9,
     "name": "Tephia Lindsay",
-    "email": "tephia25@yahoo.com",
-    "address": "8612-202 Olde Station Dr.",
-    "city": "Raleigh",
-    "state": "NC",
-    "zip": "27615",
-    "phone": "",
-    "birthday": "12/17"
+    "email": "tephia25@yahoo.com"
   },
   {
     "id": 10,
     "name": "Janita",
-    "email": "freshnclean9@gmail.com",
-    "address": "PO Box 415",
-    "city": "Wendell",
-    "state": "NC",
-    "zip": "27591",
-    "phone": "",
-    "birthday": ""
+    "email": "freshnclean9@gmail.com"
   },
   {
     "id": 12,
     "name": "Sherri",
-    "email": "sherribelklaw@gmail.com",
-    "address": "143 Skylark Way",
-    "city": "Raleigh",
-    "state": "NC",
-    "zip": "27615",
-    "phone": "",
-    "birthday": ""
+    "email": "sherribelklaw@gmail.com"
   },
   {
     "id": 13,
     "name": "Michelle",
-    "email": "michelleyfoxx@yahoo.com",
-    "address": "11682 Mustang Creek Ct",
-    "city": "Waldorf",
-    "state": "Maryland",
-    "zip": "20602",
-    "phone": "",
-    "birthday": ""
+    "email": "michelleyfoxx@yahoo.com"
   },
   {
     "id": 15,
     "name": "Nicole",
-    "email": "kilpatrickn39@gmail.com",
-    "address": "141 Bayleigh Court",
-    "city": "Garner",
-    "state": "NC",
-    "zip": "27529",
-    "phone": "",
-    "birthday": ""
+    "email": "kilpatrickn39@gmail.com"
   },
   {
     "id": 16,
     "name": "Rochelle",
-    "email": "iamadelta@yahoo.com",
-    "address": "9904 Orchard Grass Court",
-    "city": "Charlotte",
-    "state": "NC",
-    "zip": "28278",
-    "phone": "",
-    "birthday": ""
+    "email": "iamadelta@yahoo.com"
   }
 ]
