@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "confirmationNumber": "TENT-SJ-2026",
+    "tentType": "Suite Tent",
+    "roommates": [
+      {"name": "Sherri Belk"},
+      {"name": "Janita Moody"}
+    ],
+    "additionalNotes": "Trip coordinators - prefer tent with good accessibility to main area for coordination purposes",
+    "submittedDate": "2025-12-10T08:00:00.000Z"
+  }
+]

@@ -1,1 +1,68 @@
-[]
+[
+  {
+    "location": "yellowstone",
+    "name": "Group Whitewater Rafting - 18 Mile",
+    "description": "Experience the thrill of whitewater rafting through stunning Yellowstone scenery!",
+    "cost": "$164.00 per person",
+    "link": "",
+    "suggester": "Trip Organizers",
+    "submittedDate": "2025-12-01T10:00:00.000Z",
+    "duration": "5-6 hours (stops & cafe for lunch)",
+    "locationDetail": "Yellowstone River"
+  },
+  {
+    "location": "yellowstone",
+    "name": "Private Yellowstone River Luxury Float",
+    "description": "Relaxing scenic float through pristine wilderness",
+    "cost": "$644.00 total",
+    "link": "",
+    "suggester": "Trip Organizers",
+    "submittedDate": "2025-12-01T10:00:00.000Z",
+    "duration": "2.5 hours",
+    "locationDetail": "Yellowstone River"
+  },
+  {
+    "location": "yellowstone",
+    "name": "Group Horseback Ride",
+    "description": "Explore the wilderness on horseback",
+    "cost": "$244.00 per person",
+    "link": "",
+    "suggester": "Trip Organizers",
+    "submittedDate": "2025-12-01T10:00:00.000Z",
+    "duration": "2 hours",
+    "locationDetail": "Absaroka-Beartooth Wilderness"
+  },
+  {
+    "location": "yellowstone",
+    "name": "Yellowstone Park Tours",
+    "description": "See geysers, hot springs, wildlife (bison, elk, bears), and iconic landmarks. Details and pricing TBD",
+    "cost": "TBD",
+    "link": "",
+    "suggester": "Trip Organizers",
+    "submittedDate": "2025-12-01T10:00:00.000Z",
+    "duration": "Full day",
+    "locationDetail": "Yellowstone National Park"
+  },
+  {
+    "location": "yellowstone",
+    "name": "Hiking & Nature Walks",
+    "description": "Various trails for all skill levels - explore at your own pace",
+    "cost": "Free",
+    "link": "",
+    "suggester": "Trip Organizers",
+    "submittedDate": "2025-12-01T10:00:00.000Z",
+    "duration": "Flexible",
+    "locationDetail": "Various trails"
+  },
+  {
+    "location": "yellowstone",
+    "name": "Photography Tours",
+    "description": "Capture stunning landscapes and wildlife",
+    "cost": "TBD",
+    "link": "",
+    "suggester": "Trip Organizers",
+    "submittedDate": "2025-12-01T10:00:00.000Z",
+    "duration": "Flexible",
+    "locationDetail": "Yellowstone area"
+  }
+]

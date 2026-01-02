@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trip Dashboard - Montana Glamping 2026</title>
+  <style>
+    :root {
+      --primary-color: #d32f2f;
+      --primary-light: #f06d6d;
+      --primary-dark: #b22222;
+      --secondary-color: #ff6f61;
+      --background: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-primary: #2c3e50;
+      --text-secondary: #7f8c8d;
+      --border-color: #e0e0e0;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+      color: white;
+      border-radius: 0 0 30px 30px;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.95;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 15px;
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      text-decoration: none;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+      border: 2px solid var(--border-color);
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      border-color: var(--primary-color);
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin: 10px 0;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+    }
+
+    .section {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--primary-color);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+      color: white;
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background: #f8f9fa;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .badge-success {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .badge-warning {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .badge-info {
+      background: #d1ecf1;
+      color: #0c5460;
+    }
+
+    .activity-card {
+      border: 2px solid var(--border-color);
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      background: #f8f9fa;
+    }
+
+    .activity-card h4 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .participant-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .participant-tag {
+      background: var(--primary-color);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 15px;
+      font-size: 0.9rem;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-secondary);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-secondary);
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        font-size: 0.9rem;
+      }
+
+      th, td {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="reunion.html" class="back-link">← Back to Main Page</a>
+    <h1>📊 Trip Dashboard</h1>
+    <p class="subtitle">Montana Glamping Adventure - September 9-13, 2026</p>
+  </header>
+
+  <div class="container">
+    
+    <!-- Statistics Overview -->
+    <div class="dashboard-grid">
+      <div class="stat-card">
+        <div class="stat-label">👥 Total Participants</div>
+        <div class="stat-number" id="totalParticipants">16</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">✈️ Flight Details Submitted</div>
+        <div class="stat-number" id="flightsSubmitted">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">🏕️ Roommate Info Submitted</div>
+        <div class="stat-number" id="roommatesSubmitted">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">🎯 Activity Suggestions</div>
+        <div class="stat-number" id="activitiesCount">0</div>
+      </div>
+    </div>
+
+    <!-- Who's Going -->
+    <div class="section">
+      <h2 class="section-title">👥 Who's Going</h2>
+      <div id="participantsList" class="loading">Loading participants...</div>
+    </div>
+
+    <!-- Flight Details -->
+    <div class="section">
+      <h2 class="section-title">✈️ Travel Details</h2>
+      <div id="flightsList" class="loading">Loading flight information...</div>
+    </div>
+
+    <!-- Roommate Assignments -->
+    <div class="section">
+      <h2 class="section-title">🏕️ Roommate & Tent Assignments</h2>
+      <div id="roommatesList" class="loading">Loading roommate assignments...</div>
+    </div>
+
+    <!-- Activity Suggestions -->
+    <div class="section">
+      <h2 class="section-title">🎯 Activity Suggestions</h2>
+      <div id="activitiesList" class="loading">Loading activities...</div>
+    </div>
+
+    <!-- Transportation Coordination -->
+    <div class="section">
+      <h2 class="section-title">🚐 Transportation Needs</h2>
+      <div id="transportationList" class="loading">Loading transportation info...</div>
+    </div>
+
+  </div>
+
+  <script>
+    // Load all data when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      loadParticipants();
+      loadFlights();
+      loadRoommates();
+      loadActivities();
+      loadTransportation();
+      updateStatistics();
+    });
+
+    // Load participants from contacts.json
+    async function loadParticipants() {
+      try {
+        const response = await fetch('contacts.json');
+        const contacts = await response.json();
+        
+        const container = document.getElementById('participantsList');
+        
+        if (contacts.length === 0) {
+          container.innerHTML = '<div class="empty-state">No participants yet</div>';
+          return;
+        }
+
+        let html = '<table><thead><tr><th>Name</th><th>Email</th><th>City, State</th><th>Phone</th></tr></thead><tbody>';
+        
+        contacts.forEach(contact => {
+          html += `
+            <tr>
+              <td><strong>${contact.name}</strong></td>
+              <td>${contact.email || 'N/A'}</td>
+              <td>${contact.city ? contact.city + ', ' + contact.state : 'N/A'}</td>
+              <td>${contact.phone || 'N/A'}</td>
+            </tr>
+          `;
+        });
+        
+        html += '</tbody></table>';
+        container.innerHTML = html;
+        
+      } catch (error) {
+        console.error('Error loading participants:', error);
+        document.getElementById('participantsList').innerHTML = '<div class="empty-state">Unable to load participants</div>';
+      }
+    }
+
+    // Load flight details from tripcontacts.json
+    async function loadFlights() {
+      try {
+        const response = await fetch('tripcontacts.json');
+        const tripContacts = await response.json();
+        const container = document.getElementById('flightsList');
+        
+        if (tripContacts.length === 0) {
+          container.innerHTML = '<div class="empty-state">No flight details submitted yet</div>';
+          return;
+        }
+
+        let html = '<table><thead><tr><th>Name</th><th>Arrival</th><th>Flight</th><th>Departure</th><th>Flight</th><th>Airport Pickup</th></tr></thead><tbody>';
+        
+        tripContacts.forEach(trip => {
+          const arrivalTime = trip.outbound.arrival ? new Date(trip.outbound.arrival).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : 'N/A';
+          const departureTime = trip.return.departure ? new Date(trip.return.departure).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : 'N/A';
+          
+          html += `
+            <tr>
+              <td><strong>${trip.name}</strong></td>
+              <td>${arrivalTime}</td>
+              <td>${trip.outbound.airline || 'N/A'} ${trip.outbound.flightNumber || ''}</td>
+              <td>${departureTime}</td>
+              <td>${trip.return.airline || 'N/A'} ${trip.return.flightNumber || ''}</td>
+              <td>${trip.transportation?.needsAirportPickup ? '<span class="badge badge-warning">Yes</span>' : '<span class="badge badge-info">No</span>'}</td>
+            </tr>
+          `;
+        });
+        
+        html += '</tbody></table>';
+        container.innerHTML = html;
+        
+      } catch (error) {
+        console.error('Error loading flights:', error);
+        document.getElementById('flightsList').innerHTML = '<div class="empty-state">Unable to load flight details</div>';
+      }
+    }
+
+    // Load roommate assignments from roommates.json
+    async function loadRoommates() {
+      try {
+        const response = await fetch('roommates.json');
+        const roommates = await response.json();
+        const container = document.getElementById('roommatesList');
+        
+        if (roommates.length === 0) {
+          container.innerHTML = '<div class="empty-state">No roommate assignments yet</div>';
+          return;
+        }
+
+        let html = '<table><thead><tr><th>Confirmation #</th><th>Tent Type</th><th>Roommates</th><th>Notes</th></tr></thead><tbody>';
+        
+        roommates.forEach(room => {
+          const roommateNames = room.roommates.map(r => r.name).join(', ');
+          html += `
+            <tr>
+              <td><strong>${room.confirmationNumber}</strong></td>
+              <td>${room.tentType}</td>
+              <td>${roommateNames}</td>
+              <td>${room.additionalNotes || 'None'}</td>
+            </tr>
+          `;
+        });
+        
+        html += '</tbody></table>';
+        container.innerHTML = html;
+        
+      } catch (error) {
+        console.error('Error loading roommates:', error);
+        document.getElementById('roommatesList').innerHTML = '<div class="empty-state">Unable to load roommate assignments</div>';
+      }
+    }
+
+    // Load activity suggestions
+    function loadActivities() {
+      try {
+        const activities = JSON.parse(localStorage.getItem('submittedActivities') || '[]');
+        const container = document.getElementById('activitiesList');
+        
+        if (activities.length === 0) {
+          container.innerHTML = '<div class="empty-state">No activity suggestions yet</div>';
+          return;
+        }
+
+        let html = '';
+        
+        activities.forEach(activity => {
+          html += `
+            <div class="activity-card">
+              <h4>${activity.location === 'bozeman' ? '📍' : '🏞️'} ${activity.name}</h4>
+              <p>${activity.description}</p>
+              ${activity.cost ? `<p><strong>Cost:</strong> ${activity.cost}</p>` : ''}
+              ${activity.link ? `<p><strong>Link:</strong> <a href="${activity.link}" target="_blank">${activity.link}</a></p>` : ''}
+              <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-secondary);"><em>Suggested by: ${activity.suggester}</em></p>
+            </div>
+          `;
+        });
+        
+        container.innerHTML = html;
+        
+      } catch (error) {
+        console.error('Error loading activities:', error);
+        document.getElementById('activitiesList').innerHTML = '<div class="empty-state">Unable to load activities</div>';
+      }
+    }
+
+    // Load transportation needs from tripcontacts.json
+    async function loadTransportation() {
+      try {
+        const response = await fetch('tripcontacts.json');
+        const tripContacts = await response.json();
+        const container = document.getElementById('transportationList');
+        
+        if (tripContacts.length === 0) {
+          container.innerHTML = '<div class="empty-state">No transportation information yet</div>';
+          return;
+        }
+
+        const needsPickup = tripContacts.filter(t => t.transportation?.needsAirportPickup);
+        const willingToRent = tripContacts.filter(t => t.transportation?.willingToRentCar);
+
+        let html = '<h3 style="color: var(--primary-color); margin-bottom: 15px;">🚐 Needs Airport Pickup</h3>';
+        
+        if (needsPickup.length > 0) {
+          html += '<table><thead><tr><th>Name</th><th>Arrival Time</th><th>Flight</th></tr></thead><tbody>';
+          needsPickup.forEach(trip => {
+            const arrivalTime = trip.outbound.arrival ? new Date(trip.outbound.arrival).toLocaleString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : 'N/A';
+            html += `
+              <tr>
+                <td><strong>${trip.name}</strong></td>
+                <td>${arrivalTime}</td>
+                <td>${trip.outbound.airline || 'N/A'} ${trip.outbound.flightNumber || ''}</td>
+              </tr>
+            `;
+          });
+          html += '</tbody></table>';
+        } else {
+          html += '<p class="empty-state">No one needs airport pickup yet</p>';
+        }
+
+        html += '<h3 style="color: var(--primary-color); margin: 30px 0 15px;">🚗 Willing to Rent Car</h3>';
+        
+        if (willingToRent.length > 0) {
+          html += '<div class="participant-list">';
+          willingToRent.forEach(trip => {
+            html += `<span class="participant-tag">${trip.name}</span>`;
+          });
+          html += '</div>';
+        } else {
+          html += '<p class="empty-state">No one willing to rent a car yet</p>';
+        }
+
+        container.innerHTML = html;
+        
+      } catch (error) {
+        console.error('Error loading transportation:', error);
+        document.getElementById('transportationList').innerHTML = '<div class="empty-state">Unable to load transportation info</div>';
+      }
+    }
+
+    // Update statistics from JSON files
+    async function updateStatistics() {
+      try {
+        const [tripResponse, roommatesResponse, activitiesResponse] = await Promise.all([
+          fetch('tripcontacts.json'),
+          fetch('roommates.json'),
+          fetch('activity_suggestions.json')
+        ]);
+
+        const tripContacts = await tripResponse.json();
+        const roommates = await roommatesResponse.json();
+        const activities = await activitiesResponse.json();
+
+        document.getElementById('flightsSubmitted').textContent = tripContacts.length;
+        document.getElementById('roommatesSubmitted').textContent = roommates.length;
+        document.getElementById('activitiesCount').textContent = activities.length;
+      } catch (error) {
+        console.error('Error updating statistics:', error);
+      }
+    }
+  </script>
+</body>
+</html>
