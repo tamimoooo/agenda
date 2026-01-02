@@ -2045,43 +2045,36 @@
     // Load contacts from JSON file or use defaults
     async function initializeContacts() {
       try {
-        const response = await fetch('whosgoing.json?t=' + Date.now()); // Cache-busting
+        const response = await fetch('contacts.json?t=' + Date.now()); // Cache-busting
         if (response.ok) {
-          contactsData = await response.json();
-          // Save to localStorage with timestamp
-          const dataWithTimestamp = {
-            data: contactsData,
-            timestamp: Date.now(),
-            source: 'whosgoing.json'
-          };
-          localStorage.setItem('spring94Contacts', JSON.stringify(dataWithTimestamp));
-          console.log('✅ Loaded contacts from whosgoing.json:', contactsData.length, 'people');
+          const jsonContacts = await response.json();
+          
+          // Check if localStorage already has contacts
+          const stored = localStorage.getItem('spring94Contacts');
+          
+          if (!stored) {
+            // First time - populate localStorage from contacts.json
+            localStorage.setItem('spring94Contacts', JSON.stringify(jsonContacts));
+            console.log('✅ Initialized Contact Directory with', jsonContacts.length, 'people from contacts.json');
+          }
+          
+          // Always load from localStorage for display (so user edits are preserved)
+          contactsData = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+          console.log('📇 Loaded', contactsData.length, 'contacts from localStorage');
         } else {
-          throw new Error('JSON file not found');
+          throw new Error('contacts.json not found');
         }
       } catch (error) {
-        console.warn('⚠️ Could not load whosgoing.json, using localStorage backup:', error.message);
-        // Use localStorage as emergency backup
+        console.warn('⚠️ Could not load contacts.json, using localStorage:', error.message);
+        // Use localStorage
         const stored = localStorage.getItem('spring94Contacts');
         if (stored) {
-          try {
-            const parsed = JSON.parse(stored);
-            // Check if it's the new format with timestamp
-            if (parsed.data && parsed.timestamp) {
-              contactsData = parsed.data;
-              const age = Math.floor((Date.now() - parsed.timestamp) / (1000 * 60 * 60 * 24));
-              console.log(`📦 Using cached data from ${parsed.source} (${age} days old)`);
-            } else {
-              // Old format without timestamp
-              contactsData = parsed;
-              console.log('📦 Using cached data (unknown age)');
-            }
-          } catch (e) {
-            contactsData = defaultContacts;
-          }
+          contactsData = JSON.parse(stored);
+          console.log('📦 Using cached contacts from localStorage');
         } else {
           // Use default contacts as last resort
           contactsData = defaultContacts;
+          localStorage.setItem('spring94Contacts', JSON.stringify(defaultContacts));
           console.log('📋 Using default contacts');
         }
       }
