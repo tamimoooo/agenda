@@ -1871,6 +1871,14 @@
                 </div>
               </div>
 
+              <!-- Activities Selection Section -->
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
+                <h4 style="color: var(--primary-dark); margin-bottom: 15px;">🎯 Activities I'm Interested In</h4>
+                <p style="margin-bottom: 15px; color: var(--text-secondary); font-size: 0.9rem;">
+                  <strong>Note:</strong> Please enter activities manually in the Special Requests section below. Activity selection will be available in a future update.
+                </p>
+              </div>
+
               <!-- Special Requests Section -->
               <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
                 <h4 style="color: var(--primary-dark); margin-bottom: 15px;">💬 Special Requests</h4>
@@ -3027,6 +3035,58 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
           
           console.log('✅ Loaded', contacts.length, 'names into dropdown from whosgoing.json');
         } else {
+    
+    // Populate trip activities checkboxes from activity_suggestions.json
+    async function populateTripActivitiesCheckboxes() {
+      try {
+        const timestamp = new Date().getTime();
+        const response = await fetch(`activity_suggestions.json?t=${timestamp}`);
+        const activities = await response.json();
+        const container = document.getElementById('tripActivitiesCheckboxes');
+        
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        activities.forEach((activity, index) => {
+          const checkboxId = `tripActivity_${index}`;
+          const checkboxHtml = `
+            <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; padding: 10px; border: 1px solid var(--border-color); border-radius: 5px; background: white;">
+              <input type="checkbox" id="${checkboxId}" value="${index}" 
+                     data-name="${activity.name}" 
+                     data-cost="${activity.cost}"
+                     style="width: 20px; height: 20px; margin-top: 2px; flex-shrink: 0;">
+              <div style="flex: 1;">
+                <div style="font-weight: bold; color: var(--primary-dark);">${activity.name}</div>
+                <div style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 4px;">${activity.description}</div>
+                <div style="font-size: 0.9rem; color: var(--secondary-color); margin-top: 4px;"><strong>Cost:</strong> ${activity.cost}</div>
+              </div>
+            </label>
+          `;
+          container.innerHTML += checkboxHtml;
+        });
+        
+        console.log('Loaded', activities.length, 'activities for trip form');
+        
+      } catch (error) {
+        console.error('Error loading activities for trip form:', error);
+      }
+    }
+    
+    // Get selected activities from checkboxes
+    function getSelectedActivities() {
+      const checkboxes = document.querySelectorAll('#tripActivitiesCheckboxes input[type="checkbox"]:checked');
+      const selected = [];
+      
+      checkboxes.forEach(checkbox => {
+        selected.push({
+          name: checkbox.dataset.name,
+          cost: checkbox.dataset.cost
+        });
+      });
+      
+      return selected;
+    }
           console.error('❌ Dropdown element #tripUserName not found!');
         }
       } catch (error) {
@@ -3439,14 +3499,6 @@ ${tripDetails.activities && tripDetails.activities.length > 0 ? tripDetails.acti
 
 ═══════════════════════════════════════════════════════════════
 
-EMERGENCY CONTACT
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Name: ${tripDetails.emergency.name || 'Not specified'}
-  Phone: ${tripDetails.emergency.phone || 'Not specified'}
-  Relationship: ${tripDetails.emergency.relationship || 'Not specified'}
-
-═══════════════════════════════════════════════════════════════
-
 TRIP COORDINATORS CONTACT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   Sherri Belk: sherribelklaw@gmail.com
@@ -3458,7 +3510,7 @@ IMPORTANT REMINDERS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   • Bring valid ID for flights and hotel check-in
   • Pack layers - Montana weather can be unpredictable
-  • Bring sunscreen, bug spray, and comfortable hiking shoes
+  • Bring sunscreen, bug spray, and comfortable shoes
   • Camera/phone for capturing memories
   • Reusable water bottle
   • Any personal medications
