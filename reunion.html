@@ -2954,10 +2954,10 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
 
     // ===== TRIP DETAILS & ITINERARY FUNCTIONS =====
     
-    // Populate name dropdown from contacts.json
+    // Populate name dropdown from whosgoing.json
     async function populateNameDropdown() {
       try {
-        const response = await fetch('contacts.json');
+        const response = await fetch('whosgoing.json');
         const contacts = await response.json();
         const dropdown = document.getElementById('tripUserName');
         
@@ -2978,9 +2978,11 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
           dropdown.addEventListener('change', function() {
             document.getElementById('tripUserId').value = this.value;
           });
+          
+          console.log('Loaded names from whosgoing.json:', contacts.length, 'people');
         }
       } catch (error) {
-        console.error('Error loading contacts:', error);
+        console.error('Error loading whosgoing.json:', error);
       }
     }
     
