@@ -452,26 +452,24 @@
         }
 
         // Desktop table view
-        let tableHtml = '<table class="desktop-table"><thead><tr><th>Name</th><th>Email</th></tr></thead><tbody>';
+        let tableHtml = '<table class="desktop-table"><thead><tr><th>Name</th></tr></thead><tbody>';
         
         contacts.forEach(contact => {
           tableHtml += `
             <tr>
               <td><strong>${contact.name}</strong></td>
-              <td>${contact.email || 'N/A'}</td>
             </tr>
           `;
         });
         
         tableHtml += '</tbody></table>';
 
-        // Mobile card view
+        // Mobile card view - names only
         let cardsHtml = '<div class="mobile-cards">';
         contacts.forEach(contact => {
           cardsHtml += `
             <div class="mobile-card">
-              <div class="mobile-card-name">👤 ${contact.name}</div>
-              <div class="mobile-card-email">✉️ ${contact.email || 'N/A'}</div>
+              <div class="mobile-card-name">${contact.name}</div>
             </div>
           `;
         });
@@ -499,25 +497,26 @@
           return;
         }
 
-        let html = '<table><thead><tr><th>Name</th><th>Arrival</th><th>Flight</th><th>Departure</th><th>Flight</th><th>Airport Pickup</th></tr></thead><tbody>';
-        
+        // Mobile card view
+        let html = '<div class="mobile-cards">';
         tripContacts.forEach(trip => {
           const arrivalTime = trip.outbound.arrival ? new Date(trip.outbound.arrival).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : 'N/A';
           const departureTime = trip.return.departure ? new Date(trip.return.departure).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : 'N/A';
           
           html += `
-            <tr>
-              <td><strong>${trip.name}</strong></td>
-              <td>${arrivalTime}</td>
-              <td>${trip.outbound.airline || 'N/A'} ${trip.outbound.flightNumber || ''}</td>
-              <td>${departureTime}</td>
-              <td>${trip.return.airline || 'N/A'} ${trip.return.flightNumber || ''}</td>
-              <td>${trip.transportation?.needsAirportPickup ? '<span class="badge badge-warning">Yes</span>' : '<span class="badge badge-info">No</span>'}</td>
-            </tr>
+            <div class="mobile-card">
+              <div class="mobile-card-name">${trip.name}</div>
+              <div style="margin-top: 10px; font-size: 0.9rem;">
+                <div><strong>✈️ Arrival:</strong> ${arrivalTime}</div>
+                <div><strong>Flight:</strong> ${trip.outbound.airline || 'N/A'} ${trip.outbound.flightNumber || ''}</div>
+                <div style="margin-top: 8px;"><strong>🛫 Departure:</strong> ${departureTime}</div>
+                <div><strong>Flight:</strong> ${trip.return.airline || 'N/A'} ${trip.return.flightNumber || ''}</div>
+                ${trip.transportation?.needsAirportPickup ? '<div style="margin-top: 8px;"><span class="badge badge-warning">Needs Pickup</span></div>' : ''}
+              </div>
+            </div>
           `;
         });
-        
-        html += '</tbody></table>';
+        html += '</div>';
         container.innerHTML = html;
         
       } catch (error) {
@@ -538,21 +537,22 @@
           return;
         }
 
-        let html = '<table><thead><tr><th>Confirmation #</th><th>Tent Type</th><th>Roommates</th><th>Notes</th></tr></thead><tbody>';
-        
+        // Mobile card view
+        let html = '<div class="mobile-cards">';
         roommates.forEach(room => {
           const roommateNames = room.roommates.map(r => r.name).join(', ');
           html += `
-            <tr>
-              <td><strong>${room.confirmationNumber}</strong></td>
-              <td>${room.tentType}</td>
-              <td>${roommateNames}</td>
-              <td>${room.additionalNotes || 'None'}</td>
-            </tr>
+            <div class="mobile-card">
+              <div class="mobile-card-name">${room.tentType}</div>
+              <div style="margin-top: 10px; font-size: 0.9rem;">
+                <div><strong>Confirmation:</strong> ${room.confirmationNumber}</div>
+                <div style="margin-top: 8px;"><strong>Roommates:</strong> ${roommateNames}</div>
+                ${room.additionalNotes ? `<div style="margin-top: 8px;"><strong>Notes:</strong> ${room.additionalNotes}</div>` : ''}
+              </div>
+            </div>
           `;
         });
-        
-        html += '</tbody></table>';
+        html += '</div>';
         container.innerHTML = html;
         
       } catch (error) {
@@ -615,18 +615,20 @@
         let html = '<h3 style="color: var(--primary-color); margin-bottom: 15px;">🚐 Needs Airport Pickup</h3>';
         
         if (needsPickup.length > 0) {
-          html += '<table><thead><tr><th>Name</th><th>Arrival Time</th><th>Flight</th></tr></thead><tbody>';
+          html += '<div class="mobile-cards">';
           needsPickup.forEach(trip => {
             const arrivalTime = trip.outbound.arrival ? new Date(trip.outbound.arrival).toLocaleString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : 'N/A';
             html += `
-              <tr>
-                <td><strong>${trip.name}</strong></td>
-                <td>${arrivalTime}</td>
-                <td>${trip.outbound.airline || 'N/A'} ${trip.outbound.flightNumber || ''}</td>
-              </tr>
+              <div class="mobile-card">
+                <div class="mobile-card-name">${trip.name}</div>
+                <div style="margin-top: 8px; font-size: 0.9rem;">
+                  <div><strong>Arrival:</strong> ${arrivalTime}</div>
+                  <div><strong>Flight:</strong> ${trip.outbound.airline || 'N/A'} ${trip.outbound.flightNumber || ''}</div>
+                </div>
+              </div>
             `;
           });
-          html += '</tbody></table>';
+          html += '</div>';
         } else {
           html += '<p class="empty-state">No one needs airport pickup yet</p>';
         }
