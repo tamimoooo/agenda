@@ -409,10 +409,11 @@
       }
     }
 
-    // Load activity suggestions
-    function loadActivities() {
+    // Load activity suggestions from activity_suggestions.json
+    async function loadActivities() {
       try {
-        const activities = JSON.parse(localStorage.getItem('submittedActivities') || '[]');
+        const response = await fetch('activity_suggestions.json');
+        const activities = await response.json();
         const container = document.getElementById('activitiesList');
         
         if (activities.length === 0) {
@@ -435,6 +436,8 @@
         });
         
         container.innerHTML = html;
+        
+        console.log('Loaded activities from activity_suggestions.json:', activities.length, 'activities');
         
       } catch (error) {
         console.error('Error loading activities:', error);
