@@ -441,7 +441,8 @@
     // Load participants from whosgoing.json
     async function loadParticipants() {
       try {
-        const response = await fetch('whosgoing.json');
+        const timestamp = new Date().getTime();
+        const response = await fetch(`whosgoing.json?t=${timestamp}`);
         const contacts = await response.json();
         
         const container = document.getElementById('participantsList');
@@ -557,7 +558,8 @@
     // Load activity suggestions from activity_suggestions.json
     async function loadActivities() {
       try {
-        const response = await fetch('activity_suggestions.json');
+        const timestamp = new Date().getTime();
+        const response = await fetch(`activity_suggestions.json?t=${timestamp}`);
         const activities = await response.json();
         const container = document.getElementById('activitiesList');
         
@@ -652,11 +654,12 @@
     // Update statistics from JSON files
     async function updateStatistics() {
       try {
+        const timestamp = new Date().getTime();
         const [whosgoingResponse, tripResponse, roommatesResponse, activitiesResponse] = await Promise.all([
-          fetch('whosgoing.json'),
-          fetch('tripcontacts.json'),
-          fetch('roommates.json'),
-          fetch('activity_suggestions.json')
+          fetch(`whosgoing.json?t=${timestamp}`),
+          fetch(`tripcontacts.json?t=${timestamp}`),
+          fetch(`roommates.json?t=${timestamp}`),
+          fetch(`activity_suggestions.json?t=${timestamp}`)
         ]);
 
         const whosgoing = await whosgoingResponse.json();
