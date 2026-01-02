@@ -298,10 +298,10 @@
       updateStatistics();
     });
 
-    // Load participants from contacts.json
+    // Load participants from whosgoing.json
     async function loadParticipants() {
       try {
-        const response = await fetch('contacts.json');
+        const response = await fetch('whosgoing.json');
         const contacts = await response.json();
         
         const container = document.getElementById('participantsList');
@@ -326,6 +326,8 @@
         
         html += '</tbody></table>';
         container.innerHTML = html;
+        
+        console.log('Loaded participants from whosgoing.json:', contacts.length, 'people');
         
       } catch (error) {
         console.error('Error loading participants:', error);
@@ -497,16 +499,19 @@
     // Update statistics from JSON files
     async function updateStatistics() {
       try {
-        const [tripResponse, roommatesResponse, activitiesResponse] = await Promise.all([
+        const [whosgoingResponse, tripResponse, roommatesResponse, activitiesResponse] = await Promise.all([
+          fetch('whosgoing.json'),
           fetch('tripcontacts.json'),
           fetch('roommates.json'),
           fetch('activity_suggestions.json')
         ]);
 
+        const whosgoing = await whosgoingResponse.json();
         const tripContacts = await tripResponse.json();
         const roommates = await roommatesResponse.json();
         const activities = await activitiesResponse.json();
 
+        document.getElementById('totalParticipants').textContent = whosgoing.length;
         document.getElementById('flightsSubmitted').textContent = tripContacts.length;
         document.getElementById('roommatesSubmitted').textContent = roommates.length;
         document.getElementById('activitiesCount').textContent = activities.length;
