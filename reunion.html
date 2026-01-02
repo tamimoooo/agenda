@@ -3334,6 +3334,13 @@ TENT: ${tripDetails.tent.type || 'Not selected'} ${tripDetails.tent.pricePerPers
 
       const tripDetails = JSON.parse(saved);
       
+      // Ensure all required properties exist with defaults
+      if (!tripDetails.activities) tripDetails.activities = [];
+      if (!tripDetails.outbound) tripDetails.outbound = {};
+      if (!tripDetails.return) tripDetails.return = {};
+      if (!tripDetails.emergency) tripDetails.emergency = {};
+      if (!tripDetails.tent) tripDetails.tent = {};
+      
       // Format dates nicely
       const formatDateTime = (dateStr) => {
         if (!dateStr) return 'Not specified';
