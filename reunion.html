@@ -293,14 +293,16 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
-      color: white;
-      box-shadow: var(--shadow);
+      background: linear-gradient(135deg, #DAA520 0%, #FFD700 100%);
+      color: #8B0000;
+      box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
+      font-weight: 700;
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 6px 20px rgba(218, 165, 32, 0.4);
+      background: linear-gradient(135deg, #B8860B 0%, #DAA520 100%);
     }
 
     .btn-secondary {
@@ -779,9 +781,27 @@
       scrollbar-color: #DAA520 #f1f1f1;
     }
     
-    /* Desktop: Make activities section scrollable so My Trip Details is visible */
+    /* Desktop: Make sections scrollable so content below is visible */
     @media (min-width: 769px) {
       #activities-content.expanded {
+        max-height: 600px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      #decisions-content.expanded {
+        max-height: 600px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      #estimates-content.expanded {
+        max-height: 600px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      #lodging-content.expanded {
         max-height: 600px;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
@@ -902,7 +922,7 @@
   <nav id="quickLinks" style="position: sticky; top: 0; z-index: 999; background: linear-gradient(135deg, #8B0000 0%, #5C0000 100%); box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 8px 0; transition: all 0.3s ease;">
     <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 10px;">
       <div style="display: flex; gap: 6px; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: thin; padding: 4px 0;">
-        <a href="trip-dashboard.html" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #8B0000; padding: 6px 16px; border-radius: 15px; text-decoration: none; font-size: 0.85rem; font-weight: bold; transition: all 0.2s ease; flex-shrink: 0; box-shadow: 0 2px 8px rgba(255,215,0,0.3);">📊 TRIP DASHBOARD</a>
+        <a href="trip-dashboard.html" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #8B0000; padding: 6px 16px; border-radius: 15px; text-decoration: none; font-size: 0.85rem; font-weight: bold; transition: all 0.2s ease; flex-shrink: 0; box-shadow: 0 2px 8px rgba(255,215,0,0.3);">📊 View Trip Dashboard</a>
         <a href="#contacts-content" onclick="scrollToSection('contacts', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">📇 Contacts</a>
         <a href="#estimates-content" onclick="scrollToSection('estimates', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">💰 Costs</a>
         <a href="#lodging-content" onclick="scrollToSection('lodging', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">⛺ Tents</a>
@@ -1349,14 +1369,14 @@
               <!-- 4. Travel Plans -->
               <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 20px; background: white;">
                 <h4 style="color: var(--primary-color); margin-bottom: 15px;">
-                  ✈️ 4. Book Your Flights
+                  ✈️ 4. Submit Flight Details
                 </h4>
                 <p style="margin-bottom: 10px;">Arrange your travel to/from Bozeman, Montana for September 9-13, 2026.</p>
                 <div style="padding: 10px; background: #fff3cd; border-radius: 5px; margin-bottom: 10px;">
                   <strong>⚠️ Reminder:</strong> Coordinate arrival times for van pickup from the airport
                 </div>
                 <a href="#mytrip-content" onclick="openSectionAndScroll('mytrip', 'mytrip-content', event)" class="btn btn-secondary" style="display: inline-block; margin-top: 10px; text-decoration: none;">
-                  Book Your Flights
+                  Submit Flight Details
                 </a>
               </div>
 
@@ -1584,15 +1604,6 @@
           </div>
           <div class="subsection-content" id="roommate-content">
             
-            <!-- Link to Dashboard -->
-            <div style="margin-bottom: 25px; padding: 20px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%); border: 3px solid var(--primary-color); border-radius: 15px; text-align: center;">
-              <h4 style="color: var(--primary-dark); margin-bottom: 10px;">👥 View All Roommate Assignments</h4>
-              <p style="color: var(--text-secondary); margin-bottom: 15px;">See who's rooming with whom and tent assignments</p>
-              <a href="trip-dashboard.html" class="btn btn-primary" style="display: inline-block; text-decoration: none; padding: 15px 30px; font-size: 1.1rem;">
-                📊 Go to Trip Dashboard
-              </a>
-            </div>
-
             <!-- Roommate & Tent Reservation Form -->
             <div id="roommateFormSection">
               <h4 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px solid var(--primary-color); padding-bottom: 8px;">
@@ -1702,19 +1713,10 @@
                 <summary style="padding: 15px; font-weight: bold; color: var(--primary-color); font-size: 1.1rem; list-style: none;">
                   <span style="display: inline-block;">💡 Suggest an Activity (Click to expand)</span>
                 </summary>
-                <div style="padding: 20px 20px 60px 20px; border-top: 1px solid var(--border-color); max-height: 80vh; overflow-y: auto; -webkit-overflow-scrolling: touch;">
+                <div style="padding: 20px 20px 60px 20px; border-top: 1px solid var(--border-color);">
                   <p style="margin-bottom: 20px; color: var(--text-secondary);">
                     Have an activity idea? Share it with the group! Your suggestions will be displayed below for everyone to see.
                   </p>
-
-              <!-- Link to Dashboard -->
-              <div style="margin-bottom: 25px; padding: 20px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%); border: 3px solid var(--primary-color); border-radius: 15px; text-align: center;">
-                <h5 style="color: var(--primary-dark); margin-bottom: 10px;">🎯 View All Activity Suggestions</h5>
-                <p style="color: var(--text-secondary); margin-bottom: 15px;">See what activities others have suggested and who wants to join</p>
-                <a href="trip-dashboard.html" class="btn btn-primary" style="display: inline-block; text-decoration: none; padding: 15px 30px; font-size: 1.1rem;">
-                  📊 Go to Trip Dashboard
-                </a>
-              </div>
 
               <!-- Activity Suggestion Form -->
               <form id="activitySuggestionForm" style="display: grid; gap: 15px;">
@@ -1807,7 +1809,7 @@
           </div>
           <div class="subsection-content" id="mytrip-content">
             <p style="margin-bottom: 20px; color: var(--text-secondary);">
-              Fill out your personal trip information below. Once complete, you can download a personalized Word document with all your trip details, hotel addresses, and important information in one place!
+              Fill out your personal trip information below and submit to admin. Once everything is finalized before departure, you'll be able to download a personalized Word document with all your trip details, hotel addresses, and important information in one place!
             </p>
 
             <!-- Form -->
