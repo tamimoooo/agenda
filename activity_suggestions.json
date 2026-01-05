@@ -97,5 +97,52 @@
     "submittedDate": "2026-09-11T10:00:00.000Z",
     "duration": "Approximately 45-minute stagecoach ride plus 15-minute safety talk (cookout follows)",
     "locationDetail": "Pleasant Valley, Yellowstone National Park"
+  },
+  [
+  {
+    "location": "yellowstone",
+    "name": "Grand Loop Road Self-Guided Drive",
+    "description": "Self-guided driving tour along Yellowstone’s main Grand Loop Road, connecting major highlights such as geyser basins, waterfalls, wildlife valleys, and scenic overlooks. Visitors explore at their own pace using pullouts and boardwalks.",
+    "cost": "Free (park entrance fee required)",
+    "link": "",
+    "suggester": "Trip Organizers",
+    "submittedDate": "2025-12-01T10:00:00.000Z",
+    "duration": "Half day to full day (flexible)",
+    "locationDetail": "Grand Loop Road, Yellowstone National Park"
+  },
+  {
+    "location": "yellowstone",
+    "name": "NPS App Self-Guided Yellowstone Tour",
+    "description": "Official National Park Service app providing self-guided tours, interactive maps, geyser eruption predictions, trail information, and park alerts. Content can be downloaded for offline use.",
+    "cost": "Free",
+    "link": "https://www.nps.gov/yell/planyourvisit/app.htm",
+    "suggester": "Trip Organizers",
+    "submittedDate": "2025-12-01T10:00:00.000Z",
+    "duration": "Flexible",
+    "locationDetail": "Yellowstone National Park"
+  },
+  {
+    "location": "yellowstone",
+    "name": "GuideAlong Yellowstone Audio Tour",
+    "description": "GPS-triggered self-guided audio driving tour that provides narration, history, geology, and wildlife tips while you drive through Yellowstone. Works offline once downloaded.",
+    "cost": "Approximately $15–$30 (one-time purchase)",
+    "link": "https://guidealong.com/tour/yellowstone/",
+    "suggester": "Trip Organizers",
+    "submittedDate": "2025-12-01T10:00:00.000Z",
+    "duration": "Full day or multi-day (flexible)",
+    "locationDetail": "Yellowstone National Park"
+  },
+  {
+    "location": "yellowstone",
+    "name": "Yellowstone Audio Driving Tour (Action Tour Guide)",
+    "description": "Self-guided GPS audio driving tour covering Yellowstone’s major sights, including geysers, wildlife areas, and scenic viewpoints, with narration that plays automatically as you drive.",
+    "cost": "Approximately $15–$30",
+    "link": "https://actiontourguide.com/place/yellowstone-national-park-self-driving-audio-tour/",
+    "suggester": "Trip Organizers",
+    "submittedDate": "2025-12-01T10:00:00.000Z",
+    "duration": "Full day or multi-day (flexible)",
+    "locationDetail": "Yellowstone National Park"
   }
+]
+
 ]
