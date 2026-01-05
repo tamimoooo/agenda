@@ -752,6 +752,15 @@
       transform: translateY(0);
     }
 
+    /* Desktop: Make activities section scrollable so My Trip Details is visible */
+    @media (min-width: 769px) {
+      #activities-content.expanded {
+        max-height: 600px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+    
     /* Mobile-specific styles for better spacing */
     @media (max-width: 768px) {
       .subsection-content.expanded {
