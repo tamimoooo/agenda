@@ -1650,62 +1650,11 @@
           <div class="subsection-content" id="activities-content">
           <p style="margin-bottom: 20px;">Choose your adventure! Here are some exciting activities available:</p>
 
-          <div style="display: grid; gap: 15px;">
-            
-            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
-              <h5 style="color: var(--primary-color); margin-bottom: 10px;">🌊 Group Whitewater Rafting - 18 Mile</h5>
-              <div style="display: grid; gap: 8px;">
-                <div><strong>💰 Price:</strong> $164.00 per person</div>
-                <div><strong>⏱️ Duration:</strong> 5-6 hours (stops & cafe for lunch)</div>
-                <div><strong>📍 Location:</strong> Yellowstone River</div>
-                <div style="margin-top: 5px; font-style: italic; color: var(--text-secondary);">
-                  Experience the thrill of whitewater rafting through stunning Yellowstone scenery!
-                </div>
-              </div>
+          <div id="activitiesListContainer" style="display: grid; gap: 15px;">
+            <!-- Activities will be loaded dynamically from activity_suggestions.json -->
+            <div style="text-align: center; padding: 40px; color: var(--text-secondary);">
+              <p>Loading activities...</p>
             </div>
-            
-            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
-              <h5 style="color: var(--primary-color); margin-bottom: 8px;">🛶 Private Yellowstone River Luxury Float</h5>
-              <p style="font-size: 0.95rem; margin-bottom: 8px;">
-                <strong>Price:</strong> $644.00 | <strong>Duration:</strong> 2.5 hours<br>
-                <strong>Location:</strong> Yellowstone River
-              </p>
-              <p style="font-size: 0.9rem; color: var(--text-secondary);">Relaxing scenic float through pristine wilderness</p>
-            </div>
-
-            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
-              <h5 style="color: var(--primary-color); margin-bottom: 8px;">🐴 Group Horseback Ride</h5>
-              <p style="font-size: 0.95rem; margin-bottom: 8px;">
-                <strong>Price:</strong> $244.00 per person | <strong>Duration:</strong> 2 hrs<br>
-                <strong>Location:</strong> Absaroka-Beartooth Wilderness
-              </p>
-              <p style="font-size: 0.9rem; color: var(--text-secondary);">Explore the wilderness on horseback</p>
-            </div>
-
-            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
-              <h5 style="color: var(--primary-color); margin-bottom: 8px;">🦬 Yellowstone Park Tours</h5>
-              <p style="font-size: 0.95rem; margin-bottom: 8px;">
-                See geysers, hot springs, wildlife (bison, elk, bears), and iconic landmarks
-              </p>
-              <p style="font-size: 0.9rem; color: var(--text-secondary);">Details and pricing TBD</p>
-            </div>
-
-            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
-              <h5 style="color: var(--primary-color); margin-bottom: 8px;">🥾 Hiking & Nature Walks</h5>
-              <p style="font-size: 0.95rem; margin-bottom: 8px;">
-                Various trails for all skill levels
-              </p>
-              <p style="font-size: 0.9rem; color: var(--text-secondary);">Free - explore at your own pace</p>
-            </div>
-
-            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
-              <h5 style="color: var(--primary-color); margin-bottom: 8px;">📸 Photography Tours</h5>
-              <p style="font-size: 0.95rem; margin-bottom: 8px;">
-                Capture stunning landscapes and wildlife
-              </p>
-              <p style="font-size: 0.9rem; color: var(--text-secondary);">Details TBD</p>
-            </div>
-
           </div>
 
             <div class="warning-box" style="margin-top: 20px;">
@@ -2976,6 +2925,58 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
         }
       }
       loadSubmittedActivities();
+      loadActivitiesExcursions(); // Load activities into the main section
+    }
+
+    // Load and display activities in the Activities & Excursions section
+    function loadActivitiesExcursions() {
+      const container = document.getElementById('activitiesListContainer');
+      if (!container) return;
+
+      if (!activitySuggestionsData || activitySuggestionsData.length === 0) {
+        container.innerHTML = '<div style="text-align: center; padding: 40px; color: var(--text-secondary);"><p>No activities available yet. Check back soon!</p></div>';
+        return;
+      }
+
+      // Get activity icon based on name/type
+      function getActivityIcon(name) {
+        const nameLower = name.toLowerCase();
+        if (nameLower.includes('raft') || nameLower.includes('float')) return '🌊';
+        if (nameLower.includes('horse')) return '🐴';
+        if (nameLower.includes('hike') || nameLower.includes('walk')) return '🥾';
+        if (nameLower.includes('tour') || nameLower.includes('yellowstone')) return '🦬';
+        if (nameLower.includes('photo')) return '📸';
+        if (nameLower.includes('hot spring') || nameLower.includes('soak')) return '♨️';
+        if (nameLower.includes('cookout') || nameLower.includes('stagecoach')) return '🤠';
+        if (nameLower.includes('sunset') || nameLower.includes('butte')) return '🌅';
+        return '🎯';
+      }
+
+      // Build HTML for all activities
+      let html = '';
+      activitySuggestionsData.forEach(activity => {
+        const icon = getActivityIcon(activity.name);
+        const locationText = activity.locationDetail || activity.location || '';
+        const duration = activity.duration || '';
+        const cost = activity.cost || 'TBD';
+        const link = activity.link || '';
+        
+        html += `
+          <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+            <h5 style="color: var(--primary-color); margin-bottom: 10px;">${icon} ${activity.name}</h5>
+            <div style="display: grid; gap: 8px;">
+              ${cost !== 'TBD' && cost !== '' ? `<div><strong>💰 Price:</strong> ${cost}</div>` : ''}
+              ${duration ? `<div><strong>⏱️ Duration:</strong> ${duration}</div>` : ''}
+              ${locationText ? `<div><strong>📍 Location:</strong> ${locationText}</div>` : ''}
+              ${activity.description ? `<div style="margin-top: 5px; font-style: italic; color: var(--text-secondary);">${activity.description}</div>` : ''}
+              ${link ? `<div style="margin-top: 8px;"><a href="${link}" target="_blank" rel="noopener" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">🔗 More Info</a></div>` : ''}
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+      console.log('✅ Loaded', activitySuggestionsData.length, 'activities into Activities & Excursions section');
     }
 
     // Handle activity suggestion form submission
