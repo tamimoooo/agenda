@@ -769,6 +769,16 @@
       #mytrip-content.expanded {
         max-height: 80vh;
       }
+      
+      /* Make decisions section scrollable for easier viewing */
+      #decisions-content.expanded {
+        max-height: 70vh;
+      }
+      
+      /* Make activities section scrollable - now has 13 activities */
+      #activities-content.expanded {
+        max-height: 70vh;
+      }
     }
     
     /* Print styles */
@@ -820,10 +830,6 @@
           <span class="countdown-number" id="days">250</span>
           <span class="countdown-label">Days</span>
         </div>
-        <div class="countdown-item">
-          <span class="countdown-number" id="hours">00</span>
-          <span class="countdown-label">Hours</span>
-        </div>
       </div>
     </div>
     <script>
@@ -835,9 +841,8 @@
         const distance = reunionDate - now;
 
         const daysElement = document.getElementById('days');
-        const hoursElement = document.getElementById('hours');
         
-        if (!daysElement || !hoursElement) return;
+        if (!daysElement) return;
 
         if (distance < 0) {
           document.getElementById('countdown').innerHTML = '<div style="font-size: 1.5rem; font-weight: bold;">🎉 The Adventure Has Begun! 🎉</div>';
@@ -845,10 +850,8 @@
         }
 
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
         daysElement.textContent = days;
-        hoursElement.textContent = hours.toString().padStart(2, '0');
       }
       
       // Run immediately
@@ -972,10 +975,10 @@
 
     <!-- Trip Details Section -->
     <div class="section">
-      <div class="section-header" onclick="toggleSection('trips')">
+      <div class="section-header" id="trip-section-header" onclick="toggleSection('trips')">
         <h2 class="section-title">
           <span class="toggle-icon" id="trips-icon">▶</span>
-          ⛺ Dots Go Glamping - Yellowstone 2026 (Last Update 12/23/2026)
+          ⛺ Dots Go Glamping - Yellowstone 2026 (Last Update 01/05/2026)
         </h2>
       </div>
       <div class="section-content" id="trips-content">
@@ -1130,10 +1133,10 @@
             <div style="border: 3px solid var(--primary-color); border-radius: 15px; padding: 20px; margin-bottom: 25px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
               <h4 style="color: var(--primary-color); margin-bottom: 10px; font-size: 1.3rem;">📊 Estimated Total Cost</h4>
               <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary-dark); margin: 10px 0;">
-                $573 per person <span style="font-size: 1rem; font-weight: normal;">+ airfare</span>
+                $1,011 per person <span style="font-size: 1rem; font-weight: normal;">+ airfare</span>
               </p>
               <p style="font-size: 0.9rem; color: var(--text-secondary); font-style: italic;">
-                Based on September 9-13, 2026 travel dates
+                Based on September 9-13, 2026 travel dates (includes transportation, lodging, and 2 activities)
               </p>
             </div>
 
@@ -1225,19 +1228,16 @@
               </h4>
               
               <div style="display: grid; gap: 15px;">
-                <!-- White Water Rafting -->
+                <!-- Group Whitewater Rafting -->
                 <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
-                  <h5 style="color: var(--primary-color); margin-bottom: 8px;">🌊 White Water Rafting</h5>
-                  <div><strong>Cost:</strong> <span style="color: var(--primary-color); font-weight: bold;">$164.00 per person</span></div>
+                  <h5 style="color: var(--primary-color); margin-bottom: 8px;">🌊 Group Whitewater Rafting – 8 Mile</h5>
+                  <div><strong>Cost:</strong> <span style="color: var(--primary-color); font-weight: bold;">$75.00 per person</span></div>
                 </div>
 
-                <!-- Bike & Hike -->
+                <!-- Horseback Riding -->
                 <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
-                  <h5 style="color: var(--primary-color); margin-bottom: 8px;">🚴 Bike & Hike to Osprey Falls</h5>
-                  <div style="display: grid; gap: 8px;">
-                    <div><strong>Tour Cost:</strong> $250.00 per person</div>
-                    <div><strong>3-Hour Rental:</strong> $95.00 per person</div>
-                  </div>
+                  <h5 style="color: var(--primary-color); margin-bottom: 8px;">🐴 Horseback Riding</h5>
+                  <div><strong>Cost:</strong> <span style="color: var(--primary-color); font-weight: bold;">$135.00 per person</span></div>
                 </div>
               </div>
             </div>
@@ -1927,6 +1927,13 @@
               <strong>📝 Note:</strong> Click "Submit to Admin" to email your flight details to the organizer. The itinerary download includes all your trip information.
             </div>
           </form>
+          
+          <!-- Back to Top Button -->
+          <div style="text-align: center; margin-top: 30px; padding: 20px;">
+            <a href="#trip-section-header" onclick="scrollToTop(event)" style="display: inline-block; padding: 15px 30px; background: #DAA520; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.background='#B8860B'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(218,165,32,0.4)'" onmouseout="this.style.background='#DAA520'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.1)'">
+              ⬆️ Back to Trip Overview
+            </a>
+          </div>
         </div>
 
         <!-- Itinerary - HIDDEN FOR NOW -->
@@ -2342,6 +2349,15 @@
       } else {
         content.classList.add('expanded');
         icon.classList.add('expanded');
+      }
+    }
+
+    // Scroll to top of trip section
+    function scrollToTop(event) {
+      if (event) event.preventDefault();
+      const header = document.getElementById('trip-section-header');
+      if (header) {
+        header.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
 
@@ -3602,10 +3618,9 @@ https://tamimoooo.github.io/agenda/reunion.html
       const distance = reunionDate - now;
 
       const daysElement = document.getElementById('days');
-      const hoursElement = document.getElementById('hours');
       
-      if (!daysElement || !hoursElement) {
-        console.error('Countdown elements not found');
+      if (!daysElement) {
+        console.error('Countdown element not found');
         return;
       }
 
@@ -3615,12 +3630,10 @@ https://tamimoooo.github.io/agenda/reunion.html
       }
 
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
       daysElement.textContent = days;
-      hoursElement.textContent = hours.toString().padStart(2, '0');
       
-      console.log(`Countdown updated: ${days} days, ${hours} hours`);
+      console.log(`Countdown updated: ${days} days`);
     }
 
     // Toggle Questions Form visibility
