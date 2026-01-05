@@ -64,5 +64,17 @@
     "submittedDate": "2025-12-01T10:00:00.000Z",
     "duration": "Flexible",
     "locationDetail": "Yellowstone area"
-  }
+  },
+  {
+  "name": "Paradise Scenic River Tours",
+  "location": "Paradise Valley",
+  "locationDetail": "Yellowstone River near Emigrant / Livingston, Montana",
+  "description": "Guided scenic float tours on the Yellowstone River featuring mountain views, wildlife viewing, and a relaxed, non-whitewater experience.",
+  "duration": "2–3 hours (standard float)",
+  "cost": "Approximately $80 per person (based on typical group pricing; actual rates vary by group size and season)",
+  "link": "https://www.paradisescenicrivertours.com",
+  "suggester": "Trip Organizers",
+  "submittedDate": "2025-12-01T10:00:00.000Z"
+}
+
 ]
