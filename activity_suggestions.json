@@ -1,36 +1,36 @@
 [
   {
     "location": "yellowstone",
-    "name": "Group Whitewater Rafting - 18 Mile",
-    "description": "Experience the thrill of whitewater rafting through stunning Yellowstone scenery!",
-    "cost": "$164.00 per person",
-    "link": "",
+    "name": "Group Whitewater Rafting – 8 Mile",
+    "description": "Family-friendly whitewater rafting adventure featuring Class I–II rapids on the Yellowstone River, including exciting sections and calm stretches for swimming, with scenic views along Yellowstone’s northern border.",
+    "cost": "$75 per adult (13+); $68 per youth",
+    "link": "https://www.undercanvas.com/wp-content/uploads/2024/02/North-Yellowstone-Paradise-Valley-Adventure-List.pdf",
     "suggester": "Trip Organizers",
     "submittedDate": "2025-12-01T10:00:00.000Z",
-    "duration": "5-6 hours (stops & cafe for lunch)",
-    "locationDetail": "Yellowstone River"
+    "duration": "2–3 hours",
+    "locationDetail": "Yellowstone River near Gardiner, MT"
   },
   {
     "location": "yellowstone",
-    "name": "Private Yellowstone River Luxury Float",
-    "description": "Relaxing scenic float through pristine wilderness",
-    "cost": "$644.00 total",
-    "link": "",
+    "name": "Group Scenic Rafting",
+    "description": "Relaxed scenic rafting trip on a mild stretch of the Yellowstone River, ideal for families and groups looking to enjoy wildlife viewing, optional paddling, and peaceful floating through the Yellowstone River Valley.",
+    "cost": "$75 per adult (13+); $68 per youth",
+    "link": "https://www.undercanvas.com/wp-content/uploads/2024/02/North-Yellowstone-Paradise-Valley-Adventure-List.pdf",
     "suggester": "Trip Organizers",
     "submittedDate": "2025-12-01T10:00:00.000Z",
-    "duration": "2.5 hours",
-    "locationDetail": "Yellowstone River"
+    "duration": "3 hours",
+    "locationDetail": "Yellowstone River near Gardiner, MT"
   },
   {
-    "location": "yellowstone",
-    "name": "Group Horseback Ride",
-    "description": "Explore the wilderness on horseback",
-    "cost": "$244.00 per person",
-    "link": "",
-    "suggester": "Trip Organizers",
-    "submittedDate": "2025-12-01T10:00:00.000Z",
+    "name": "Erik’s Ranch Horseback Riding",
+    "location": "Paradise Valley",
+    "locationDetail": "Erik’s Ranch & Retreats, south of Livingston, Montana, in Paradise Valley",
+    "description": "Two-hour guided horseback trail ride through Montana landscapes with views of open ranch land and the Absaroka Mountains. Beginner-friendly, relaxed pace, and led by experienced guides.",
     "duration": "2 hours",
-    "locationDetail": "Absaroka-Beartooth Wilderness"
+    "cost": "Approximately $135 per person",
+    "link": "https://eriksranch.org",
+    "suggester": "Trip Organizers",
+    "submittedDate": "2025-12-01T10:00:00.000Z"
   },
   {
     "location": "yellowstone",
@@ -55,39 +55,47 @@
     "locationDetail": "Various trails"
   },
   {
-    "location": "yellowstone",
-    "name": "Photography Tours",
-    "description": "Capture stunning landscapes and wildlife",
-    "cost": "TBD",
-    "link": "",
+    "name": "Paradise Scenic River Tours",
+    "location": "Paradise Valley",
+    "locationDetail": "Yellowstone River near Emigrant / Livingston, Montana",
+    "description": "Guided scenic float tours on the Yellowstone River featuring mountain views, wildlife viewing, and a relaxed, non-whitewater experience.",
+    "duration": "2–3 hours (standard float)",
+    "cost": "Approximately $80 per person (based on typical group pricing; actual rates vary by group size and season)",
+    "link": "https://www.paradisescenicrivertours.com",
     "suggester": "Trip Organizers",
-    "submittedDate": "2025-12-01T10:00:00.000Z",
-    "duration": "Flexible",
-    "locationDetail": "Yellowstone area"
+    "submittedDate": "2025-12-01T10:00:00.000Z"
   },
   {
-  "name": "Paradise Scenic River Tours",
-  "location": "Paradise Valley",
-  "locationDetail": "Yellowstone River near Emigrant / Livingston, Montana",
-  "description": "Guided scenic float tours on the Yellowstone River featuring mountain views, wildlife viewing, and a relaxed, non-whitewater experience.",
-  "duration": "2–3 hours (standard float)",
-  "cost": "Approximately $80 per person (based on typical group pricing; actual rates vary by group size and season)",
-  "link": "https://www.paradisescenicrivertours.com",
-  "suggester": "Trip Organizers",
-  "submittedDate": "2025-12-01T10:00:00.000Z"
-},
+    "name": "Chico Hot Springs Soak",
+    "location": "Pray, Montana",
+    "locationDetail": "Chico Hot Springs Resort & Day Spa, Paradise Valley, approximately 30 miles south of Livingston",
+    "description": "Historic hot springs resort offering outdoor natural mineral pools with mountain views. Known for consistently hot water, well-maintained facilities, and a classic Montana atmosphere.",
+    "duration": "1–2 hours (flexible day-use soaking)",
+    "cost": "Approximately $40–$50 per person for day-use soaking (varies by day and season)",
+    "link": "https://www.chicohotsprings.com",
+    "suggester": "Trip Organizers",
+    "submittedDate": "2025-12-01T10:00:00.000Z"
+  },
   {
-  "name": "Chico Hot Springs Soak",
-  "location": "Pray, Montana",
-  "locationDetail": "Chico Hot Springs Resort & Day Spa, Paradise Valley, approximately 30 miles south of Livingston",
-  "description": "Historic hot springs resort offering outdoor natural mineral pools with mountain views. Known for consistently hot water, well-maintained facilities, and a classic Montana atmosphere.",
-  "duration": "1–2 hours (flexible day-use soaking)",
-  "cost": "Approximately $40–$50 per person for day-use soaking (varies by day and season)",
-  "link": "https://www.chicohotsprings.com",
-  "suggester": "Trip Organizers",
-  "submittedDate": "2025-12-01T10:00:00.000Z"
-}
-
-
+    "location": "yellowstone",
+    "name": "Lake Butte Sunset Tour",
+    "description": "Historic yellow bus tour to the summit of Lake Butte overlooking the north shore of Yellowstone Lake. Sunset views, scenic vistas, and opportunities for wildlife watching with driver-host narration as lighting and animal activity permit.",
+    "cost": "$54.50 per person",
+    "link": "https://www.yellowstonenationalparklodges.com/adventure/land-adventures/yellowstone-in-a-day/",
+    "suggester": "Trip Organizers",
+    "submittedDate": "2025-12-01T10:00:00.000Z",
+    "duration": "Evening (varies with sunset timing)",
+    "locationDetail": "Summit of Lake Butte / north shore of Yellowstone Lake"
+  },
+  {
+    "location": "yellowstone",
+    "name": "Old West Cookout with Stagecoach Ride",
+    "description": "Historic stagecoach ride along an old stagecoach road through the sage-covered meadows of Pleasant Valley, followed by the Old West Cookout. Guests ride in a historically accurate reproduction Tally-Ho stagecoach, experiencing how early park visitors once traveled. Includes a safety briefing prior to departure.",
+    "cost": "$110 per adult (12+); $90 per child (8–11)",
+    "link": "https://www.yellowstonenationalparklodges.com/adventure/land-adventures/yellowstone-in-a-day/",
+    "suggester": "Trip Organizers",
+    "submittedDate": "2026-09-11T10:00:00.000Z",
+    "duration": "Approximately 45-minute stagecoach ride plus 15-minute safety talk (cookout follows)",
+    "locationDetail": "Pleasant Valley, Yellowstone National Park"
+  }
 ]
-
