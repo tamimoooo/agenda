@@ -63,16 +63,39 @@
       display: inline-block;
       margin-bottom: 15px;
       padding: 10px 20px;
-      background: rgba(255,255,255,0.2);
+      background: #DAA520;
       color: white;
       text-decoration: none;
       border-radius: 20px;
       transition: all 0.3s ease;
+      font-weight: bold;
     }
 
     .back-link:hover {
-      background: rgba(255,255,255,0.3);
+      background: #B8860B;
       transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(218, 165, 32, 0.4);
+    }
+    
+    .bottom-back-link {
+      display: block;
+      text-align: center;
+      margin: 40px auto;
+      padding: 15px 30px;
+      background: #DAA520;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      font-size: 1.1rem;
+      max-width: 300px;
+    }
+    
+    .bottom-back-link:hover {
+      background: #B8860B;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(218, 165, 32, 0.5);
     }
 
     .dashboard-grid {
@@ -676,5 +699,11 @@
       }
     }
   </script>
+  
+  <!-- Bottom Back Button -->
+  <div class="container">
+    <a href="reunion.html" class="bottom-back-link">← Back to Main Page</a>
+  </div>
+  
 </body>
 </html>
