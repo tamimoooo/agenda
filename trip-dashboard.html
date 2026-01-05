@@ -6,10 +6,10 @@
   <title>Trip Dashboard - Montana Glamping 2026</title>
   <style>
     :root {
-      --primary-color: #d32f2f;
-      --primary-light: #f06d6d;
-      --primary-dark: #b22222;
-      --secondary-color: #ff6f61;
+      --primary-color: #DAA520;
+      --primary-light: #FFD700;
+      --primary-dark: #B8860B;
+      --secondary-color: #FFA500;
       --background: #f8f9fa;
       --card-bg: #ffffff;
       --text-primary: #2c3e50;
@@ -63,7 +63,7 @@
       display: inline-block;
       margin-bottom: 15px;
       padding: 10px 20px;
-      background: #DAA520;
+      background: linear-gradient(135deg, #8B0000 0%, #5C0000 100%);
       color: white;
       text-decoration: none;
       border-radius: 20px;
@@ -72,9 +72,9 @@
     }
 
     .back-link:hover {
-      background: #B8860B;
+      background: linear-gradient(135deg, #5C0000 0%, #3D0000 100%);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(218, 165, 32, 0.4);
+      box-shadow: 0 4px 12px rgba(139, 0, 0, 0.4);
     }
     
     .bottom-back-link {
@@ -82,7 +82,7 @@
       text-align: center;
       margin: 40px auto;
       padding: 15px 30px;
-      background: #DAA520;
+      background: linear-gradient(135deg, #8B0000 0%, #5C0000 100%);
       color: white;
       text-decoration: none;
       border-radius: 25px;
@@ -93,9 +93,9 @@
     }
     
     .bottom-back-link:hover {
-      background: #B8860B;
+      background: linear-gradient(135deg, #5C0000 0%, #3D0000 100%);
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(218, 165, 32, 0.5);
+      box-shadow: 0 6px 16px rgba(139, 0, 0, 0.5);
     }
 
     .dashboard-grid {
@@ -439,6 +439,9 @@
     <!-- Activity Suggestions -->
     <div class="section">
       <h2 class="section-title">🎯 Activity Suggestions</h2>
+      <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 10px; padding: 15px; margin-bottom: 20px;">
+        <strong>ℹ️ Note:</strong> This list currently displays all available activities. Once finalized, only group activities will be shown here.
+      </div>
       <div id="activitiesList" class="loading">Loading activities...</div>
     </div>
 
