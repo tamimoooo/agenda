@@ -34,5 +34,7 @@
     "submittedDate": "2025-12-29T16:30:00.000Z",
     "lastUpdated": "2025-12-29T16:30:00.000Z",
     "confirmationStatus": "pending"
-  }
+  },
+   { "userId": 4, "name": "Dana", "outbound": { "departureCity": "Atlanta", "arrivalCity": "Bozeman", "airline": "Delta", "flightNumber": "406", "departure": "2026-09-09T13:06", "arrival": "", "confirmation": "Not yet booked" }, "return": { "departureCity": "Bozeman", "arrivalCity": "Atlanta", "airline": "Delta", "flightNumber": "406", "departure": "2026-09-12T14:00", "arrival": "", "confirmation": "Not yet booked" }, "tent": { "type": "Suite", "pricePerPerson": "" }, "transportation": { "needsAirportPickup": true, "willingToRentCar": false, "arrivalTime": "", "departureTime": "2026-09-12T14:00" }, "specialRequests": "Park Tour. Hiking. Shellfish Allergy.", "submittedDate": "2026-01-16T01:57:02.072Z", "lastUpdated": "2026-01-16T01:57:02.072Z", "confirmationStatus": "pending" }
+
 ]
