@@ -1034,7 +1034,7 @@
       <div class="section-header" id="trip-section-header" onclick="toggleSection('trips')">
         <h2 class="section-title">
           <span class="toggle-icon" id="trips-icon">▶</span>
-          ⛺ Dots Go Glamping - Yellowstone 2026 (Last Update 01/05/2026)
+          ⛺ Dots Go Glamping - Yellowstone 2026 (Last Update 01/21/2026)
         </h2>
       </div>
       <div class="section-content" id="trips-content">
@@ -1045,6 +1045,9 @@
   <p><strong>📍 Location:</strong> Under Canvas Yellowstone - North Yellowstone (Paradise Valley), MT</p>
   <p><strong>✈️ Airport:</strong> Bozeman Yellowstone International Airport BZN</p>
   <p><strong>📅 Dates:</strong><span style="color: var(--primary-color); font-weight: bold;">September 9-13, 2026</span></p>
+   <div><strong>🏨 Hotel Nights:</strong> September 9-10 - Home2 Suites by Hilton Bozeman Midtown</div>
+                  <div><strong>⛺ Tent Nights:</strong> September 10-12, 2026</div>
+       <div><strong>🏨 Hotel Nights:</strong> September 12-13, 2026 - Home2 Suites By Hilton Bozeman Four Corners</div>
   <p style="margin-top: 15px; font-size: 1.1rem;">
     Experience luxury camping in one of America's most iconic national parks! 
     Glamping combines the beauty of nature with the comfort of a hotel.
@@ -1078,24 +1081,13 @@
       ✅ Action Items
     </h4>
     <ul style="margin: 0; padding-left: 20px; line-height: 1.6;">
-	 <li>
-        <strong>Fill Out Survey By Jan 16 EOD </strong><br>
-       <a
-    href="https://www.surveymonkey.com/r/7T67D6B"
-    target="_blank"
-    rel="noopener"
-    style="display: inline-block; margin-top: 6px; padding: 6px 12px; background: var(--primary-color); color: #fff; text-decoration: none; border-radius: 4px; font-weight: bold;"
-  >
-    📋 Click Here to  Take the Survey
-  </a>
-      </li>
-      <li>
-        <strong>Pick a roommate</strong><br>
-        Confirm who you’ll be sharing accommodations with.
-      </li>
       <li style="margin-top: 10px;">
         <strong>Discuss flight details</strong><br>
         Coordinate departure airport, arrival times, and booking plans.
+      </li>
+      <li style="margin-top: 10px;">
+        <strong>Discuss driving options</strong><br>
+        Coordinate carpooling, rental cars, or other ground transportation plans.
       </li>
 	    <li style="margin-top: 10px;">
 	       <strong>Committees, Questions</strong><br>
@@ -1221,9 +1213,9 @@
               <div style="border: 3px solid var(--primary-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%); margin-bottom: 15px;">
                 <h5 style="color: var(--primary-color); margin-bottom: 10px;">📅 Accommodation Schedule</h5>
                 <div style="display: grid; gap: 10px;">
-                  <div><strong>🏨 Hotel Nights:</strong> September 9-10 </div>
+                  <div><strong>🏨 Hotel Nights:</strong> September 9-10 - Home2 Suites by Hilton Bozeman Midtown</div>
                   <div><strong>⛺ Tent Nights:</strong> September 10-12, 2026</div>
-				   <div><strong>🏨 Hotel Nights:</strong> September 12-13, 2026</div>
+       <div><strong>🏨 Hotel Nights:</strong> September 12-13, 2026 - Home2 Suites By Hilton Bozeman Four Corners</div>
                 </div>
               </div>
 
@@ -1809,8 +1801,18 @@
           </div>
           <div class="subsection-content" id="mytrip-content">
             <p style="margin-bottom: 20px; color: var(--text-secondary);">
-              Fill out your personal trip information below and submit to admin. Once everything is finalized before departure, you'll be able to download a personalized Word document with all your trip details, hotel addresses, and important information in one place!
+              Fill out your personal trip information below and submit to admin. Once everything is finalized before departure, you'll be able to download a personalized Word document with all your trip details, hotel addresses, and important information in one place!  Once submitted you will see your updates in View Trip Dashboard in 24 hours.
             </p>
+
+            <!-- View Trip Details Button -->
+            <div style="text-align: center; margin-bottom: 25px;">
+              <a href="trip-dashboard.html"
+                 style="display: inline-block; padding: 15px 30px; background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #8B0000; text-decoration: none; border-radius: 25px; font-weight: bold; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(218,165,32,0.3);"
+                 onmouseover="this.style.background='linear-gradient(135deg, #FFA500 0%, #FFD700 100%)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(218,165,32,0.5)'"
+                 onmouseout="this.style.background='linear-gradient(135deg, #FFD700 0%, #FFA500 100%)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(218,165,32,0.3)'">
+                📊 View Trip Details
+              </a>
+            </div>
 
             <!-- Form -->
             <form id="tripDetailsForm" style="display: grid; gap: 20px;">
@@ -1962,7 +1964,17 @@
             </div>
 
             <div class="info-box" style="margin-top: 10px;">
-              <strong>📝 Note:</strong> Click "Submit to Admin" to email your flight details to the organizer. The itinerary download includes all your trip information.
+              <strong>📝 Note:</strong> Click "Submit to Admin" to email your flight details to the organizer. The itinerary download includes all your trip information. Once submitted you will see your updates in View Trip Dashboard in 24 hours.
+            </div>
+
+            <!-- View Trip Details Button -->
+            <div style="text-align: center; margin-top: 20px;">
+              <a href="trip-dashboard.html"
+                 style="display: inline-block; padding: 15px 30px; background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #8B0000; text-decoration: none; border-radius: 25px; font-weight: bold; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(218,165,32,0.3);"
+                 onmouseover="this.style.background='linear-gradient(135deg, #FFA500 0%, #FFD700 100%)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(218,165,32,0.5)'"
+                 onmouseout="this.style.background='linear-gradient(135deg, #FFD700 0%, #FFA500 100%)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(218,165,32,0.3)'">
+                📊 View Trip Details
+              </a>
             </div>
           </form>
           
@@ -3788,7 +3800,6 @@ https://tamimoooo.github.io/agenda/reunion.html
   </script>
 </body>
 </html>
-
 
 
 
