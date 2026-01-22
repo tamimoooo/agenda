@@ -3,13 +3,45 @@
     "confirmationNumber": "TENT-SJ-2026",
     "tentType": "Suite Tent",
     "roommates": [
-      {"name": "Sherri Belk"},
-      {"name": "Janita Moody"}
+      {
+        "name": "Sherri Belk"
+      },
+      {
+        "name": "Janita Moody"
+      }
     ],
     "additionalNotes": "",
     "submittedDate": "2025-12-10T08:00:00.000Z"
   },
-  { "confirmationNumber": "Not yet booked", "tentType": "Suite Tent", "roommates": [ { "name": "Dana Smith" }, { "name": "Michelle Foxx" }, { "name": "Rochelle Moore Jones" } ], "additionalNotes": "", "submittedDate": "2026-01-16T00:53:06.953Z" }
-
+  {
+    "confirmationNumber": "Not yet booked",
+    "tentType": "Suite Tent",
+    "roommates": [
+      {
+        "name": "Dana Smith"
+      },
+      {
+        "name": "Michelle Foxx"
+      },
+      {
+        "name": "Rochelle Moore Jones"
+      }
+    ],
+    "additionalNotes": "",
+    "submittedDate": "2026-01-16T00:53:06.953Z"
+  },
+  {
+    "confirmationNumber": "109326",
+    "tentType": "Stargazer Tent",
+    "roommates": [
+      {
+        "name": "Melanie Bullock"
+      },
+      {
+        "name": "Nicole Kilpatrick"
+      }
+    ],
+    "additionalNotes": "",
+    "submittedDate": "2026-01-22T14:41:20.064Z"
+  }
 ]
-
