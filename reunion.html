@@ -1913,9 +1913,9 @@
                   <option value="Safari">Safari Tent</option>
                   <option value="Family">Family Tent</option>
                 </select>
-                <input type="number" id="tentPricePerPerson"
-                       style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                       placeholder="Price per person (e.g., 550)" min="0" step="0.01">
+                <textarea id="tentNotes" rows="2"
+                       style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-family: inherit;"
+                       placeholder="Tent preferences or notes (e.g., near bathroom, quiet area, accessibility needs)"></textarea>
               </div>
 
               <!-- Transportation Needs Section -->
@@ -1941,8 +1941,20 @@
               <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
                 <h4 style="color: var(--primary-dark); margin-bottom: 15px;">🎯 Activities I'm Interested In</h4>
                 <p style="margin-bottom: 15px; color: var(--text-secondary); font-size: 0.9rem;">
-                  <strong>Note:</strong> Please enter activities manually in the Special Requests section below. Activity selection will be available in a future update.
+                  Select activities you'd like to participate in during the trip. You can select multiple activities.
                 </p>
+                <div style="display: grid; gap: 10px;">
+                  <label style="font-weight: bold; color: var(--primary-dark);">
+                    Select Activities:
+                  </label>
+                  <select id="tripActivitiesDropdown" multiple size="8"
+                          style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 0.95rem;">
+                    <option value="">Loading activities...</option>
+                  </select>
+                  <p style="font-size: 0.85rem; color: var(--text-secondary); font-style: italic;">
+                    💡 Tip: Hold Ctrl (Windows) or Cmd (Mac) to select multiple activities
+                  </p>
+                </div>
               </div>
 
               <!-- Special Requests Section -->
@@ -3019,28 +3031,77 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
         return '🎯';
       }
 
-      // Build HTML for all activities
+      // Separate group-selected and other activities
+      const groupSelected = activitySuggestionsData.filter(a => a.selectedByGroup);
+      const otherActivities = activitySuggestionsData.filter(a => !a.selectedByGroup);
+
       let html = '';
-      activitySuggestionsData.forEach(activity => {
-        const icon = getActivityIcon(activity.name);
-        const locationText = activity.locationDetail || activity.location || '';
-        const duration = activity.duration || '';
-        const cost = activity.cost || 'TBD';
-        const link = activity.link || '';
-        
+
+      // Show group-selected activities first with special styling
+      if (groupSelected.length > 0) {
         html += `
-          <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
-            <h5 style="color: var(--primary-color); margin-bottom: 10px;">${icon} ${activity.name}</h5>
-            <div style="display: grid; gap: 8px;">
-              ${cost !== 'TBD' && cost !== '' ? `<div><strong>💰 Price:</strong> ${cost}</div>` : ''}
-              ${duration ? `<div><strong>⏱️ Duration:</strong> ${duration}</div>` : ''}
-              ${locationText ? `<div><strong>📍 Location:</strong> ${locationText}</div>` : ''}
-              ${activity.description ? `<div style="margin-top: 5px; font-style: italic; color: var(--text-secondary);">${activity.description}</div>` : ''}
-              ${link ? `<div style="margin-top: 8px;"><a href="${link}" target="_blank" rel="noopener" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">🔗 More Info</a></div>` : ''}
+          <div style="border: 3px solid #FFD700; border-radius: 12px; padding: 20px; background: linear-gradient(135deg, #FFF9E6 0%, #FFFFFF 100%); box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+              <span style="font-size: 1.5rem;">⭐</span>
+              <h4 style="color: #B8860B; margin: 0; font-size: 1.2rem;">Selected by Group</h4>
+              <span style="background: #FFD700; color: #8B0000; padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: bold;">RECOMMENDED</span>
             </div>
-          </div>
+            <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-bottom: 15px; border-radius: 5px;">
+              <strong>ℹ️ Note:</strong> This is an example of how group-selected activities will appear. The actual group activity selection will be finalized closer to the trip date.
+            </div>
         `;
-      });
+        
+        groupSelected.forEach(activity => {
+          const icon = getActivityIcon(activity.name);
+          const locationText = activity.locationDetail || activity.location || '';
+          const duration = activity.duration || '';
+          const cost = activity.cost || 'TBD';
+          const link = activity.link || '';
+          
+          html += `
+            <div style="border: 2px solid #DAA520; border-radius: 10px; padding: 15px; background: white; margin-bottom: 10px;">
+              <h5 style="color: #B8860B; margin-bottom: 10px;">${icon} ${activity.name}</h5>
+              <div style="display: grid; gap: 8px;">
+                ${cost !== 'TBD' && cost !== '' ? `<div><strong>💰 Price:</strong> ${cost}</div>` : ''}
+                ${duration ? `<div><strong>⏱️ Duration:</strong> ${duration}</div>` : ''}
+                ${locationText ? `<div><strong>📍 Location:</strong> ${locationText}</div>` : ''}
+                ${activity.description ? `<div style="margin-top: 5px; font-style: italic; color: var(--text-secondary);">${activity.description}</div>` : ''}
+                ${link ? `<div style="margin-top: 8px;"><a href="${link}" target="_blank" rel="noopener" style="color: #B8860B; text-decoration: none; font-weight: 600;">🔗 More Info</a></div>` : ''}
+              </div>
+            </div>
+          `;
+        });
+        
+        html += `</div>`;
+      }
+
+      // Show other activities
+      if (otherActivities.length > 0) {
+        if (groupSelected.length > 0) {
+          html += `<div style="margin-top: 20px;"><h4 style="color: var(--primary-color); margin-bottom: 15px;">Other Available Activities</h4></div>`;
+        }
+        
+        otherActivities.forEach(activity => {
+          const icon = getActivityIcon(activity.name);
+          const locationText = activity.locationDetail || activity.location || '';
+          const duration = activity.duration || '';
+          const cost = activity.cost || 'TBD';
+          const link = activity.link || '';
+          
+          html += `
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <h5 style="color: var(--primary-color); margin-bottom: 10px;">${icon} ${activity.name}</h5>
+              <div style="display: grid; gap: 8px;">
+                ${cost !== 'TBD' && cost !== '' ? `<div><strong>💰 Price:</strong> ${cost}</div>` : ''}
+                ${duration ? `<div><strong>⏱️ Duration:</strong> ${duration}</div>` : ''}
+                ${locationText ? `<div><strong>📍 Location:</strong> ${locationText}</div>` : ''}
+                ${activity.description ? `<div style="margin-top: 5px; font-style: italic; color: var(--text-secondary);">${activity.description}</div>` : ''}
+                ${link ? `<div style="margin-top: 8px;"><a href="${link}" target="_blank" rel="noopener" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">🔗 More Info</a></div>` : ''}
+              </div>
+            </div>
+          `;
+        });
+      }
 
       container.innerHTML = html;
       console.log('✅ Loaded', activitySuggestionsData.length, 'activities into Activities & Excursions section');
@@ -3152,62 +3213,164 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
             dropdown.appendChild(option);
           });
           
-          // Add change event listener to store user ID
-          dropdown.addEventListener('change', function() {
-            document.getElementById('tripUserId').value = this.value;
+          // Add change event listener to store user ID and load existing data
+          dropdown.addEventListener('change', async function() {
+            const userId = parseInt(this.value);
+            document.getElementById('tripUserId').value = userId;
+            
+            // Load existing trip details if available
+            if (userId) {
+              await loadExistingTripDetails(userId);
+            }
           });
           
           console.log('✅ Loaded', contacts.length, 'names into dropdown from whosgoing.json');
         } else {
     
-    // Populate trip activities checkboxes from activity_suggestions.json
-    async function populateTripActivitiesCheckboxes() {
+    // Load existing trip details from tripcontacts.json
+    async function loadExistingTripDetails(userId) {
+      try {
+        const timestamp = new Date().getTime();
+        const response = await fetch(`tripcontacts.json?t=${timestamp}`);
+        const tripContacts = await response.json();
+        
+        // Find the user's existing trip details
+        const existingTrip = tripContacts.find(trip => trip.userId === userId);
+        
+        if (existingTrip) {
+          console.log('✅ Found existing trip details for user:', userId, existingTrip);
+          
+          // Populate outbound flight fields
+          document.getElementById('outboundDepartureCity').value = existingTrip.outbound?.departureCity || '';
+          document.getElementById('outboundArrivalCity').value = existingTrip.outbound?.arrivalCity || '';
+          document.getElementById('outboundAirline').value = existingTrip.outbound?.airline || '';
+          document.getElementById('outboundFlightNumber').value = existingTrip.outbound?.flightNumber || '';
+          document.getElementById('outboundDeparture').value = existingTrip.outbound?.departure || '';
+          document.getElementById('outboundArrival').value = existingTrip.outbound?.arrival || '';
+          document.getElementById('outboundConfirmation').value = existingTrip.outbound?.confirmation || '';
+          
+          // Populate return flight fields
+          document.getElementById('returnDepartureCity').value = existingTrip.return?.departureCity || '';
+          document.getElementById('returnArrivalCity').value = existingTrip.return?.arrivalCity || '';
+          document.getElementById('returnAirline').value = existingTrip.return?.airline || '';
+          document.getElementById('returnFlightNumber').value = existingTrip.return?.flightNumber || '';
+          document.getElementById('returnDeparture').value = existingTrip.return?.departure || '';
+          document.getElementById('returnArrival').value = existingTrip.return?.arrival || '';
+          document.getElementById('returnConfirmation').value = existingTrip.return?.confirmation || '';
+          
+          // Populate tent selection
+          document.getElementById('selectedTent').value = existingTrip.tent?.type || '';
+          document.getElementById('tentNotes').value = existingTrip.tent?.notes || '';
+          
+          // Populate transportation
+          document.getElementById('needsAirportPickup').checked = existingTrip.transportation?.needsAirportPickup || false;
+          document.getElementById('willingToRentCar').checked = existingTrip.transportation?.willingToRentCar || false;
+          
+          // Populate special requests
+          document.getElementById('specialRequests').value = existingTrip.specialRequests || '';
+          
+          // Populate activities dropdown
+          if (existingTrip.activities && existingTrip.activities.length > 0) {
+            const dropdown = document.getElementById('tripActivitiesDropdown');
+            if (dropdown) {
+              // Clear all selections first
+              Array.from(dropdown.options).forEach(option => option.selected = false);
+              
+              // Select the activities that match
+              existingTrip.activities.forEach(activity => {
+                Array.from(dropdown.options).forEach(option => {
+                  try {
+                    const optionData = JSON.parse(option.value);
+                    if (optionData.name === activity.name) {
+                      option.selected = true;
+                    }
+                  } catch (e) {
+                    // Skip invalid options
+                  }
+                });
+              });
+            }
+          }
+          
+          alert('✅ Your previously submitted information has been loaded. You can now update any fields and resubmit.');
+        } else {
+          console.log('ℹ️ No existing trip details found for user:', userId);
+        }
+      } catch (error) {
+        console.error('Error loading existing trip details:', error);
+        // Don't show error to user, just log it
+      }
+    }
+    
+    // Populate trip activities dropdown from activity_suggestions.json
+    async function populateTripActivitiesDropdown() {
       try {
         const timestamp = new Date().getTime();
         const response = await fetch(`activity_suggestions.json?t=${timestamp}`);
         const activities = await response.json();
-        const container = document.getElementById('tripActivitiesCheckboxes');
+        const dropdown = document.getElementById('tripActivitiesDropdown');
         
-        if (!container) return;
+        if (!dropdown) return;
         
-        container.innerHTML = '';
+        dropdown.innerHTML = '';
         
-        activities.forEach((activity, index) => {
-          const checkboxId = `tripActivity_${index}`;
-          const checkboxHtml = `
-            <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; padding: 10px; border: 1px solid var(--border-color); border-radius: 5px; background: white;">
-              <input type="checkbox" id="${checkboxId}" value="${index}" 
-                     data-name="${activity.name}" 
-                     data-cost="${activity.cost}"
-                     style="width: 20px; height: 20px; margin-top: 2px; flex-shrink: 0;">
-              <div style="flex: 1;">
-                <div style="font-weight: bold; color: var(--primary-dark);">${activity.name}</div>
-                <div style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 4px;">${activity.description}</div>
-                <div style="font-size: 0.9rem; color: var(--secondary-color); margin-top: 4px;"><strong>Cost:</strong> ${activity.cost}</div>
-              </div>
-            </label>
-          `;
-          container.innerHTML += checkboxHtml;
-        });
+        // Separate group-selected and other activities
+        const groupSelected = activities.filter(a => a.selectedByGroup);
+        const otherActivities = activities.filter(a => !a.selectedByGroup);
         
-        console.log('Loaded', activities.length, 'activities for trip form');
+        // Add group-selected activities first with special marker
+        if (groupSelected.length > 0) {
+          const groupOptgroup = document.createElement('optgroup');
+          groupOptgroup.label = '⭐ Selected by Group (Recommended)';
+          groupSelected.forEach((activity, index) => {
+            const option = document.createElement('option');
+            option.value = JSON.stringify({name: activity.name, cost: activity.cost, selectedByGroup: true});
+            option.textContent = `${activity.name} - ${activity.cost}`;
+            groupOptgroup.appendChild(option);
+          });
+          dropdown.appendChild(groupOptgroup);
+        }
+        
+        // Add other activities
+        if (otherActivities.length > 0) {
+          const otherOptgroup = document.createElement('optgroup');
+          otherOptgroup.label = 'Other Available Activities';
+          otherActivities.forEach((activity, index) => {
+            const option = document.createElement('option');
+            option.value = JSON.stringify({name: activity.name, cost: activity.cost, selectedByGroup: false});
+            option.textContent = `${activity.name} - ${activity.cost}`;
+            otherOptgroup.appendChild(option);
+          });
+          dropdown.appendChild(otherOptgroup);
+        }
+        
+        console.log('✅ Loaded', activities.length, 'activities into dropdown');
         
       } catch (error) {
         console.error('Error loading activities for trip form:', error);
+        const dropdown = document.getElementById('tripActivitiesDropdown');
+        if (dropdown) {
+          dropdown.innerHTML = '<option value="">Error loading activities</option>';
+        }
       }
     }
     
-    // Get selected activities from checkboxes
+    // Get selected activities from dropdown
     function getSelectedActivities() {
-      const checkboxes = document.querySelectorAll('#tripActivitiesCheckboxes input[type="checkbox"]:checked');
+      const dropdown = document.getElementById('tripActivitiesDropdown');
       const selected = [];
       
-      checkboxes.forEach(checkbox => {
-        selected.push({
-          name: checkbox.dataset.name,
-          cost: checkbox.dataset.cost
+      if (dropdown) {
+        const selectedOptions = Array.from(dropdown.selectedOptions);
+        selectedOptions.forEach(option => {
+          try {
+            const activityData = JSON.parse(option.value);
+            selected.push(activityData);
+          } catch (e) {
+            console.error('Error parsing activity data:', e);
+          }
         });
-      });
+      }
       
       return selected;
     }
@@ -3278,8 +3441,9 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
         },
         tent: {
           type: document.getElementById('selectedTent').value,
-          pricePerPerson: document.getElementById('tentPricePerPerson').value
+          notes: document.getElementById('tentNotes').value
         },
+        activities: getSelectedActivities(),
         transportation: {
           needsAirportPickup: document.getElementById('needsAirportPickup').checked,
           willingToRentCar: document.getElementById('willingToRentCar').checked,
@@ -3312,6 +3476,27 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
         });
       };
 
+      // Format activities for email
+      let activitiesText = 'None selected';
+      if (tripDetails.activities && tripDetails.activities.length > 0) {
+        const groupActivities = tripDetails.activities.filter(a => a.selectedByGroup);
+        const otherActivities = tripDetails.activities.filter(a => !a.selectedByGroup);
+        
+        activitiesText = '';
+        if (groupActivities.length > 0) {
+          activitiesText += '\n  ⭐ GROUP SELECTED:\n';
+          groupActivities.forEach(a => {
+            activitiesText += `    - ${a.name} (${a.cost})\n`;
+          });
+        }
+        if (otherActivities.length > 0) {
+          activitiesText += '\n  ADDITIONAL ACTIVITIES:\n';
+          otherActivities.forEach(a => {
+            activitiesText += `    - ${a.name} (${a.cost})\n`;
+          });
+        }
+      }
+
       const flightInfo = `
 OUTBOUND FLIGHT:
   From: ${tripDetails.outbound.departureCity || 'Not specified'}
@@ -3331,7 +3516,15 @@ RETURN FLIGHT:
   Arrival: ${formatDateTime(tripDetails.return.arrival)}
   Confirmation: ${tripDetails.return.confirmation || 'Not specified'}
 
-TENT: ${tripDetails.tent.type || 'Not selected'} ${tripDetails.tent.pricePerPerson ? `($${tripDetails.tent.pricePerPerson}/person)` : ''}
+TENT: ${tripDetails.tent.type || 'Not selected'}${tripDetails.tent.notes ? `\nNotes: ${tripDetails.tent.notes}` : ''}
+
+ACTIVITIES INTERESTED IN:${activitiesText}
+
+TRANSPORTATION:
+  Needs Airport Pickup: ${tripDetails.transportation.needsAirportPickup ? 'Yes' : 'No'}
+  Willing to Rent Car: ${tripDetails.transportation.willingToRentCar ? 'Yes' : 'No'}
+
+SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
       `.trim();
 
       const flightJSON = JSON.stringify(tripDetails, null, 2);
@@ -3426,7 +3619,7 @@ TENT: ${tripDetails.tent.type || 'Not selected'} ${tripDetails.tent.pricePerPers
         },
         tent: {
           type: document.getElementById('selectedTent').value,
-          pricePerPerson: document.getElementById('tentPricePerPerson').value
+          notes: document.getElementById('tentNotes').value
         },
         activities: [],
         emergency: {
@@ -3492,8 +3685,8 @@ TENT: ${tripDetails.tent.type || 'Not selected'} ${tripDetails.tent.pricePerPers
           document.getElementById('selectedTent').value = tripDetails.tent;
         } else {
           document.getElementById('selectedTent').value = tripDetails.tent.type || '';
-          if (document.getElementById('tentPricePerPerson'))
-            document.getElementById('tentPricePerPerson').value = tripDetails.tent.pricePerPerson || '';
+          if (document.getElementById('tentNotes'))
+            document.getElementById('tentNotes').value = tripDetails.tent.notes || '';
         }
       }
 
@@ -3609,17 +3802,43 @@ GLAMPING (Sept 10-12):
 
 MY TENT SELECTION
   Type: ${tripDetails.tent?.type || tripDetails.tent || 'Not selected yet'}
-  Price per Person: ${tripDetails.tent?.pricePerPerson ? '$' + tripDetails.tent.pricePerPerson : 'Not specified'}
+  Notes: ${tripDetails.tent?.notes || 'None'}
 
 ═══════════════════════════════════════════════════════════════
 
-MY SELECTED ACTIVITIES
+ACTIVITIES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-${tripDetails.activities && tripDetails.activities.length > 0 ? tripDetails.activities.map(a => {
-  const activityName = typeof a === 'string' ? a : (a && a.name ? a.name : 'Unknown activity');
-  const activityPrice = typeof a === 'string' ? '' : (a && a.price ? ` (${a.price})` : '');
-  return `  ✓ ${activityName}${activityPrice}`;
-}).join('\n') : '  No activities selected yet'}
+
+⭐ SELECTED BY GROUP (Recommended for Everyone):
+${tripDetails.activities && tripDetails.activities.length > 0 ?
+  (() => {
+    const groupSelected = tripDetails.activities.filter(a => a.selectedByGroup);
+    const mySelected = tripDetails.activities.filter(a => !a.selectedByGroup);
+    
+    let output = '';
+    
+    if (groupSelected.length > 0) {
+      output += groupSelected.map(a => {
+        const activityName = typeof a === 'string' ? a : (a && a.name ? a.name : 'Unknown activity');
+        const activityPrice = typeof a === 'string' ? '' : (a && a.cost ? ` - ${a.cost}` : '');
+        return `  ⭐ ${activityName}${activityPrice}`;
+      }).join('\n');
+    } else {
+      output += '  (Check activity_suggestions.json for group recommendations)';
+    }
+    
+    if (mySelected.length > 0) {
+      output += '\n\nMY ADDITIONAL SELECTED ACTIVITIES:\n';
+      output += mySelected.map(a => {
+        const activityName = typeof a === 'string' ? a : (a && a.name ? a.name : 'Unknown activity');
+        const activityPrice = typeof a === 'string' ? '' : (a && a.cost ? ` - ${a.cost}` : '');
+        return `  ✓ ${activityName}${activityPrice}`;
+      }).join('\n');
+    }
+    
+    return output;
+  })()
+: '  No activities selected yet\n  ⭐ Check the Activities & Excursions section for group recommendations'}
 
 ═══════════════════════════════════════════════════════════════
 
@@ -3627,6 +3846,14 @@ TRIP COORDINATORS CONTACT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   Sherri Belk: sherribelklaw@gmail.com
   Janita Moody: freshnclean9@gmail.com
+
+═══════════════════════════════════════════════════════════════
+
+💰 PERSONAL COST BREAKDOWN - COMING SOON!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+A detailed cost breakdown section will be added here soon to help you
+track your trip expenses including flights, accommodations, activities,
+and other costs. Stay tuned!
 
 ═══════════════════════════════════════════════════════════════
 
@@ -3780,6 +4007,7 @@ https://tamimoooo.github.io/agenda/reunion.html
       initializeActivitySuggestions();
       populateActivitiesCheckboxes();
       populateNameDropdown();
+      populateTripActivitiesDropdown();
       loadTripDetails();
       
       // Initialize questions form
