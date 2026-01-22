@@ -1406,7 +1406,7 @@
         <!-- Travel Estimates Section -->
         <div class="trip-card">
           <div class="subsection-header" onclick="toggleSubsection('estimates')">
-            <h3 class="subsection-title">💰 Travel Estimates</h3>
+            <h3 class="subsection-title">💰 Travel Estimates <span style="background: #ff4444; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; margin-left: 10px; font-weight: bold;">NEW INFO</span></h3>
             <span class="subsection-toggle" id="estimates-toggle">▶</span>
           </div>
           <div class="subsection-content" id="estimates-content">
@@ -3724,24 +3724,10 @@ SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
 
         console.log('EmailJS Success:', result);
         
-        // Save to localStorage
-        localStorage.setItem('myTripDetails', JSON.stringify(tripDetails));
+        // Note: Data is NOT saved to localStorage - only sent to admin via email
+        // This prevents cross-device confusion and ensures admin has the authoritative data
         
-        // Also save to tripcontacts array in localStorage
-        const tripContacts = JSON.parse(localStorage.getItem('tripContacts') || '[]');
-        const existingIndex = tripContacts.findIndex(tc => tc.userId === tripDetails.userId);
-        
-        if (existingIndex >= 0) {
-          // Update existing entry
-          tripContacts[existingIndex] = tripDetails;
-        } else {
-          // Add new entry
-          tripContacts.push(tripDetails);
-        }
-        
-        localStorage.setItem('tripContacts', JSON.stringify(tripContacts));
-        
-        alert('✅ Your flight and trip details have been sent to admin and saved successfully!\n\n📊 Check the View Trip Dashboard in 24 hours for updates.');
+        alert('✅ Your flight and trip details have been sent to admin successfully!\n\n📊 Check the View Trip Dashboard in 24 hours for updates.');
         
       } catch (error) {
         console.error('EmailJS Error:', error);
@@ -3753,20 +3739,7 @@ SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
           const mailtoLink = `mailto:dst894@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
           window.location.href = mailtoLink;
           
-          // Save to localStorage
-          localStorage.setItem('myTripDetails', JSON.stringify(tripDetails));
-          
-          // Also save to tripcontacts array
-          const tripContacts = JSON.parse(localStorage.getItem('tripContacts') || '[]');
-          const existingIndex = tripContacts.findIndex(tc => tc.userId === tripDetails.userId);
-          
-          if (existingIndex >= 0) {
-            tripContacts[existingIndex] = tripDetails;
-          } else {
-            tripContacts.push(tripDetails);
-          }
-          
-          localStorage.setItem('tripContacts', JSON.stringify(tripContacts));
+          // Note: Data is NOT saved to localStorage - only sent to admin via email
         }
       } finally {
         submitBtn.innerHTML = originalText;
@@ -3817,14 +3790,16 @@ SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
         }
       });
 
-      // Save to localStorage
-      localStorage.setItem('myTripDetails', JSON.stringify(tripDetails));
+      // Note: Data is NOT saved to localStorage for download itinerary
+      // Download generates from current form values only
       
-      alert('✅ Your trip details have been saved successfully!');
+      alert('✅ Your itinerary has been downloaded successfully!');
     }
 
     function loadTripDetails() {
-      const saved = localStorage.getItem('myTripDetails');
+      // Note: This function no longer loads from localStorage
+      // Form starts empty each time to avoid cross-device confusion
+      const saved = null; // Disabled localStorage loading
       if (!saved) return;
 
       const tripDetails = JSON.parse(saved);
