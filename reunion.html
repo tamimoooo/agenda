@@ -588,6 +588,39 @@
         padding: 10px 16px;
         font-size: 0.9rem;
       }
+      
+      /* Make buttons smaller on mobile */
+      .btn,
+      button[type="submit"],
+      button[type="button"] {
+        padding: 10px 16px !important;
+        font-size: 0.95rem !important;
+      }
+      
+      /* Specific adjustments for large buttons */
+      button[style*="padding: 15px"],
+      a[style*="padding: 15px 30px"] {
+        padding: 10px 20px !important;
+        font-size: 1rem !important;
+      }
+      
+      /* Fix text overflow in form sections */
+      input, textarea, select, .info-box, p {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+      
+      /* Ensure form containers don't overflow */
+      .subsection-content {
+        overflow-x: hidden;
+      }
+      
+      /* Make sure grid layouts stack properly */
+      div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+      }
     }
 
     /* Utility Classes */
@@ -824,6 +857,16 @@
       /* Allow My Trip Details to be taller since it's a form */
       #mytrip-content.expanded {
         max-height: 80vh;
+      }
+      
+      /* Ensure text wraps properly on mobile */
+      #mytrip-content input,
+      #mytrip-content textarea,
+      #mytrip-content select,
+      #mytrip-content .info-box {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
       }
       
       /* Make decisions section scrollable for easier viewing */
@@ -1703,7 +1746,7 @@
             <div style="margin-top: 30px; border: 2px solid var(--border-color); border-radius: 10px; background: white;">
               <details style="cursor: pointer;">
                 <summary style="padding: 15px; font-weight: bold; color: var(--primary-color); font-size: 1.1rem; list-style: none;">
-                  <span style="display: inline-block;">💡 Suggest an Activity (Click to expand)</span>
+                  <span style="display: inline-block;">💡 Suggest an Activity (Click to expand/close)</span>
                 </summary>
                 <div style="padding: 20px 20px 60px 20px; border-top: 1px solid var(--border-color);">
                   <p style="margin-bottom: 20px; color: var(--text-secondary);">
@@ -2844,7 +2887,7 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
         submitted.push(formData);
         localStorage.setItem('submittedRoommates', JSON.stringify(submitted));
         
-        alert('✅ Your roommate details have been sent to admin and saved successfully!');
+        alert('✅ Your roommate details have been sent to admin and saved successfully!\n\n📊 Check the View Trip Dashboard in 24 hours for updates.');
         
         // Reset form and reload submitted list
         e.target.reset();
@@ -3157,7 +3200,7 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
         activities.push(activityData);
         localStorage.setItem('submittedActivities', JSON.stringify(activities));
         
-        alert('✅ Your activity suggestion has been sent to admin and saved successfully!');
+        alert('✅ Your activity suggestion has been sent to admin and saved successfully!\n\n📊 Check the View Trip Dashboard in 24 hours for updates.');
         
         // Reset form and reload display
         e.target.reset();
@@ -3564,7 +3607,7 @@ SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
         
         localStorage.setItem('tripContacts', JSON.stringify(tripContacts));
         
-        alert('✅ Your flight and trip details have been sent to admin and saved successfully!');
+        alert('✅ Your flight and trip details have been sent to admin and saved successfully!\n\n📊 Check the View Trip Dashboard in 24 hours for updates.');
         
       } catch (error) {
         console.error('EmailJS Error:', error);
