@@ -1243,7 +1243,7 @@
       <div class="section-header" id="trip-section-header" onclick="toggleSection('trips')">
         <h2 class="section-title">
           <span class="toggle-icon" id="trips-icon">▶</span>
-          ⛺ Dots Go Glamping - Yellowstone 2026 (Last Update 01/22/2026)
+          ⛺ Dots Go Glamping - Yellowstone 2026 (Last Update 01/21/2026)
         </h2>
       </div>
       <div class="section-content" id="trips-content">
@@ -2102,6 +2102,9 @@
                   <option value="Safari">Safari Tent</option>
                   <option value="Family">Family Tent</option>
                 </select>
+                <input type="text" id="tentConfirmation"
+                       style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; margin-bottom: 10px;"
+                       placeholder="Tent Confirmation Number (if you have one)">
                 <textarea id="tentNotes" rows="2"
                        style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-family: inherit;"
                        placeholder="Tent preferences or notes (e.g., near bathroom, quiet area, accessibility needs)"></textarea>
@@ -3443,6 +3446,7 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
           
           // Populate tent selection
           document.getElementById('selectedTent').value = existingTrip.tent?.type || '';
+          document.getElementById('tentConfirmation').value = existingTrip.tent?.confirmation || '';
           document.getElementById('tentNotes').value = existingTrip.tent?.notes || '';
           
           // Populate transportation
@@ -3618,6 +3622,7 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
         },
         tent: {
           type: document.getElementById('selectedTent').value,
+          confirmation: document.getElementById('tentConfirmation').value,
           notes: document.getElementById('tentNotes').value
         },
         activities: getSelectedActivities(),
@@ -3769,6 +3774,7 @@ SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
         },
         tent: {
           type: document.getElementById('selectedTent').value,
+          confirmation: document.getElementById('tentConfirmation').value,
           notes: document.getElementById('tentNotes').value
         },
         activities: [],
@@ -3837,6 +3843,8 @@ SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
           document.getElementById('selectedTent').value = tripDetails.tent;
         } else {
           document.getElementById('selectedTent').value = tripDetails.tent.type || '';
+          if (document.getElementById('tentConfirmation'))
+            document.getElementById('tentConfirmation').value = tripDetails.tent.confirmation || '';
           if (document.getElementById('tentNotes'))
             document.getElementById('tentNotes').value = tripDetails.tent.notes || '';
         }
@@ -3950,28 +3958,30 @@ RETURN FLIGHT
 ACCOMMODATION DETAILS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-SPLIT-STAY HOTELS (Sept 9-10 & Sept 12-13)
+ACCOMMODATION SCHEDULE (In Chronological Order)
 
-Night 1-2 (Sept 9-10):
+Night 1 (Sept 9-10):
   Home2 Suites by Hilton Bozeman
   Address: 5320 Tschache Ln, Bozeman, MT 59718
   Phone: (406) 582-8800
   Check-in: 3:00 PM | Check-out: 11:00 AM
 
-Night 4-5 (Sept 12-13):
+Nights 2-3 (Sept 10-12):
+  Under Canvas North Yellowstone – Paradise Valley
+  Address: 139 Pine Creek Road, Livingston, Montana 59047
+  Phone: (888) 496-1148
+  Check-in: 4:00 PM | Check-out: 11:00 AM
+  ⛺ GLAMPING EXPERIENCE
+
+Night 4 (Sept 12-13):
   Home2 Suites by Hilton Belgrade
   Address: 6261 Jackrabbit Ln, Belgrade, MT 59714
   Phone: (406) 813-3000
   Check-in: 3:00 PM | Check-out: 11:00 AM
 
-GLAMPING (Sept 10-12):
-  Under Canvas North Yellowstone – Paradise Valley
-  Address: 139 Pine Creek Road, Livingston, Montana 59047
-  Phone: (888) 496-1148
-  Check-in: 4:00 PM | Check-out: 11:00 AM
-
 MY TENT SELECTION
   Type: ${tripDetails.tent?.type || tripDetails.tent || 'Not selected yet'}
+  Confirmation Number: ${tripDetails.tent?.confirmation || 'Not provided'}
   Notes: ${tripDetails.tent?.notes || 'None'}
 
 ═══════════════════════════════════════════════════════════════
@@ -4185,7 +4195,6 @@ https://tamimoooo.github.io/agenda/reunion.html
   </script>
 </body>
 </html>
-
 
 
 
