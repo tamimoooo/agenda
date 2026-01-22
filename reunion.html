@@ -963,20 +963,21 @@
     
     /* Mobile font size adjustments for estimates section */
     @media (max-width: 480px) {
+      /* Main heading - "Estimated Cost Breakdown (Per Person)" */
       #estimates-content h4 {
-        font-size: 1.1rem !important;
+        font-size: 0.95rem !important;
       }
       
       #estimates-content p {
-        font-size: 0.85rem !important;
+        font-size: 0.8rem !important;
       }
       
       #estimates-content .info-box {
-        font-size: 0.85rem !important;
+        font-size: 0.8rem !important;
       }
       
       #estimates-content ul li {
-        font-size: 0.85rem !important;
+        font-size: 0.8rem !important;
         line-height: 1.6 !important;
       }
       
@@ -987,25 +988,31 @@
         gap: 8px !important;
       }
       
+      /* Cost item labels */
+      #estimates-content > div > div > div[style*="display: flex"] span:first-child {
+        font-size: 0.85rem !important;
+      }
+      
+      /* Cost amounts */
       #estimates-content > div > div > div[style*="display: flex"] span:last-child {
-        font-size: 1.3rem !important;
+        font-size: 1.1rem !important;
       }
       
       /* Adjust total estimate box */
-      #estimates-content > div > div[style*="background: linear-gradient"] {
+      #estimates-content > div > div[style*="background: #f8f9fa"] {
         padding: 12px !important;
       }
       
-      #estimates-content > div > div[style*="background: linear-gradient"] > div:first-child {
-        font-size: 0.8rem !important;
-      }
-      
-      #estimates-content > div > div[style*="background: linear-gradient"] > div:nth-child(2) {
-        font-size: 1.5rem !important;
-      }
-      
-      #estimates-content > div > div[style*="background: linear-gradient"] > div:last-child {
+      #estimates-content > div > div[style*="background: #f8f9fa"] > div:first-child {
         font-size: 0.75rem !important;
+      }
+      
+      #estimates-content > div > div[style*="background: #f8f9fa"] > div:nth-child(2) {
+        font-size: 1.3rem !important;
+      }
+      
+      #estimates-content > div > div[style*="background: #f8f9fa"] > div:last-child {
+        font-size: 0.7rem !important;
       }
     }
     
