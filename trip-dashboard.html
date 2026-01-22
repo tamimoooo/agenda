@@ -591,9 +591,17 @@
           return;
         }
 
+        // Filter out people who haven't submitted (confirmationStatus === 'not_submitted')
+        const submittedTrips = tripContacts.filter(trip => trip.confirmationStatus !== 'not_submitted');
+        
+        if (submittedTrips.length === 0) {
+          container.innerHTML = '<div class="empty-state">No flight details submitted yet</div>';
+          return;
+        }
+        
         // Mobile card view
         let html = '<div class="mobile-cards">';
-        tripContacts.forEach(trip => {
+        submittedTrips.forEach(trip => {
           const arrivalTime = trip.outbound.arrival ? new Date(trip.outbound.arrival).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : 'N/A';
           const departureTime = trip.return.departure ? new Date(trip.return.departure).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : 'N/A';
           
@@ -613,7 +621,8 @@
         html += '</div>';
         container.innerHTML = html;
         
-        console.log('✅ Loaded', tripContacts.length, 'flight details');
+        console.log('✅ Loaded', submittedTrips.length, 'flight details (filtered out not_submitted)');
+        
         
       } catch (error) {
         console.error('❌ Error loading flights:', error);
@@ -740,7 +749,7 @@
         const tripContacts = await response.json();
         const container = document.getElementById('individualActivitiesList');
         
-        const withActivities = tripContacts.filter(t => t.activities && t.activities.length > 0);
+        const withActivities = tripContacts.filter(t => t.confirmationStatus !== 'not_submitted' && t.activities && t.activities.length > 0);
         
         if (withActivities.length === 0) {
           container.innerHTML = '<div class="empty-state">No individual activity selections yet</div>';
@@ -796,8 +805,8 @@
           return;
         }
 
-        const needsPickup = tripContacts.filter(t => t.transportation?.needsAirportPickup);
-        const willingToRent = tripContacts.filter(t => t.transportation?.willingToRentCar);
+        const needsPickup = tripContacts.filter(t => t.confirmationStatus !== 'not_submitted' && t.transportation?.needsAirportPickup);
+        const willingToRent = tripContacts.filter(t => t.confirmationStatus !== 'not_submitted' && t.transportation?.willingToRentCar);
 
         let html = '<h3 style="color: var(--primary-color); margin-bottom: 15px;">🚐 Needs Airport Pickup</h3>';
         
