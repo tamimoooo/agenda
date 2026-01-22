@@ -1804,13 +1804,13 @@
               Fill out your personal trip information below and submit to admin. Once everything is finalized before departure, you'll be able to download a personalized Word document with all your trip details, hotel addresses, and important information in one place!  Once submitted you will see your updates in View Trip Dashboard in 24 hours.
             </p>
 
-            <!-- View Trip Details Button -->
+            <!-- View Trip Dashboard Button -->
             <div style="text-align: center; margin-bottom: 25px;">
               <a href="trip-dashboard.html"
                  style="display: inline-block; padding: 15px 30px; background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #8B0000; text-decoration: none; border-radius: 25px; font-weight: bold; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(218,165,32,0.3);"
                  onmouseover="this.style.background='linear-gradient(135deg, #FFA500 0%, #FFD700 100%)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(218,165,32,0.5)'"
                  onmouseout="this.style.background='linear-gradient(135deg, #FFD700 0%, #FFA500 100%)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(218,165,32,0.3)'">
-                📊 View Trip Details
+                📊 View Trip Dashboard
               </a>
             </div>
 
@@ -1979,20 +1979,20 @@
               <strong>📝 Note:</strong> Click "Submit to Admin" to email your flight details to the organizer. The itinerary download includes all your trip information. Once submitted you will see your updates in View Trip Dashboard in 24 hours.
             </div>
 
-            <!-- View Trip Details Button -->
+            <!-- View Trip Dashboard Button -->
             <div style="text-align: center; margin-top: 20px;">
               <a href="trip-dashboard.html"
                  style="display: inline-block; padding: 15px 30px; background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #8B0000; text-decoration: none; border-radius: 25px; font-weight: bold; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(218,165,32,0.3);"
                  onmouseover="this.style.background='linear-gradient(135deg, #FFA500 0%, #FFD700 100%)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(218,165,32,0.5)'"
                  onmouseout="this.style.background='linear-gradient(135deg, #FFD700 0%, #FFA500 100%)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(218,165,32,0.3)'">
-                📊 View Trip Details
+                📊 View Trip Dashboard
               </a>
             </div>
           </form>
           
           <!-- Back to Top Button -->
           <div style="text-align: center; margin-top: 30px; padding: 20px;">
-            <a href="#trip-section-header" onclick="scrollToTop(event)" style="display: inline-block; padding: 15px 30px; background: #DAA520; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onmouseover="this.style.background='#B8860B'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(218,165,32,0.4)'" onmouseout="this.style.background='#DAA520'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.1)'">
+            <a href="#trip-section-header" onclick="scrollToTop(event)" style="display: inline-block; padding: 15px 30px; background: linear-gradient(135deg, #d32f2f 0%, #f06d6d 100%); color: white; text-decoration: none; border-radius: 25px; font-weight: bold; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(211,47,47,0.3);" onmouseover="this.style.background='linear-gradient(135deg, #b22222 0%, #d32f2f 100%)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(211,47,47,0.5)'" onmouseout="this.style.background='linear-gradient(135deg, #d32f2f 0%, #f06d6d 100%)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(211,47,47,0.3)'">
               ⬆️ Back to Trip Overview
             </a>
           </div>
@@ -3044,7 +3044,7 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
               <span style="font-size: 1.5rem;">⭐</span>
               <h4 style="color: #B8860B; margin: 0; font-size: 1.2rem;">Selected by Group</h4>
-              <span style="background: #FFD700; color: #8B0000; padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: bold;">RECOMMENDED</span>
+              <span style="background: #FFD700; color: #8B0000; padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: bold;">EXAMPLE</span>
             </div>
             <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-bottom: 15px; border-radius: 5px;">
               <strong>ℹ️ Note:</strong> This is an example of how group-selected activities will appear. The actual group activity selection will be finalized closer to the trip date.
@@ -3327,7 +3327,7 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
         // Add group-selected activities first with special marker
         if (groupSelected.length > 0) {
           const groupOptgroup = document.createElement('optgroup');
-          groupOptgroup.label = '⭐ Selected by Group (Recommended)';
+          groupOptgroup.label = '⭐ Selected by Group (Example)';
           groupSelected.forEach((activity, index) => {
             const option = document.createElement('option');
             option.value = JSON.stringify({name: activity.name, cost: activity.cost, selectedByGroup: true});
@@ -3708,24 +3708,42 @@ SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
       }
     }
 
-    function downloadTripItinerary() {
-      const saved = localStorage.getItem('myTripDetails');
-      if (!saved) {
-        alert('⚠️ Please save your trip details first before downloading!');
+    async function downloadTripItinerary() {
+      // Get the selected user ID from the dropdown
+      const userId = document.getElementById('tripUserId').value;
+      const userName = document.getElementById('tripUserName').options[document.getElementById('tripUserName').selectedIndex]?.text;
+      
+      if (!userId || !userName) {
+        alert('⚠️ Please select your name from the dropdown first!');
         return;
       }
 
-      const tripDetails = JSON.parse(saved);
+      try {
+        // Fetch user's trip details from tripcontacts.json
+        const timestamp = new Date().getTime();
+        const response = await fetch(`tripcontacts.json?t=${timestamp}`);
+        const tripContacts = await response.json();
+        const tripDetails = tripContacts.find(tc => tc.userId === parseInt(userId));
+        
+        if (!tripDetails) {
+          alert('⚠️ No trip details found. Please fill out and submit the form first!');
+          return;
+        }
+        
+        // Fetch group-selected activities from activity_suggestions.json
+        const activityResponse = await fetch(`activity_suggestions.json?t=${timestamp}`);
+        const allActivities = await activityResponse.json();
+        const groupActivities = allActivities.filter(a => a.selectedByGroup);
+        
+        // Ensure all required properties exist with defaults
+        if (!tripDetails.activities) tripDetails.activities = [];
+        if (!tripDetails.outbound) tripDetails.outbound = {};
+        if (!tripDetails.return) tripDetails.return = {};
+        if (!tripDetails.emergency) tripDetails.emergency = {};
+        if (!tripDetails.tent) tripDetails.tent = {};
       
-      // Ensure all required properties exist with defaults
-      if (!tripDetails.activities) tripDetails.activities = [];
-      if (!tripDetails.outbound) tripDetails.outbound = {};
-      if (!tripDetails.return) tripDetails.return = {};
-      if (!tripDetails.emergency) tripDetails.emergency = {};
-      if (!tripDetails.tent) tripDetails.tent = {};
-      
-      // Format dates nicely
-      const formatDateTime = (dateStr) => {
+        // Format dates nicely
+        const formatDateTime = (dateStr) => {
         if (!dateStr) return 'Not specified';
         const date = new Date(dateStr);
         return date.toLocaleString('en-US', { 
@@ -3737,11 +3755,11 @@ SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
           minute: '2-digit',
           hour12: true
         });
-      };
+        };
 
-      // Create document content
-      let content = `DOTS GO GLAMPING - YELLOWSTONE 2026
-Personal Trip Itinerary
+        // Create document content
+        let content = `DOTS GO GLAMPING - YELLOWSTONE 2026
+Personal Trip Itinerary for ${userName}
 Generated: ${new Date().toLocaleDateString()}
 
 ═══════════════════════════════════════════════════════════════
@@ -3809,36 +3827,19 @@ MY TENT SELECTION
 ACTIVITIES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-⭐ SELECTED BY GROUP (Recommended for Everyone):
+⭐ SELECTED BY GROUP (For Everyone):
+${groupActivities.length > 0 ?
+  groupActivities.map(a => `  ⭐ ${a.name} - ${a.cost}`).join('\n')
+: '  No group activities selected yet'}
+
+MY SELECTED ACTIVITIES:
 ${tripDetails.activities && tripDetails.activities.length > 0 ?
-  (() => {
-    const groupSelected = tripDetails.activities.filter(a => a.selectedByGroup);
-    const mySelected = tripDetails.activities.filter(a => !a.selectedByGroup);
-    
-    let output = '';
-    
-    if (groupSelected.length > 0) {
-      output += groupSelected.map(a => {
-        const activityName = typeof a === 'string' ? a : (a && a.name ? a.name : 'Unknown activity');
-        const activityPrice = typeof a === 'string' ? '' : (a && a.cost ? ` - ${a.cost}` : '');
-        return `  ⭐ ${activityName}${activityPrice}`;
-      }).join('\n');
-    } else {
-      output += '  (Check activity_suggestions.json for group recommendations)';
-    }
-    
-    if (mySelected.length > 0) {
-      output += '\n\nMY ADDITIONAL SELECTED ACTIVITIES:\n';
-      output += mySelected.map(a => {
-        const activityName = typeof a === 'string' ? a : (a && a.name ? a.name : 'Unknown activity');
-        const activityPrice = typeof a === 'string' ? '' : (a && a.cost ? ` - ${a.cost}` : '');
-        return `  ✓ ${activityName}${activityPrice}`;
-      }).join('\n');
-    }
-    
-    return output;
-  })()
-: '  No activities selected yet\n  ⭐ Check the Activities & Excursions section for group recommendations'}
+  tripDetails.activities.map(a => {
+    const activityName = typeof a === 'string' ? a : (a && a.name ? a.name : 'Unknown activity');
+    const activityPrice = typeof a === 'string' ? '' : (a && a.cost ? ` - ${a.cost}` : '');
+    return `  ✓ ${activityName}${activityPrice}`;
+  }).join('\n')
+: '  No personal activities selected yet'}
 
 ═══════════════════════════════════════════════════════════════
 
@@ -3874,18 +3875,22 @@ For the latest updates, visit:
 https://tamimoooo.github.io/agenda/reunion.html
 `;
 
-      // Create and download the file
-      const blob = new Blob([content], { type: 'text/plain' });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'Yellowstone_Trip_Itinerary_2026.txt';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
+        // Create and download the file
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Yellowstone_Trip_Itinerary_${userName.replace(/\s+/g, '_')}_2026.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
 
-      alert('📥 Your trip itinerary has been downloaded!\n\nNote: This is a text file mockup. In the full version, this would be a formatted Word document (.docx) with proper styling, images, and layout.');
+        alert('📥 Your trip itinerary has been downloaded!\n\nNote: This is a text file mockup. In the full version, this would be a formatted Word document (.docx) with proper styling, images, and layout.');
+      } catch (error) {
+        console.error('Error downloading itinerary:', error);
+        alert('❌ Error downloading itinerary. Please try again.');
+      }
     }
 
     // Countdown Timer Function
