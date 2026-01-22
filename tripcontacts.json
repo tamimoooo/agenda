@@ -1,99 +1,40 @@
 [
   {
-    "userId": 8,
-    "name": "Tamika",
+    "userId": 1,
+    "name": "Errin",
     "outbound": {
-      "departureCity": "Raleigh, NC",
+      "departureCity": "",
       "arrivalCity": "Bozeman, MT",
-      "airline": "Delta",
-      "flightNumber": "DL2847",
-      "departure": "2026-09-09T08:30:00",
-      "arrival": "2026-09-09T13:45:00",
-      "confirmation": "ABC123XYZ"
+      "airline": "",
+      "flightNumber": "",
+      "departure": "",
+      "arrival": "",
+      "confirmation": ""
     },
     "return": {
       "departureCity": "Bozeman, MT",
-      "arrivalCity": "Raleigh, NC",
-      "airline": "Delta",
-      "flightNumber": "DL1956",
-      "departure": "2026-09-13T14:20:00",
-      "arrival": "2026-09-13T21:15:00",
-      "confirmation": "ABC123XYZ"
+      "arrivalCity": "",
+      "airline": "",
+      "flightNumber": "",
+      "departure": "",
+      "arrival": "",
+      "confirmation": ""
     },
     "tent": {
-      "type": "Deluxe",
+      "type": "",
       "notes": ""
     },
-    "activities": [
-      {
-        "name": "NPS App Self-Guided Yellowstone Tour",
-        "cost": "Free",
-        "selectedByGroup": true
-      },
-      {
-        "name": "Chico Hot Springs Soak",
-        "cost": "Approximately $40–$50 per person for day-use soaking (varies by day and season)",
-        "selectedByGroup": false
-      }
-    ],
+    "activities": [],
     "transportation": {
-      "needsAirportPickup": true,
-      "willingToRentCar": false,
-      "arrivalTime": "2026-09-09T13:45:00",
-      "departureTime": "2026-09-13T14:20:00"
-    },
-    "specialRequests": "Vegetarian meals preferred. No dietary restrictions, just prefer plant-based options when available.",
-    "submittedDate": "2025-12-29T16:30:00.000Z",
-    "lastUpdated": "2025-12-29T16:30:00.000Z",
-    "confirmationStatus": "pending"
-  },
-  {
-    "userId": 4,
-    "name": "Dana",
-    "outbound": {
-      "departureCity": "Atlanta",
-      "arrivalCity": "Bozeman",
-      "airline": "Delta",
-      "flightNumber": "406",
-      "departure": "2026-09-09T13:06",
-      "arrival": "",
-      "confirmation": "Not yet booked"
-    },
-    "return": {
-      "departureCity": "Bozeman",
-      "arrivalCity": "Atlanta",
-      "airline": "Delta",
-      "flightNumber": "406",
-      "departure": "2026-09-12T14:00",
-      "arrival": "",
-      "confirmation": "Not yet booked"
-    },
-    "tent": {
-      "type": "Suite",
-      "notes": ""
-    },
-    "activities": [
-      {
-        "name": "Yellowstone Park Tours",
-        "cost": "TBD",
-        "selectedByGroup": false
-      },
-      {
-        "name": "Hiking & Nature Walks",
-        "cost": "Free",
-        "selectedByGroup": false
-      }
-    ],
-    "transportation": {
-      "needsAirportPickup": true,
+      "needsAirportPickup": false,
       "willingToRentCar": false,
       "arrivalTime": "",
-      "departureTime": "2026-09-12T14:00"
+      "departureTime": ""
     },
-    "specialRequests": "Park Tour. Hiking. Shellfish Allergy.",
-    "submittedDate": "2026-01-16T01:57:02.072Z",
-    "lastUpdated": "2026-01-16T01:57:02.072Z",
-    "confirmationStatus": "pending"
+    "specialRequests": "",
+    "submittedDate": "",
+    "lastUpdated": "",
+    "confirmationStatus": "not_submitted"
   },
   {
     "userId": 2,
@@ -157,5 +98,360 @@
     "submittedDate": "2026-01-22T15:30:41.139Z",
     "lastUpdated": "2026-01-22T15:30:41.139Z",
     "confirmationStatus": "pending"
+  },
+  {
+    "userId": 3,
+    "name": "Summer",
+    "outbound": {
+      "departureCity": "",
+      "arrivalCity": "Bozeman, MT",
+      "airline": "",
+      "flightNumber": "",
+      "departure": "",
+      "arrival": "",
+      "confirmation": ""
+    },
+    "return": {
+      "departureCity": "Bozeman, MT",
+      "arrivalCity": "",
+      "airline": "",
+      "flightNumber": "",
+      "departure": "",
+      "arrival": "",
+      "confirmation": ""
+    },
+    "tent": {
+      "type": "",
+      "notes": ""
+    },
+    "activities": [],
+    "transportation": {
+      "needsAirportPickup": false,
+      "willingToRentCar": false,
+      "arrivalTime": "",
+      "departureTime": ""
+    },
+    "specialRequests": "",
+    "submittedDate": "",
+    "lastUpdated": "",
+    "confirmationStatus": "not_submitted"
+  },
+  {
+    "userId": 4,
+    "name": "Dana",
+    "outbound": {
+      "departureCity": "Atlanta",
+      "arrivalCity": "Bozeman",
+      "airline": "Delta",
+      "flightNumber": "406",
+      "departure": "2026-09-09T13:06",
+      "arrival": "",
+      "confirmation": "Not yet booked"
+    },
+    "return": {
+      "departureCity": "Bozeman",
+      "arrivalCity": "Atlanta",
+      "airline": "Delta",
+      "flightNumber": "406",
+      "departure": "2026-09-12T14:00",
+      "arrival": "",
+      "confirmation": "Not yet booked"
+    },
+    "tent": {
+      "type": "Suite",
+      "notes": ""
+    },
+    "activities": [
+      {
+        "name": "Yellowstone Park Tours",
+        "cost": "TBD",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Hiking & Nature Walks",
+        "cost": "Free",
+        "selectedByGroup": false
+      }
+    ],
+    "transportation": {
+      "needsAirportPickup": true,
+      "willingToRentCar": false,
+      "arrivalTime": "",
+      "departureTime": "2026-09-12T14:00"
+    },
+    "specialRequests": "Park Tour. Hiking. Shellfish Allergy.",
+    "submittedDate": "2026-01-16T01:57:02.072Z",
+    "lastUpdated": "2026-01-16T01:57:02.072Z",
+    "confirmationStatus": "pending"
+  },
+  {
+    "userId": 8,
+    "name": "Tamika",
+    "outbound": {
+      "departureCity": "Raleigh, NC",
+      "arrivalCity": "Bozeman, MT",
+      "airline": "Delta",
+      "flightNumber": "DL2847",
+      "departure": "2026-09-09T08:30:00",
+      "arrival": "2026-09-09T13:45:00",
+      "confirmation": "ABC123XYZ"
+    },
+    "return": {
+      "departureCity": "Bozeman, MT",
+      "arrivalCity": "Raleigh, NC",
+      "airline": "Delta",
+      "flightNumber": "DL1956",
+      "departure": "2026-09-13T14:20:00",
+      "arrival": "2026-09-13T21:15:00",
+      "confirmation": "ABC123XYZ"
+    },
+    "tent": {
+      "type": "Deluxe",
+      "notes": ""
+    },
+    "activities": [
+      {
+        "name": "NPS App Self-Guided Yellowstone Tour",
+        "cost": "Free",
+        "selectedByGroup": true
+      },
+      {
+        "name": "Chico Hot Springs Soak",
+        "cost": "Approximately $40–$50 per person for day-use soaking (varies by day and season)",
+        "selectedByGroup": false
+      }
+    ],
+    "transportation": {
+      "needsAirportPickup": true,
+      "willingToRentCar": false,
+      "arrivalTime": "2026-09-09T13:45:00",
+      "departureTime": "2026-09-13T14:20:00"
+    },
+    "specialRequests": "Vegetarian meals preferred. No dietary restrictions, just prefer plant-based options when available.",
+    "submittedDate": "2025-12-29T16:30:00.000Z",
+    "lastUpdated": "2025-12-29T16:30:00.000Z",
+    "confirmationStatus": "pending"
+  },
+  {
+    "userId": 9,
+    "name": "Tephia Lindsay",
+    "outbound": {
+      "departureCity": "",
+      "arrivalCity": "Bozeman, MT",
+      "airline": "",
+      "flightNumber": "",
+      "departure": "",
+      "arrival": "",
+      "confirmation": ""
+    },
+    "return": {
+      "departureCity": "Bozeman, MT",
+      "arrivalCity": "",
+      "airline": "",
+      "flightNumber": "",
+      "departure": "",
+      "arrival": "",
+      "confirmation": ""
+    },
+    "tent": {
+      "type": "",
+      "notes": ""
+    },
+    "activities": [],
+    "transportation": {
+      "needsAirportPickup": false,
+      "willingToRentCar": false,
+      "arrivalTime": "",
+      "departureTime": ""
+    },
+    "specialRequests": "",
+    "submittedDate": "",
+    "lastUpdated": "",
+    "confirmationStatus": "not_submitted"
+  },
+  {
+    "userId": 10,
+    "name": "Janita",
+    "outbound": {
+      "departureCity": "",
+      "arrivalCity": "Bozeman, MT",
+      "airline": "",
+      "flightNumber": "",
+      "departure": "",
+      "arrival": "",
+      "confirmation": ""
+    },
+    "return": {
+      "departureCity": "Bozeman, MT",
+      "arrivalCity": "",
+      "airline": "",
+      "flightNumber": "",
+      "departure": "",
+      "arrival": "",
+      "confirmation": ""
+    },
+    "tent": {
+      "type": "",
+      "notes": ""
+    },
+    "activities": [],
+    "transportation": {
+      "needsAirportPickup": false,
+      "willingToRentCar": false,
+      "arrivalTime": "",
+      "departureTime": ""
+    },
+    "specialRequests": "",
+    "submittedDate": "",
+    "lastUpdated": "",
+    "confirmationStatus": "not_submitted"
+  },
+  {
+    "userId": 12,
+    "name": "Sherri",
+    "outbound": {
+      "departureCity": "",
+      "arrivalCity": "Bozeman, MT",
+      "airline": "",
+      "flightNumber": "",
+      "departure": "",
+      "arrival": "",
+      "confirmation": ""
+    },
+    "return": {
+      "departureCity": "Bozeman, MT",
+      "arrivalCity": "",
+      "airline": "",
+      "flightNumber": "",
+      "departure": "",
+      "arrival": "",
+      "confirmation": ""
+    },
+    "tent": {
+      "type": "",
+      "notes": ""
+    },
+    "activities": [],
+    "transportation": {
+      "needsAirportPickup": false,
+      "willingToRentCar": false,
+      "arrivalTime": "",
+      "departureTime": ""
+    },
+    "specialRequests": "",
+    "submittedDate": "",
+    "lastUpdated": "",
+    "confirmationStatus": "not_submitted"
+  },
+  {
+    "userId": 13,
+    "name": "Michelle",
+    "outbound": {
+      "departureCity": "",
+      "arrivalCity": "Bozeman, MT",
+      "airline": "",
+      "flightNumber": "",
+      "departure": "",
+      "arrival": "",
+      "confirmation": ""
+    },
+    "return": {
+      "departureCity": "Bozeman, MT",
+      "arrivalCity": "",
+      "airline": "",
+      "flightNumber": "",
+      "departure": "",
+      "arrival": "",
+      "confirmation": ""
+    },
+    "tent": {
+      "type": "",
+      "notes": ""
+    },
+    "activities": [],
+    "transportation": {
+      "needsAirportPickup": false,
+      "willingToRentCar": false,
+      "arrivalTime": "",
+      "departureTime": ""
+    },
+    "specialRequests": "",
+    "submittedDate": "",
+    "lastUpdated": "",
+    "confirmationStatus": "not_submitted"
+  },
+  {
+    "userId": 15,
+    "name": "Nicole",
+    "outbound": {
+      "departureCity": "",
+      "arrivalCity": "Bozeman, MT",
+      "airline": "",
+      "flightNumber": "",
+      "departure": "",
+      "arrival": "",
+      "confirmation": ""
+    },
+    "return": {
+      "departureCity": "Bozeman, MT",
+      "arrivalCity": "",
+      "airline": "",
+      "flightNumber": "",
+      "departure": "",
+      "arrival": "",
+      "confirmation": ""
+    },
+    "tent": {
+      "type": "",
+      "notes": ""
+    },
+    "activities": [],
+    "transportation": {
+      "needsAirportPickup": false,
+      "willingToRentCar": false,
+      "arrivalTime": "",
+      "departureTime": ""
+    },
+    "specialRequests": "",
+    "submittedDate": "",
+    "lastUpdated": "",
+    "confirmationStatus": "not_submitted"
+  },
+  {
+    "userId": 16,
+    "name": "Rochelle",
+    "outbound": {
+      "departureCity": "",
+      "arrivalCity": "Bozeman, MT",
+      "airline": "",
+      "flightNumber": "",
+      "departure": "",
+      "arrival": "",
+      "confirmation": ""
+    },
+    "return": {
+      "departureCity": "Bozeman, MT",
+      "arrivalCity": "",
+      "airline": "",
+      "flightNumber": "",
+      "departure": "",
+      "arrival": "",
+      "confirmation": ""
+    },
+    "tent": {
+      "type": "",
+      "notes": ""
+    },
+    "activities": [],
+    "transportation": {
+      "needsAirportPickup": false,
+      "willingToRentCar": false,
+      "arrivalTime": "",
+      "departureTime": ""
+    },
+    "specialRequests": "",
+    "submittedDate": "",
+    "lastUpdated": "",
+    "confirmationStatus": "not_submitted"
   }
 ]
