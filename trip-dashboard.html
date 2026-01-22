@@ -352,8 +352,33 @@
 
     /* Extra small devices */
     @media (max-width: 480px) {
+      /* Overall body text */
+      body {
+        font-size: 0.85rem;
+        line-height: 1.5;
+      }
+      
+      /* Fix link overflow */
+      a {
+        word-break: break-all;
+        overflow-wrap: break-word;
+        hyphens: auto;
+      }
+      
       h1 {
         font-size: 1.3rem;
+      }
+      
+      h2, .section-title {
+        font-size: 1.2rem;
+      }
+      
+      h3 {
+        font-size: 1rem;
+      }
+      
+      h4 {
+        font-size: 0.95rem;
       }
 
       .subtitle {
@@ -371,6 +396,37 @@
       .stat-label {
         font-size: 0.85rem;
       }
+      
+      /* Paragraphs and general text */
+      p, div, li {
+        font-size: 0.85rem;
+      }
+      
+      /* Mobile cards */
+      .mobile-card {
+        padding: 12px;
+        font-size: 0.85rem;
+      }
+      
+      .mobile-card-name {
+        font-size: 1rem;
+      }
+      
+      /* Activity cards */
+      .activity-card {
+        padding: 12px;
+        font-size: 0.85rem;
+      }
+      
+      .activity-card h4 {
+        font-size: 0.95rem;
+      }
+      
+      /* Buttons and links */
+      .back-link, .bottom-back-link {
+        font-size: 0.85rem;
+        padding: 8px 16px;
+      }
 
       table {
         font-size: 0.7rem;
@@ -385,6 +441,24 @@
 
       th {
         font-size: 0.75rem;
+      }
+      
+      /* Sections */
+      .section {
+        padding: 15px;
+      }
+      
+      /* Activity cards - ensure links wrap */
+      .activity-card a,
+      .activity-card p {
+        word-break: break-all;
+        overflow-wrap: break-word;
+      }
+      
+      /* Ensure all content respects container width */
+      * {
+        max-width: 100%;
+        box-sizing: border-box;
       }
     }
   </style>
