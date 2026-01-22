@@ -22,8 +22,20 @@
     },
     "tent": {
       "type": "Deluxe",
-      "pricePerPerson": "365"
+      "notes": ""
     },
+    "activities": [
+      {
+        "name": "NPS App Self-Guided Yellowstone Tour",
+        "cost": "Free",
+        "selectedByGroup": true
+      },
+      {
+        "name": "Chico Hot Springs Soak",
+        "cost": "Approximately $40–$50 per person for day-use soaking (varies by day and season)",
+        "selectedByGroup": false
+      }
+    ],
     "transportation": {
       "needsAirportPickup": true,
       "willingToRentCar": false,
@@ -35,6 +47,115 @@
     "lastUpdated": "2025-12-29T16:30:00.000Z",
     "confirmationStatus": "pending"
   },
-   { "userId": 4, "name": "Dana", "outbound": { "departureCity": "Atlanta", "arrivalCity": "Bozeman", "airline": "Delta", "flightNumber": "406", "departure": "2026-09-09T13:06", "arrival": "", "confirmation": "Not yet booked" }, "return": { "departureCity": "Bozeman", "arrivalCity": "Atlanta", "airline": "Delta", "flightNumber": "406", "departure": "2026-09-12T14:00", "arrival": "", "confirmation": "Not yet booked" }, "tent": { "type": "Suite", "pricePerPerson": "" }, "transportation": { "needsAirportPickup": true, "willingToRentCar": false, "arrivalTime": "", "departureTime": "2026-09-12T14:00" }, "specialRequests": "Park Tour. Hiking. Shellfish Allergy.", "submittedDate": "2026-01-16T01:57:02.072Z", "lastUpdated": "2026-01-16T01:57:02.072Z", "confirmationStatus": "pending" }
-
+  {
+    "userId": 4,
+    "name": "Dana",
+    "outbound": {
+      "departureCity": "Atlanta",
+      "arrivalCity": "Bozeman",
+      "airline": "Delta",
+      "flightNumber": "406",
+      "departure": "2026-09-09T13:06",
+      "arrival": "",
+      "confirmation": "Not yet booked"
+    },
+    "return": {
+      "departureCity": "Bozeman",
+      "arrivalCity": "Atlanta",
+      "airline": "Delta",
+      "flightNumber": "406",
+      "departure": "2026-09-12T14:00",
+      "arrival": "",
+      "confirmation": "Not yet booked"
+    },
+    "tent": {
+      "type": "Suite",
+      "notes": ""
+    },
+    "activities": [
+      {
+        "name": "Yellowstone Park Tours",
+        "cost": "TBD",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Hiking & Nature Walks",
+        "cost": "Free",
+        "selectedByGroup": false
+      }
+    ],
+    "transportation": {
+      "needsAirportPickup": true,
+      "willingToRentCar": false,
+      "arrivalTime": "",
+      "departureTime": "2026-09-12T14:00"
+    },
+    "specialRequests": "Park Tour. Hiking. Shellfish Allergy.",
+    "submittedDate": "2026-01-16T01:57:02.072Z",
+    "lastUpdated": "2026-01-16T01:57:02.072Z",
+    "confirmationStatus": "pending"
+  },
+  {
+    "userId": 2,
+    "name": "Melanie",
+    "outbound": {
+      "departureCity": "Raleigh, NC",
+      "arrivalCity": "Bozeman, MT",
+      "airline": "Delta",
+      "flightNumber": "DL2478",
+      "departure": "",
+      "arrival": "2026-01-22T09:32",
+      "confirmation": "F8Y4KB"
+    },
+    "return": {
+      "departureCity": "Bozeman, MT",
+      "arrivalCity": "Raleigh, NC",
+      "airline": "Delta",
+      "flightNumber": "DL0406",
+      "departure": "",
+      "arrival": "",
+      "confirmation": "F8Y4KB"
+    },
+    "tent": {
+      "type": "Stargazer",
+      "notes": ""
+    },
+    "activities": [
+      {
+        "name": "Erik's Ranch Horseback Riding",
+        "cost": "Approximately $135 per person",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Chico Hot Springs Soak",
+        "cost": "Approximately $40–$50 per person for day-use soaking (varies by day and season)",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Hiking & Nature Walks",
+        "cost": "Free",
+        "selectedByGroup": false
+      },
+      {
+        "name": "NPS App Self-Guided Yellowstone Tour",
+        "cost": "Free",
+        "selectedByGroup": true
+      },
+      {
+        "name": "Old West Cookout with Stagecoach Ride",
+        "cost": "$110 per adult (12+); $90 per child (8–11)",
+        "selectedByGroup": false
+      }
+    ],
+    "transportation": {
+      "needsAirportPickup": true,
+      "willingToRentCar": false,
+      "arrivalTime": "2026-01-22T09:32",
+      "departureTime": ""
+    },
+    "specialRequests": "Horseback riding, hot springs, hiking/walking/river/self-guided tours, cookout ",
+    "submittedDate": "2026-01-22T15:30:41.139Z",
+    "lastUpdated": "2026-01-22T15:30:41.139Z",
+    "confirmationStatus": "pending"
+  }
 ]
