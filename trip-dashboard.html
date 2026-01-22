@@ -438,11 +438,18 @@
 
     <!-- Activity Suggestions -->
     <div class="section">
-      <h2 class="section-title">🎯 Activity Suggestions</h2>
-      <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 10px; padding: 15px; margin-bottom: 20px;">
-        <strong>ℹ️ Note:</strong> This list currently displays all available activities. Once finalized, only group activities will be shown here.
-      </div>
+      <h2 class="section-title">🎯 Activities</h2>
+      
+      <!-- Group Selected Activities -->
+      <div id="groupActivitiesList" class="loading">Loading group activities...</div>
+      
+      <!-- All Available Activities -->
+      <h3 style="color: var(--primary-color); margin: 30px 0 15px;">All Available Activities</h3>
       <div id="activitiesList" class="loading">Loading activities...</div>
+      
+      <!-- Individual Selections -->
+      <h3 style="color: var(--primary-color); margin: 30px 0 15px;">Individual Activity Selections</h3>
+      <div id="individualActivitiesList" class="loading">Loading individual selections...</div>
     </div>
 
     <!-- Transportation Coordination -->
@@ -587,21 +594,50 @@
         const timestamp = new Date().getTime();
         const response = await fetch(`activity_suggestions.json?t=${timestamp}`);
         const activities = await response.json();
-        const container = document.getElementById('activitiesList');
         
+        // Separate group-selected and other activities
+        const groupSelected = activities.filter(a => a.selectedByGroup);
+        const otherActivities = activities.filter(a => !a.selectedByGroup);
+        
+        // Load group-selected activities
+        const groupContainer = document.getElementById('groupActivitiesList');
+        if (groupSelected.length > 0) {
+          let groupHtml = '<div style="background: linear-gradient(135deg, #FFF9E6 0%, #FFFFFF 100%); border: 3px solid #FFD700; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);">';
+          groupHtml += '<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;"><span style="font-size: 1.5rem;">⭐</span><h3 style="color: #B8860B; margin: 0;">Selected by Group (Recommended for Everyone)</h3></div>';
+          
+          groupSelected.forEach(activity => {
+            groupHtml += `
+              <div class="activity-card" style="background: white; border: 2px solid #DAA520;">
+                <h4 style="color: #B8860B;">${activity.location === 'bozeman' ? '📍' : '🏞️'} ${activity.name}</h4>
+                <p>${activity.description}</p>
+                ${activity.cost ? `<p><strong>Cost:</strong> ${activity.cost}</p>` : ''}
+                ${activity.duration ? `<p><strong>Duration:</strong> ${activity.duration}</p>` : ''}
+                ${activity.locationDetail ? `<p><strong>Location:</strong> ${activity.locationDetail}</p>` : ''}
+                ${activity.link ? `<p><strong>Link:</strong> <a href="${activity.link}" target="_blank" style="color: #B8860B;">${activity.link}</a></p>` : ''}
+              </div>
+            `;
+          });
+          groupHtml += '</div>';
+          groupContainer.innerHTML = groupHtml;
+        } else {
+          groupContainer.innerHTML = '<div class="empty-state">No group activities selected yet</div>';
+        }
+        
+        // Load all activities
+        const container = document.getElementById('activitiesList');
         if (activities.length === 0) {
           container.innerHTML = '<div class="empty-state">No activity suggestions yet</div>';
           return;
         }
 
         let html = '';
-        
         activities.forEach(activity => {
           html += `
             <div class="activity-card">
-              <h4>${activity.location === 'bozeman' ? '📍' : '🏞️'} ${activity.name}</h4>
+              <h4>${activity.location === 'bozeman' ? '📍' : '🏞️'} ${activity.name} ${activity.selectedByGroup ? '<span class="badge badge-warning">⭐ Group Selected</span>' : ''}</h4>
               <p>${activity.description}</p>
               ${activity.cost ? `<p><strong>Cost:</strong> ${activity.cost}</p>` : ''}
+              ${activity.duration ? `<p><strong>Duration:</strong> ${activity.duration}</p>` : ''}
               ${activity.link ? `<p><strong>Link:</strong> <a href="${activity.link}" target="_blank">${activity.link}</a></p>` : ''}
               <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-secondary);"><em>Suggested by: ${activity.suggester}</em></p>
             </div>
@@ -610,11 +646,64 @@
         
         container.innerHTML = html;
         
+        // Load individual selections
+        await loadIndividualActivities();
+        
         console.log('Loaded activities from activity_suggestions.json:', activities.length, 'activities');
         
       } catch (error) {
         console.error('Error loading activities:', error);
         document.getElementById('activitiesList').innerHTML = '<div class="empty-state">Unable to load activities</div>';
+        document.getElementById('groupActivitiesList').innerHTML = '<div class="empty-state">Unable to load activities</div>';
+      }
+    }
+    
+    // Load individual activity selections from tripcontacts.json
+    async function loadIndividualActivities() {
+      try {
+        const timestamp = new Date().getTime();
+        const response = await fetch(`tripcontacts.json?t=${timestamp}`);
+        const tripContacts = await response.json();
+        const container = document.getElementById('individualActivitiesList');
+        
+        const withActivities = tripContacts.filter(t => t.activities && t.activities.length > 0);
+        
+        if (withActivities.length === 0) {
+          container.innerHTML = '<div class="empty-state">No individual activity selections yet</div>';
+          return;
+        }
+        
+        let html = '<div class="mobile-cards">';
+        withActivities.forEach(trip => {
+          html += `
+            <div class="mobile-card">
+              <div class="mobile-card-name">${trip.name}</div>
+              <div style="margin-top: 10px;">
+                <strong>Selected Activities:</strong>
+                <ul style="margin: 8px 0 0 20px; line-height: 1.8;">
+          `;
+          
+          trip.activities.forEach(activity => {
+            const activityName = typeof activity === 'string' ? activity : activity.name;
+            const activityCost = typeof activity === 'string' ? '' : (activity.cost ? ` - ${activity.cost}` : '');
+            const isGroupSelected = typeof activity === 'object' && activity.selectedByGroup;
+            html += `<li>${activityName}${activityCost} ${isGroupSelected ? '<span class="badge badge-warning" style="font-size: 0.7rem;">⭐</span>' : ''}</li>`;
+          });
+          
+          html += `
+                </ul>
+              </div>
+            </div>
+          `;
+        });
+        html += '</div>';
+        
+        container.innerHTML = html;
+        console.log('✅ Loaded individual activity selections for', withActivities.length, 'participants');
+        
+      } catch (error) {
+        console.error('Error loading individual activities:', error);
+        document.getElementById('individualActivitiesList').innerHTML = '<div class="empty-state">Unable to load individual selections</div>';
       }
     }
 
