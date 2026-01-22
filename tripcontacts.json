@@ -59,7 +59,7 @@
     },
     "tent": {
       "type": "Stargazer",
-      "notes": "109326"
+      "notes": "Tent Confirmation Number 109326"
     },
     "activities": [
       {
@@ -455,4 +455,5 @@
     "confirmationStatus": "not_submitted"
   }
 ]
+
 
