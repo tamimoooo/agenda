@@ -961,6 +961,84 @@
       }
     }
     
+    /* Mobile font size adjustments for estimates section */
+    @media (max-width: 480px) {
+      #estimates-content h4 {
+        font-size: 1.1rem !important;
+      }
+      
+      #estimates-content p {
+        font-size: 0.85rem !important;
+      }
+      
+      #estimates-content .info-box {
+        font-size: 0.85rem !important;
+      }
+      
+      #estimates-content ul li {
+        font-size: 0.85rem !important;
+        line-height: 1.6 !important;
+      }
+      
+      /* Make cost breakdown items stack better on small screens */
+      #estimates-content > div > div > div[style*="display: flex"] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+      }
+      
+      #estimates-content > div > div > div[style*="display: flex"] span:last-child {
+        font-size: 1.3rem !important;
+      }
+      
+      /* Adjust total estimate box */
+      #estimates-content > div > div[style*="background: linear-gradient"] {
+        padding: 12px !important;
+      }
+      
+      #estimates-content > div > div[style*="background: linear-gradient"] > div:first-child {
+        font-size: 0.8rem !important;
+      }
+      
+      #estimates-content > div > div[style*="background: linear-gradient"] > div:nth-child(2) {
+        font-size: 1.5rem !important;
+      }
+      
+      #estimates-content > div > div[style*="background: linear-gradient"] > div:last-child {
+        font-size: 0.75rem !important;
+      }
+    }
+    
+    /* Mobile optimizations for flight form */
+    @media (max-width: 480px) {
+      #mytrip-content h4 {
+        font-size: 1.1rem !important;
+      }
+      
+      #mytrip-content h5 {
+        font-size: 1rem !important;
+      }
+      
+      #mytrip-content input,
+      #mytrip-content select,
+      #mytrip-content textarea {
+        font-size: 0.9rem !important;
+      }
+      
+      #mytrip-content label {
+        font-size: 0.85rem !important;
+      }
+      
+      #mytrip-content small {
+        font-size: 0.75rem !important;
+      }
+      
+      #mytrip-content .info-box {
+        font-size: 0.85rem !important;
+        padding: 10px !important;
+      }
+    }
+    
     /* Print styles */
     @media print {
       .polka-dots,
@@ -1166,14 +1244,39 @@
    <!-- Trip Overview -->
 <div class="trip-card highlight">
   <div class="trip-title">⛺ Dots Go Glamping</div>
-  <p><strong>📍 Location:</strong> Under Canvas Yellowstone - North Yellowstone (Paradise Valley), MT</p>
-  <p><strong>✈️ Airport:</strong> Bozeman Yellowstone International Airport BZN</p>
-  <p><strong>📅 Dates:</strong><span style="color: var(--primary-color); font-weight: bold;">September 9-13, 2026</span></p>
-   <div><strong>🏨 Hotel Nights:</strong> September 9-10 - Home2 Suites by Hilton Bozeman Midtown</div>
-                  <div><strong>⛺ Tent Nights:</strong> September 10-12, 2026</div>
-       <div><strong>🏨 Hotel Nights:</strong> September 12-13, 2026 - Home2 Suites By Hilton Bozeman Four Corners</div>
+  
+  <div style="display: grid; gap: 12px; margin: 15px 0;">
+    <p style="margin: 0;"><strong>📍 Location:</strong> Under Canvas Yellowstone - North Yellowstone (Paradise Valley), MT</p>
+    <p style="margin: 0;"><strong>✈️ Airport:</strong> Bozeman Yellowstone International Airport BZN</p>
+    <p style="margin: 0;"><strong>📅 Dates:</strong> <span style="color: var(--primary-color); font-weight: bold;">September 9-13, 2026</span></p>
+  </div>
+  
+  <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: #f8f9fa; margin: 15px 0;">
+    <h4 style="color: var(--primary-dark); margin: 0 0 12px 0; font-size: 1.1rem;">📅 Accommodation Schedule</h4>
+    <div style="display: grid; gap: 10px;">
+      <div style="padding: 8px; background: white; border-radius: 5px;">
+        <strong>🏨 Night 1:</strong> September 9-10<br>
+        <a href="https://www.hilton.com/en/hotels/bznhtht-home2-suites-bozeman-midtown/" target="_blank" rel="noopener" style="color: var(--primary-color); text-decoration: none; font-size: 0.95rem;">
+          Home2 Suites by Hilton Bozeman Midtown 🔗
+        </a>
+      </div>
+      <div style="padding: 8px; background: white; border-radius: 5px;">
+        <strong>⛺ Nights 2-3:</strong> September 10-12, 2026<br>
+        <a href="https://www.undercanvas.com/camps/north-yellowstone/" target="_blank" rel="noopener" style="color: var(--primary-color); text-decoration: none; font-size: 0.95rem;">
+          Under Canvas Yellowstone (Glamping) 🔗
+        </a>
+      </div>
+      <div style="padding: 8px; background: white; border-radius: 5px;">
+        <strong>🏨 Night 4:</strong> September 12-13, 2026<br>
+        <a href="https://www.hilton.com/en/hotels/bznbxhw-home2-suites-bozeman-four-corners/" target="_blank" rel="noopener" style="color: var(--primary-color); text-decoration: none; font-size: 0.95rem;">
+          Home2 Suites By Hilton Bozeman Four Corners 🔗
+        </a>
+      </div>
+    </div>
+  </div>
+  
   <p style="margin-top: 15px; font-size: 1.1rem;">
-    Experience luxury camping in one of America's most iconic national parks! 
+    Experience luxury camping in one of America's most iconic national parks!
     Glamping combines the beauty of nature with the comfort of a hotel.
   </p>
 
@@ -1303,125 +1406,72 @@
             
             <!-- Summary Box -->
             <div style="border: 3px solid var(--primary-color); border-radius: 15px; padding: 20px; margin-bottom: 25px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
-              <h4 style="color: var(--primary-color); margin-bottom: 10px; font-size: 1.3rem;">📊 Estimated Total Cost</h4>
-              <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary-dark); margin: 10px 0;">
-                $1,011 per person <span style="font-size: 1rem; font-weight: normal;">+ airfare</span>
+              <h4 style="color: var(--primary-color); margin-bottom: 15px; font-size: 1.3rem;">💰 Estimated Cost Breakdown (Per Person)</h4>
+              <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px; font-style: italic;">
+                September 9-13, 2026 • All prices are estimates and subject to change
               </p>
-              <p style="font-size: 0.9rem; color: var(--text-secondary); font-style: italic;">
-                Based on September 9-13, 2026 travel dates (includes transportation, lodging, and 2 activities)
-              </p>
-            </div>
-
-            <!-- Transportation -->
-            <div style="margin-bottom: 25px;">
-              <h4 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px solid var(--primary-color); padding-bottom: 8px;">
-                🚐 Transportation
-              </h4>
-              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
-                <div style="display: grid; gap: 10px;">
-                  <div><strong>Vehicle:</strong> Need to Discuss Options</div>
-                  <div><strong>Total Cost:</strong> TBD </div>
-                  <div><strong>Per Person:</strong> <span style="color: var(--primary-color); font-weight: bold;">TBD</span></div>
-                  <div><strong>Pickup Location:</strong> Airport</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Lodging -->
-            <div style="margin-bottom: 25px;">
-              <h4 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px solid var(--primary-color); padding-bottom: 8px;">
-                🏨 Lodging -  Split Stay Information
-              </h4>
               
-              <!-- Split Stay Information -->
-              <div style="border: 3px solid var(--primary-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%); margin-bottom: 15px;">
-                <h5 style="color: var(--primary-color); margin-bottom: 10px;">📅 Accommodation Schedule</h5>
-                <div style="display: grid; gap: 10px;">
-                  <div><strong>🏨 Hotel Nights:</strong> September 9-10 - Home2 Suites by Hilton Bozeman Midtown</div>
-                  <div><strong>⛺ Tent Nights:</strong> September 10-12, 2026</div>
-       <div><strong>🏨 Hotel Nights:</strong> September 12-13, 2026 - Home2 Suites By Hilton Bozeman Four Corners</div>
+              <div style="display: grid; gap: 12px; font-size: 1rem;">
+                <!-- Hotels -->
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: white; border-radius: 8px; border-left: 4px solid var(--primary-color);">
+                  <span><strong>🏨 Hotels</strong> (2 nights: Sept 9-10 & Sept 12-13)<br><span style="font-size: 0.85rem; color: var(--text-secondary); font-style: italic;">*Optional 3rd night not included</span></span>
+                  <span style="color: var(--primary-color); font-weight: bold; font-size: 1.1rem;">$358</span>
+                </div>
+                
+                <!-- Glamping -->
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: white; border-radius: 8px; border-left: 4px solid var(--primary-color);">
+                  <span><strong>⛺ Glamping Tent</strong> (2 nights: Sept 10-12)</span>
+                  <span style="color: var(--primary-color); font-weight: bold; font-size: 1.1rem;">$400-$620</span>
+                </div>
+                
+                <!-- Transportation -->
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: white; border-radius: 8px; border-left: 4px solid #6c757d;">
+                  <span><strong>🚐 Van Rental</strong> (airport pickup & trip transport)</span>
+                  <span style="color: #6c757d; font-weight: bold; font-size: 1.1rem;">TBD</span>
+                </div>
+                
+                <!-- Activities -->
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: white; border-radius: 8px; border-left: 4px solid var(--primary-color);">
+                  <span><strong>🎯 Activities</strong> (average for 2 activities)</span>
+                  <span style="color: var(--primary-color); font-weight: bold; font-size: 1.1rem;">~$105</span>
+                </div>
+                
+                <!-- Airfare -->
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: white; border-radius: 8px; border-left: 4px solid #6c757d;">
+                  <span><strong>✈️ Airfare</strong> (to/from Bozeman, MT)</span>
+                  <span style="color: #6c757d; font-weight: bold; font-size: 1.1rem;">Varies</span>
                 </div>
               </div>
-
-              <!-- Hotel 1: September 9-10 -->
-              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white; margin-bottom: 15px;">
-                <h5 style="color: var(--primary-color); margin-bottom: 10px;">
-                  🏨 <a href="https://www.hilton.com/en/hotels/bznhtht-home2-suites-bozeman-midtown/" target="_blank" style="color: var(--primary-color); text-decoration: none;">Home2 Suites by Hilton Bozeman Midtown</a>
-                </h5>
-                <div style="display: grid; gap: 8px;">
-				   <div><strong>🏨 Night 1</strong> September 9-10 </div>
-                  <div><strong>Address:</strong> 1760 Baxter Ln, Bozeman, MT</div>
-                  <div><strong>Dates:</strong> September 9-10, 2026 (1 night)</div>
-                  <div><strong>Check-in:</strong> 3:00 PM | <strong>Check-out:</strong> 11:00 AM</div>
-                </div>
-              </div>
-			  
-			     <!-- Glamping Option -->
-              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
-                <h5 style="color: var(--primary-color); margin-bottom: 10px;">⛺ Tent Deluxe</h5>
-                <div style="display: grid; gap: 8px;">
-				   <div><strong>⛺ Night 2 and 3:</strong> September 10-12, 2026</div>
-                  <div><strong>Dates:</strong> September 10-12, 2026 (2 nights)</div>
-                  <div><strong>Nightly Rate:</strong> $365.00</div>
-                  <div><strong>Occupancy:</strong> 2 persons</div>
-                  <div><strong>Per Person:</strong> <span style="color: var(--primary-color); font-weight: bold;">$365.00</span> (for 2 nights)</div>
-                </div>
-              </div>
-
-              <!-- Hotel 2: September 12-13 -->
-              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white; margin-bottom: 15px;">
-                <h5 style="color: var(--primary-color); margin-bottom: 10px;">
-                  🏨 <a href="https://www.hilton.com/en/hotels/bznbxhw-home2-suites-bozeman-four-corners/" target="_blank" style="color: var(--primary-color); text-decoration: none;">Home2 Suites By Hilton Bozeman Four Corners</a>
-                </h5>
-                <div style="display: grid; gap: 8px;">
-				   <div><strong>🏨 Night 4</strong> September 12-13, 2026 </div>
-                  <div><strong>Address:</strong> 110 Homestake Drive, Bozeman, MT 59718</div>
-                  <div><strong>Dates:</strong> September 12-13, 2026 (1 night)</div>
-                  <div><strong>Check-in:</strong> 3:00 PM | <strong>Check-out:</strong> 11:00 AM</div>
-                  <div style="margin-top: 5px; padding: 10px; background: #e7f3ff; border-radius: 5px;">
-                    <strong>ℹ️ Note:</strong> Different location from first hotel
-                  </div>
-                </div>
-              </div>
-
-              <div style="border: 2px solid #ffc107; border-radius: 10px; padding: 15px; background: #fff3cd; margin-bottom: 15px;">
-                <strong>💰 Total Hotel Cost:</strong> $358.00 per person (for both nights combined)<br>
-                <strong>⚠️ Payment Deadline:</strong> September 6, 2026
-              </div>
-
-           
-
-            </div>
-
-            <!-- Activities -->
-            <div style="margin-bottom: 25px;">
-              <h4 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px solid var(--primary-color); padding-bottom: 8px;">
-                🎯 Activities
-              </h4>
               
-              <div style="display: grid; gap: 15px;">
-                <!-- Group Whitewater Rafting -->
-                <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
-                  <h5 style="color: var(--primary-color); margin-bottom: 8px;">🌊 Group Whitewater Rafting – 8 Mile</h5>
-                  <div><strong>Cost:</strong> <span style="color: var(--primary-color); font-weight: bold;">$75.00 per person</span></div>
-                </div>
-
-                <!-- Horseback Riding -->
-                <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
-                  <h5 style="color: var(--primary-color); margin-bottom: 8px;">🐴 Horseback Riding</h5>
-                  <div><strong>Cost:</strong> <span style="color: var(--primary-color); font-weight: bold;">$135.00 per person</span></div>
-                </div>
+              <!-- Total Estimate -->
+              <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border: 2px solid var(--border-color); border-radius: 10px;">
+                <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 5px;">Estimated Total (excluding airfare & van)</div>
+                <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-dark);">$863 - $1,083</div>
+                <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 5px;">+ airfare + van rental (TBD)</div>
               </div>
             </div>
 
+            <!-- Additional Details -->
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: white; margin-bottom: 20px;">
+              <h4 style="color: var(--primary-dark); margin-bottom: 15px;">📋 What's Included</h4>
+              <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                <li><strong>Hotels:</strong> 2 nights at Home2 Suites (Sept 9-10 & Sept 12-13)</li>
+                <li><strong>Glamping:</strong> 2 nights in luxury tent (Sept 10-12) - price varies by tent type</li>
+                <li><strong>Activities:</strong> Optional group activities (rafting, horseback riding, etc.)</li>
+                <li><strong>Transportation:</strong> Shared van rental cost (to be determined at group meeting)</li>
+              </ul>
+            </div>
 
-            <!-- Notes -->
+            <!-- Important Notes -->
             <div class="info-box">
-              <strong>📝 Notes:</strong>
-              <ul style="margin: 10px 0 0 20px;">
-                <li>All prices are estimates and subject to change</li>
-                <li>Activities are optional and not included in base cost</li>
-                <li>Final costs will be confirmed upon booking</li>
+              <strong>⚠️ Important Notes:</strong>
+              <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                <li>All prices are <strong>estimates</strong> and subject to change based on final bookings</li>
+                <li>Tent prices vary by type ($400-$620 range) - see Lodging section for options</li>
+                <li>Van rental cost will be determined once everyone confirms attendance</li>
+                <li>Activities are <strong>optional</strong> - choose what interests you</li>
+                <li>Book airfare early for best rates to Bozeman, MT (BZN)</li>
+                <li><strong>Attendance confirmation deadline:</strong> September 6, 2026 (hotel cancellation deadline)</li>
               </ul>
             </div>
 
@@ -1471,14 +1521,14 @@
               <!-- 3. Activities -->
               <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 20px; background: white;">
                 <h4 style="color: var(--primary-color); margin-bottom: 15px;">
-                  🎯 3. Choose Your Activities
+                  🎯 3. View and Submit Activities
                 </h4>
-                <p style="margin-bottom: 10px;">Select which optional activities you'd like to participate in during the trip.</p>
+                <p style="margin-bottom: 10px;">Browse available activities and submit your selections for the trip.</p>
                 <div style="padding: 10px; background: #f8f9fa; border-radius: 5px; margin-bottom: 10px;">
                   <strong>Options:</strong> White Water Rafting ($164), Bike & Hike to Osprey Falls ($250 or $95 rental)
                 </div>
                 <a href="#activities-content" onclick="openSectionAndScroll('activities', 'activities-content', event)" class="btn btn-secondary" style="display: inline-block; margin-top: 10px; text-decoration: none;">
-                  View Activities
+                  View & Submit Activities
                 </a>
               </div>
 
@@ -1790,9 +1840,11 @@
                   </div>
 
                   <!-- Submit Button -->
-                  <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 1.1rem;">
-                    ✅ Save Roommate Details
-                  </button>
+                  <div style="text-align: center;">
+                    <button type="submit" class="btn btn-primary" style="max-width: 400px; width: 100%; padding: 15px; font-size: 1.1rem;">
+                      ✅ Save Roommate Details
+                    </button>
+                  </div>
 
                   <p style="font-size: 0.9rem; color: var(--text-secondary); text-align: center; margin: 0;">
                     Your information will be saved and displayed below
@@ -1901,9 +1953,11 @@
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 1.1rem; margin-bottom: 10px;">
-                  ✨ Submit Activity Suggestion
-                </button>
+                <div style="text-align: center;">
+                  <button type="submit" class="btn btn-primary" style="max-width: 400px; width: 100%; padding: 15px; font-size: 1.1rem; margin-bottom: 10px;">
+                    ✨ Submit Activity Suggestion
+                  </button>
+                </div>
 
                 <p style="font-size: 0.9rem; color: var(--text-secondary); text-align: center; margin: 0 0 20px 0;">
                   Your suggestion will be displayed below and emailed to the link admin
@@ -1960,64 +2014,75 @@
               <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
                 <h4 style="color: var(--primary-dark); margin-bottom: 15px;">✈️ Flight Information</h4>
                 
+                <div class="info-box" style="margin-bottom: 15px; background: #e7f3ff; border-left: 4px solid #2196F3;">
+                  <strong>ℹ️ Note:</strong> We only need your arrival time in Bozeman and departure time from Bozeman for van coordination. If you have connecting flights, just enter the final arrival/departure times.
+                </div>
+                
                 <div style="display: grid; gap: 15px;">
-                  <!-- Outbound Flight -->
+                  <!-- Arrival in Bozeman -->
                   <div>
-                    <h5 style="color: var(--secondary-color); margin-bottom: 10px;">Outbound Flight</h5>
+                    <h5 style="color: var(--secondary-color); margin-bottom: 10px;">📍 Arrival in Bozeman</h5>
                     <div style="display: grid; gap: 10px;">
                       <input type="text" id="outboundDepartureCity"
                              style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                             placeholder="Departure City (e.g., Atlanta, GA)">
-                      <input type="text" id="outboundArrivalCity"
-                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                             placeholder="Arrival City (Bozeman, MT)">
+                             placeholder="Your Departure City (e.g., Atlanta, GA)">
                       <input type="text" id="outboundAirline"
                              style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
                              placeholder="Airline (e.g., Delta, United)">
                       <input type="text" id="outboundFlightNumber"
                              style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                             placeholder="Flight Number (e.g., DL1234)">
-                      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                        <input type="datetime-local" id="outboundDeparture"
-                               style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                               placeholder="Departure Date/Time">
-                        <input type="datetime-local" id="outboundArrival"
-                               style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                               placeholder="Arrival Date/Time">
+                             placeholder="Final Flight Number to Bozeman (e.g., DL406)">
+                      <div>
+                        <label for="outboundArrival" style="display: block; margin-bottom: 5px; font-size: 0.9rem; color: var(--text-primary); font-weight: 500;">
+                          <strong>Arrival Time in Bozeman</strong> <span style="color: red;">*</span>
+                        </label>
+                        <input type="datetime-local" id="outboundArrival" required
+                               style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;">
+                        <small style="color: var(--text-secondary); font-size: 0.85rem;">When your flight lands in Bozeman (for van pickup)</small>
                       </div>
                       <input type="text" id="outboundConfirmation"
                              style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                             placeholder="Confirmation Number">
+                             placeholder="Confirmation Number (optional)">
+                      <!-- Hidden fields to maintain compatibility -->
+                      <input type="hidden" id="outboundArrivalCity" value="Bozeman, MT">
+                      <input type="hidden" id="outboundDeparture" value="">
                     </div>
                   </div>
 
-                  <!-- Return Flight -->
+                  <!-- Departure from Bozeman -->
                   <div>
-                    <h5 style="color: var(--secondary-color); margin-bottom: 10px;">Return Flight</h5>
+                    <h5 style="color: var(--secondary-color); margin-bottom: 10px;">🛫 Departure from Bozeman</h5>
                     <div style="display: grid; gap: 10px;">
-                      <input type="text" id="returnDepartureCity"
-                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                             placeholder="Departure City (Bozeman, MT)">
                       <input type="text" id="returnArrivalCity"
                              style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                             placeholder="Arrival City (e.g., Atlanta, GA)">
+                             placeholder="Your Final Destination (e.g., Atlanta, GA)">
                       <input type="text" id="returnAirline"
                              style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
                              placeholder="Airline (e.g., Delta, United)">
                       <input type="text" id="returnFlightNumber"
                              style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                             placeholder="Flight Number (e.g., DL5678)">
-                      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                        <input type="datetime-local" id="returnDeparture"
-                               style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                               placeholder="Departure Date/Time">
-                        <input type="datetime-local" id="returnArrival"
-                               style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                               placeholder="Arrival Date/Time">
+                             placeholder="First Flight Number from Bozeman (e.g., DL406)">
+                      <div>
+                        <label for="returnDeparture" style="display: block; margin-bottom: 5px; font-size: 0.9rem; color: var(--text-primary); font-weight: 500;">
+                          <strong>Departure Time from Bozeman</strong> <span style="color: red;">*</span>
+                        </label>
+                        <input type="datetime-local" id="returnDeparture" required
+                               style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;">
+                        <small style="color: var(--text-secondary); font-size: 0.85rem;">When your flight leaves Bozeman (for van dropoff)</small>
                       </div>
                       <input type="text" id="returnConfirmation"
                              style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
                              placeholder="Confirmation Number">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
+                             placeholder="Confirmation Number (optional)">
+                      <!-- Hidden fields to maintain compatibility -->
+                      <input type="hidden" id="returnDepartureCity" value="Bozeman, MT">
+                      <input type="hidden" id="returnArrival" value="">
                     </div>
                   </div>
                 </div>
@@ -2090,11 +2155,11 @@
               </div>
 
             <!-- Action Buttons -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-              <button type="button" onclick="submitFlightDetails()" class="btn btn-primary" style="padding: 15px; font-size: 1.1rem;">
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+              <button type="button" onclick="submitFlightDetails()" class="btn btn-primary" style="padding: 15px 30px; font-size: 1.1rem; min-width: 200px;">
                 📧 Submit to Admin
               </button>
-              <button type="button" onclick="downloadTripItinerary()" class="btn btn-secondary" style="padding: 15px; font-size: 1.1rem;">
+              <button type="button" onclick="downloadTripItinerary()" class="btn btn-secondary" style="padding: 15px 30px; font-size: 1.1rem; min-width: 200px;">
                 📥 Download Itinerary
               </button>
             </div>
@@ -3161,19 +3226,9 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
 
       let html = '';
 
-      // Show group-selected activities first with special styling
+      // Show group-selected activities first (no special highlight)
       if (groupSelected.length > 0) {
-        html += `
-          <div style="border: 3px solid #FFD700; border-radius: 12px; padding: 20px; background: linear-gradient(135deg, #FFF9E6 0%, #FFFFFF 100%); box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);">
-            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-              <span style="font-size: 1.5rem;">⭐</span>
-              <h4 style="color: #B8860B; margin: 0; font-size: 1.2rem;">Selected by Group</h4>
-              <span style="background: #FFD700; color: #8B0000; padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: bold;">EXAMPLE</span>
-            </div>
-            <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-bottom: 15px; border-radius: 5px;">
-              <strong>ℹ️ Note:</strong> This is an example of how group-selected activities will appear. The actual group activity selection will be finalized closer to the trip date.
-            </div>
-        `;
+        html += `<div style="margin-bottom: 20px;"><h4 style="color: var(--primary-color); margin-bottom: 15px;">⭐ Selected by Group</h4></div>`;
         
         groupSelected.forEach(activity => {
           const icon = getActivityIcon(activity.name);
@@ -3183,20 +3238,18 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
           const link = activity.link || '';
           
           html += `
-            <div style="border: 2px solid #DAA520; border-radius: 10px; padding: 15px; background: white; margin-bottom: 10px;">
-              <h5 style="color: #B8860B; margin-bottom: 10px;">${icon} ${activity.name}</h5>
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white; margin-bottom: 10px;">
+              <h5 style="color: var(--primary-color); margin-bottom: 10px;">${icon} ${activity.name}</h5>
               <div style="display: grid; gap: 8px;">
                 ${cost !== 'TBD' && cost !== '' ? `<div><strong>💰 Price:</strong> ${cost}</div>` : ''}
                 ${duration ? `<div><strong>⏱️ Duration:</strong> ${duration}</div>` : ''}
                 ${locationText ? `<div><strong>📍 Location:</strong> ${locationText}</div>` : ''}
                 ${activity.description ? `<div style="margin-top: 5px; font-style: italic; color: var(--text-secondary);">${activity.description}</div>` : ''}
-                ${link ? `<div style="margin-top: 8px;"><a href="${link}" target="_blank" rel="noopener" style="color: #B8860B; text-decoration: none; font-weight: 600;">🔗 More Info</a></div>` : ''}
+                ${link ? `<div style="margin-top: 8px;"><a href="${link}" target="_blank" rel="noopener" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">🔗 More Info</a></div>` : ''}
               </div>
             </div>
           `;
         });
-        
-        html += `</div>`;
       }
 
       // Show other activities
