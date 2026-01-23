@@ -146,6 +146,37 @@
       margin-bottom: 20px;
       padding-bottom: 10px;
       border-bottom: 3px solid var(--primary-color);
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: color 0.3s ease;
+    }
+
+    .section-title:hover {
+      color: var(--primary-color);
+    }
+
+    .section-title .toggle-icon {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .section-title.collapsed .toggle-icon {
+      transform: rotate(-90deg);
+    }
+
+    .section-content {
+      max-height: 5000px;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease;
+      opacity: 1;
+    }
+
+    .section-content.collapsed {
+      max-height: 0;
+      opacity: 0;
     }
 
     table {
@@ -294,8 +325,19 @@
         margin-bottom: 15px;
       }
 
-      .section h2 {
+      .section-title {
         font-size: 1.3rem;
+        padding: 10px 0;
+        /* Ensure touch target is large enough */
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+      }
+
+      .section-title .toggle-icon {
+        font-size: 1.3rem;
+        /* Add padding for easier tapping */
+        padding: 5px;
       }
 
       /* Hide desktop table, show mobile cards */
@@ -350,6 +392,21 @@
       }
     }
 
+    /* Tablet devices */
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .section-title {
+        font-size: 1.5rem;
+        /* Ensure touch target is large enough for tablets */
+        min-height: 48px;
+        padding: 8px 0;
+      }
+
+      .section-title .toggle-icon {
+        font-size: 1.4rem;
+        padding: 8px;
+      }
+    }
+
     /* Extra small devices */
     @media (max-width: 480px) {
       /* Overall body text */
@@ -395,6 +452,18 @@
 
       .stat-label {
         font-size: 0.85rem;
+      }
+
+      .section-title {
+        font-size: 1.1rem;
+        /* Larger touch target for small screens */
+        min-height: 48px;
+        padding: 12px 0;
+      }
+
+      .section-title .toggle-icon {
+        font-size: 1.2rem;
+        padding: 8px;
       }
       
       /* Paragraphs and general text */
@@ -494,47 +563,78 @@
 
     <!-- Who's Going -->
     <div class="section">
-      <h2 class="section-title">👥 Who's Going</h2>
-      <div id="participantsList" class="loading">Loading participants...</div>
+      <h2 class="section-title" onclick="toggleSection(this)">
+        <span>👥 Who's Going</span>
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div class="section-content" id="participantsList">
+        <div class="loading">Loading participants...</div>
+      </div>
     </div>
 
     <!-- Flight Details -->
     <div class="section">
-      <h2 class="section-title">✈️ Travel Details</h2>
-      <div id="flightsList" class="loading">Loading flight information...</div>
+      <h2 class="section-title" onclick="toggleSection(this)">
+        <span>✈️ Travel Details</span>
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div class="section-content" id="flightsList">
+        <div class="loading">Loading flight information...</div>
+      </div>
     </div>
 
     <!-- Roommate Assignments -->
     <div class="section">
-      <h2 class="section-title">🏕️ Roommate & Tent Assignments</h2>
-      <div id="roommatesList" class="loading">Loading roommate assignments...</div>
+      <h2 class="section-title" onclick="toggleSection(this)">
+        <span>🏕️ Roommate & Tent Assignments</span>
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div class="section-content" id="roommatesList">
+        <div class="loading">Loading roommate assignments...</div>
+      </div>
     </div>
 
     <!-- Activity Suggestions -->
     <div class="section">
-      <h2 class="section-title">🎯 Activities</h2>
-      
-      <!-- Group Selected Activities -->
-      <div id="groupActivitiesList" class="loading">Loading group activities...</div>
-      
-      <!-- All Available Activities -->
-      <h3 style="color: var(--primary-color); margin: 30px 0 15px;">All Available Activities</h3>
-      <div id="activitiesList" class="loading">Loading activities...</div>
-      
-      <!-- Individual Selections -->
-      <h3 style="color: var(--primary-color); margin: 30px 0 15px;">Individual Activity Selections</h3>
-      <div id="individualActivitiesList" class="loading">Loading individual selections...</div>
+      <h2 class="section-title" onclick="toggleSection(this)">
+        <span>🎯 Activities</span>
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div class="section-content">
+        <!-- Group Selected Activities -->
+        <div id="groupActivitiesList" class="loading">Loading group activities...</div>
+        
+        <!-- All Available Activities -->
+        <h3 style="color: var(--primary-color); margin: 30px 0 15px;">All Available Activities</h3>
+        <div id="activitiesList" class="loading">Loading activities...</div>
+        
+        <!-- Individual Selections -->
+        <h3 style="color: var(--primary-color); margin: 30px 0 15px;">Individual Activity Selections</h3>
+        <div id="individualActivitiesList" class="loading">Loading individual selections...</div>
+      </div>
     </div>
 
     <!-- Transportation Coordination -->
     <div class="section">
-      <h2 class="section-title">🚐 Transportation Needs</h2>
-      <div id="transportationList" class="loading">Loading transportation info...</div>
+      <h2 class="section-title" onclick="toggleSection(this)">
+        <span>🚐 Transportation Needs</span>
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div class="section-content" id="transportationList">
+        <div class="loading">Loading transportation info...</div>
+      </div>
     </div>
 
   </div>
 
   <script>
+    // Toggle section expand/collapse
+    function toggleSection(titleElement) {
+      titleElement.classList.toggle('collapsed');
+      const content = titleElement.nextElementSibling;
+      content.classList.toggle('collapsed');
+    }
+
     // Load all data when page loads
     document.addEventListener('DOMContentLoaded', function() {
       loadParticipants();
@@ -865,8 +965,11 @@
         const roommates = await roommatesResponse.json();
         const activities = await activitiesResponse.json();
 
+        // Only count flight submissions that are not 'not_submitted'
+        const submittedFlights = tripContacts.filter(trip => trip.confirmationStatus !== 'not_submitted');
+
         document.getElementById('totalParticipants').textContent = whosgoing.length;
-        document.getElementById('flightsSubmitted').textContent = tripContacts.length;
+        document.getElementById('flightsSubmitted').textContent = submittedFlights.length;
         document.getElementById('roommatesSubmitted').textContent = roommates.length;
         document.getElementById('activitiesCount').textContent = activities.length;
       } catch (error) {
