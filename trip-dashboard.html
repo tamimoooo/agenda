@@ -563,44 +563,44 @@
 
     <!-- Who's Going -->
     <div class="section">
-      <h2 class="section-title" onclick="toggleSection(this)">
+      <h2 class="section-title collapsed" onclick="toggleSection(this)">
         <span>👥 Who's Going</span>
         <span class="toggle-icon">▼</span>
       </h2>
-      <div class="section-content" id="participantsList">
+      <div class="section-content collapsed" id="participantsList">
         <div class="loading">Loading participants...</div>
       </div>
     </div>
 
     <!-- Flight Details -->
-    <div class="section">
-      <h2 class="section-title" onclick="toggleSection(this)">
+    <div class="section" id="travel-details">
+      <h2 class="section-title collapsed" onclick="toggleSection(this)">
         <span>✈️ Travel Details</span>
         <span class="toggle-icon">▼</span>
       </h2>
-      <div class="section-content" id="flightsList">
+      <div class="section-content collapsed" id="flightsList">
         <div class="loading">Loading flight information...</div>
       </div>
     </div>
 
     <!-- Roommate Assignments -->
     <div class="section">
-      <h2 class="section-title" onclick="toggleSection(this)">
+      <h2 class="section-title collapsed" onclick="toggleSection(this)">
         <span>🏕️ Roommate & Tent Assignments</span>
         <span class="toggle-icon">▼</span>
       </h2>
-      <div class="section-content" id="roommatesList">
+      <div class="section-content collapsed" id="roommatesList">
         <div class="loading">Loading roommate assignments...</div>
       </div>
     </div>
 
     <!-- Activity Suggestions -->
     <div class="section">
-      <h2 class="section-title" onclick="toggleSection(this)">
+      <h2 class="section-title collapsed" onclick="toggleSection(this)">
         <span>🎯 Activities</span>
         <span class="toggle-icon">▼</span>
       </h2>
-      <div class="section-content">
+      <div class="section-content collapsed">
         <!-- Group Selected Activities -->
         <div id="groupActivitiesList" class="loading">Loading group activities...</div>
         
@@ -616,11 +616,11 @@
 
     <!-- Transportation Coordination -->
     <div class="section">
-      <h2 class="section-title" onclick="toggleSection(this)">
+      <h2 class="section-title collapsed" onclick="toggleSection(this)">
         <span>🚐 Transportation Needs</span>
         <span class="toggle-icon">▼</span>
       </h2>
-      <div class="section-content" id="transportationList">
+      <div class="section-content collapsed" id="transportationList">
         <div class="loading">Loading transportation info...</div>
       </div>
     </div>
@@ -635,6 +635,26 @@
       content.classList.toggle('collapsed');
     }
 
+    // Auto-expand section if accessed via anchor link
+    function expandAnchorSection() {
+      const hash = window.location.hash;
+      if (hash) {
+        const section = document.querySelector(hash);
+        if (section) {
+          const titleElement = section.querySelector('.section-title');
+          const contentElement = section.querySelector('.section-content');
+          if (titleElement && contentElement) {
+            titleElement.classList.remove('collapsed');
+            contentElement.classList.remove('collapsed');
+          }
+          // Scroll to section after a brief delay to ensure content is loaded
+          setTimeout(() => {
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+    }
+
     // Load all data when page loads
     document.addEventListener('DOMContentLoaded', function() {
       loadParticipants();
@@ -643,6 +663,9 @@
       loadActivities();
       loadTransportation();
       updateStatistics();
+      
+      // Expand section if accessed via anchor link
+      expandAnchorSection();
     });
 
     // Load participants from whosgoing.json
