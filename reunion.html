@@ -13,7 +13,7 @@
   <script type="text/javascript">
     (function(){
       emailjs.init({
-        publicKey: "DYnW5qfVzjAgEwcvZ",
+        publicKey: "goJO7RR3HruRFPa20",
       });
     })();
   </script>
@@ -2769,7 +2769,7 @@ Phone: ${contactData.phone || 'Not provided'}
 
       try {
         const result = await emailjs.send(
-          'service_3dxq4tg',
+          'service_9sytocs',
           'template_fainkx7',
           {
             name: contactData.name,
@@ -3023,15 +3023,16 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
 
       try {
         const result = await emailjs.send(
-          'service_3dxq4tg',
+          'service_9sytocs',
           'template_fainkx7',
           {
-            name: formData.roommates[0]?.name || 'Unknown',
+            name: formData.roommates[0]?.name || 'Roommate Submission',
             message: `Roommate & Tent Reservation:\n\n${roommateInfo}\n\n---\nJSON Format:\n${roommateJSON}`
           }
         );
 
-        console.log('EmailJS Success:', result);
+        console.log('✅ Roommate EmailJS Success:', result);
+        console.log('Response details:', JSON.stringify(result, null, 2));
         
         // Save to localStorage
         const submitted = JSON.parse(localStorage.getItem('submittedRoommates') || '[]');
@@ -3045,7 +3046,10 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
         loadSubmittedRoommates();
         
       } catch (error) {
-        console.error('EmailJS Error:', error);
+        console.error('❌ Roommate EmailJS Error:', error);
+        console.error('Error details:', JSON.stringify(error, null, 2));
+        console.error('Error text:', error.text);
+        console.error('Error status:', error.status);
         
         // Fallback to mailto
         if (confirm('Email service unavailable. Would you like to send via your email client instead?')) {
@@ -3324,7 +3328,7 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
 
       try {
         const result = await emailjs.send(
-          'service_3dxq4tg',
+          'service_9sytocs',
           'template_fainkx7',
           {
             name: activityData.suggester,
@@ -3721,7 +3725,7 @@ SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
 
       try {
         const result = await emailjs.send(
-          'service_3dxq4tg',
+          'service_9sytocs',
           'template_fainkx7',
           {
             name: tripDetails.name,
@@ -4130,7 +4134,7 @@ https://tamimoooo.github.io/agenda/reunion.html
         // Send email via EmailJS
         // Note: EmailJS template should include cc_email parameter for BCC functionality
         const result = await emailjs.send(
-          'service_3dxq4tg',
+          'service_9sytocs',
           'template_fainkx7',
           {
             name: name,
@@ -4140,7 +4144,8 @@ https://tamimoooo.github.io/agenda/reunion.html
           }
         );
         
-        console.log('Question submitted successfully:', result);
+        console.log('✅ Question submitted successfully:', result);
+        console.log('Response details:', JSON.stringify(result, null, 2));
         
         // Show success message
         statusDiv.style.display = 'block';
@@ -4156,7 +4161,10 @@ https://tamimoooo.github.io/agenda/reunion.html
         submitBtn.innerHTML = originalBtnText;
         
       } catch (error) {
-        console.error('Error submitting question:', error);
+        console.error('❌ Error submitting question:', error);
+        console.error('Error details:', JSON.stringify(error, null, 2));
+        console.error('Error text:', error.text);
+        console.error('Error status:', error.status);
         
         // Show error message
         statusDiv.style.display = 'block';
