@@ -2185,7 +2185,7 @@
           </form>
           
           <!-- Back to Top Button -->
-          <div style="text-align: center; margin-top: 30px; padding: 20px;">
+          <div style="text-align: center; margin-top: 30px; padding: 20px 20px 60px 20px;">
             <a href="#trip-section-header" onclick="scrollToTop(event)" style="display: inline-block; padding: 15px 30px; background: linear-gradient(135deg, #d32f2f 0%, #f06d6d 100%); color: white; text-decoration: none; border-radius: 25px; font-weight: bold; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(211,47,47,0.3);" onmouseover="this.style.background='linear-gradient(135deg, #b22222 0%, #d32f2f 100%)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(211,47,47,0.5)'" onmouseout="this.style.background='linear-gradient(135deg, #d32f2f 0%, #f06d6d 100%)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(211,47,47,0.3)'">
               ⬆️ Back to Trip Overview
             </a>
@@ -2840,7 +2840,7 @@ Phone: ${contactData.phone || 'Not provided'}
       const listContainer = document.getElementById('submittedRoommatesList');
       const section = document.getElementById('submittedRoommatesSection');
       
-      if (submitted.length > 0) {
+      if (submitted.length > 0 && section && listContainer) {
         section.style.display = 'block';
         listContainer.innerHTML = submitted.map((reservation, index) => `
           <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
@@ -2861,7 +2861,7 @@ Phone: ${contactData.phone || 'Not provided'}
             ${reservation.additionalNotes ? `<div style="margin-top: 10px; padding: 10px; background: #fff3cd; border-radius: 5px; font-size: 0.9rem;"><strong>Notes:</strong> ${reservation.additionalNotes}</div>` : ''}
           </div>
         `).join('');
-      } else {
+      } else if (section) {
         section.style.display = 'none';
       }
     }
