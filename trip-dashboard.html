@@ -520,14 +520,29 @@
       /* Activity cards - ensure links wrap */
       .activity-card a,
       .activity-card p {
-        word-break: break-all;
+        word-break: break-word;
         overflow-wrap: break-word;
+        word-wrap: break-word;
       }
       
       /* Ensure all content respects container width */
       * {
         max-width: 100%;
         box-sizing: border-box;
+      }
+      
+      /* Fix mobile card overflow */
+      .mobile-card,
+      .activity-card {
+        overflow: hidden;
+        word-wrap: break-word;
+      }
+      
+      .mobile-card a,
+      .mobile-card p,
+      .mobile-card div {
+        word-break: break-word;
+        overflow-wrap: break-word;
       }
     }
   </style>
@@ -601,16 +616,28 @@
         <span class="toggle-icon">▼</span>
       </h2>
       <div class="section-content collapsed">
-        <!-- Group Selected Activities -->
-        <div id="groupActivitiesList" class="loading">Loading group activities...</div>
         
-        <!-- All Available Activities -->
-        <h3 style="color: var(--primary-color); margin: 30px 0 15px;">All Available Activities</h3>
-        <div id="activitiesList" class="loading">Loading activities...</div>
+        <!-- All Available Activities - Now Collapsible -->
+        <div class="section" style="margin-bottom: 20px;">
+          <h3 class="section-title collapsed" onclick="toggleSection(this)" style="color: var(--primary-color); margin: 0; padding: 10px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+            <span>All Available Activities</span>
+            <span class="toggle-icon">▼</span>
+          </h3>
+          <div class="section-content collapsed" id="activitiesList" style="padding-top: 10px;">
+            <div class="loading">Loading activities...</div>
+          </div>
+        </div>
         
-        <!-- Individual Selections -->
-        <h3 style="color: var(--primary-color); margin: 30px 0 15px;">Individual Activity Selections</h3>
-        <div id="individualActivitiesList" class="loading">Loading individual selections...</div>
+        <!-- Individual Selections - Now Collapsible -->
+        <div class="section" style="margin-bottom: 20px;">
+          <h3 class="section-title collapsed" onclick="toggleSection(this)" style="color: var(--primary-color); margin: 0; padding: 10px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+            <span>Individual Activity Selections</span>
+            <span class="toggle-icon">▼</span>
+          </h3>
+          <div class="section-content collapsed" id="individualActivitiesList" style="padding-top: 10px;">
+            <div class="loading">Loading individual selections...</div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -801,35 +828,7 @@
         const response = await fetch(`activity_suggestions.json?t=${timestamp}`);
         const activities = await response.json();
         
-        // Separate group-selected and other activities
-        const groupSelected = activities.filter(a => a.selectedByGroup);
-        const otherActivities = activities.filter(a => !a.selectedByGroup);
-        
-        // Load group-selected activities
-        const groupContainer = document.getElementById('groupActivitiesList');
-        if (groupSelected.length > 0) {
-          let groupHtml = '<div style="background: linear-gradient(135deg, #FFF9E6 0%, #FFFFFF 100%); border: 3px solid #FFD700; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);">';
-          groupHtml += '<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;"><span style="font-size: 1.5rem;">⭐</span><h3 style="color: #B8860B; margin: 0;">This is just an example for display</h3></div>';
-          
-          groupSelected.forEach(activity => {
-            groupHtml += `
-              <div class="activity-card" style="background: white; border: 2px solid #DAA520;">
-                <h4 style="color: #B8860B;">${activity.location === 'bozeman' ? '📍' : '🏞️'} ${activity.name}</h4>
-                <p>${activity.description}</p>
-                ${activity.cost ? `<p><strong>Cost:</strong> ${activity.cost}</p>` : ''}
-                ${activity.duration ? `<p><strong>Duration:</strong> ${activity.duration}</p>` : ''}
-                ${activity.locationDetail ? `<p><strong>Location:</strong> ${activity.locationDetail}</p>` : ''}
-                ${activity.link ? `<p><strong>Link:</strong> <a href="${activity.link}" target="_blank" style="color: #B8860B;">${activity.link}</a></p>` : ''}
-              </div>
-            `;
-          });
-          groupHtml += '</div>';
-          groupContainer.innerHTML = groupHtml;
-        } else {
-          groupContainer.innerHTML = '<div class="empty-state">No group activities selected yet</div>';
-        }
-        
-        // Load all activities
+        // Load all activities (removed group-selected highlight section)
         const container = document.getElementById('activitiesList');
         if (activities.length === 0) {
           container.innerHTML = '<div class="empty-state">No activity suggestions yet</div>';
@@ -860,7 +859,6 @@
       } catch (error) {
         console.error('Error loading activities:', error);
         document.getElementById('activitiesList').innerHTML = '<div class="empty-state">Unable to load activities</div>';
-        document.getElementById('groupActivitiesList').innerHTML = '<div class="empty-state">Unable to load activities</div>';
       }
     }
     
