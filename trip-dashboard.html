@@ -349,8 +349,13 @@
         display: block !important;
       }
 
-      /* Make other tables horizontally scrollable on mobile */
+      /* Make sections with tables horizontally scrollable on mobile */
       .section {
+        overflow-x: visible;
+      }
+      
+      /* Only apply horizontal scroll to sections that actually need it */
+      .section:has(table) {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
       }
@@ -631,7 +636,7 @@
         <!-- Individual Selections - Now Collapsible -->
         <div class="section" style="margin-bottom: 20px;">
           <h3 class="section-title collapsed" onclick="toggleSection(this)" style="color: var(--primary-color); margin: 0; padding: 10px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-            <span>Individual Activity Selections</span>
+            <span>Individual Activity Suggestions</span>
             <span class="toggle-icon">▼</span>
           </h3>
           <div class="section-content collapsed" id="individualActivitiesList" style="padding-top: 10px;">
