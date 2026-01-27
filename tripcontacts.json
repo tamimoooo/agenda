@@ -194,7 +194,7 @@
       "flightNumber": "DL2847",
       "departure": "2026-09-09T08:30:00",
       "arrival": "2026-09-09T13:45:00",
-      "confirmation": "ABC123XYZ"
+      "confirmation": "Not Purchased Yet"
     },
     "return": {
       "departureCity": "Bozeman, MT",
@@ -203,7 +203,7 @@
       "flightNumber": "DL1956",
       "departure": "2026-09-13T14:20:00",
       "arrival": "2026-09-13T21:15:00",
-      "confirmation": "ABC123XYZ"
+      "confirmation": "Not Purchased Yet"
     },
     "tent": {
       "type": "Deluxe",
@@ -455,3 +455,4 @@
     "confirmationStatus": "not_submitted"
   }
 ]
+
