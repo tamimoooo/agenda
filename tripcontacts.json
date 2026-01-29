@@ -121,8 +121,8 @@
       "confirmation": ""
     },
     "tent": {
-      "type": "Suite",
-      "notes": "Tent Confirmation Number - 7224692"
+      "type": "",
+      "notes": ""
     },
     "activities": [],
     "transportation": {
@@ -183,6 +183,42 @@
     "submittedDate": "2026-01-16T01:57:02.072Z",
     "lastUpdated": "2026-01-16T01:57:02.072Z",
     "confirmationStatus": "pending"
+  }, {
+    "userId": 5,
+    "name": "Vernet-TBD",
+    "outbound": {
+      "departureCity": "",
+      "arrivalCity": "Bozeman, MT",
+      "airline": "",
+      "flightNumber": "",
+      "departure": "",
+      "arrival": "",
+      "confirmation": ""
+    },
+    "return": {
+      "departureCity": "Bozeman, MT",
+      "arrivalCity": "",
+      "airline": "",
+      "flightNumber": "",
+      "departure": "",
+      "arrival": "",
+      "confirmation": ""
+    },
+    "tent": {
+      "type": "",
+      "notes": ""
+    },
+    "activities": [],
+    "transportation": {
+      "needsAirportPickup": false,
+      "willingToRentCar": false,
+      "arrivalTime": "",
+      "departureTime": ""
+    },
+    "specialRequests": "",
+    "submittedDate": "",
+    "lastUpdated": "",
+    "confirmationStatus": "not_submitted"
   },
   {
     "userId": 8,
@@ -194,7 +230,7 @@
       "flightNumber": "DL2847",
       "departure": "2026-09-09T08:30:00",
       "arrival": "2026-09-09T13:45:00",
-      "confirmation": "Not Purchased Yet"
+      "confirmation": "ABC123XYZ"
     },
     "return": {
       "departureCity": "Bozeman, MT",
@@ -203,11 +239,11 @@
       "flightNumber": "DL1956",
       "departure": "2026-09-13T14:20:00",
       "arrival": "2026-09-13T21:15:00",
-      "confirmation": "Not Purchased Yet"
+      "confirmation": "ABC123XYZ"
     },
     "tent": {
-      "type": "Suite",
-      "notes": "Tent Confirmation Number - 7224692"
+      "type": "Deluxe",
+      "notes": ""
     },
     "activities": [
       {
@@ -454,6 +490,5 @@
     "lastUpdated": "",
     "confirmationStatus": "not_submitted"
   }
+ 
 ]
-
-
