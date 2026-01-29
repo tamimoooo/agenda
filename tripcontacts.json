@@ -121,8 +121,8 @@
       "confirmation": ""
     },
     "tent": {
-      "type": "",
-      "notes": ""
+      "type": "Suite",
+      "notes": "Tent Confirmation Number - 7224692"
     },
     "activities": [],
     "transportation": {
@@ -206,8 +206,8 @@
       "confirmation": "Not Purchased Yet"
     },
     "tent": {
-      "type": "Deluxe",
-      "notes": ""
+      "type": "Suite",
+      "notes": "Tent Confirmation Number - 7224692"
     },
     "activities": [
       {
@@ -455,4 +455,5 @@
     "confirmationStatus": "not_submitted"
   }
 ]
+
 
