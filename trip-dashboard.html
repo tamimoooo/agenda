@@ -122,6 +122,14 @@
       transform: translateY(-3px);
     }
 
+    .stat-card.clickable {
+      cursor: pointer;
+    }
+
+    .stat-card.clickable:active {
+      transform: translateY(-1px);
+    }
+
     .stat-number {
       font-size: 3rem;
       font-weight: bold;
@@ -565,26 +573,26 @@
     
     <!-- Statistics Overview -->
     <div class="dashboard-grid">
-      <div class="stat-card">
+      <div class="stat-card clickable" onclick="scrollToSection('whos-going')">
         <div class="stat-label">👥 Total Participants</div>
         <div class="stat-number" id="totalParticipants">16</div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card clickable" onclick="scrollToSection('travel-details')">
         <div class="stat-label">✈️ Flight Details Submitted</div>
         <div class="stat-number" id="flightsSubmitted">0</div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card clickable" onclick="scrollToSection('roommate-assignments')">
         <div class="stat-label">🏕️ Roommate Info Submitted</div>
         <div class="stat-number" id="roommatesSubmitted">0</div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card clickable" onclick="scrollToSection('activities')">
         <div class="stat-label">🎯 Activity Suggestions</div>
         <div class="stat-number" id="activitiesCount">0</div>
       </div>
     </div>
 
     <!-- Who's Going -->
-    <div class="section">
+    <div class="section" id="whos-going">
       <h2 class="section-title collapsed" onclick="toggleSection(this)">
         <span>👥 Who's Going</span>
         <span class="toggle-icon">▼</span>
@@ -606,7 +614,7 @@
     </div>
 
     <!-- Roommate Assignments -->
-    <div class="section">
+    <div class="section" id="roommate-assignments">
       <h2 class="section-title collapsed" onclick="toggleSection(this)">
         <span>🏕️ Roommate & Tent Assignments</span>
         <span class="toggle-icon">▼</span>
@@ -617,7 +625,7 @@
     </div>
 
     <!-- Activity Suggestions -->
-    <div class="section">
+    <div class="section" id="activities">
       <h2 class="section-title collapsed" onclick="toggleSection(this)">
         <span>🎯 Activities</span>
         <span class="toggle-icon">▼</span>
@@ -662,6 +670,24 @@
   </div>
 
   <script>
+    // Scroll to section and expand it
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        const titleElement = section.querySelector('.section-title');
+        const contentElement = section.querySelector('.section-content');
+        
+        // Expand the section if it's collapsed
+        if (titleElement && titleElement.classList.contains('collapsed')) {
+          titleElement.classList.remove('collapsed');
+          contentElement.classList.remove('collapsed');
+        }
+        
+        // Smooth scroll to the section
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
     // Toggle section expand/collapse
     function toggleSection(titleElement) {
       titleElement.classList.toggle('collapsed');
@@ -846,7 +872,7 @@
         activities.forEach(activity => {
           html += `
             <div class="activity-card">
-              <h4>${activity.location === 'bozeman' ? '📍' : '🏞️'} ${activity.name} ${activity.selectedByGroup ? '<span class="badge badge-warning">⭐ Group Selected</span>' : ''}</h4>
+              <h4>${activity.location === 'bozeman' ? '📍' : '🏞️'} ${activity.name} ${/* Placeholder for group voting: activity.selectedByGroup ? '<span class="badge badge-warning">⭐ Group Selected</span>' : '' */ ''}</h4>
               <p>${activity.description}</p>
               ${activity.cost ? `<p><strong>Cost:</strong> ${activity.cost}</p>` : ''}
               ${activity.duration ? `<p><strong>Duration:</strong> ${activity.duration}</p>` : ''}
@@ -897,8 +923,8 @@
           trip.activities.forEach(activity => {
             const activityName = typeof activity === 'string' ? activity : activity.name;
             const activityCost = typeof activity === 'string' ? '' : (activity.cost ? ` - ${activity.cost}` : '');
-            const isGroupSelected = typeof activity === 'object' && activity.selectedByGroup;
-            html += `<li>${activityName}${activityCost} ${isGroupSelected ? '<span class="badge badge-warning" style="font-size: 0.7rem;">⭐</span>' : ''}</li>`;
+            // Placeholder for group voting: const isGroupSelected = typeof activity === 'object' && activity.selectedByGroup;
+            html += `<li>${activityName}${activityCost} ${/* Placeholder for group voting: isGroupSelected ? '<span class="badge badge-warning" style="font-size: 0.7rem;">⭐</span>' : '' */ ''}</li>`;
           });
           
           html += `
