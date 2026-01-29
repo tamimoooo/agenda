@@ -46,7 +46,7 @@
   },
   {
     "confirmationNumber": "7224692",
-    "tentType": "Delux Tent",
+    "tentType": "Suite Tent",
     "roommates": [
       {
         "name": "Summer"
@@ -73,5 +73,6 @@
     "submittedDate": "2026-01-24T02:36:02.245Z"
   }
 ]
+
 
 
