@@ -118,8 +118,7 @@
     "suggester": "Trip Organizers",
     "submittedDate": "2025-12-01T10:00:00.000Z",
     "duration": "Flexible",
-    "locationDetail": "Yellowstone National Park",
-    "selectedByGroup": true
+    "locationDetail": "Yellowstone National Park"
   },
   {
     "location": "yellowstone",
@@ -144,3 +143,4 @@
     "locationDetail": "Yellowstone National Park"
   }
 ]
+
