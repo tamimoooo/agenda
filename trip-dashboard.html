@@ -582,7 +582,7 @@
         <div class="stat-number" id="flightsSubmitted">0</div>
       </div>
       <div class="stat-card clickable" onclick="scrollToSection('roommate-assignments')">
-        <div class="stat-label">🏕️ Roommate Info Submitted</div>
+        <div class="stat-label">🏕️ Tentmates</div>
         <div class="stat-number" id="roommatesSubmitted">0</div>
       </div>
       <div class="stat-card clickable" onclick="scrollToSection('activities')">
@@ -613,14 +613,14 @@
       </div>
     </div>
 
-    <!-- Roommate Assignments -->
+    <!-- Tentmate Assignments -->
     <div class="section" id="roommate-assignments">
       <h2 class="section-title collapsed" onclick="toggleSection(this)">
-        <span>🏕️ Roommate & Tent Assignments</span>
+        <span>🏕️ Tentmate & Tent Assignments</span>
         <span class="toggle-icon">▼</span>
       </h2>
       <div class="section-content collapsed" id="roommatesList">
-        <div class="loading">Loading roommate assignments...</div>
+        <div class="loading">Loading tentmate assignments...</div>
       </div>
     </div>
 
@@ -816,7 +816,7 @@
       }
     }
 
-    // Load roommate assignments from roommates.json
+    // Load tentmate assignments from roommates.json
     async function loadRoommates() {
       try {
         const timestamp = new Date().getTime();
@@ -824,10 +824,10 @@
         const roommates = await response.json();
         const container = document.getElementById('roommatesList');
         
-        console.log('Loading roommates from roommates.json:', roommates);
-        
+        console.log('Loading tentmates from roommates.json:', roommates);
+
         if (roommates.length === 0) {
-          container.innerHTML = '<div class="empty-state">No roommate assignments yet</div>';
+          container.innerHTML = '<div class="empty-state">No tentmate assignments yet</div>';
           return;
         }
 
@@ -849,11 +849,11 @@
         html += '</div>';
         container.innerHTML = html;
         
-        console.log('✅ Loaded', roommates.length, 'roommate assignments');
-        
+        console.log('✅ Loaded', roommates.length, 'tentmate assignments');
+
       } catch (error) {
-        console.error('❌ Error loading roommates:', error);
-        document.getElementById('roommatesList').innerHTML = '<div class="empty-state">Unable to load roommate assignments</div>';
+        console.error('❌ Error loading tentmates:', error);
+        document.getElementById('roommatesList').innerHTML = '<div class="empty-state">Unable to load tentmate assignments</div>';
       }
     }
 
