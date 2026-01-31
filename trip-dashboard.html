@@ -966,7 +966,7 @@
         const needsDropoff = tripContacts.filter(t => t.confirmationStatus !== 'not_submitted' && t.transportation?.needsAirportDropoff);
         const willingToRent = tripContacts.filter(t => t.confirmationStatus !== 'not_submitted' && t.transportation?.willingToRentCar);
 
-        let html = '<h3 style="color: var(--primary-color); margin-bottom: 15px; font-weight: bold;">🚐 Needs Airport Pickup</h3>';
+        let html = '<h3 style="color: #2196F3; margin-bottom: 15px; font-weight: bold; font-size: 1.3rem; padding: 10px; background: #E3F2FD; border-radius: 8px; border-left: 4px solid #2196F3;">🚐 Needs Airport Pickup</h3>';
         
         if (needsPickup.length > 0) {
           html += '<div class="mobile-cards">';
@@ -987,7 +987,7 @@
           html += '<p class="empty-state">No one needs airport pickup yet</p>';
         }
 
-        html += '<h3 style="color: var(--primary-color); margin: 30px 0 15px; font-weight: bold;">✈️ Needs Airport Dropoff</h3>';
+        html += '<h3 style="color: #FF6B6B; margin: 30px 0 15px; font-weight: bold; font-size: 1.3rem; padding: 10px; background: #FFE5E5; border-radius: 8px; border-left: 4px solid #FF6B6B;">✈️ Needs Airport Dropoff</h3>';
         
         if (needsDropoff.length > 0) {
           html += '<div class="mobile-cards">';
