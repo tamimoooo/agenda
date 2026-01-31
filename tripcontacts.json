@@ -92,7 +92,7 @@
     "transportation": {
       "needsAirportPickup": true,
       "needsAirportDropoff": true,
-      "willingToRentCar": true,
+      "willingToRentCar": false,
       "arrivalTime": "2026-09-09T13:06",
       "departureTime": "2026-09-14T14:00"
     },
@@ -179,7 +179,7 @@
     "transportation": {
       "needsAirportPickup": true,
       "needsAirportDropoff": true,
-      "willingToRentCar": true,
+      "willingToRentCar": false,
       "arrivalTime": "",
       "departureTime": "2026-09-12T14:00"
     },
@@ -265,7 +265,7 @@
     "transportation": {
       "needsAirportPickup": true,
       "needsAirportDropoff": true,
-      "willingToRentCar": true,
+      "willingToRentCar": false,
       "arrivalTime": "2026-09-09T13:45:00",
       "departureTime": "2026-09-13T14:20:00"
     },
@@ -341,7 +341,7 @@
     "transportation": {
       "needsAirportPickup": true,
       "needsAirportDropoff": true,
-      "willingToRentCar": true,
+      "willingToRentCar": false,
       "arrivalTime": "2026-09-09T13:06",
       "departureTime": "2026-09-14T14:00"
     },
