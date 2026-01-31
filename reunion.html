@@ -1486,10 +1486,10 @@
           </div>
         </div>
 
-        <!-- What You Need to Decide Section -->
+        <!-- Trip Action Items Section -->
         <div class="trip-card">
           <div class="subsection-header" onclick="toggleSubsection('decisions')">
-            <h3 class="subsection-title">✅ What You Need to Decide</h3>
+            <h3 class="subsection-title">✅ Your Trip Action Items</h3>
             <span class="subsection-toggle" id="decisions-toggle">▶</span>
           </div>
           <div class="subsection-content" id="decisions-content">
@@ -1501,32 +1501,7 @@
             <!-- Decision Items -->
             <div style="display: grid; gap: 20px;">
               
-              <!-- 1. Tent Selection -->
-              <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 20px; background: white;">
-                <h4 style="color: var(--primary-color); margin-bottom: 15px;">
-                  ⛺ 1. Choose Your Tent Type
-                </h4>
-                <p style="margin-bottom: 10px;">Select which tent accommodation you prefer for September 10-12, 2026 (2 nights).</p>
-                <div style="padding: 10px; background: #f8f9fa; border-radius: 5px; margin-bottom: 10px;">
-                  <strong>Options:</strong> Stargazer, Deluxe, Suite, Yellowstone River, Tipi, Safari, or Family Tent
-                </div>
-                <a href="#tentOptionsDetails" onclick="openSectionAndScroll('lodging', 'tentOptionsDetails', event)" class="btn btn-secondary" style="display: inline-block; margin-top: 10px; text-decoration: none;">
-                  View Tent Options
-                </a>
-              </div>
-
-              <!-- 2. Roommate Selection -->
-              <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 20px; background: white;">
-                <h4 style="color: var(--primary-color); margin-bottom: 15px;">
-                  👥 2. Select Your Roommate(s)
-                </h4>
-                <p style="margin-bottom: 10px;">Decide who you'll be sharing your tent with (most tents accommodate 2 people).</p>
-                <a href="#roommateFormSection" onclick="openSectionAndScroll('roommate', 'roommateFormSection', event)" class="btn btn-secondary" style="display: inline-block; margin-top: 10px; text-decoration: none;">
-                  Submit Roommate Info
-                </a>
-              </div>
-
-              <!-- 3. Activities -->
+              <!-- 1. Activities -->
               <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 20px; background: white;">
                 <h4 style="color: var(--primary-color); margin-bottom: 15px;">
                   🎯 3. View and Submit Activities
@@ -1543,7 +1518,7 @@
               <!-- 4. Travel Plans -->
               <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 20px; background: white;">
                 <h4 style="color: var(--primary-color); margin-bottom: 15px;">
-                  ✈️ 4. Submit Flight Details
+                  ✈️ 4. Submit Flight Details!
                 </h4>
                 <p style="margin-bottom: 10px;">Arrange your travel to/from Bozeman, Montana for September 9-13, 2026.</p>
                 <div style="padding: 10px; background: #fff3cd; border-radius: 5px; margin-bottom: 10px;">
@@ -1551,17 +1526,17 @@
                   <small style="color: #666; font-style: italic;">Note: <a href="trip-dashboard.html#travel-details" style="color: #d32f2f; text-decoration: underline;">Click to View Trip Dashboard</a> to check some arrival times</small>
                 </div>
                 <a href="#mytrip-content" onclick="openSectionAndScroll('mytrip', 'mytrip-content', event)" class="btn btn-secondary" style="display: inline-block; margin-top: 10px; text-decoration: none;">
-                  Submit Flight Details
+                  Submit Flight Details!
                 </a>
               </div>
 
-              <!-- 5. Payment Deadline -->
+              <!-- 5. Deadline -->
               <div style="border: 2px solid #ffc107; border-radius: 10px; padding: 20px; background: #fff3cd;">
                 <h4 style="color: #856404; margin-bottom: 15px;">
-                  💰 5. Payment Deadline
+                  💰 5. Deadline
                 </h4>
                 <p style="margin-bottom: 10px; color: #856404;">
-                  <strong>Hotel payment due by:</strong> September 6, 2026
+                  <strong>Hotel payment cancellation deadline:</strong> September 6, 2026
                 </p>
                 <p style="color: #856404; font-size: 0.9rem;">
                   Payment details and instructions will be provided once all reservations are confirmed.
@@ -1771,100 +1746,6 @@
         </div>
         -->
 
-        <!-- Update Your Roommate -->
-        <div class="trip-card">
-          <div class="subsection-header" onclick="toggleSubsection('roommate')">
-            <h3 class="subsection-title">👥 Update Your Roommate & Tent Info</h3>
-            <span class="subsection-toggle" id="roommate-toggle">▶</span>
-          </div>
-          <div class="subsection-content" id="roommate-content">
-            
-            <!-- Roommate & Tent Reservation Form -->
-            <div id="roommateFormSection">
-              <h4 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px solid var(--primary-color); padding-bottom: 8px;">
-                📝 Submit Roommate & Tent Details
-              </h4>
-              
-              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: white;">
-                <div style="padding: 12px; background: #e7f3ff; border-left: 4px solid #2196f3; border-radius: 5px; margin-bottom: 20px;">
-                  <strong>💡 Note:</strong> Only fill out fields for people in your tent (up to 4 people).
-                </div>
-                <form id="roommateForm" style="display: grid; gap: 15px;">
-                  
-                  <!-- Tent Confirmation Number -->
-                  <div>
-                    <label style="display: block; margin-bottom: 5px; font-weight: bold; color: var(--primary-dark);">
-                      Tent Confirmation Number: <span style="color: red;">*</span>
-                    </label>
-                    <input type="text" id="confirmationNumber" required
-                           style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem;"
-                           placeholder="Enter your tent booking confirmation number">
-                  </div>
-
-                  <!-- Tent Type -->
-                  <div>
-                    <label style="display: block; margin-bottom: 5px; font-weight: bold; color: var(--primary-dark);">
-                      Tent Type: <span style="color: red;">*</span>
-                    </label>
-                    <select id="tentType" required
-                            style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem;">
-                      <option value="">Select tent type</option>
-                      <option value="Delux Tent">⛺ Delux Tent</option>
-                      <option value="Delux Tent w/ Kids Tent">⛺ Delux Tent w/ Kids Tent</option>
-                      <option value="Stargazer Tent">⭐ Stargazer Tent</option>
-                      <option value="Stargazer Tent w/ Kids Tent">⭐ Stargazer Tent w/ Kids Tent</option>
-                      <option value="Suite Tent">🌟 Suite Tent</option>
-                      <option value="Suite Tent w/ Kids Tent">🌟 Suite Tent w/ Kids Tent</option>
-                      <option value="Yellowstone River Suite">🏞️ Yellowstone River Suite</option>
-                    </select>
-                  </div>
-
-                  <!-- Roommates -->
-                  <div style="border-top: 2px solid var(--border-color); padding-top: 15px;">
-                    <h5 style="color: var(--primary-color); margin-bottom: 15px;">👥 Roommate Names</h5>
-                    <div style="display: grid; gap: 10px;">
-                      <input type="text" id="roommate1Name" required
-                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                             placeholder="Roommate 1 (You) - Full Name *">
-                      <input type="text" id="roommate2Name"
-                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                             placeholder="Roommate 2 - Full Name">
-                      <input type="text" id="roommate3Name"
-                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                             placeholder="Roommate 3 - Full Name (Optional)">
-                      <input type="text" id="roommate4Name"
-                             style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px;"
-                             placeholder="Roommate 4 - Full Name (Optional)">
-                    </div>
-                  </div>
-
-                  <!-- Additional Notes -->
-                  <div>
-                    <label style="display: block; margin-bottom: 5px; font-weight: bold; color: var(--primary-dark);">
-                      Additional Notes (Optional)
-                    </label>
-                    <textarea id="additionalNotes" rows="3"
-                              style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem; font-family: inherit;"
-                              placeholder="Any special requests or information..."></textarea>
-                  </div>
-
-                  <!-- Submit Button -->
-                  <div style="text-align: center;">
-                    <button type="submit" class="btn btn-primary" style="max-width: 400px; width: 100%; padding: 15px; font-size: 1.1rem;">
-                      ✅ Save Roommate Details
-                    </button>
-                  </div>
-
-                  <p style="font-size: 0.9rem; color: var(--text-secondary); text-align: center; margin: 0;">
-                    Your information will be saved and displayed below
-                  </p>
-                </form>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
         <!-- Activities & Excursions -->
         <div class="trip-card">
           <div class="subsection-header" onclick="toggleSubsection('activities')">
@@ -1983,12 +1864,12 @@
         <!-- My Trip Details & Itinerary Generator -->
         <div class="trip-card">
           <div class="subsection-header" onclick="toggleSubsection('mytrip')">
-            <h3 class="subsection-title">✈️ My Trip Details</h3>
+            <h3 class="subsection-title">✈️ My Trip Details <span style="font-size: 0.75rem; color: #666; font-weight: normal;">(Submit your travel and activities)</span></h3>
             <span class="subsection-toggle" id="mytrip-toggle">▶</span>
           </div>
           <div class="subsection-content" id="mytrip-content">
             <p style="margin-bottom: 20px; color: var(--text-secondary);">
-              Fill out your personal trip information below and submit to admin. Once everything is finalized before departure, you'll be able to download a personalized Word document with all your trip details, hotel addresses, and important information in one place!  Once submitted you will see your updates in View Trip Dashboard in 24 hours.
+              Fill out your personal trip information below and submit to admin. Once everything is finalized before departure, you'll be able to download a personalized Word document with all your trip details, hotel addresses, and important information in one place!  Once submitted you will see your updates in <strong><u>View Trip Dashboard in 24 hours</u></strong>.
             </p>
 
             <!-- View Trip Dashboard Button -->
@@ -2124,8 +2005,14 @@
                   </div>
                   <div>
                     <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                      <input type="checkbox" id="needsAirportDropoff" style="width: 20px; height: 20px;">
+                      <span style="font-weight: bold;">I need airport dropoff</span>
+                    </label>
+                  </div>
+                  <div>
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
                       <input type="checkbox" id="willingToRentCar" style="width: 20px; height: 20px;">
-                      <span style="font-weight: bold;">I'm willing to rent a car</span>
+                      <span style="font-weight: bold;">I'm willing to drive rental car/van</span>
                     </label>
                   </div>
                 </div>
@@ -2170,7 +2057,7 @@
             </div>
 
             <div class="info-box" style="margin-top: 10px;">
-              <strong>📝 Note:</strong> Click "Submit to Admin" to email your flight details to the organizer. The itinerary download includes all your trip information. Once submitted you will see your updates in View Trip Dashboard in 24 hours.
+              <strong>📝 Note:</strong> Click "Submit to Admin" to email your flight details to the organizer. The itinerary download includes all your trip information. Once submitted you will see your updates in <strong><u>View Trip Dashboard in 24 hours</u></strong>.
             </div>
 
             <!-- View Trip Dashboard Button -->
@@ -2565,7 +2452,10 @@
 
     // Download contacts as JSON file
     function downloadContactsJSON() {
-      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      // Note: Contacts are loaded from JSON files, not localStorage
+      alert('Contact data is managed by admin. Please request the JSON file from them.');
+      return;
+      const contacts = [];
       const dataStr = JSON.stringify(contacts, null, 2);
       const dataBlob = new Blob([dataStr], { type: 'application/json' });
       const url = URL.createObjectURL(dataBlob);
@@ -2659,7 +2549,10 @@
 
     // Edit contact
     function editContact(id) {
-      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      // Note: Contacts are loaded from JSON files, not localStorage
+      alert('Contact editing must be done by admin. Please email them to update this contact.');
+      return;
+      const contacts = [];
       const contact = contacts.find(c => c.id === id);
       
       if (contact) {
@@ -2680,10 +2573,8 @@
     // Delete contact
     function deleteContact(id) {
       if (confirm('Are you sure you want to delete this contact?')) {
-        let contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
-        contacts = contacts.filter(c => c.id !== id);
-        localStorage.setItem('spring94Contacts', JSON.stringify(contacts));
-        loadContacts();
+        // Note: Contacts are not stored locally - they are only in JSON files managed by admin
+        alert('Contact deletion must be done by admin. Please email them to remove this contact.');
       }
     }
 
@@ -2691,7 +2582,8 @@
     function saveContact(event) {
       event.preventDefault();
       
-      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      // Note: Contacts are not stored locally
+      const contacts = [];
       const id = document.getElementById('contactId').value;
       
       const contactData = {
@@ -2717,7 +2609,7 @@
         contacts.push(contactData);
       }
 
-      localStorage.setItem('spring94Contacts', JSON.stringify(contacts));
+      // Note: Data is NOT saved to localStorage - only sent to admin via email
       closeModal();
       loadContacts();
       
@@ -2804,7 +2696,8 @@ Phone: ${contactData.phone || 'Not provided'}
 
     // Helper function to save and close modal
     function saveAndClose(contactData) {
-      const contacts = JSON.parse(localStorage.getItem('spring94Contacts') || '[]');
+      // Note: Contacts are not stored locally
+      const contacts = [];
       const id = document.getElementById('contactId').value;
       
       if (id) {
@@ -2816,7 +2709,7 @@ Phone: ${contactData.phone || 'Not provided'}
         contacts.push(contactData);
       }
       
-      localStorage.setItem('spring94Contacts', JSON.stringify(contacts));
+      // Note: Data is NOT saved to localStorage - only sent to admin via email
       closeModal();
       loadContacts();
     }
@@ -2834,9 +2727,9 @@ Phone: ${contactData.phone || 'Not provided'}
       }
     });
 
-    // Load submitted roommates from localStorage
+    // Load submitted roommates - disabled (data only in admin emails/JSON files)
     function loadSubmittedRoommates() {
-      const submitted = JSON.parse(localStorage.getItem('submittedRoommates') || '[]');
+      const submitted = [];
       const listContainer = document.getElementById('submittedRoommatesList');
       const section = document.getElementById('submittedRoommatesSection');
       
@@ -2869,18 +2762,16 @@ Phone: ${contactData.phone || 'Not provided'}
     // Delete reservation
     function deleteReservation(index) {
       if (confirm('Are you sure you want to delete this reservation?')) {
-        const submitted = JSON.parse(localStorage.getItem('submittedRoommates') || '[]');
-        submitted.splice(index, 1);
-        localStorage.setItem('submittedRoommates', JSON.stringify(submitted));
-        loadSubmittedRoommates();
+        // Note: Roommate data is not stored locally - managed by admin
+        alert('Roommate deletion must be done by admin. Please email them to remove this reservation.');
       }
     }
 
     // Admin: Clear all reservations
     function clearAllReservations() {
       if (confirm('⚠️ Are you sure you want to delete ALL reservations? This cannot be undone!')) {
-        localStorage.removeItem('submittedRoommates');
-        loadSubmittedRoommates();
+        // Note: Roommate data is not stored locally - managed by admin
+        alert('Roommate data deletion must be done by admin. Please email them.');
         
         const messageDiv = document.getElementById('adminMessage');
         messageDiv.style.display = 'block';
@@ -2920,7 +2811,7 @@ Phone: ${contactData.phone || 'Not provided'}
           });
         }
         
-        const submitted = JSON.parse(localStorage.getItem('submittedRoommates') || '[]');
+        const submitted = [];
         let successCount = 0;
         let errors = [];
         
@@ -2944,10 +2835,8 @@ Phone: ${contactData.phone || 'Not provided'}
           }
         });
         
-        // Save to localStorage
+        // Note: Data is NOT saved to localStorage
         if (successCount > 0) {
-          localStorage.setItem('submittedRoommates', JSON.stringify(submitted));
-          loadSubmittedRoommates();
         }
         
         // Show results
@@ -3034,12 +2923,9 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
         console.log('✅ Roommate EmailJS Success:', result);
         console.log('Response details:', JSON.stringify(result, null, 2));
         
-        // Save to localStorage
-        const submitted = JSON.parse(localStorage.getItem('submittedRoommates') || '[]');
-        submitted.push(formData);
-        localStorage.setItem('submittedRoommates', JSON.stringify(submitted));
-        
-        alert('✅ Your roommate details have been sent to admin and saved successfully!\n\n📊 Check the View Trip Dashboard in 24 hours for updates.');
+        // Note: Data is NOT saved to localStorage - only sent to admin via email
+
+        alert('✅ Your roommate details have been sent to admin successfully!\n\n📊 Check the View Trip Dashboard in 24 hours for updates.');
         
         // Reset form and reload submitted list
         e.target.reset();
@@ -3057,11 +2943,8 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
           const body = `Roommate & Tent Reservation:\n\n${roommateInfo}\n\n---\nJSON Format:\n${roommateJSON}`;
           const mailtoLink = `mailto:dst894@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
           window.location.href = mailtoLink;
-          
-          // Save to localStorage anyway
-          const submitted = JSON.parse(localStorage.getItem('submittedRoommates') || '[]');
-          submitted.push(formData);
-          localStorage.setItem('submittedRoommates', JSON.stringify(submitted));
+          // Note: Data is NOT saved to localStorage - only sent to admin via email
+
           
           e.target.reset();
           loadSubmittedRoommates();
@@ -3072,9 +2955,9 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
       }
     });
 
-    // Load submitted activities from localStorage
+    // Load submitted activities - disabled (data only in admin emails/JSON files)
     function loadSubmittedActivities() {
-      let activities = JSON.parse(localStorage.getItem('submittedActivities') || '[]');
+      let activities = [];
       
       // Ensure activities is an array
       if (!Array.isArray(activities)) {
@@ -3149,10 +3032,8 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
     // Delete activity
     function deleteActivity(index) {
       if (confirm('Are you sure you want to delete this activity suggestion?')) {
-        const activities = JSON.parse(localStorage.getItem('submittedActivities') || '[]');
-        activities.splice(index, 1);
-        localStorage.setItem('submittedActivities', JSON.stringify(activities));
-        loadSubmittedActivities();
+        // Note: Activity data is not stored locally - managed by admin
+        alert('Activity deletion must be done by admin. Please email them to remove this suggestion.');
       }
     }
 
@@ -3338,16 +3219,12 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
 
         console.log('EmailJS Success:', result);
         
-        // Save to localStorage
-        const activities = JSON.parse(localStorage.getItem('submittedActivities') || '[]');
-        activities.push(activityData);
-        localStorage.setItem('submittedActivities', JSON.stringify(activities));
+        // Note: Data is NOT saved to localStorage - only sent to admin via email
         
-        alert('✅ Your activity suggestion has been sent to admin and saved successfully!\n\n📊 Check the View Trip Dashboard in 24 hours for updates.');
+        alert('✅ Your activity suggestion has been sent to admin successfully!\n\n📊 Check the View Trip Dashboard in 24 hours for updates.');
         
-        // Reset form and reload display
+        // Reset form
         e.target.reset();
-        loadSubmittedActivities();
         
       } catch (error) {
         console.error('EmailJS Error:', error);
@@ -3359,13 +3236,9 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
           const mailtoLink = `mailto:dst894@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
           window.location.href = mailtoLink;
           
-          // Save to localStorage anyway
-          const activities = JSON.parse(localStorage.getItem('submittedActivities') || '[]');
-          activities.push(activityData);
-          localStorage.setItem('submittedActivities', JSON.stringify(activities));
+          // Note: Data is NOT saved to localStorage - only sent to admin via email
           
           e.target.reset();
-          loadSubmittedActivities();
         }
       } finally {
         submitBtn.innerHTML = originalText;
@@ -3634,6 +3507,7 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
         activities: getSelectedActivities(),
         transportation: {
           needsAirportPickup: document.getElementById('needsAirportPickup').checked,
+          needsAirportDropoff: document.getElementById('needsAirportDropoff').checked,
           willingToRentCar: document.getElementById('willingToRentCar').checked,
           arrivalTime: document.getElementById('outboundArrival').value,
           departureTime: document.getElementById('returnDeparture').value
@@ -3710,7 +3584,8 @@ ACTIVITIES INTERESTED IN:${activitiesText}
 
 TRANSPORTATION:
   Needs Airport Pickup: ${tripDetails.transportation.needsAirportPickup ? 'Yes' : 'No'}
-  Willing to Rent Car: ${tripDetails.transportation.willingToRentCar ? 'Yes' : 'No'}
+  Needs Airport Dropoff: ${tripDetails.transportation.needsAirportDropoff ? 'Yes' : 'No'}
+  Willing to Drive Rental Car/Van: ${tripDetails.transportation.willingToRentCar ? 'Yes' : 'No'}
 
 SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
       `.trim();
