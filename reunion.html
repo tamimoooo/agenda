@@ -4041,6 +4041,27 @@ https://tamimoooo.github.io/agenda/reunion.html
       
       // All sections start collapsed (no auto-expand)
 
+      // Handle URL hash navigation (for shareable links)
+      if (window.location.hash) {
+        const hash = window.location.hash.substring(1); // Remove the # symbol
+        
+        // Wait a moment for page to fully load, then navigate to section
+        setTimeout(() => {
+          // Check if it's a subsection (ends with -content)
+          if (hash.endsWith('-content')) {
+            const sectionId = hash.replace('-content', '');
+            scrollToSection(sectionId);
+          }
+          // Check if it's a specific element (like bookYourTent)
+          else {
+            const element = document.getElementById(hash);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        }, 500); // Small delay to ensure all content is loaded
+      }
+
       // Load saved trip details on page load
       loadTripDetails();
       
