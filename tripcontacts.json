@@ -27,7 +27,8 @@
     "activities": [],
     "transportation": {
       "needsAirportPickup": false,
-      "willingToRentCar": false,
+      "needsAirportDropoff": false,
+      "willingToRentCar": "",
       "arrivalTime": "",
       "departureTime": ""
     },
@@ -90,7 +91,8 @@
     ],
     "transportation": {
       "needsAirportPickup": true,
-      "willingToRentCar": false,
+      "needsAirportDropoff": true,
+      "willingToRentCar": true,
       "arrivalTime": "2026-09-09T13:06",
       "departureTime": "2026-09-14T14:00"
     },
@@ -121,13 +123,14 @@
       "confirmation": ""
     },
     "tent": {
-      "type": "",
-      "notes": ""
+      "type": "Suite",
+      "notes": "7224692"
     },
     "activities": [],
     "transportation": {
       "needsAirportPickup": false,
-      "willingToRentCar": false,
+      "needsAirportDropoff": false,
+      "willingToRentCar": "",
       "arrivalTime": "",
       "departureTime": ""
     },
@@ -159,7 +162,7 @@
     },
     "tent": {
       "type": "Suite",
-      "notes": ""
+      "notes": "not_submitted"
     },
     "activities": [
       {
@@ -175,7 +178,8 @@
     ],
     "transportation": {
       "needsAirportPickup": true,
-      "willingToRentCar": false,
+      "needsAirportDropoff": true,
+      "willingToRentCar": true,
       "arrivalTime": "",
       "departureTime": "2026-09-12T14:00"
     },
@@ -211,7 +215,8 @@
     "activities": [],
     "transportation": {
       "needsAirportPickup": false,
-      "willingToRentCar": false,
+      "needsAirportDropoff": false,
+      "willingToRentCar": "",
       "arrivalTime": "",
       "departureTime": ""
     },
@@ -242,8 +247,8 @@
       "confirmation": "ABC123XYZ"
     },
     "tent": {
-      "type": "Deluxe",
-      "notes": ""
+      "type": "Suite",
+      "notes": "7224692"
     },
     "activities": [
       {
@@ -259,7 +264,8 @@
     ],
     "transportation": {
       "needsAirportPickup": true,
-      "willingToRentCar": false,
+      "needsAirportDropoff": true,
+      "willingToRentCar": true,
       "arrivalTime": "2026-09-09T13:45:00",
       "departureTime": "2026-09-13T14:20:00"
     },
@@ -296,7 +302,8 @@
     "activities": [],
     "transportation": {
       "needsAirportPickup": false,
-      "willingToRentCar": false,
+      "needsAirportDropoff": false,
+      "willingToRentCar": "",
       "arrivalTime": "",
       "departureTime": ""
     },
@@ -309,38 +316,39 @@
     "userId": 10,
     "name": "Janita",
     "outbound": {
-      "departureCity": "",
+      "departureCity": "Raleigh, NC",
       "arrivalCity": "Bozeman, MT",
-      "airline": "",
-      "flightNumber": "",
-      "departure": "",
-      "arrival": "",
-      "confirmation": ""
+      "airline": "Delta",
+      "flightNumber": "DL406",
+      "departure": "2026-09-09T07:45",
+      "arrival": "2026-09-09T13:06",
+      "confirmation": "not_submitted"
     },
     "return": {
       "departureCity": "Bozeman, MT",
-      "arrivalCity": "",
-      "airline": "",
-      "flightNumber": "",
-      "departure": "",
-      "arrival": "",
-      "confirmation": ""
+      "arrivalCity": "Raleigh, NC",
+      "airline": "Delta",
+      "flightNumber": "DL406",
+      "departure": "2026-09-14T14:00",
+      "arrival": "2026-09-14T22:53",
+      "confirmation": "not_submitted"
     },
     "tent": {
-      "type": "",
-      "notes": ""
+      "type": "Suite",
+      "notes": "not_submitted"
     },
     "activities": [],
     "transportation": {
-      "needsAirportPickup": false,
-      "willingToRentCar": false,
-      "arrivalTime": "",
-      "departureTime": ""
+      "needsAirportPickup": true,
+      "needsAirportDropoff": true,
+      "willingToRentCar": true,
+      "arrivalTime": "2026-09-09T13:06",
+      "departureTime": "2026-09-14T14:00"
     },
     "specialRequests": "",
     "submittedDate": "",
     "lastUpdated": "",
-    "confirmationStatus": "not_submitted"
+    "confirmationStatus": "pending"
   },
   {
     "userId": 12,
@@ -370,7 +378,8 @@
     "activities": [],
     "transportation": {
       "needsAirportPickup": false,
-      "willingToRentCar": false,
+      "needsAirportDropoff": false,
+      "willingToRentCar": "",
       "arrivalTime": "",
       "departureTime": ""
     },
@@ -407,7 +416,8 @@
     "activities": [],
     "transportation": {
       "needsAirportPickup": false,
-      "willingToRentCar": false,
+      "needsAirportDropoff": false,
+      "willingToRentCar": "",
       "arrivalTime": "",
       "departureTime": ""
     },
@@ -444,7 +454,8 @@
     "activities": [],
     "transportation": {
       "needsAirportPickup": false,
-      "willingToRentCar": false,
+      "needsAirportDropoff": false,
+      "willingToRentCar": "",
       "arrivalTime": "",
       "departureTime": ""
     },
@@ -481,7 +492,8 @@
     "activities": [],
     "transportation": {
       "needsAirportPickup": false,
-      "willingToRentCar": false,
+      "needsAirportDropoff": false,
+      "willingToRentCar": "",
       "arrivalTime": "",
       "departureTime": ""
     },
