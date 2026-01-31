@@ -1136,7 +1136,7 @@
         <a href="#estimates-content" onclick="scrollToSection('estimates', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">💰 Costs</a>
         <a href="#lodging-content" onclick="scrollToSection('lodging', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">⛺ Tents</a>
         <a href="#bookYourTent" onclick="scrollToElement('bookYourTent', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">📞 Book</a>
-        <a href="#bookYourTent" onclick="scrollToElement('bookYourTent', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">👥 Roommate</a>
+        <a href="#bookYourTent" onclick="scrollToElement('bookYourTent', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">👥 Tentmates</a>
         <a href="#activities-content" onclick="scrollToSection('activities', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">🎯 Activities</a>
         <button onclick="collapseAll()" style="background: rgba(255,255,255,0.3); color: white; padding: 6px 12px; border-radius: 15px; border: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0; cursor: pointer; font-weight: 500;">📦 Collapse</button>
       </div>
@@ -1550,7 +1550,7 @@
               <h4 style="color: var(--primary-color); margin-bottom: 15px;">📝 Quick Action Checklist</h4>
               <ul style="margin-left: 20px; line-height: 1.8;">
                 <li>✅ Review tent options and pricing</li>
-                <li>✅ Confirm your roommate</li>
+                <li>✅ Confirm your tentmates</li>
                 <li>✅ Select activities you want to join</li>
                 <li>✅ Book your flights to Bozeman</li>
                 <li>✅ Submit all your information using the forms on this page</li>
@@ -2733,16 +2733,16 @@ Phone: ${contactData.phone || 'Not provided'}
     // Delete reservation
     function deleteReservation(index) {
       if (confirm('Are you sure you want to delete this reservation?')) {
-        // Note: Roommate data is not stored locally - managed by admin
-        alert('Roommate deletion must be done by admin. Please email them to remove this reservation.');
+        // Note: Tentmate data is not stored locally - managed by admin
+        alert('Tentmate deletion must be done by admin. Please email them to remove this reservation.');
       }
     }
 
     // Admin: Clear all reservations
     function clearAllReservations() {
       if (confirm('⚠️ Are you sure you want to delete ALL reservations? This cannot be undone!')) {
-        // Note: Roommate data is not stored locally - managed by admin
-        alert('Roommate data deletion must be done by admin. Please email them.');
+        // Note: Tentmate data is not stored locally - managed by admin
+        alert('Tentmate data deletion must be done by admin. Please email them.');
         
         const messageDiv = document.getElementById('adminMessage');
         messageDiv.style.display = 'block';
@@ -2840,7 +2840,7 @@ Phone: ${contactData.phone || 'Not provided'}
       }
     }
 
-    // Handle roommate form submission
+    // Handle tentmate form submission
     document.getElementById('roommateForm')?.addEventListener('submit', async function(e) {
       e.preventDefault();
       
@@ -2853,7 +2853,7 @@ Phone: ${contactData.phone || 'Not provided'}
         submittedDate: new Date().toISOString()
       };
       
-      // Collect roommate data
+      // Collect tentmate data
       for (let i = 1; i <= 4; i++) {
         const name = document.getElementById(`roommate${i}Name`).value;
         
@@ -2886,32 +2886,32 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
           'service_9sytocs',
           'template_fainkx7',
           {
-            name: formData.roommates[0]?.name || 'Roommate Submission',
-            message: `Roommate & Tent Reservation:\n\n${roommateInfo}\n\n---\nJSON Format:\n${roommateJSON}`
+            name: formData.roommates[0]?.name || 'Tentmate Submission',
+            message: `Tentmates & Tent Reservation:\n\n${roommateInfo}\n\n---\nJSON Format:\n${roommateJSON}`
           }
         );
 
-        console.log('✅ Roommate EmailJS Success:', result);
+        console.log('✅ Tentmate EmailJS Success:', result);
         console.log('Response details:', JSON.stringify(result, null, 2));
         
         // Note: Data is NOT saved to localStorage - only sent to admin via email
 
-        alert('✅ Your roommate details have been sent to admin successfully!\n\n📊 Check the View Trip Dashboard in 24 hours for updates.');
+        alert('✅ Your tentmate details have been sent to admin successfully!\n\n📊 Check the View Trip Dashboard in 24 hours for updates.');
         
         // Reset form and reload submitted list
         e.target.reset();
         loadSubmittedRoommates();
         
       } catch (error) {
-        console.error('❌ Roommate EmailJS Error:', error);
+        console.error('❌ Tentmate EmailJS Error:', error);
         console.error('Error details:', JSON.stringify(error, null, 2));
         console.error('Error text:', error.text);
         console.error('Error status:', error.status);
         
         // Fallback to mailto
         if (confirm('Email service unavailable. Would you like to send via your email client instead?')) {
-          const subject = `Roommate Reservation: ${formData.confirmationNumber}`;
-          const body = `Roommate & Tent Reservation:\n\n${roommateInfo}\n\n---\nJSON Format:\n${roommateJSON}`;
+          const subject = `Tentmate Reservation: ${formData.confirmationNumber}`;
+          const body = `Tentmates & Tent Reservation:\n\n${roommateInfo}\n\n---\nJSON Format:\n${roommateJSON}`;
           const mailtoLink = `mailto:dst894@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
           window.location.href = mailtoLink;
           // Note: Data is NOT saved to localStorage - only sent to admin via email
