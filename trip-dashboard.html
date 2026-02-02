@@ -638,7 +638,7 @@
             <span>All Suggested Activities</span>
             <span class="toggle-icon">▼</span>
           </h3>
-          <div class="section-content collapsed" id="activitiesList" style="padding-top: 10px;">
+          <div class="section-content collapsed" id="activitiesList" style="padding-top: 10px; max-height: 600px; overflow-y: auto;">
             <div class="loading">Loading activities...</div>
           </div>
         </div>
@@ -874,11 +874,22 @@
         let html = '';
         activities.forEach(activity => {
           const isComplimentary = activity.location === 'on-site';
-          const cardStyle = isComplimentary
-            ? 'border: 2px solid #8B5CF6; background: linear-gradient(to right, #F3E8FF, #FFFFFF);'
-            : '';
-          const titleColor = isComplimentary ? 'color: #8B5CF6;' : '';
-          const costColor = isComplimentary ? 'color: #8B5CF6; font-weight: bold;' : '';
+          const cost = activity.cost || '';
+          const isFree = !isComplimentary && (cost.toLowerCase().includes('free') || cost === '$0' || cost === '0');
+          
+          let cardStyle = '';
+          let titleColor = '';
+          let costColor = '';
+          
+          if (isComplimentary) {
+            cardStyle = 'border: 2px solid #8B5CF6; background: linear-gradient(to right, #F3E8FF, #FFFFFF);';
+            titleColor = 'color: #8B5CF6;';
+            costColor = 'color: #8B5CF6; font-weight: bold;';
+          } else if (isFree) {
+            cardStyle = 'border: 2px solid #14B8A6; background: linear-gradient(to right, #CCFBF1, #FFFFFF);';
+            titleColor = 'color: #14B8A6;';
+            costColor = 'color: #14B8A6; font-weight: bold;';
+          }
           
           html += `
             <div class="activity-card" style="${cardStyle}">
