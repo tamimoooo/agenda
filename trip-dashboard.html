@@ -642,13 +642,30 @@
       </div>
     </div>
 
+    <!-- Transportation Coordination -->
+    <div class="section">
+      <h2 class="section-title collapsed" onclick="toggleSection(this)">
+        <span>🚐 Transportation Needs</span>
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div class="section-content collapsed" id="transportationList">
+        <div class="loading">Loading transportation info...</div>
+      </div>
+    </div>
+
+    <!-- Activities Section Header -->
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 12px; margin: 30px 0 20px 0; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+      <h2 style="margin: 0 0 8px 0; font-size: 1.8rem;">🎯 Activities & Excursions</h2>
+      <p style="margin: 0; font-size: 1rem; opacity: 0.95;">Explore all the amazing activities available during our Montana Glamping Adventure</p>
+    </div>
+
     <!-- Activities Wrapper -->
     <div id="activities">
     
-    <!-- Under Canvas -->
+    <!-- Under Canvas Complimentary Activities -->
     <div class="section" id="onsite-activities">
       <h2 class="section-title collapsed" onclick="toggleSection(this)">
-        <span>🎁 Under Canvas</span>
+        <span>🎁 Under Canvas Complimentary Activities</span>
         <span class="toggle-icon">▼</span>
       </h2>
       <div class="section-content collapsed" id="onsiteActivitiesList" style="max-height: 400px; overflow-y: auto; -webkit-overflow-scrolling: touch;">
@@ -674,9 +691,6 @@
         <span class="toggle-icon">▼</span>
       </h2>
       <div class="section-content collapsed" id="paradiseActivitiesList" style="max-height: 400px; overflow-y: auto; -webkit-overflow-scrolling: touch;">
-        <div style="background: #E0F2FE; padding: 12px; border-radius: 8px; margin-bottom: 15px; font-size: 0.9rem; color: #0C4A6E;">
-          <strong>ℹ️ Note:</strong> Paradise Valley is the local area around our resort. Yellowstone activities (below) are inside Yellowstone National Park.
-        </div>
         <div class="loading">Loading Paradise Valley activities...</div>
       </div>
     </div>
@@ -692,10 +706,10 @@
       </div>
     </div>
 
-    <!-- What the Dots Are Interested In -->
+    <!-- What Activities Dots Are Interested In -->
     <div class="section" id="individual-activities">
       <h2 class="section-title collapsed" onclick="toggleSection(this)">
-        <span>🎯 What the Dots Are Interested In Doing</span>
+        <span>🎯 What Activities Dots Are Interested In</span>
         <span class="toggle-icon">▼</span>
       </h2>
       <div class="section-content collapsed" id="individualActivitiesList" style="max-height: 400px; overflow-y: auto; -webkit-overflow-scrolling: touch;">
@@ -704,17 +718,6 @@
     </div>
     
     </div><!-- End Activities Wrapper -->
-
-    <!-- Transportation Coordination -->
-    <div class="section">
-      <h2 class="section-title collapsed" onclick="toggleSection(this)">
-        <span>🚐 Transportation Needs</span>
-        <span class="toggle-icon">▼</span>
-      </h2>
-      <div class="section-content collapsed" id="transportationList">
-        <div class="loading">Loading transportation info...</div>
-      </div>
-    </div>
 
   </div>
 
@@ -934,36 +937,32 @@
         const response = await fetch(`activity_suggestions.json?t=${timestamp}`);
         const activities = await response.json();
         
-        // Load all activities (removed group-selected highlight section)
-        const container = document.getElementById('activitiesList');
-        if (activities.length === 0) {
-          container.innerHTML = '<div class="empty-state">No activity suggestions yet</div>';
-          return;
-        }
-
-        let html = '';
-        activities.forEach(activity => {
-          const isComplimentary = activity.location === 'on-site';
-          const cost = activity.cost || '';
-          const isFree = !isComplimentary && (cost.toLowerCase().includes('free') || cost === '$0' || cost === '0');
-          
+        // Helper function to create activity card HTML
+        function createActivityCard(activity, isComplimentary = false, isFree = false) {
           let cardStyle = '';
           let titleColor = '';
           let costColor = '';
+          let icon = '🎯';
           
           if (isComplimentary) {
             cardStyle = 'border: 2px solid #8B5CF6; background: linear-gradient(to right, #F3E8FF, #FFFFFF);';
             titleColor = 'color: #8B5CF6;';
             costColor = 'color: #8B5CF6; font-weight: bold;';
+            icon = '🎁';
           } else if (isFree) {
             cardStyle = 'border: 2px solid #14B8A6; background: linear-gradient(to right, #CCFBF1, #FFFFFF);';
             titleColor = 'color: #14B8A6;';
             costColor = 'color: #14B8A6; font-weight: bold;';
+            icon = '🩵';
+          } else if (activity.location === 'Paradise Valley') {
+            icon = '📍';
+          } else if (activity.location === 'yellowstone') {
+            icon = '🏞️';
           }
           
-          html += `
+          return `
             <div class="activity-card" style="${cardStyle}">
-              <h4 style="${titleColor}">${activity.location === 'on-site' ? '🎁' : activity.location === 'bozeman' ? '📍' : '🏞️'} ${activity.name} ${/* Placeholder for group voting: activity.selectedByGroup ? '<span class="badge badge-warning">⭐ Group Selected</span>' : '' */ ''}</h4>
+              <h4 style="${titleColor}">${icon} ${activity.name}</h4>
               <p>${activity.description}</p>
               ${activity.cost ? `<p><strong>Cost:</strong> <span style="${costColor}">${activity.cost}</span></p>` : ''}
               ${activity.duration ? `<p><strong>Duration:</strong> ${activity.duration}</p>` : ''}
@@ -971,18 +970,78 @@
               <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-secondary);"><em>Suggested by: ${activity.suggester}</em></p>
             </div>
           `;
+        }
+        
+        // 1. On-Site Activities (Under Canvas)
+        const onsiteActivities = activities.filter(a => a.location === 'on-site');
+        const onsiteContainer = document.getElementById('onsiteActivitiesList');
+        if (onsiteActivities.length === 0) {
+          onsiteContainer.innerHTML = '<div class="empty-state">No on-site activities yet</div>';
+        } else {
+          let html = '';
+          onsiteActivities.forEach(activity => {
+            html += createActivityCard(activity, true, false);
+          });
+          onsiteContainer.innerHTML = html;
+        }
+        
+        // 2. Free Activities (not on-site)
+        const freeActivities = activities.filter(a => {
+          const cost = a.cost || '';
+          const isFree = cost.toLowerCase().includes('free') || cost === '$0' || cost === '0';
+          return isFree && a.location !== 'on-site';
         });
+        const freeContainer = document.getElementById('freeActivitiesList');
+        if (freeActivities.length === 0) {
+          freeContainer.innerHTML = '<div class="empty-state">No free activities yet</div>';
+        } else {
+          let html = '';
+          freeActivities.forEach(activity => {
+            html += createActivityCard(activity, false, true);
+          });
+          freeContainer.innerHTML = html;
+        }
         
-        container.innerHTML = html;
+        // 3. Paradise Valley Activities
+        const paradiseActivities = activities.filter(a => a.location === 'Paradise Valley');
+        const paradiseContainer = document.getElementById('paradiseActivitiesList');
+        if (paradiseActivities.length === 0) {
+          paradiseContainer.innerHTML = '<div style="background: #E0F2FE; padding: 12px; border-radius: 8px; margin-bottom: 15px; font-size: 0.9rem; color: #0C4A6E;"><strong>ℹ️ Note:</strong> Paradise Valley is the local area around our resort. Yellowstone activities (below) are inside Yellowstone National Park.</div><div class="empty-state">No Paradise Valley activities yet</div>';
+        } else {
+          let html = '<div style="background: #E0F2FE; padding: 12px; border-radius: 8px; margin-bottom: 15px; font-size: 0.9rem; color: #0C4A6E;"><strong>ℹ️ Note:</strong> Paradise Valley is the local area around our resort. Yellowstone activities (below) are inside Yellowstone National Park.</div>';
+          paradiseActivities.forEach(activity => {
+            html += createActivityCard(activity, false, false);
+          });
+          paradiseContainer.innerHTML = html;
+        }
         
-        // Load individual selections
+        // 4. Yellowstone Activities
+        const yellowstoneActivities = activities.filter(a => a.location === 'yellowstone');
+        const yellowstoneContainer = document.getElementById('yellowstoneActivitiesList');
+        if (yellowstoneActivities.length === 0) {
+          yellowstoneContainer.innerHTML = '<div class="empty-state">No Yellowstone activities yet</div>';
+        } else {
+          let html = '';
+          yellowstoneActivities.forEach(activity => {
+            html += createActivityCard(activity, false, false);
+          });
+          yellowstoneContainer.innerHTML = html;
+        }
+        
+        // 5. Load individual selections (already has its own function)
         await loadIndividualActivities();
         
-        console.log('Loaded activities from activity_suggestions.json:', activities.length, 'activities');
+        console.log('✅ Loaded activities:', {
+          onsite: onsiteActivities.length,
+          free: freeActivities.length,
+          paradise: paradiseActivities.length,
+          yellowstone: yellowstoneActivities.length,
+          total: activities.length
+        });
         
       } catch (error) {
-        console.error('Error loading activities:', error);
-        document.getElementById('activitiesList').innerHTML = '<div class="empty-state">Unable to load activities</div>';
+        console.error('❌ Error loading activities:', error);
+        document.getElementById('onsiteActivitiesList').innerHTML = '<div class="empty-state">Unable to load activities</div>';
       }
     }
     
