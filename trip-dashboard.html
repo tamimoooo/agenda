@@ -873,11 +873,18 @@
 
         let html = '';
         activities.forEach(activity => {
+          const isComplimentary = activity.location === 'on-site';
+          const cardStyle = isComplimentary
+            ? 'border: 2px solid #8B5CF6; background: linear-gradient(to right, #F3E8FF, #FFFFFF);'
+            : '';
+          const titleColor = isComplimentary ? 'color: #8B5CF6;' : '';
+          const costColor = isComplimentary ? 'color: #8B5CF6; font-weight: bold;' : '';
+          
           html += `
-            <div class="activity-card">
-              <h4>${activity.location === 'bozeman' ? '📍' : '🏞️'} ${activity.name} ${/* Placeholder for group voting: activity.selectedByGroup ? '<span class="badge badge-warning">⭐ Group Selected</span>' : '' */ ''}</h4>
+            <div class="activity-card" style="${cardStyle}">
+              <h4 style="${titleColor}">${activity.location === 'on-site' ? '🎁' : activity.location === 'bozeman' ? '📍' : '🏞️'} ${activity.name} ${/* Placeholder for group voting: activity.selectedByGroup ? '<span class="badge badge-warning">⭐ Group Selected</span>' : '' */ ''}</h4>
               <p>${activity.description}</p>
-              ${activity.cost ? `<p><strong>Cost:</strong> ${activity.cost}</p>` : ''}
+              ${activity.cost ? `<p><strong>Cost:</strong> <span style="${costColor}">${activity.cost}</span></p>` : ''}
               ${activity.duration ? `<p><strong>Duration:</strong> ${activity.duration}</p>` : ''}
               ${activity.link ? `<p><strong>Link:</strong> <a href="${activity.link}" target="_blank">${activity.link}</a></p>` : ''}
               <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-secondary);"><em>Suggested by: ${activity.suggester}</em></p>
