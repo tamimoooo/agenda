@@ -141,6 +141,71 @@
     "submittedDate": "2025-12-01T10:00:00.000Z",
     "duration": "Full day or multi-day (flexible)",
     "locationDetail": "Yellowstone National Park"
+  },
+  {
+    "location": "on-site",
+    "name": "Evening S'mores",
+    "description": "Nightly communal fire pits with supplies provided. Complimentary activity included with your stay at Under Canvas North Yellowstone – Paradise Valley.",
+    "cost": "Free (included with stay)",
+    "link": "",
+    "suggester": "Under Canvas North Yellowstone",
+    "submittedDate": "2026-02-02T00:00:00.000Z",
+    "duration": "Evening",
+    "locationDetail": "Under Canvas North Yellowstone – Paradise Valley"
+  },
+  {
+    "location": "on-site",
+    "name": "Morning Yoga",
+    "description": "Guided yoga sessions (weather-dependent). Complimentary activity included with your stay at Under Canvas North Yellowstone – Paradise Valley.",
+    "cost": "Free (included with stay)",
+    "link": "",
+    "suggester": "Under Canvas North Yellowstone",
+    "submittedDate": "2026-02-02T00:00:00.000Z",
+    "duration": "Morning",
+    "locationDetail": "Under Canvas North Yellowstone – Paradise Valley"
+  },
+  {
+    "location": "on-site",
+    "name": "Live Acoustic Music",
+    "description": "Select evenings featuring live acoustic performances. Complimentary activity included with your stay at Under Canvas North Yellowstone – Paradise Valley.",
+    "cost": "Free (included with stay)",
+    "link": "",
+    "suggester": "Under Canvas North Yellowstone",
+    "submittedDate": "2026-02-02T00:00:00.000Z",
+    "duration": "Select evenings",
+    "locationDetail": "Under Canvas North Yellowstone – Paradise Valley"
+  },
+  {
+    "location": "on-site",
+    "name": "Camp Programming",
+    "description": "Social events including trivia, bingo, fireside talks, and similar activities. Complimentary activity included with your stay at Under Canvas North Yellowstone – Paradise Valley.",
+    "cost": "Free (included with stay)",
+    "link": "",
+    "suggester": "Under Canvas North Yellowstone",
+    "submittedDate": "2026-02-02T00:00:00.000Z",
+    "duration": "Varies",
+    "locationDetail": "Under Canvas North Yellowstone – Paradise Valley"
+  },
+  {
+    "location": "on-site",
+    "name": "Lawn & Board Games",
+    "description": "Games available in shared areas for guest use. Complimentary activity included with your stay at Under Canvas North Yellowstone – Paradise Valley.",
+    "cost": "Free (included with stay)",
+    "link": "",
+    "suggester": "Under Canvas North Yellowstone",
+    "submittedDate": "2026-02-02T00:00:00.000Z",
+    "duration": "Anytime",
+    "locationDetail": "Under Canvas North Yellowstone – Paradise Valley"
+  },
+  {
+    "location": "on-site",
+    "name": "Complimentary Coffee & Tea",
+    "description": "Daily complimentary coffee and tea service. Included with your stay at Under Canvas North Yellowstone – Paradise Valley.",
+    "cost": "Free (included with stay)",
+    "link": "",
+    "suggester": "Under Canvas North Yellowstone",
+    "submittedDate": "2026-02-02T00:00:00.000Z",
+    "duration": "Daily",
+    "locationDetail": "Under Canvas North Yellowstone – Paradise Valley"
   }
 ]
-
