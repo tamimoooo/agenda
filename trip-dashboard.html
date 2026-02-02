@@ -148,6 +148,11 @@
       padding: 30px;
       margin-bottom: 30px;
       box-shadow: var(--shadow);
+      transition: padding 0.3s ease;
+    }
+    
+    .section:has(.section-content.collapsed) {
+      padding-bottom: 0;
     }
 
     .section-title {
@@ -162,6 +167,10 @@
       justify-content: space-between;
       align-items: center;
       transition: color 0.3s ease;
+    }
+    
+    .section-title.collapsed {
+      margin-bottom: 0;
     }
 
     .section-title:hover {
@@ -187,6 +196,17 @@
     .section-content.collapsed {
       max-height: 0;
       opacity: 0;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    /* Special styling for activity sections to reduce padding when collapsed */
+    .activity-section {
+      transition: padding 0.3s ease;
+    }
+    
+    .activity-section:has(.section-content.collapsed) {
+      padding: 30px 30px 5px 30px !important;
     }
 
     table {
@@ -624,35 +644,25 @@
       </div>
     </div>
 
-    <!-- Activity Suggestions -->
-    <div class="section" id="activities">
+    <!-- All Suggested Activities -->
+    <div class="section activity-section" id="activities">
       <h2 class="section-title collapsed" onclick="toggleSection(this)">
-        <span>🎯 Activities (see suggestions and interests)</span>
+        <span>🎯 All Suggested Activities</span>
         <span class="toggle-icon">▼</span>
       </h2>
-      <div class="section-content collapsed">
-        
-        <!-- All Suggested Activities - Now Collapsible -->
-        <div class="section" style="margin-bottom: 20px;">
-          <h3 class="section-title collapsed" onclick="toggleSection(this)" style="color: var(--primary-color); margin: 0; padding: 10px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-            <span>All Suggested Activities</span>
-            <span class="toggle-icon">▼</span>
-          </h3>
-          <div class="section-content collapsed" id="activitiesList" style="padding-top: 10px; max-height: 600px; overflow-y: auto;">
-            <div class="loading">Loading activities...</div>
-          </div>
-        </div>
-        
-        <!-- Individual Selections - Now Collapsible -->
-        <div class="section" style="margin-bottom: 20px;">
-          <h3 class="section-title collapsed" onclick="toggleSection(this)" style="color: var(--primary-color); margin: 0; padding: 10px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-            <span><strong>See What the Dots Are Interested In Doing</strong></span>
-            <span class="toggle-icon">▼</span>
-          </h3>
-          <div class="section-content collapsed" id="individualActivitiesList" style="padding-top: 10px;">
-            <div class="loading">Loading individual selections...</div>
-          </div>
-        </div>
+      <div class="section-content collapsed" id="activitiesList" style="max-height: 600px; overflow-y: auto; -webkit-overflow-scrolling: touch;">
+        <div class="loading">Loading activities...</div>
+      </div>
+    </div>
+
+    <!-- Individual Activity Selections -->
+    <div class="section activity-section" id="individual-activities">
+      <h2 class="section-title collapsed" onclick="toggleSection(this)">
+        <span>🎯 See What the Dots Are Interested In Doing</span>
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div class="section-content collapsed" id="individualActivitiesList">
+        <div class="loading">Loading individual selections...</div>
       </div>
     </div>
 
@@ -693,6 +703,16 @@
       titleElement.classList.toggle('collapsed');
       const content = titleElement.nextElementSibling;
       content.classList.toggle('collapsed');
+      
+      // Update section padding based on collapsed state
+      const section = titleElement.closest('.section');
+      if (section) {
+        if (content.classList.contains('collapsed')) {
+          section.style.paddingBottom = '0';
+        } else {
+          section.style.paddingBottom = '30px';
+        }
+      }
     }
 
     // Auto-expand section if accessed via anchor link
@@ -715,8 +735,19 @@
       }
     }
 
+    // Fix padding for initially collapsed sections
+    function fixCollapsedSectionPadding() {
+      document.querySelectorAll('.section').forEach(section => {
+        const content = section.querySelector('.section-content');
+        if (content && content.classList.contains('collapsed')) {
+          section.style.paddingBottom = '0';
+        }
+      });
+    }
+
     // Load all data when page loads
     document.addEventListener('DOMContentLoaded', function() {
+      fixCollapsedSectionPadding();
       loadParticipants();
       loadFlights();
       loadRoommates();
