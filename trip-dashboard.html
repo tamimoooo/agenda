@@ -150,7 +150,7 @@
     }
     
     .section:has(.section-content.collapsed) {
-      padding-bottom: 0;
+      padding: 20px 30px 10px 30px;
     }
 
     .section-title {
@@ -659,11 +659,8 @@
       <p style="margin: 0; font-size: 1rem; opacity: 0.95;">Explore all the amazing activities available during our Montana Glamping Adventure</p>
     </div>
 
-    <!-- Activities Wrapper -->
-    <div id="activities">
-    
     <!-- Under Canvas Complimentary Activities -->
-    <div class="section" id="onsite-activities">
+    <div class="section" id="activities">
       <h2 class="section-title collapsed" onclick="toggleSection(this)">
         <span>🎁 Under Canvas Complimentary Activities</span>
         <span class="toggle-icon">▼</span>
@@ -716,8 +713,6 @@
         <div class="loading">Loading individual selections...</div>
       </div>
     </div>
-    
-    </div><!-- End Activities Wrapper -->
 
   </div>
 
@@ -750,9 +745,9 @@
       const section = titleElement.closest('.section');
       if (section) {
         if (content.classList.contains('collapsed')) {
-          section.style.paddingBottom = '0';
+          section.style.padding = '20px 30px 10px 30px';
         } else {
-          section.style.paddingBottom = '30px';
+          section.style.padding = '30px';
         }
       }
     }
@@ -782,7 +777,7 @@
       document.querySelectorAll('.section').forEach(section => {
         const content = section.querySelector('.section-content');
         if (content && content.classList.contains('collapsed')) {
-          section.style.paddingBottom = '0';
+          section.style.padding = '20px 30px 10px 30px';
         }
       });
     }
