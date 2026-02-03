@@ -887,6 +887,11 @@
         Object.keys(departuresByDay).sort((a, b) => {
           return new Date(departuresByDay[a][0].time) - new Date(departuresByDay[b][0].time);
         }).forEach((dateKey, index) => {
+          // Skip Sep 12 and Sep 14
+          if (dateKey === 'Sep 12' || dateKey === 'Sep 14') {
+            return;
+          }
+          
           const dayDepartures = departuresByDay[dateKey];
           const earliest = dayDepartures[0].time;
           const latest = dayDepartures[dayDepartures.length - 1].time;
@@ -899,7 +904,7 @@
           
           summaryHtml += `
             <div style="background: ${colors.bg}; padding: 12px 15px; border-radius: 8px; margin-bottom: 10px; font-size: 0.85rem; border-left: 4px solid ${colors.border};">
-              <div style="font-weight: bold; color: ${colors.text}; margin-bottom: 8px;">🛫 Departures - ${dateKey} (${dayDepartures.length} ${dayDepartures.length === 1 ? 'person' : 'people'})</div>
+              <div style="font-weight: bold; color: ${colors.text}; margin-bottom: 8px;">🛫 Departures - ${dateKey}</div>
               <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px;">
                 <div style="text-align: center;">
                   <div style="font-weight: bold; color: ${colors.accent};">⏰ Earliest</div>
