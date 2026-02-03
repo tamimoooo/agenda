@@ -877,10 +877,16 @@
           `;
         }
         
-        // Build departure summaries by day
+        // Build departure summaries by day with different colors
+        const colorSchemes = [
+          { bg: 'linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%)', border: '#2196F3', text: '#0D47A1', accent: '#1976D2' },
+          { bg: 'linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%)', border: '#9C27B0', text: '#4A148C', accent: '#7B1FA2' },
+          { bg: 'linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%)', border: '#4CAF50', text: '#1B5E20', accent: '#388E3C' }
+        ];
+        
         Object.keys(departuresByDay).sort((a, b) => {
           return new Date(departuresByDay[a][0].time) - new Date(departuresByDay[b][0].time);
-        }).forEach(dateKey => {
+        }).forEach((dateKey, index) => {
           const dayDepartures = departuresByDay[dateKey];
           const earliest = dayDepartures[0].time;
           const latest = dayDepartures[dayDepartures.length - 1].time;
@@ -888,21 +894,24 @@
           const averageMs = totalMs / dayDepartures.length;
           const average = new Date(averageMs);
           
+          // Use different color for each date
+          const colors = colorSchemes[index % colorSchemes.length];
+          
           summaryHtml += `
-            <div style="background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%); padding: 12px 15px; border-radius: 8px; margin-bottom: 10px; font-size: 0.85rem; border-left: 4px solid #FF9800;">
-              <div style="font-weight: bold; color: #E65100; margin-bottom: 8px;">🛫 Departures - ${dateKey} (${dayDepartures.length} ${dayDepartures.length === 1 ? 'person' : 'people'})</div>
+            <div style="background: ${colors.bg}; padding: 12px 15px; border-radius: 8px; margin-bottom: 10px; font-size: 0.85rem; border-left: 4px solid ${colors.border};">
+              <div style="font-weight: bold; color: ${colors.text}; margin-bottom: 8px;">🛫 Departures - ${dateKey} (${dayDepartures.length} ${dayDepartures.length === 1 ? 'person' : 'people'})</div>
               <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px;">
                 <div style="text-align: center;">
-                  <div style="font-weight: bold; color: #F57C00;">⏰ Earliest</div>
-                  <div style="color: #E65100; font-weight: 600;">${formatTime(earliest)}</div>
+                  <div style="font-weight: bold; color: ${colors.accent};">⏰ Earliest</div>
+                  <div style="color: ${colors.text}; font-weight: 600;">${formatTime(earliest)}</div>
                 </div>
                 <div style="text-align: center;">
-                  <div style="font-weight: bold; color: #F57C00;">📊 Average</div>
-                  <div style="color: #E65100; font-weight: 600;">${formatTime(average)}</div>
+                  <div style="font-weight: bold; color: ${colors.accent};">📊 Average</div>
+                  <div style="color: ${colors.text}; font-weight: 600;">${formatTime(average)}</div>
                 </div>
                 <div style="text-align: center;">
-                  <div style="font-weight: bold; color: #F57C00;">⏱️ Latest</div>
-                  <div style="color: #E65100; font-weight: 600;">${formatTime(latest)}</div>
+                  <div style="font-weight: bold; color: ${colors.accent};">⏱️ Latest</div>
+                  <div style="color: ${colors.text}; font-weight: 600;">${formatTime(latest)}</div>
                 </div>
               </div>
             </div>
