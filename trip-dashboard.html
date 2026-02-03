@@ -626,6 +626,23 @@
         <span>✈️ Travel Details</span>
         <span class="toggle-icon">▼</span>
       </h2>
+      <!-- Arrival Time Summary -->
+      <div id="arrivalSummary" style="display: none; background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%); padding: 12px 15px; border-radius: 8px; margin: 10px 0; font-size: 0.85rem; border-left: 4px solid #2196F3;">
+        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px;">
+          <div style="text-align: center;">
+            <div style="font-weight: bold; color: #1976D2;">⏰ Earliest Arrival</div>
+            <div id="earliestArrival" style="color: #0D47A1; font-weight: 600;">--</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-weight: bold; color: #1976D2;">📊 Average Arrival</div>
+            <div id="averageArrival" style="color: #0D47A1; font-weight: 600;">--</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-weight: bold; color: #1976D2;">⏱️ Latest Arrival</div>
+            <div id="latestArrival" style="color: #0D47A1; font-weight: 600;">--</div>
+          </div>
+        </div>
+      </div>
       <div class="section-content collapsed" id="flightsList">
         <div class="loading">Loading flight information...</div>
       </div>
@@ -798,6 +815,46 @@
         if (submittedTrips.length === 0) {
           container.innerHTML = '<div class="empty-state">No flight details submitted yet</div>';
           return;
+        }
+        
+        // Calculate arrival statistics
+        const arrivalsWithTimes = submittedTrips
+          .filter(trip => trip.outbound.arrival)
+          .map(trip => ({
+            name: trip.name,
+            time: new Date(trip.outbound.arrival)
+          }))
+          .sort((a, b) => a.time - b.time);
+        
+        if (arrivalsWithTimes.length > 0) {
+          const earliest = arrivalsWithTimes[0].time;
+          const latest = arrivalsWithTimes[arrivalsWithTimes.length - 1].time;
+          
+          // Calculate average
+          const totalMs = arrivalsWithTimes.reduce((sum, arr) => sum + arr.time.getTime(), 0);
+          const averageMs = totalMs / arrivalsWithTimes.length;
+          const average = new Date(averageMs);
+          
+          // Format times
+          const formatTime = (date) => date.toLocaleString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit'
+          });
+          
+          // Update the summary display
+          document.getElementById('earliestArrival').textContent = formatTime(earliest);
+          document.getElementById('averageArrival').textContent = formatTime(average);
+          document.getElementById('latestArrival').textContent = formatTime(latest);
+          document.getElementById('arrivalSummary').style.display = 'block';
+          
+          console.log('📊 Arrival Stats:', {
+            earliest: formatTime(earliest),
+            average: formatTime(average),
+            latest: formatTime(latest),
+            count: arrivalsWithTimes.length
+          });
         }
         
         // Mobile card view
