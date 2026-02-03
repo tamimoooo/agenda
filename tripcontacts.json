@@ -21,8 +21,8 @@
       "confirmation": ""
     },
     "tent": {
-      "type": "",
-      "notes": ""
+      "type": "Deluxe",
+      "notes": "109436"
     },
     "activities": [],
     "transportation": {
@@ -204,42 +204,79 @@
     "lastUpdated": "2026-01-16T01:57:02.072Z",
     "confirmationStatus": "pending"
   }, {
-    "userId": 5,
-    "name": "Vernet-TBD",
+    "userId": 6,
+    "name": "Vernet",
     "outbound": {
-      "departureCity": "",
+      "departureCity": "Atlanta",
       "arrivalCity": "Bozeman, MT",
-      "airline": "",
-      "flightNumber": "",
+      "airline": "Delta",
+      "flightNumber": "DL406",
       "departure": "",
-      "arrival": "",
+      "arrival": "2026-09-09T13:06",
       "confirmation": ""
     },
     "return": {
       "departureCity": "Bozeman, MT",
-      "arrivalCity": "",
-      "airline": "",
-      "flightNumber": "",
-      "departure": "",
+      "arrivalCity": "Atlanta",
+      "airline": "Delta",
+      "flightNumber": "DL406",
+      "departure": "2026-09-13T14:00",
       "arrival": "",
       "confirmation": ""
     },
     "tent": {
       "type": "",
+      "confirmation": "",
       "notes": ""
     },
-    "activities": [],
+    "activities": [
+      {
+        "name": "Group Whitewater Rafting – 8 Mile",
+        "cost": "$75 per adult (13+); $68 per youth",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Group Scenic Rafting",
+        "cost": "$75 per adult (13+); $68 per youth",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Erik's Ranch Horseback Riding",
+        "cost": "Approximately $135 per person",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Yellowstone Park Tours",
+        "cost": "TBD",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Paradise Scenic River Tours",
+        "cost": "Approximately $80 per person (based on typical group pricing; actual rates vary by group size and season)",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Chico Hot Springs Soak",
+        "cost": "Approximately $40–$50 per person for day-use soaking (varies by day and season)",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Morning Yoga",
+        "cost": "Free (included with stay)",
+        "selectedByGroup": false
+      }
+    ],
     "transportation": {
-      "needsAirportPickup": false,
-      "needsAirportDropoff": false,
-      "willingToRentCar": "",
-      "arrivalTime": "",
-      "departureTime": ""
+      "needsAirportPickup": true,
+      "needsAirportDropoff": true,
+      "willingToRentCar": false,
+      "arrivalTime": "2026-09-09T13:06",
+      "departureTime": "2026-09-13T14:00"
     },
-    "specialRequests": "",
-    "submittedDate": "",
-    "lastUpdated": "",
-    "confirmationStatus": "not_submitted"
+    "specialRequests": "I'm willing to drive rental CAR. Depends on van size how comfortable I would feel.",
+    "submittedDate": "2026-02-03T03:15:12.869Z",
+    "lastUpdated": "2026-02-03T03:15:12.869Z",
+    "confirmationStatus": "pending"
   },
   {
     "userId": 8,
@@ -272,9 +309,9 @@
         "cost": "Free",
         "selectedByGroup": true
       },
-       {
-        "name": "Old West Cookout with Stagecoach Ride",
-        "cost": "$110 per adult (12+); $90 per child (8–11)",
+      {
+        "name": "Chico Hot Springs Soak",
+        "cost": "Approximately $40–$50 per person for day-use soaking (varies by day and season)",
         "selectedByGroup": false
       }
     ],
@@ -312,8 +349,8 @@
       "confirmation": ""
     },
     "tent": {
-      "type": "",
-      "notes": ""
+      "type": "Deluxe",
+      "notes": "109436"
     },
     "activities": [],
     "transportation": {
@@ -370,39 +407,51 @@
     "userId": 12,
     "name": "Sherri",
     "outbound": {
-      "departureCity": "",
+      "departureCity": "Raleigh, NC",
       "arrivalCity": "Bozeman, MT",
-      "airline": "",
-      "flightNumber": "",
+      "airline": "Delta",
+      "flightNumber": "DL2538/2946",
       "departure": "",
-      "arrival": "",
+      "arrival": "2026-09-09T12:28",
       "confirmation": ""
     },
     "return": {
       "departureCity": "Bozeman, MT",
-      "arrivalCity": "",
-      "airline": "",
-      "flightNumber": "",
-      "departure": "",
+      "arrivalCity": "Raleigh, NC",
+      "airline": "Delta",
+      "flightNumber": "DL406/1154",
+      "departure": "2026-09-14T14:00",
       "arrival": "",
       "confirmation": ""
     },
     "tent": {
-      "type": "",
+      "type": "Suite",
+      "confirmation": "123456789",
       "notes": ""
     },
-    "activities": [],
+    "activities": [
+      {
+        "name": "Erik's Ranch Horseback Riding",
+        "cost": "Approximately $135 per person",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Yellowstone Park Tours",
+        "cost": "TBD",
+        "selectedByGroup": false
+      }
+    ],
     "transportation": {
-      "needsAirportPickup": false,
-      "needsAirportDropoff": false,
-      "willingToRentCar": "",
-      "arrivalTime": "",
-      "departureTime": ""
+      "needsAirportPickup": true,
+      "needsAirportDropoff": true,
+      "willingToRentCar": true,
+      "arrivalTime": "2026-09-09T12:28",
+      "departureTime": "2026-09-14T14:00"
     },
     "specialRequests": "",
-    "submittedDate": "",
-    "lastUpdated": "",
-    "confirmationStatus": "not_submitted"
+    "submittedDate": "2026-02-01T23:41:01.754Z",
+    "lastUpdated": "2026-02-01T23:41:01.754Z",
+    "confirmationStatus": "pending"
   },
   {
     "userId": 13,
