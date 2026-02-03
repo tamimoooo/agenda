@@ -313,6 +313,31 @@
         "name": "Old West Cookout with Stagecoach Ride",
         "cost": "$110 per adult (12+); $90 per child (8–11)",
         "selectedByGroup": false
+      },
+        {
+        "name": "Group Whitewater Rafting – 8 Mile",
+        "cost": "$75 per adult (13+); $68 per youth",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Group Scenic Rafting",
+        "cost": "$75 per adult (13+); $68 per youth",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Erik's Ranch Horseback Riding",
+        "cost": "Approximately $135 per person",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Yellowstone Park Tours",
+        "cost": "TBD",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Paradise Scenic River Tours",
+        "cost": "Approximately $80 per person (based on typical group pricing; actual rates vary by group size and season)",
+        "selectedByGroup": false
       }
     ],
     "transportation": {
