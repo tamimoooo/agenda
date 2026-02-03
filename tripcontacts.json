@@ -124,7 +124,7 @@
     },
     "tent": {
       "type": "Suite",
-      "notes": "Hyatt_Conf#_7224692/UC_Conf#_109409"
+      "notes": "7224692"
     },
     "activities": [
       {
@@ -159,22 +159,22 @@
     "userId": 4,
     "name": "Dana",
     "outbound": {
-      "departureCity": "Atlanta",
-      "arrivalCity": "Bozeman",
+      "departureCity": "Atlanta, GA",
+      "arrivalCity": "Bozeman, MT",
       "airline": "Delta",
-      "flightNumber": "406",
-      "departure": "2026-09-09T13:06",
-      "arrival": "",
-      "confirmation": "Not yet booked"
+      "flightNumber": "DL406",
+      "departure": "2026-09-09T11:01",
+      "arrival": "2026-09-09T13:06",
+      "confirmation": "Main Classic"
     },
     "return": {
-      "departureCity": "Bozeman",
-      "arrivalCity": "Atlanta",
+      "departureCity": "Bozeman, MT",
+      "arrivalCity": "Atlanta, GA",
       "airline": "Delta",
-      "flightNumber": "406",
+      "flightNumber": "DL406",
       "departure": "2026-09-12T14:00",
-      "arrival": "",
-      "confirmation": "Not yet booked"
+      "arrival": "2026-09-12T19:54",
+      "confirmation": "Main Classic"
     },
     "tent": {
       "type": "Suite",
@@ -301,7 +301,7 @@
     },
     "tent": {
       "type": "Suite",
-      "notes": "Hyatt_Conf#_7224692/UC_Conf#_109409"
+      "notes": "7224692"
     },
     "activities": [
       {
@@ -594,4 +594,3 @@
   }
  
 ]
-
