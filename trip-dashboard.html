@@ -627,23 +627,6 @@
         <span class="toggle-icon">▼</span>
       </h2>
       <div class="section-content collapsed" id="flightsList">
-        <!-- Arrival Time Summary -->
-        <div id="arrivalSummary" style="display: none; background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%); padding: 12px 15px; border-radius: 8px; margin-bottom: 15px; font-size: 0.85rem; border-left: 4px solid #2196F3;">
-          <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px;">
-            <div style="text-align: center;">
-              <div style="font-weight: bold; color: #1976D2;">⏰ Earliest Arrival</div>
-              <div id="earliestArrival" style="color: #0D47A1; font-weight: 600;">--</div>
-            </div>
-            <div style="text-align: center;">
-              <div style="font-weight: bold; color: #1976D2;">📊 Average Arrival</div>
-              <div id="averageArrival" style="color: #0D47A1; font-weight: 600;">--</div>
-            </div>
-            <div style="text-align: center;">
-              <div style="font-weight: bold; color: #1976D2;">⏱️ Latest Arrival</div>
-              <div id="latestArrival" style="color: #0D47A1; font-weight: 600;">--</div>
-            </div>
-          </div>
-        </div>
         <div class="loading">Loading flight information...</div>
       </div>
     </div>
@@ -817,7 +800,7 @@
           return;
         }
         
-        // Calculate arrival statistics
+        // Calculate arrival statistics and build the arrival summary HTML
         const arrivalsWithTimes = submittedTrips
           .filter(trip => trip.outbound.arrival)
           .map(trip => ({
@@ -826,16 +809,14 @@
           }))
           .sort((a, b) => a.time - b.time);
         
+        let summaryHtml = '';
         if (arrivalsWithTimes.length > 0) {
           const earliest = arrivalsWithTimes[0].time;
           const latest = arrivalsWithTimes[arrivalsWithTimes.length - 1].time;
-          
-          // Calculate average
           const totalMs = arrivalsWithTimes.reduce((sum, arr) => sum + arr.time.getTime(), 0);
           const averageMs = totalMs / arrivalsWithTimes.length;
           const average = new Date(averageMs);
           
-          // Format times
           const formatTime = (date) => date.toLocaleString('en-US', {
             month: 'short',
             day: 'numeric',
@@ -843,22 +824,28 @@
             minute: '2-digit'
           });
           
-          // Update the summary display
-          document.getElementById('earliestArrival').textContent = formatTime(earliest);
-          document.getElementById('averageArrival').textContent = formatTime(average);
-          document.getElementById('latestArrival').textContent = formatTime(latest);
-          document.getElementById('arrivalSummary').style.display = 'block';
-          
-          console.log('📊 Arrival Stats:', {
-            earliest: formatTime(earliest),
-            average: formatTime(average),
-            latest: formatTime(latest),
-            count: arrivalsWithTimes.length
-          });
+          summaryHtml = `
+            <div style="background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%); padding: 12px 15px; border-radius: 8px; margin-bottom: 15px; font-size: 0.85rem; border-left: 4px solid #2196F3;">
+              <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px;">
+                <div style="text-align: center;">
+                  <div style="font-weight: bold; color: #1976D2;">⏰ Earliest Arrival</div>
+                  <div style="color: #0D47A1; font-weight: 600;">${formatTime(earliest)}</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="font-weight: bold; color: #1976D2;">📊 Average Arrival</div>
+                  <div style="color: #0D47A1; font-weight: 600;">${formatTime(average)}</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="font-weight: bold; color: #1976D2;">⏱️ Latest Arrival</div>
+                  <div style="color: #0D47A1; font-weight: 600;">${formatTime(latest)}</div>
+                </div>
+              </div>
+            </div>
+          `;
         }
         
         // Mobile card view
-        let html = '<div class="mobile-cards">';
+        let html = summaryHtml + '<div class="mobile-cards">';
         submittedTrips.forEach(trip => {
           const arrivalTime = trip.outbound.arrival ? new Date(trip.outbound.arrival).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : 'N/A';
           const departureTime = trip.return.departure ? new Date(trip.return.departure).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : 'N/A';
