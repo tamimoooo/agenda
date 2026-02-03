@@ -809,7 +809,30 @@
           }))
           .sort((a, b) => a.time - b.time);
         
+        // Calculate departure statistics for September 13, 2026 only
+        const departuresOnSep13 = submittedTrips
+          .filter(trip => {
+            if (!trip.return.departure) return false;
+            const depDate = new Date(trip.return.departure);
+            return depDate.getFullYear() === 2026 &&
+                   depDate.getMonth() === 8 && // September is month 8 (0-indexed)
+                   depDate.getDate() === 13;
+          })
+          .map(trip => ({
+            name: trip.name,
+            time: new Date(trip.return.departure)
+          }))
+          .sort((a, b) => a.time - b.time);
+        
         let summaryHtml = '';
+        const formatTime = (date) => date.toLocaleString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit'
+        });
+        
+        // Build arrival summary
         if (arrivalsWithTimes.length > 0) {
           const earliest = arrivalsWithTimes[0].time;
           const latest = arrivalsWithTimes[arrivalsWithTimes.length - 1].time;
@@ -817,27 +840,50 @@
           const averageMs = totalMs / arrivalsWithTimes.length;
           const average = new Date(averageMs);
           
-          const formatTime = (date) => date.toLocaleString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: '2-digit'
-          });
-          
-          summaryHtml = `
-            <div style="background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%); padding: 12px 15px; border-radius: 8px; margin-bottom: 15px; font-size: 0.85rem; border-left: 4px solid #2196F3;">
+          summaryHtml += `
+            <div style="background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%); padding: 12px 15px; border-radius: 8px; margin-bottom: 10px; font-size: 0.85rem; border-left: 4px solid #2196F3;">
+              <div style="font-weight: bold; color: #1565C0; margin-bottom: 8px;">✈️ Arrivals (Sep 9)</div>
               <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px;">
                 <div style="text-align: center;">
-                  <div style="font-weight: bold; color: #1976D2;">⏰ Earliest Arrival</div>
+                  <div style="font-weight: bold; color: #1976D2;">⏰ Earliest</div>
                   <div style="color: #0D47A1; font-weight: 600;">${formatTime(earliest)}</div>
                 </div>
                 <div style="text-align: center;">
-                  <div style="font-weight: bold; color: #1976D2;">📊 Average Arrival</div>
+                  <div style="font-weight: bold; color: #1976D2;">📊 Average</div>
                   <div style="color: #0D47A1; font-weight: 600;">${formatTime(average)}</div>
                 </div>
                 <div style="text-align: center;">
-                  <div style="font-weight: bold; color: #1976D2;">⏱️ Latest Arrival</div>
+                  <div style="font-weight: bold; color: #1976D2;">⏱️ Latest</div>
                   <div style="color: #0D47A1; font-weight: 600;">${formatTime(latest)}</div>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+        
+        // Build departure summary for Sep 13 only
+        if (departuresOnSep13.length > 0) {
+          const earliest = departuresOnSep13[0].time;
+          const latest = departuresOnSep13[departuresOnSep13.length - 1].time;
+          const totalMs = departuresOnSep13.reduce((sum, dep) => sum + dep.time.getTime(), 0);
+          const averageMs = totalMs / departuresOnSep13.length;
+          const average = new Date(averageMs);
+          
+          summaryHtml += `
+            <div style="background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%); padding: 12px 15px; border-radius: 8px; margin-bottom: 15px; font-size: 0.85rem; border-left: 4px solid #FF9800;">
+              <div style="font-weight: bold; color: #E65100; margin-bottom: 8px;">🛫 Departures (Sep 13 Only)</div>
+              <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px;">
+                <div style="text-align: center;">
+                  <div style="font-weight: bold; color: #F57C00;">⏰ Earliest</div>
+                  <div style="color: #E65100; font-weight: 600;">${formatTime(earliest)}</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="font-weight: bold; color: #F57C00;">📊 Average</div>
+                  <div style="color: #E65100; font-weight: 600;">${formatTime(average)}</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="font-weight: bold; color: #F57C00;">⏱️ Latest</div>
+                  <div style="color: #E65100; font-weight: 600;">${formatTime(latest)}</div>
                 </div>
               </div>
             </div>
