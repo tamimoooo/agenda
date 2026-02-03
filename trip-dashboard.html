@@ -653,6 +653,17 @@
       </div>
     </div>
 
+    <!-- Activity Statistics -->
+    <div class="section" id="activity-stats">
+      <h2 class="section-title collapsed" onclick="toggleSection(this)">
+        <span>📊 Activity Statistics</span>
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div class="section-content collapsed" id="activityStatsList">
+        <div class="loading">Loading activity statistics...</div>
+      </div>
+    </div>
+
     <!-- What Activities Dots Are Interested In -->
     <div class="section" id="individual-activities">
       <h2 class="section-title collapsed" onclick="toggleSection(this)">
@@ -738,6 +749,7 @@
       loadParticipants();
       loadFlights();
       loadRoommates();
+      loadActivityStats();
       loadActivities();
       loadTransportation();
       updateStatistics();
@@ -989,6 +1001,72 @@
       }
     }
     
+    // Load activity statistics
+    async function loadActivityStats() {
+      try {
+        const timestamp = new Date().getTime();
+        const response = await fetch(`tripcontacts.json?t=${timestamp}`);
+        const tripContacts = await response.json();
+        const container = document.getElementById('activityStatsList');
+        
+        const withActivities = tripContacts.filter(t => t.confirmationStatus !== 'not_submitted' && t.activities && t.activities.length > 0);
+        
+        if (withActivities.length === 0) {
+          container.innerHTML = '<div class="empty-state">No activity selections yet</div>';
+          return;
+        }
+        
+        // Calculate activity statistics
+        const activityCounts = {};
+        withActivities.forEach(trip => {
+          trip.activities.forEach(activity => {
+            const activityName = typeof activity === 'string' ? activity : activity.name;
+            activityCounts[activityName] = (activityCounts[activityName] || 0) + 1;
+          });
+        });
+        
+        // Sort activities by popularity
+        const sortedActivities = Object.entries(activityCounts)
+          .sort((a, b) => b[1] - a[1]);
+        
+        // Build statistics display
+        let html = `
+          <div style="background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%); padding: 15px; border-radius: 8px; border-left: 4px solid #9C27B0;">
+            <div style="display: grid; gap: 8px;">
+        `;
+        
+        sortedActivities.forEach(([activity, count]) => {
+          const percentage = Math.round((count / withActivities.length) * 100);
+          html += `
+            <div style="display: flex; justify-content: space-between; align-items: center; background: white; padding: 10px 12px; border-radius: 6px;">
+              <div style="flex: 1;">
+                <span style="color: #4A148C; font-weight: 500; font-size: 0.9rem;">${activity}</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="background: linear-gradient(90deg, #9C27B0 0%, #9C27B0 ${percentage}%, #E0E0E0 ${percentage}%, #E0E0E0 100%); height: 6px; width: 60px; border-radius: 3px;"></div>
+                <span style="color: #6A1B9A; font-weight: bold; font-size: 0.85rem; min-width: 50px; text-align: right;">${count} (${percentage}%)</span>
+              </div>
+            </div>
+          `;
+        });
+        
+        html += `
+            </div>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(106, 27, 154, 0.2); font-size: 0.85rem; color: #6A1B9A; text-align: center;">
+              <strong>${withActivities.length}</strong> ${withActivities.length === 1 ? 'person has' : 'people have'} selected activities • <strong>${sortedActivities.length}</strong> unique ${sortedActivities.length === 1 ? 'activity' : 'activities'}
+            </div>
+          </div>
+        `;
+        
+        container.innerHTML = html;
+        console.log('✅ Loaded activity statistics:', activityCounts);
+        
+      } catch (error) {
+        console.error('Error loading activity statistics:', error);
+        document.getElementById('activityStatsList').innerHTML = '<div class="empty-state">Unable to load activity statistics</div>';
+      }
+    }
+
     // Load individual activity selections from tripcontacts.json
     async function loadIndividualActivities() {
       try {
@@ -1004,6 +1082,7 @@
           return;
         }
         
+        // Build individual selections
         let html = '<div class="mobile-cards">';
         withActivities.forEach(trip => {
           html += `
@@ -1017,8 +1096,7 @@
           trip.activities.forEach(activity => {
             const activityName = typeof activity === 'string' ? activity : activity.name;
             const activityCost = typeof activity === 'string' ? '' : (activity.cost ? ` - ${activity.cost}` : '');
-            // Placeholder for group voting: const isGroupSelected = typeof activity === 'object' && activity.selectedByGroup;
-            html += `<li>${activityName}${activityCost} ${/* Placeholder for group voting: isGroupSelected ? '<span class="badge badge-warning" style="font-size: 0.7rem;">⭐</span>' : '' */ ''}</li>`;
+            html += `<li>${activityName}${activityCost}</li>`;
           });
           
           html += `
