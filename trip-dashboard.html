@@ -653,17 +653,6 @@
       </div>
     </div>
 
-    <!-- Activity Statistics -->
-    <div class="section" id="activity-stats">
-      <h2 class="section-title collapsed" onclick="toggleSection(this)">
-        <span>📊 Activity Statistics</span>
-        <span class="toggle-icon">▼</span>
-      </h2>
-      <div class="section-content collapsed" id="activityStatsList">
-        <div class="loading">Loading activity statistics...</div>
-      </div>
-    </div>
-
     <!-- What Activities Dots Are Interested In -->
     <div class="section" id="individual-activities">
       <h2 class="section-title collapsed" onclick="toggleSection(this)">
@@ -672,6 +661,17 @@
       </h2>
       <div class="section-content collapsed" id="individualActivitiesList" style="max-height: 400px; overflow-y: auto; -webkit-overflow-scrolling: touch;">
         <div class="loading">Loading individual selections...</div>
+      </div>
+    </div>
+
+    <!-- Activity Statistics -->
+    <div class="section" id="activity-stats">
+      <h2 class="section-title collapsed" onclick="toggleSection(this)">
+        <span>📊 Activity Statistics</span>
+        <span class="toggle-icon">▼</span>
+      </h2>
+      <div class="section-content collapsed" id="activityStatsList">
+        <div class="loading">Loading activity statistics...</div>
       </div>
     </div>
 
@@ -1029,34 +1029,16 @@
         const sortedActivities = Object.entries(activityCounts)
           .sort((a, b) => b[1] - a[1]);
         
-        // Build statistics display
-        let html = `
-          <div style="background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%); padding: 15px; border-radius: 8px; border-left: 4px solid #9C27B0;">
-            <div style="display: grid; gap: 8px;">
-        `;
+        // Build simple plain text statistics
+        let html = '<div style="font-size: 0.9rem; line-height: 1.8;">';
         
         sortedActivities.forEach(([activity, count]) => {
           const percentage = Math.round((count / withActivities.length) * 100);
-          html += `
-            <div style="display: flex; justify-content: space-between; align-items: center; background: white; padding: 10px 12px; border-radius: 6px;">
-              <div style="flex: 1;">
-                <span style="color: #4A148C; font-weight: 500; font-size: 0.9rem;">${activity}</span>
-              </div>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div style="background: linear-gradient(90deg, #9C27B0 0%, #9C27B0 ${percentage}%, #E0E0E0 ${percentage}%, #E0E0E0 100%); height: 6px; width: 60px; border-radius: 3px;"></div>
-                <span style="color: #6A1B9A; font-weight: bold; font-size: 0.85rem; min-width: 50px; text-align: right;">${count} (${percentage}%)</span>
-              </div>
-            </div>
-          `;
+          html += `<div>${activity}: ${count} (${percentage}%)</div>`;
         });
         
-        html += `
-            </div>
-            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(106, 27, 154, 0.2); font-size: 0.85rem; color: #6A1B9A; text-align: center;">
-              <strong>${withActivities.length}</strong> ${withActivities.length === 1 ? 'person has' : 'people have'} selected activities • <strong>${sortedActivities.length}</strong> unique ${sortedActivities.length === 1 ? 'activity' : 'activities'}
-            </div>
-          </div>
-        `;
+        html += `<div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd; font-size: 0.85rem;">${withActivities.length} ${withActivities.length === 1 ? 'person has' : 'people have'} selected activities • ${sortedActivities.length} unique ${sortedActivities.length === 1 ? 'activity' : 'activities'}</div>`;
+        html += '</div>';
         
         container.innerHTML = html;
         console.log('✅ Loaded activity statistics:', activityCounts);
