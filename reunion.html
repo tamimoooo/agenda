@@ -1297,7 +1297,7 @@
           📅 Next Planning Meeting
         </h4>
         <p style="margin: 5px 0;">
-          <strong>Sunday, March 1, 2026 at 6:00 PM</strong>
+          <strong>Tuesday, MArch 1, 2026 at 6:00 PM</strong>
         </p>
         <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
           <a href="https://teams.microsoft.com/l/meetup-join/19%3ameeting_MGNmZmQzOWQtOTMwZi00OGI2LTk3NWQtYTM1MTg0N2E0NTk5%40thread.v2/0?context=%7b%22Tid%22%3a%22fcf67057-50c9-4ad4-98f3-ffca64add9e9%22%2c%22Oid%22%3a%22dad87919-9df2-42ae-ae08-b386dcdc75da%22%7d"
@@ -1731,7 +1731,12 @@
             <span class="subsection-toggle" id="activities-toggle">▶</span>
           </div>
           <div class="subsection-content" id="activities-content">
-          <p style="margin-bottom: 20px;">Choose your adventure! Here are some exciting activities available:</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+            <p style="margin: 0;">Choose your adventure! Here are some exciting activities available:</p>
+            <button onclick="downloadActivitiesList()" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%); color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 0.9rem; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: all 0.3s ease;">
+              📥 Download List
+            </button>
+          </div>
 
           <div id="activitiesListContainer" style="display: grid; gap: 15px;">
             <!-- Activities will be loaded dynamically from activity_suggestions.json -->
@@ -3090,13 +3095,14 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
         return '🎯';
       }
 
-      // Separate group-selected and other activities
+      // Separate activities by type
       const groupSelected = activitySuggestionsData.filter(a => a.selectedByGroup);
-      const otherActivities = activitySuggestionsData.filter(a => !a.selectedByGroup);
+      const complimentaryActivities = activitySuggestionsData.filter(a => a.location === 'on-site' && !a.selectedByGroup);
+      const otherActivities = activitySuggestionsData.filter(a => !a.selectedByGroup && a.location !== 'on-site');
 
       let html = '';
 
-      // Show group-selected activities first (no special highlight)
+      // Show group-selected activities first
       if (groupSelected.length > 0) {
         html += `<div style="margin-bottom: 20px;"><h4 style="color: var(--primary-color); margin-bottom: 15px;">⭐ Selected by Group</h4></div>`;
         
@@ -3122,9 +3128,39 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
         });
       }
 
+      // Show complimentary on-site activities in purple
+      if (complimentaryActivities.length > 0) {
+        if (groupSelected.length > 0) {
+          html += `<div style="margin-top: 20px;"><h4 style="color: #8B5CF6; margin-bottom: 15px;">🎁 Complimentary On-Site Activities</h4></div>`;
+        } else {
+          html += `<div style="margin-bottom: 20px;"><h4 style="color: #8B5CF6; margin-bottom: 15px;">🎁 Complimentary On-Site Activities</h4></div>`;
+        }
+        
+        complimentaryActivities.forEach(activity => {
+          const icon = getActivityIcon(activity.name);
+          const locationText = activity.locationDetail || activity.location || '';
+          const duration = activity.duration || '';
+          const cost = activity.cost || 'TBD';
+          const link = activity.link || '';
+          
+          html += `
+            <div style="border: 2px solid #8B5CF6; border-radius: 10px; padding: 15px; background: linear-gradient(to right, #F3E8FF, #FFFFFF); margin-bottom: 10px;">
+              <h5 style="color: #8B5CF6; margin-bottom: 10px;">${icon} ${activity.name}</h5>
+              <div style="display: grid; gap: 8px;">
+                ${cost !== 'TBD' && cost !== '' ? `<div><strong>💰 Price:</strong> <span style="color: #8B5CF6; font-weight: bold;">${cost}</span></div>` : ''}
+                ${duration ? `<div><strong>⏱️ Duration:</strong> ${duration}</div>` : ''}
+                ${locationText ? `<div><strong>📍 Location:</strong> ${locationText}</div>` : ''}
+                ${activity.description ? `<div style="margin-top: 5px; font-style: italic; color: #6B21A8;">${activity.description}</div>` : ''}
+                ${link ? `<div style="margin-top: 8px;"><a href="${link}" target="_blank" rel="noopener" style="color: #8B5CF6; text-decoration: none; font-weight: 600;">🔗 More Info</a></div>` : ''}
+              </div>
+            </div>
+          `;
+        });
+      }
+
       // Show other activities
       if (otherActivities.length > 0) {
-        if (groupSelected.length > 0) {
+        if (groupSelected.length > 0 || complimentaryActivities.length > 0) {
           html += `<div style="margin-top: 20px;"><h4 style="color: var(--primary-color); margin-bottom: 15px;">Other Available Activities</h4></div>`;
         }
         
@@ -3135,11 +3171,18 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
           const cost = activity.cost || 'TBD';
           const link = activity.link || '';
           
+          // Check if activity is free
+          const isFree = cost.toLowerCase().includes('free') || cost === '$0' || cost === '0';
+          const borderColor = isFree ? '#14B8A6' : 'var(--border-color)';
+          const backgroundColor = isFree ? 'linear-gradient(to right, #CCFBF1, #FFFFFF)' : 'white';
+          const titleColor = isFree ? '#14B8A6' : 'var(--primary-color)';
+          const costColor = isFree ? 'color: #14B8A6; font-weight: bold;' : '';
+          
           html += `
-            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
-              <h5 style="color: var(--primary-color); margin-bottom: 10px;">${icon} ${activity.name}</h5>
+            <div style="border: 2px solid ${borderColor}; border-radius: 10px; padding: 15px; background: ${backgroundColor}; margin-bottom: 10px;">
+              <h5 style="color: ${titleColor}; margin-bottom: 10px;">${icon} ${activity.name}</h5>
               <div style="display: grid; gap: 8px;">
-                ${cost !== 'TBD' && cost !== '' ? `<div><strong>💰 Price:</strong> ${cost}</div>` : ''}
+                ${cost !== 'TBD' && cost !== '' ? `<div><strong>💰 Price:</strong> <span style="${costColor}">${cost}</span></div>` : ''}
                 ${duration ? `<div><strong>⏱️ Duration:</strong> ${duration}</div>` : ''}
                 ${locationText ? `<div><strong>📍 Location:</strong> ${locationText}</div>` : ''}
                 ${activity.description ? `<div style="margin-top: 5px; font-style: italic; color: var(--text-secondary);">${activity.description}</div>` : ''}
@@ -3152,6 +3195,87 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
 
       container.innerHTML = html;
       console.log('✅ Loaded', activitySuggestionsData.length, 'activities into Activities & Excursions section');
+    }
+
+    // Download activities list as a text file
+    function downloadActivitiesList() {
+      if (!activitySuggestionsData || activitySuggestionsData.length === 0) {
+        alert('No activities available to download yet.');
+        return;
+      }
+
+      // Separate activities by type
+      const groupSelected = activitySuggestionsData.filter(a => a.selectedByGroup);
+      const complimentaryActivities = activitySuggestionsData.filter(a => a.location === 'on-site' && !a.selectedByGroup);
+      const otherActivities = activitySuggestionsData.filter(a => !a.selectedByGroup && a.location !== 'on-site');
+
+      // Build the text content
+      let content = '🎯 ACTIVITIES & EXCURSIONS\n';
+      content += 'Montana Glamping Adventure 2026\n';
+      content += 'September 9-14, 2026\n';
+      content += '=' .repeat(60) + '\n\n';
+
+      // Group-selected activities
+      if (groupSelected.length > 0) {
+        content += '⭐ SELECTED BY GROUP\n';
+        content += '-'.repeat(60) + '\n';
+        groupSelected.forEach((activity, index) => {
+          content += `\n${index + 1}. ${activity.name}\n`;
+          if (activity.cost && activity.cost !== 'TBD') content += `   💰 Price: ${activity.cost}\n`;
+          if (activity.duration) content += `   ⏱️  Duration: ${activity.duration}\n`;
+          if (activity.locationDetail || activity.location) content += `   📍 Location: ${activity.locationDetail || activity.location}\n`;
+          if (activity.description) content += `   📝 ${activity.description}\n`;
+          if (activity.link) content += `   🔗 More Info: ${activity.link}\n`;
+        });
+        content += '\n';
+      }
+
+      // Complimentary activities
+      if (complimentaryActivities.length > 0) {
+        content += '🎁 COMPLIMENTARY ON-SITE ACTIVITIES\n';
+        content += '-'.repeat(60) + '\n';
+        complimentaryActivities.forEach((activity, index) => {
+          content += `\n${index + 1}. ${activity.name}\n`;
+          if (activity.cost && activity.cost !== 'TBD') content += `   💰 Price: ${activity.cost}\n`;
+          if (activity.duration) content += `   ⏱️  Duration: ${activity.duration}\n`;
+          if (activity.locationDetail || activity.location) content += `   📍 Location: ${activity.locationDetail || activity.location}\n`;
+          if (activity.description) content += `   📝 ${activity.description}\n`;
+          if (activity.link) content += `   🔗 More Info: ${activity.link}\n`;
+        });
+        content += '\n';
+      }
+
+      // Other activities
+      if (otherActivities.length > 0) {
+        content += 'OTHER AVAILABLE ACTIVITIES\n';
+        content += '-'.repeat(60) + '\n';
+        otherActivities.forEach((activity, index) => {
+          content += `\n${index + 1}. ${activity.name}\n`;
+          if (activity.cost && activity.cost !== 'TBD') content += `   💰 Price: ${activity.cost}\n`;
+          if (activity.duration) content += `   ⏱️  Duration: ${activity.duration}\n`;
+          if (activity.locationDetail || activity.location) content += `   📍 Location: ${activity.locationDetail || activity.location}\n`;
+          if (activity.description) content += `   📝 ${activity.description}\n`;
+          if (activity.link) content += `   🔗 More Info: ${activity.link}\n`;
+        });
+        content += '\n';
+      }
+
+      content += '=' .repeat(60) + '\n';
+      content += `Total Activities: ${activitySuggestionsData.length}\n`;
+      content += `Generated: ${new Date().toLocaleString()}\n`;
+
+      // Create blob and download
+      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Montana-Glamping-Activities-List.txt';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      console.log('✅ Downloaded activities list');
     }
 
     // Handle activity suggestion form submission
@@ -4081,8 +4205,6 @@ https://tamimoooo.github.io/agenda/reunion.html
   </script>
 </body>
 </html>
-
-
 
 
 
