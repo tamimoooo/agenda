@@ -1280,6 +1280,9 @@
         </a>
       </div>
     </div>
+    <p style="margin-top: 10px; font-size: 0.95rem; color: #666; font-style: italic;">
+      Note: Sherri has reserved 6 rooms for our convenience; however, these reservations are optional and not mandatory. If you decide to stay at a different hotel, please inform Sherri before September 6th.
+    </p>
   </div>
   
   <p style="margin-top: 15px; font-size: 1.1rem;">
@@ -2652,7 +2655,7 @@ Phone: ${contactData.phone || 'Not provided'}
       try {
         const result = await emailjs.send(
           'service_9sytocs',
-          'template_fainkx7',
+          'template_ckmly4q',
           {
             name: contactData.name,
             message: `Contact information has been updated:\n\n${contactInfo}\n\n---\nJSON Format:\n${contactJSON}`
@@ -2903,7 +2906,7 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
       try {
         const result = await emailjs.send(
           'service_9sytocs',
-          'template_fainkx7',
+          'template_ckmly4q',
           {
             name: formData.roommates[0]?.name || 'Tentmate Submission',
             message: `Tentmates & Tent Reservation:\n\n${roommateInfo}\n\n---\nJSON Format:\n${roommateJSON}`
@@ -3030,47 +3033,20 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
     // Initialize activity suggestions data
     let activitySuggestionsData = [];
 
-    // Load activity suggestions from JSON file or use localStorage
+    // Load activity suggestions from JSON file
     async function initializeActivitySuggestions() {
       try {
         const response = await fetch('activity_suggestions.json?t=' + Date.now()); // Cache-busting
         if (response.ok) {
           activitySuggestionsData = await response.json();
-          // Save to localStorage with timestamp
-          const dataWithTimestamp = {
-            data: activitySuggestionsData,
-            timestamp: Date.now(),
-            source: 'activity_suggestions.json'
-          };
-          localStorage.setItem('submittedActivities', JSON.stringify(dataWithTimestamp));
           console.log('✅ Loaded activity suggestions from activity_suggestions.json:', activitySuggestionsData.length, 'activities');
         } else {
           throw new Error('JSON file not found');
         }
       } catch (error) {
-        console.warn('⚠️ Could not load activity_suggestions.json, using localStorage backup:', error.message);
-        // Use localStorage as emergency backup
-        const stored = localStorage.getItem('submittedActivities');
-        if (stored) {
-          try {
-            const parsed = JSON.parse(stored);
-            // Check if it's the new format with timestamp
-            if (parsed.data && parsed.timestamp) {
-              activitySuggestionsData = parsed.data;
-              const age = Math.floor((Date.now() - parsed.timestamp) / (1000 * 60 * 60 * 24));
-              console.log(`📦 Using cached activities from ${parsed.source} (${age} days old)`);
-            } else {
-              // Old format without timestamp
-              activitySuggestionsData = parsed;
-              console.log('📦 Using cached activities (unknown age)');
-            }
-          } catch (e) {
-            activitySuggestionsData = [];
-          }
-        } else {
-          activitySuggestionsData = [];
-          console.log('📋 No activities available');
-        }
+        console.warn('⚠️ Could not load activity_suggestions.json:', error.message);
+        activitySuggestionsData = [];
+        console.log('📋 No activities available');
       }
       loadSubmittedActivities();
       loadActivitiesExcursions(); // Load activities into the main section
@@ -3319,7 +3295,7 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
       try {
         const result = await emailjs.send(
           'service_9sytocs',
-          'template_fainkx7',
+          'template_ckmly4q',
           {
             name: activityData.suggester,
             message: `Activity Suggestion:\n\n${activityInfo}\n\n---\nJSON Format:\n${activityJSON}`
@@ -3710,7 +3686,7 @@ SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
       try {
         const result = await emailjs.send(
           'service_9sytocs',
-          'template_fainkx7',
+          'template_ckmly4q',
           {
             name: tripDetails.name,
             message: `Flight & Trip Details:\n\n${flightInfo}\n\n---\nJSON Format:\n${flightJSON}`
@@ -4119,7 +4095,7 @@ https://tamimoooo.github.io/agenda/reunion.html
         // Note: EmailJS template should include cc_email parameter for BCC functionality
         const result = await emailjs.send(
           'service_9sytocs',
-          'template_fainkx7',
+          'template_ckmly4q',
           {
             name: name,
             from_email: email,
