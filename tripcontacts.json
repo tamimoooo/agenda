@@ -178,7 +178,8 @@
     },
     "tent": {
       "type": "Suite",
-      "notes": "not_submitted"
+      "confirmation": "109591",
+      "notes": "Sharing tent with Michelle and Rochelle"
     },
     "activities": [
       {
@@ -190,18 +191,48 @@
         "name": "Hiking & Nature Walks",
         "cost": "Free",
         "selectedByGroup": false
+      },
+      {
+        "name": "Evening S'mores",
+        "cost": "Free (included with stay)",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Morning Yoga",
+        "cost": "Free (included with stay)",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Live Acoustic Music",
+        "cost": "Free (included with stay)",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Camp Programming",
+        "cost": "Free (included with stay)",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Lawn & Board Games",
+        "cost": "Free (included with stay)",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Complimentary Coffee & Tea",
+        "cost": "Free (included with stay)",
+        "selectedByGroup": false
       }
     ],
     "transportation": {
       "needsAirportPickup": true,
       "needsAirportDropoff": true,
       "willingToRentCar": false,
-      "arrivalTime": "",
+      "arrivalTime": "2026-09-09T13:06",
       "departureTime": "2026-09-12T14:00"
     },
-    "specialRequests": "Park Tour. Hiking. Shellfish Allergy.",
-    "submittedDate": "2026-01-16T01:57:02.072Z",
-    "lastUpdated": "2026-01-16T01:57:02.072Z",
+    "specialRequests": "Park Tour. Hiking. Yoga. Shellfish Allergy.",
+    "submittedDate": "2026-02-04T19:19:36.954Z",
+    "lastUpdated": "2026-02-04T19:19:36.954Z",
     "confirmationStatus": "pending"
   }, {
     "userId": 6,
