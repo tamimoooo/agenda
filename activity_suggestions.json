@@ -143,6 +143,15 @@
     "locationDetail": "Yellowstone National Park"
   },
   {
+    "location": "yellowstone",
+    "name": "Wildlife Safari Tour",
+    "description": "View wildlife of the inhabited land",
+    "cost": "100.00",
+    "link": "",
+    "suggester": "Janita",
+    "submittedDate": "2026-02-05T15:29:23.477Z"
+  },
+  {
     "location": "on-site",
     "name": "Evening S'mores",
     "description": "Nightly communal fire pits with supplies provided. Complimentary activity included with your stay at Under Canvas North Yellowstone – Paradise Valley.",
