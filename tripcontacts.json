@@ -444,9 +444,51 @@
     },
     "tent": {
       "type": "Suite",
+      "confirmation": "",
       "notes": "109453"
     },
-    "activities": [],
+    "activities": [
+      {
+        "name": "Erik's Ranch Horseback Riding",
+        "cost": "Approximately $135 per person",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Paradise Scenic River Tours",
+        "cost": "Approximately $80 per person (based on typical group pricing; actual rates vary by group size and season)",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Chico Hot Springs Soak",
+        "cost": "Approximately $40–$50 per person for day-use soaking (varies by day and season)",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Lake Butte Sunset Tour",
+        "cost": "$54.50 per person",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Old West Cookout with Stagecoach Ride",
+        "cost": "$110 per adult (12+); $90 per child (8–11)",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Evening S'mores",
+        "cost": "Free (included with stay)",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Live Acoustic Music",
+        "cost": "Free (included with stay)",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Lawn & Board Games",
+        "cost": "Free (included with stay)",
+        "selectedByGroup": false
+      }
+    ],
     "transportation": {
       "needsAirportPickup": true,
       "needsAirportDropoff": true,
@@ -455,8 +497,8 @@
       "departureTime": "2026-09-14T14:00"
     },
     "specialRequests": "",
-    "submittedDate": "",
-    "lastUpdated": "",
+    "submittedDate": "2026-02-05T15:23:11.055Z",
+    "lastUpdated": "2026-02-05T15:23:11.055Z",
     "confirmationStatus": "pending"
   },
   {
