@@ -474,6 +474,11 @@
         "selectedByGroup": false
       },
       {
+      "name": "Wildlife Safari Tour",
+      "cost": "100.00",
+      "selectedByGroup": false
+    },
+      {
         "name": "Evening S'mores",
         "cost": "Free (included with stay)",
         "selectedByGroup": false
