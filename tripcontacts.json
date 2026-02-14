@@ -178,7 +178,7 @@
     },
     "tent": {
       "type": "Suite",
-      "confirmation": "not_yet_booked",
+      "confirmation": "109591",
       "notes": "Sharing tent with Michelle and Rochelle"
     },
     "activities": [
@@ -672,4 +672,5 @@
   }
  
 ]
+
 
