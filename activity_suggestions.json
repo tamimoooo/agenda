@@ -147,7 +147,7 @@
     "name": "Wildlife Safari Tour",
     "description": "View wildlife of the inhabited land",
     "cost": "100.00",
-    "link": "",
+    "link": "https://yellowstonesafari.com/",
     "suggester": "Janita",
     "submittedDate": "2026-02-05T15:29:23.477Z"
   },
@@ -218,3 +218,4 @@
     "locationDetail": "Under Canvas North Yellowstone – Paradise Valley"
   }
 ]
+
