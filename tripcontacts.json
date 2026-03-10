@@ -234,80 +234,6 @@
     "submittedDate": "2026-02-04T19:19:36.954Z",
     "lastUpdated": "2026-02-04T19:19:36.954Z",
     "confirmationStatus": "pending"
-  }, {
-    "userId": 6,
-    "name": "Vernet",
-    "outbound": {
-      "departureCity": "Atlanta",
-      "arrivalCity": "Bozeman, MT",
-      "airline": "Delta",
-      "flightNumber": "DL406",
-      "departure": "",
-      "arrival": "2026-09-09T13:06",
-      "confirmation": ""
-    },
-    "return": {
-      "departureCity": "Bozeman, MT",
-      "arrivalCity": "Atlanta",
-      "airline": "Delta",
-      "flightNumber": "DL406",
-      "departure": "2026-09-13T14:00",
-      "arrival": "",
-      "confirmation": ""
-    },
-    "tent": {
-      "type": "",
-      "confirmation": "",
-      "notes": ""
-    },
-    "activities": [
-      {
-        "name": "Group Whitewater Rafting – 8 Mile",
-        "cost": "$75 per adult (13+); $68 per youth",
-        "selectedByGroup": false
-      },
-      {
-        "name": "Group Scenic Rafting",
-        "cost": "$75 per adult (13+); $68 per youth",
-        "selectedByGroup": false
-      },
-      {
-        "name": "Erik's Ranch Horseback Riding",
-        "cost": "Approximately $135 per person",
-        "selectedByGroup": false
-      },
-      {
-        "name": "Yellowstone Park Tours",
-        "cost": "TBD",
-        "selectedByGroup": false
-      },
-      {
-        "name": "Paradise Scenic River Tours",
-        "cost": "Approximately $80 per person (based on typical group pricing; actual rates vary by group size and season)",
-        "selectedByGroup": false
-      },
-      {
-        "name": "Chico Hot Springs Soak",
-        "cost": "Approximately $40–$50 per person for day-use soaking (varies by day and season)",
-        "selectedByGroup": false
-      },
-      {
-        "name": "Morning Yoga",
-        "cost": "Free (included with stay)",
-        "selectedByGroup": false
-      }
-    ],
-    "transportation": {
-      "needsAirportPickup": true,
-      "needsAirportDropoff": true,
-      "willingToRentCar": false,
-      "arrivalTime": "2026-09-09T13:06",
-      "departureTime": "2026-09-13T14:00"
-    },
-    "specialRequests": "I'm willing to drive rental CAR. Depends on van size how comfortable I would feel.",
-    "submittedDate": "2026-02-03T03:15:12.869Z",
-    "lastUpdated": "2026-02-03T03:15:12.869Z",
-    "confirmationStatus": "pending"
   },
   {
     "userId": 8,
@@ -672,5 +598,6 @@
   }
  
 ]
+
 
 
