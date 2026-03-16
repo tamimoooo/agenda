@@ -1,43 +1,5 @@
 [
   {
-    "userId": 1,
-    "name": "Errin",
-    "outbound": {
-      "departureCity": "",
-      "arrivalCity": "Bozeman, MT",
-      "airline": "",
-      "flightNumber": "",
-      "departure": "",
-      "arrival": "",
-      "confirmation": ""
-    },
-    "return": {
-      "departureCity": "Bozeman, MT",
-      "arrivalCity": "",
-      "airline": "",
-      "flightNumber": "",
-      "departure": "",
-      "arrival": "",
-      "confirmation": ""
-    },
-    "tent": {
-      "type": "Deluxe",
-      "notes": "109436"
-    },
-    "activities": [],
-    "transportation": {
-      "needsAirportPickup": false,
-      "needsAirportDropoff": false,
-      "willingToRentCar": "",
-      "arrivalTime": "",
-      "departureTime": ""
-    },
-    "specialRequests": "",
-    "submittedDate": "",
-    "lastUpdated": "",
-    "confirmationStatus": "not_submitted"
-  },
-  {
     "userId": 2,
     "name": "Melanie",
     "outbound": {
@@ -108,9 +70,9 @@
       "departureCity": "Miami",
       "arrivalCity": "Bozeman, MT",
       "airline": "American",
-      "flightNumber": "",
+      "flightNumber": "AA1226",
       "departure": "",
-      "arrival": "2026-09-09T13:00",
+      "arrival": "2026-09-09T11:00",
       "confirmation": ""
     },
     "return": {
@@ -118,18 +80,24 @@
       "arrivalCity": "Barbados",
       "airline": "American",
       "flightNumber": "",
-      "departure": "2026-09-14T08:07",
+      "departure": "2026-09-13T13:07",
       "arrival": "",
       "confirmation": ""
     },
     "tent": {
       "type": "Suite",
+      "confirmation": "",
       "notes": "7224692"
     },
     "activities": [
       {
         "name": "Group Scenic Rafting",
         "cost": "$75 per adult (13+); $68 per youth",
+        "selectedByGroup": false
+      },
+      {
+        "name": "Erik’s Ranch Horseback Riding",
+        "cost": "Approximately $135 per person",
         "selectedByGroup": false
       },
       {
@@ -146,13 +114,13 @@
     "transportation": {
       "needsAirportPickup": true,
       "needsAirportDropoff": true,
-      "willingToRentCar": false,
-      "arrivalTime": "2026-09-09T13:00",
-      "departureTime": "2026-09-14T08:07"
+      "willingToRentCar": true,
+      "arrivalTime": "2026-09-09T11:00",
+      "departureTime": "2026-09-13T13:07"
     },
     "specialRequests": "",
-    "submittedDate": "2026-02-01T19:09:11.060Z",
-    "lastUpdated": "2026-02-01T19:09:11.060Z",
+    "submittedDate": "2026-03-15T22:46:58.761Z",
+    "lastUpdated": "2026-03-15T22:46:58.761Z",
     "confirmationStatus": "pending"
   },
   {
@@ -271,7 +239,7 @@
         "cost": "$110 per adult (12+); $90 per child (8–11)",
         "selectedByGroup": false
       },
-        {
+      {
         "name": "Group Whitewater Rafting – 8 Mile",
         "cost": "$75 per adult (13+); $68 per youth",
         "selectedByGroup": false
@@ -400,10 +368,10 @@
         "selectedByGroup": false
       },
       {
-      "name": "Wildlife Safari Tour",
-      "cost": "100.00",
-      "selectedByGroup": false
-    },
+        "name": "Wildlife Safari Tour",
+        "cost": "100.00",
+        "selectedByGroup": false
+      },
       {
         "name": "Evening S'mores",
         "cost": "Free (included with stay)",
@@ -596,8 +564,4 @@
     "lastUpdated": "",
     "confirmationStatus": "not_submitted"
   }
- 
 ]
-
-
-
