@@ -230,6 +230,11 @@
     },
     "activities": [
       {
+        "name": "E-BIKE & Horseback Riding",
+        "cost": "$203",
+          "selectedByGroup": true
+      },
+      {
         "name": "NPS App Self-Guided Yellowstone Tour",
         "cost": "Free",
         "selectedByGroup": true
@@ -251,8 +256,8 @@
       },
       {
         "name": "Erik's Ranch Horseback Riding",
-        "cost": "Approximately $135 per person",
-        "selectedByGroup": false
+        "cost": "Approximately $100 per person",
+        "selectedByGroup": true
       },
       {
         "name": "Yellowstone Park Tours",
