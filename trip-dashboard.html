@@ -1073,6 +1073,14 @@
         const timestamp = new Date().getTime();
         const response = await fetch(`tripcontacts.json?t=${timestamp}`);
         const tripContacts = await response.json();
+        
+        // Fetch group-selected activities
+        const activityResponse = await fetch(`activity_suggestions.json?t=${timestamp}`);
+        const allActivities = await activityResponse.json();
+        const groupSelectedNames = allActivities
+          .filter(a => a.selectedByGroup)
+          .map(a => a.name);
+        
         const container = document.getElementById('individualActivitiesList');
         
         const withActivities = tripContacts.filter(t => t.confirmationStatus !== 'not_submitted' && t.activities && t.activities.length > 0);
@@ -1096,7 +1104,9 @@
           trip.activities.forEach(activity => {
             const activityName = typeof activity === 'string' ? activity : activity.name;
             const activityCost = typeof activity === 'string' ? '' : (activity.cost ? ` - ${activity.cost}` : '');
-            html += `<li>${activityName}${activityCost}</li>`;
+            const isGroupSelected = groupSelectedNames.includes(activityName);
+            const star = isGroupSelected ? '⭐ ' : '';
+            html += `<li style="${isGroupSelected ? 'font-weight: 600; color: #d97706;' : ''}">${star}${activityName}${activityCost}</li>`;
           });
           
           html += `
