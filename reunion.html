@@ -3128,6 +3128,7 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
 
       // Get activity icon based on name/type
       function getActivityIcon(name) {
+        if (!name) return '🎯'; // Default icon if name is undefined
         const nameLower = name.toLowerCase();
         if (nameLower.includes('raft') || nameLower.includes('float')) return '🌊';
         if (nameLower.includes('horse')) return '🐴';
@@ -3137,6 +3138,7 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
         if (nameLower.includes('hot spring') || nameLower.includes('soak')) return '♨️';
         if (nameLower.includes('cookout') || nameLower.includes('stagecoach')) return '🤠';
         if (nameLower.includes('sunset') || nameLower.includes('butte')) return '🌅';
+        if (nameLower.includes('bike') || nameLower.includes('e-bike')) return '🚴';
         return '🎯';
       }
 
