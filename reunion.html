@@ -3142,10 +3142,10 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
         return '🎯';
       }
 
-      // Separate activities by type
-      const groupSelected = activitySuggestionsData.filter(a => a.selectedByGroup);
-      const complimentaryActivities = activitySuggestionsData.filter(a => a.location === 'on-site' && !a.selectedByGroup);
-      const otherActivities = activitySuggestionsData.filter(a => !a.selectedByGroup && a.location !== 'on-site');
+      // Separate activities by type - filter out any without a name
+      const groupSelected = activitySuggestionsData.filter(a => a.name && a.selectedByGroup);
+      const complimentaryActivities = activitySuggestionsData.filter(a => a.name && a.location === 'on-site' && !a.selectedByGroup);
+      const otherActivities = activitySuggestionsData.filter(a => a.name && !a.selectedByGroup && a.location !== 'on-site');
 
       let html = '';
 
@@ -3161,8 +3161,8 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
           const link = activity.link || '';
           
           html += `
-            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white; margin-bottom: 10px;">
-              <h5 style="color: var(--primary-color); margin-bottom: 10px;">${icon} ${activity.name}</h5>
+            <div style="border: 2px solid #FFD700; border-radius: 10px; padding: 15px; background: linear-gradient(to right, #FFFEF0, #FFFFFF); margin-bottom: 10px; box-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);">
+              <h5 style="color: var(--primary-color); margin-bottom: 10px;">⭐ ${icon} ${activity.name}</h5>
               <div style="display: grid; gap: 8px;">
                 ${cost !== 'TBD' && cost !== '' ? `<div><strong>💰 Price:</strong> ${cost}</div>` : ''}
                 ${duration ? `<div><strong>⏱️ Duration:</strong> ${duration}</div>` : ''}
