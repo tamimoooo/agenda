@@ -1226,10 +1226,15 @@
         // Only count flight submissions that are not 'not_submitted'
         const submittedFlights = tripContacts.filter(trip => trip.confirmationStatus !== 'not_submitted');
 
-        document.getElementById('totalParticipants').textContent = whosgoing.length;
-        document.getElementById('flightsSubmitted').textContent = submittedFlights.length;
-        document.getElementById('roommatesSubmitted').textContent = roommates.length;
-        document.getElementById('activitiesCount').textContent = activities.length;
+        const totalParticipantsEl = document.getElementById('totalParticipants');
+        const flightsSubmittedEl = document.getElementById('flightsSubmitted');
+        const roommatesSubmittedEl = document.getElementById('roommatesSubmitted');
+        const activitiesCountEl = document.getElementById('activitiesCount');
+        
+        if (totalParticipantsEl) totalParticipantsEl.textContent = whosgoing.length;
+        if (flightsSubmittedEl) flightsSubmittedEl.textContent = submittedFlights.length;
+        if (roommatesSubmittedEl) roommatesSubmittedEl.textContent = roommates.length;
+        if (activitiesCountEl) activitiesCountEl.textContent = activities.length;
       } catch (error) {
         console.error('Error updating statistics:', error);
       }
