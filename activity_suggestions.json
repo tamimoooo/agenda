@@ -3,19 +3,7 @@
     "_paymentInfo": {
       "priorityBookingDeadline": "2026-04-10",
       "activityOptions": [
-        {
-          "name": "E-BIKE-Thurs & Horseback Riding-moved to Saturday",
-          "payment1": {
-            "amount": "$153",
-            "breakdown": "$103 Bike + $50 Horse Deposit",
-            "dueDate": "2026-04-10"
-          },
-          "payment2": {
-            "amount": "$50",
-            "dueDate": "2026-05-11"
-          },
-          "totalCost": "$203"
-        },
+        
         {
           "name": "E-BIKE Only-Thurs",
           "payment1": {
@@ -29,18 +17,7 @@
           },
           "totalCost": "$103"
         },
-        {
-          "name": "Horseback Riding Only -Moved to Saturday",
-          "payment1": {
-            "amount": "$50",
-            "dueDate": "2026-04-10"
-          },
-          "payment2": {
-            "amount": "$50",
-            "dueDate": "2026-05-11"
-          },
-          "totalCost": "$100"
-        }
+        
       ],
       "paymentDeadlines": {
         "firstPayment": "2026-04-10",
@@ -71,7 +48,7 @@
     "link": "https://eriksranch.org",
     "suggester": "Trip Organizers",
     "submittedDate": "2025-12-01T10:00:00.000Z",
-    "selectedByGroup": true,
+    "selectedByGroup": false,
     "chosenByMembers": []
   },
   {
