@@ -232,7 +232,7 @@
       {
         "name": "E-BIKE & Horseback Riding",
         "cost": "$203",
-          "selectedByGroup": true
+        "selectedByGroup": true
       },
       {
         "name": "NPS App Self-Guided Yellowstone Tour",
@@ -281,44 +281,6 @@
     "submittedDate": "2025-12-29T16:30:00.000Z",
     "lastUpdated": "2025-12-29T16:30:00.000Z",
     "confirmationStatus": "pending"
-  },
-  {
-    "userId": 9,
-    "name": "Tephia Lindsay",
-    "outbound": {
-      "departureCity": "",
-      "arrivalCity": "Bozeman, MT",
-      "airline": "",
-      "flightNumber": "",
-      "departure": "",
-      "arrival": "",
-      "confirmation": ""
-    },
-    "return": {
-      "departureCity": "Bozeman, MT",
-      "arrivalCity": "",
-      "airline": "",
-      "flightNumber": "",
-      "departure": "",
-      "arrival": "",
-      "confirmation": ""
-    },
-    "tent": {
-      "type": "Deluxe",
-      "notes": "109436"
-    },
-    "activities": [],
-    "transportation": {
-      "needsAirportPickup": false,
-      "needsAirportDropoff": false,
-      "willingToRentCar": "",
-      "arrivalTime": "",
-      "departureTime": ""
-    },
-    "specialRequests": "",
-    "submittedDate": "",
-    "lastUpdated": "",
-    "confirmationStatus": "not_submitted"
   },
   {
     "userId": 10,
