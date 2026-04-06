@@ -3,7 +3,6 @@
     "_paymentInfo": {
       "priorityBookingDeadline": "2026-04-10",
       "activityOptions": [
-        
         {
           "name": "E-BIKE Only-Thurs",
           "payment1": {
@@ -38,19 +37,6 @@
     }
   },
   {
-    "name": "Horseback Riding at Erik's Ranch",
-    "location": "Paradise Valley",
-    "locationDetail": "Erik's Ranch & Retreats, south of Livingston, Montana, in Paradise Valley",
-    "description": "Two-hour guided horseback trail ride through Montana landscapes with views of open ranch land and the Absaroka Mountains. Beginner-friendly, relaxed pace, and led by experienced guides.",
-    "duration": "1 hours",
-    "cost": "$100",
-    "link": "https://eriksranch.org",
-    "suggester": "Trip Organizers",
-    "submittedDate": "2025-12-01T10:00:00.000Z",
-    "selectedByGroup": false,
-    "chosenByMembers": []
-  },
-  {
     "name": "E-Bike Adventure at Sage Lodge",
     "location": "Paradise Valley",
     "locationDetail": "Sage Lodge, Paradise Valley, Montana",
@@ -63,31 +49,17 @@
     "selectedByGroup": true,
     "chosenByMembers": []
   },
- 
   {
     "location": "yellowstone",
-    "name": "The Western Geothermal",
+    "name": "West Yellowstone - The Western Geothermal Loop",
     "description": "Prioritizes the park's hydrothermal activity—geysers and colorful springs—with reduced driving time compared to the full loop. Perfect for a more relaxed pace.",
-    "cost": "Free ($35 park entrance fee required)",
+    "cost": "Free ($35 park entrance fee per car required)",
     "link": "",
     "suggester": "Trip Organizers",
     "submittedDate": "2025-12-01T10:00:00.000Z",
     "duration": "All day - 6 hours driving time",
-    "locationDetail": "Yellowstone National Park - Western Old Faithful Area",
+    "locationDetail": "Yellowstone National Park - Western Old Faithful Area - ",
     "selectedByGroup": true,
-    "chosenByMembers": []
-  },
-  {
-    "location": "yellowstone",
-    "name": "The Northern Canyon Loop (The Landscape)",
-    "description": "Most time-efficient option focusing on the dramatic geology of the Grand Canyon of the Yellowstone. Out-and-back route through the North Entrance, keeping you closer to home.",
-    "cost": "Free (park entrance fee required)",
-    "link": "",
-    "suggester": "Trip Organizers",
-    "submittedDate": "2025-12-01T10:00:00.000Z",
-    "duration": "4 hours",
-    "locationDetail": "Yellowstone National Park - Northern Canyon - Grand Canyon of Yellowstone",
-    "selectedByGroup": false,
     "chosenByMembers": []
   },
   {
