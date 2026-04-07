@@ -618,9 +618,23 @@
         box-sizing: border-box;
       }
       
+      /* Ensure form inputs fit properly on mobile */
+      #tripDetailsForm input,
+      #tripDetailsForm select,
+      #tripDetailsForm textarea {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      
       /* Ensure form containers don't overflow */
       .subsection-content {
         overflow-x: hidden;
+      }
+      
+      /* Reduce padding on form sections for mobile */
+      #tripDetailsForm > div {
+        padding: 15px !important;
       }
       
       /* Make sure grid layouts stack properly */
