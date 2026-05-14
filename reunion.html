@@ -580,6 +580,8 @@
 
       .modal-content {
         padding: 25px;
+        max-height: 85vh;
+        overflow-y: auto;
       }
 
       .contacts-grid {
@@ -595,12 +597,31 @@
         font-size: 0.9rem;
       }
       
+      /* Sticky navigation improvements for mobile */
+      #quickLinks {
+        padding: 6px 0 !important;
+      }
+      
+      #quickLinks .container {
+        padding: 0 8px !important;
+      }
+      
+      #quickLinks a,
+      #quickLinks button {
+        padding: 6px 10px !important;
+        font-size: 0.75rem !important;
+        white-space: nowrap;
+        min-width: auto !important;
+      }
+      
       /* Make buttons smaller on mobile */
       .btn,
       button[type="submit"],
       button[type="button"] {
         padding: 10px 16px !important;
         font-size: 0.95rem !important;
+        min-height: 44px;
+        min-width: 44px;
       }
       
       /* Specific adjustments for large buttons */
@@ -608,6 +629,7 @@
       a[style*="padding: 15px 30px"] {
         padding: 10px 20px !important;
         font-size: 1rem !important;
+        min-height: 44px;
       }
       
       /* Fix text overflow in form sections */
@@ -625,6 +647,7 @@
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
+        font-size: 16px !important;
       }
       
       /* Ensure form containers don't overflow */
@@ -640,6 +663,39 @@
       /* Make sure grid layouts stack properly */
       div[style*="grid-template-columns"] {
         grid-template-columns: 1fr !important;
+      }
+      
+      /* Improve touch targets for collapsible sections */
+      .section-header,
+      .subsection-header {
+        min-height: 44px;
+        padding: 12px 15px !important;
+      }
+      
+      /* Photo gallery cards */
+      .photo-links {
+        grid-template-columns: 1fr !important;
+      }
+      
+      .photo-link-card {
+        padding: 20px !important;
+      }
+      
+      /* Contact cards */
+      .contact-card {
+        padding: 15px !important;
+      }
+      
+      /* Action buttons */
+      .action-buttons {
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .edit-btn,
+      .delete-btn {
+        width: 100%;
+        min-height: 44px;
       }
     }
     
@@ -675,10 +731,10 @@
         font-size: 0.85rem !important;
       }
       
-      /* Form elements */
+      /* Form elements - prevent zoom on iOS */
       input, textarea, select {
-        font-size: 0.85rem !important;
-        padding: 8px !important;
+        font-size: 16px !important;
+        padding: 10px !important;
       }
       
       label {
@@ -688,7 +744,8 @@
       /* Buttons */
       .btn, button {
         font-size: 0.85rem !important;
-        padding: 8px 14px !important;
+        padding: 10px 16px !important;
+        min-height: 44px;
       }
       
       /* Info boxes and notes */
@@ -697,9 +754,15 @@
         padding: 10px !important;
       }
       
+      .warning-box {
+        font-size: 0.8rem !important;
+        padding: 10px !important;
+      }
+      
       /* Subsection headers */
       .subsection-header {
         padding: 10px !important;
+        min-height: 44px;
       }
       
       /* Reduce spacing */
@@ -717,10 +780,57 @@
         font-size: 0.9rem !important;
       }
       
+      /* Countdown timer */
+      .countdown-container {
+        padding: 15px !important;
+      }
+      
+      .countdown-title {
+        font-size: 0.85rem !important;
+      }
+      
+      .countdown-number {
+        font-size: 1.5rem !important;
+      }
+      
+      .countdown-label {
+        font-size: 0.7rem !important;
+      }
+      
       /* Quick links at top */
-      header a, header button {
-        font-size: 0.75rem !important;
-        padding: 5px 10px !important;
+      #quickLinks {
+        padding: 4px 0 !important;
+      }
+      
+      #quickLinks a,
+      #quickLinks button {
+        font-size: 0.7rem !important;
+        padding: 5px 8px !important;
+        border-radius: 12px !important;
+      }
+      
+      /* Modal improvements */
+      .modal-content {
+        padding: 20px !important;
+        margin: 10px !important;
+      }
+      
+      .modal-title {
+        font-size: 1.3rem !important;
+      }
+      
+      /* Contact cards */
+      .contact-name {
+        font-size: 1.1rem !important;
+      }
+      
+      .contact-info {
+        font-size: 0.8rem !important;
+      }
+      
+      /* Trip title */
+      .trip-title {
+        font-size: 1.2rem !important;
       }
     }
 
@@ -1932,10 +2042,10 @@
             </div>
 
             <!-- Form -->
-            <form id="tripDetailsForm" style="display: grid; gap: 20px;">
+            <form id="tripDetailsForm" style="display: grid; gap: 20px; width: 100%; box-sizing: border-box;">
               
               <!-- User Identification Section -->
-              <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 20px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);">
+              <div style="border: 2px solid var(--primary-color); border-radius: 10px; padding: 20px; background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%); box-sizing: border-box; width: 100%;">
                 <h4 style="color: var(--primary-dark); margin-bottom: 15px;">👤 Your Information</h4>
                 <div style="display: grid; gap: 10px;">
                   <label style="font-weight: bold; color: var(--primary-dark);">
@@ -1950,7 +2060,7 @@
               </div>
 
               <!-- Flight Information Section -->
-              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9; box-sizing: border-box; width: 100%;">
                 <h4 style="color: var(--primary-dark); margin-bottom: 15px;">✈️ Flight Information</h4>
                 
                 <div class="info-box" style="margin-bottom: 15px; background: #e7f3ff; border-left: 4px solid #2196F3;">
@@ -2021,7 +2131,7 @@
               </div>
 
               <!-- Tent Selection -->
-              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9; box-sizing: border-box; width: 100%;">
                 <h4 style="color: var(--primary-dark); margin-bottom: 15px;">🏕️ Tent Selection</h4>
                 <select id="selectedTent"
                         style="width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem; margin-bottom: 10px;">
@@ -2043,7 +2153,7 @@
               </div>
 
               <!-- Transportation Needs Section -->
-              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9; box-sizing: border-box; width: 100%;">
                 <h4 style="color: var(--primary-dark); margin-bottom: 15px;">🚐 Transportation</h4>
                 <div style="display: grid; gap: 15px;">
                   <div>
@@ -2068,7 +2178,7 @@
               </div>
 
               <!-- Activities Selection Section -->
-              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9; box-sizing: border-box; width: 100%;">
                 <h4 style="color: var(--primary-dark); margin-bottom: 15px;">🎯 Activities I'm Interested In</h4>
                 <p style="margin-bottom: 15px; color: var(--text-secondary); font-size: 0.9rem;">
                   Select activities you'd like to participate in during the trip. You can select multiple activities.
@@ -2088,7 +2198,7 @@
               </div>
 
               <!-- Special Requests Section -->
-              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9;">
+              <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 20px; background: #f9f9f9; box-sizing: border-box; width: 100%;">
                 <h4 style="color: var(--primary-dark); margin-bottom: 15px;">💬 Special Requests</h4>
                 <textarea id="specialRequests" rows="4"
                           style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-family: inherit; font-size: 1rem;"
