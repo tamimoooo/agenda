@@ -3,6 +3,7 @@
     "_paymentInfo": {
       "priorityBookingDeadline": "2026-04-10",
       "activityOptions": [
+        
         {
           "name": "E-BIKE Only-Thurs",
           "payment1": {
@@ -15,6 +16,19 @@
             "dueDate": "2026-05-11"
           },
           "totalCost": "$103"
+        },
+        {
+          "name": "Horseback Riding",
+          "payment1": {
+            "amount": "$104",
+            "breakdown": "Full Horseback Riding payment",
+            "dueDate": "2026-06-12"
+          },
+          "payment2": {
+            "amount": "$0",
+            "dueDate": "2026-06-12"
+          },
+          "totalCost": "$104"
         }
       ],
       "paymentDeadlines": {
@@ -37,6 +51,19 @@
     }
   },
   {
+    "name": "Horseback Riding at Specimen Creek Outfitters",
+    "location": "Gardiner",
+    "locationDetail": "Specimen Creek Outfitters, Gardiner, MT",
+    "description": "Experience the breathtaking beauty of Montana on horseback. The guided tour takes you through pristine landscapes with stunning views.",
+    "duration": "1 hour",
+    "cost": "$104",
+    "link": "",
+    "suggester": "Trip Organizers",
+    "submittedDate": "2025-12-01T10:00:00.000Z",
+    "selectedByGroup": true,
+    "chosenByMembers": []
+  },
+  {
     "name": "E-Bike Adventure at Sage Lodge",
     "location": "Paradise Valley",
     "locationDetail": "Sage Lodge, Paradise Valley, Montana",
@@ -49,17 +76,31 @@
     "selectedByGroup": true,
     "chosenByMembers": []
   },
+ 
   {
     "location": "yellowstone",
-    "name": "West Yellowstone - The Western Geothermal Loop",
+    "name": "The Western Geothermal",
     "description": "Prioritizes the park's hydrothermal activity—geysers and colorful springs—with reduced driving time compared to the full loop. Perfect for a more relaxed pace.",
-    "cost": "Free ($35 park entrance fee per car required)",
+    "cost": "Free ($35 park entrance fee required)",
     "link": "",
     "suggester": "Trip Organizers",
     "submittedDate": "2025-12-01T10:00:00.000Z",
     "duration": "All day - 6 hours driving time",
-    "locationDetail": "Yellowstone National Park - Western Old Faithful Area - ",
+    "locationDetail": "Yellowstone National Park - Western Old Faithful Area",
     "selectedByGroup": true,
+    "chosenByMembers": []
+  },
+  {
+    "location": "yellowstone",
+    "name": "The Northern Canyon Loop (The Landscape)",
+    "description": "Most time-efficient option focusing on the dramatic geology of the Grand Canyon of the Yellowstone. Out-and-back route through the North Entrance, keeping you closer to home.",
+    "cost": "Free (park entrance fee required)",
+    "link": "",
+    "suggester": "Trip Organizers",
+    "submittedDate": "2025-12-01T10:00:00.000Z",
+    "duration": "4 hours",
+    "locationDetail": "Yellowstone National Park - Northern Canyon - Grand Canyon of Yellowstone",
+    "selectedByGroup": false,
     "chosenByMembers": []
   },
   {
