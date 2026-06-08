@@ -561,7 +561,7 @@
     /* Responsive Design */
     @media (max-width: 768px) {
       .container {
-        padding: 10px;
+        padding: 6px;
       }
 
       header {
@@ -570,8 +570,9 @@
       }
 
       .section {
-        padding: 20px;
+        padding: 12px;
         border-radius: 15px;
+        margin-bottom: 16px;
       }
 
       .section-title {
@@ -771,8 +772,9 @@
       }
       
       .trip-card {
-        padding: 12px !important;
+        padding: 10px !important;
         margin-bottom: 12px !important;
+        border-width: 1px !important;
       }
       
       /* Header subtitle */
@@ -1195,7 +1197,43 @@
       }
 
       .section {
-        padding: 12px !important;
+        padding: 8px !important;
+      }
+
+      .trip-card {
+        padding: 8px !important;
+      }
+
+      .info-box,
+      .warning-box,
+      [style*="border: 2px solid var(--border-color)"],
+      [style*="border: 2px solid var(--primary-color)"],
+      [style*="border: 3px solid var(--primary-color)"],
+      [style*="border: 2px solid #ffc107"],
+      [style*="border: 2px solid #FF9800"],
+      [style*="border: 2px solid #8B4513"],
+      [style*="border: 2px solid #00D632"] {
+        padding: 10px !important;
+        border-width: 1px !important;
+      }
+
+      p,
+      li,
+      a,
+      span,
+      strong,
+      small,
+      code {
+        word-break: break-word;
+        overflow-wrap: anywhere;
+      }
+
+      .warning-box code {
+        font-size: 0.72rem !important;
+      }
+
+      summary {
+        text-align: left !important;
       }
 
       .section-header,
@@ -1453,7 +1491,7 @@
       <div class="section-header" id="trip-section-header" onclick="toggleSection('trips')">
         <h2 class="section-title">
           <span class="toggle-icon" id="trips-icon">▶</span>
-          ⛺ Dots Go Glamping - Yellowstone 2026 (Last Update 05/22/2026 - added horseback riding activity and updated meeting date)
+          ⛺ Dots Go Glamping - Yellowstone 2026 (Last Update 06/08/2026 - )
         </h2>
       </div>
       <div class="section-content" id="trips-content">
