@@ -1054,10 +1054,28 @@
     
     /* Mobile-specific styles for better spacing */
     @media (max-width: 768px) {
+      .section,
+      .section-content,
+      .subsection-content,
+      .trip-card,
+      .info-box,
+      .warning-box,
+      details,
+      summary {
+        max-width: 100%;
+      }
+
+      .subsection-content,
+      .subsection-content.expanded,
+      .section-content,
+      .section-content.expanded {
+        overflow-x: hidden;
+      }
+
       .subsection-content.expanded {
         margin-bottom: 40px;
-        max-height: 70vh;
-        overflow-y: auto;
+        max-height: none;
+        overflow-y: visible;
         -webkit-overflow-scrolling: touch;
       }
       
@@ -1080,15 +1098,33 @@
         overflow-wrap: break-word;
         max-width: 100%;
       }
-      
-      /* Make decisions section scrollable for easier viewing */
-      #decisions-content.expanded {
-        max-height: 70vh;
+
+      .section-header,
+      .subsection-header {
+        align-items: flex-start;
       }
-      
-      /* Make activities section scrollable - now has 13 activities */
-      #activities-content.expanded {
-        max-height: 70vh;
+
+      .section-title,
+      .subsection-title {
+        min-width: 0;
+        flex: 1;
+        flex-wrap: wrap;
+      }
+
+      .section-title span,
+      .subsection-title span {
+        overflow-wrap: anywhere;
+      }
+
+      details > div,
+      summary + div {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
       }
     }
     
@@ -1149,6 +1185,49 @@
     
     /* Mobile optimizations for flight form */
     @media (max-width: 480px) {
+      .container {
+        padding: 8px;
+      }
+
+      header {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .section {
+        padding: 12px !important;
+      }
+
+      .section-header,
+      .subsection-header {
+        padding: 10px 12px !important;
+      }
+
+      .section-title,
+      .subsection-title {
+        gap: 6px;
+      }
+
+      .section-title > span:first-child,
+      .subsection-title > span:first-child {
+        flex-shrink: 0;
+      }
+
+      [style*="display: flex"][style*="justify-content: space-between"] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+      }
+
+      [style*="min-width: 200px"] {
+        min-width: 0 !important;
+        width: 100% !important;
+      }
+
+      a[style*="padding: 15px 30px"],
+      button[style*="padding: 15px 30px"] {
+        width: 100% !important;
+      }
+
       #mytrip-content h4 {
         font-size: 1.1rem !important;
       }
