@@ -561,18 +561,18 @@
     /* Responsive Design */
     @media (max-width: 768px) {
       .container {
-        padding: 6px;
+        padding: 12px;
       }
 
       header {
-        padding: 40px 20px 30px;
+        padding: 40px 16px 30px;
         border-radius: 0 0 20px 20px;
       }
 
       .section {
-        padding: 12px;
+        padding: 16px;
         border-radius: 15px;
-        margin-bottom: 16px;
+        margin-bottom: 20px;
       }
 
       .section-title {
@@ -580,12 +580,13 @@
       }
 
       .modal-content {
-        padding: 25px;
+        padding: 24px;
         max-height: 85vh;
         overflow-y: auto;
       }
 
-      .contacts-grid {
+      .contacts-grid,
+      .photo-links {
         grid-template-columns: 1fr;
       }
 
@@ -595,244 +596,196 @@
 
       .nav-tab {
         padding: 10px 16px;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
       }
-      
-      /* Sticky navigation improvements for mobile */
+
       #quickLinks {
-        padding: 6px 0 !important;
+        padding: 8px 0;
       }
-      
+
       #quickLinks .container {
-        padding: 0 8px !important;
+        padding: 0 12px;
       }
-      
+
       #quickLinks a,
       #quickLinks button {
-        padding: 6px 10px !important;
-        font-size: 0.75rem !important;
+        padding: 8px 12px;
+        font-size: 0.85rem;
         white-space: nowrap;
-        min-width: auto !important;
       }
-      
-      /* Make buttons smaller on mobile */
+
       .btn,
       button[type="submit"],
       button[type="button"] {
-        padding: 10px 16px !important;
-        font-size: 0.95rem !important;
-        min-height: 44px;
-        min-width: 44px;
-      }
-      
-      /* Specific adjustments for large buttons */
-      button[style*="padding: 15px"],
-      a[style*="padding: 15px 30px"] {
-        padding: 10px 20px !important;
-        font-size: 1rem !important;
+        padding: 12px 18px;
+        font-size: 1rem;
         min-height: 44px;
       }
-      
-      /* Fix text overflow in form sections */
-      input, textarea, select, .info-box, p {
-        word-wrap: break-word;
+
+      input,
+      textarea,
+      select,
+      .info-box,
+      p {
         overflow-wrap: break-word;
         max-width: 100%;
         box-sizing: border-box;
       }
-      
-      /* Ensure form inputs fit properly on mobile */
+
       #tripDetailsForm input,
       #tripDetailsForm select,
       #tripDetailsForm textarea {
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-        font-size: 16px !important;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        font-size: 16px;
       }
-      
-      /* Ensure form containers don't overflow */
-      .subsection-content {
-        overflow-x: hidden;
-      }
-      
-      /* Reduce padding on form sections for mobile */
+
       #tripDetailsForm > div {
-        padding: 15px !important;
+        padding: 16px;
       }
-      
-      /* Make sure grid layouts stack properly */
-      div[style*="grid-template-columns"] {
-        grid-template-columns: 1fr !important;
-      }
-      
-      /* Improve touch targets for collapsible sections */
+
       .section-header,
       .subsection-header {
         min-height: 44px;
-        padding: 12px 15px !important;
+        padding: 12px 14px;
+        align-items: flex-start;
       }
-      
-      /* Photo gallery cards */
-      .photo-links {
-        grid-template-columns: 1fr !important;
+
+      .section-title,
+      .subsection-title {
+        min-width: 0;
+        flex: 1;
+        flex-wrap: wrap;
       }
-      
-      .photo-link-card {
-        padding: 20px !important;
+
+      .section-title span,
+      .subsection-title span {
+        overflow-wrap: anywhere;
       }
-      
-      /* Contact cards */
-      .contact-card {
-        padding: 15px !important;
+
+      .photo-link-card,
+      .contact-card,
+      .trip-card,
+      .info-box,
+      .warning-box {
+        padding: 16px;
       }
-      
-      /* Action buttons */
+
       .action-buttons {
         flex-direction: column;
-        gap: 8px;
+        gap: 10px;
       }
-      
+
       .edit-btn,
       .delete-btn {
         width: 100%;
         min-height: 44px;
       }
+
+      .section,
+      .section-content,
+      .subsection-content,
+      .trip-card,
+      .info-box,
+      .warning-box,
+      details,
+      summary,
+      img {
+        max-width: 100%;
+      }
+
+      .section-content,
+      .section-content.expanded,
+      .subsection-content,
+      .subsection-content.expanded {
+        overflow-x: hidden;
+      }
+
+      .subsection-content.expanded,
+      #mytrip-content.expanded {
+        max-height: none;
+        overflow-y: visible;
+      }
+
+      details > div,
+      summary + div {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      img {
+        height: auto;
+      }
     }
     
     /* Extra small devices (phones, 480px and down) */
     @media (max-width: 480px) {
-      /* Reduce all font sizes significantly for phones */
-      body {
-        font-size: 0.85rem;
-        line-height: 1.5;
-      }
-      
       h1 {
-        font-size: 1.5rem !important;
+        font-size: 1.75rem;
       }
-      
-      h2, .section-title {
-        font-size: 1.2rem !important;
+
+      .section-title {
+        font-size: 1.2rem;
       }
-      
-      h3, .subsection-title {
-        font-size: 1.1rem !important;
+
+      .subsection-title {
+        font-size: 1.05rem;
       }
-      
-      h4 {
-        font-size: 1rem !important;
-      }
-      
-      h5 {
-        font-size: 0.9rem !important;
-      }
-      
-      p, li, div {
-        font-size: 0.85rem !important;
-      }
-      
-      /* Form elements - prevent zoom on iOS */
-      input, textarea, select {
-        font-size: 16px !important;
-        padding: 10px !important;
-      }
-      
-      label {
-        font-size: 0.85rem !important;
-      }
-      
-      /* Buttons */
-      .btn, button {
-        font-size: 0.85rem !important;
-        padding: 10px 16px !important;
-        min-height: 44px;
-      }
-      
-      /* Info boxes and notes */
-      .info-box {
-        font-size: 0.8rem !important;
-        padding: 10px !important;
-      }
-      
-      .warning-box {
-        font-size: 0.8rem !important;
-        padding: 10px !important;
-      }
-      
-      /* Subsection headers */
-      .subsection-header {
-        padding: 10px !important;
-        min-height: 44px;
-      }
-      
-      /* Reduce spacing */
-      .section {
-        padding: 15px !important;
-      }
-      
-      .trip-card {
-        padding: 10px !important;
-        margin-bottom: 12px !important;
-        border-width: 1px !important;
-      }
-      
-      /* Header subtitle */
+
       .subtitle {
-        font-size: 0.9rem !important;
+        font-size: 1rem;
       }
-      
-      /* Countdown timer */
+
+      .container {
+        padding: 12px;
+      }
+
+      .section,
+      .trip-card,
+      .info-box,
+      .warning-box {
+        padding: 12px;
+      }
+
+      .section-header,
+      .subsection-header {
+        padding: 12px;
+      }
+
       .countdown-container {
-        padding: 15px !important;
+        padding: 14px;
       }
-      
+
       .countdown-title {
-        font-size: 0.85rem !important;
+        font-size: 0.9rem;
       }
-      
+
       .countdown-number {
-        font-size: 1.5rem !important;
+        font-size: 1.5rem;
       }
-      
+
       .countdown-label {
-        font-size: 0.7rem !important;
+        font-size: 0.72rem;
       }
-      
-      /* Quick links at top */
-      #quickLinks {
-        padding: 4px 0 !important;
-      }
-      
+
       #quickLinks a,
       #quickLinks button {
-        font-size: 0.7rem !important;
-        padding: 5px 8px !important;
-        border-radius: 12px !important;
+        font-size: 0.8rem;
+        padding: 8px 10px;
       }
-      
-      /* Modal improvements */
+
       .modal-content {
-        padding: 20px !important;
-        margin: 10px !important;
+        padding: 20px;
+        margin: 10px;
       }
-      
+
       .modal-title {
-        font-size: 1.3rem !important;
+        font-size: 1.3rem;
       }
-      
-      /* Contact cards */
-      .contact-name {
-        font-size: 1.1rem !important;
-      }
-      
-      .contact-info {
-        font-size: 0.8rem !important;
-      }
-      
-      /* Trip title */
+
       .trip-title {
-        font-size: 1.2rem !important;
+        font-size: 1.2rem;
       }
     }
 
@@ -851,6 +804,119 @@
 
     .hidden {
       display: none;
+    /* ========================================
+       REUSABLE COMPONENT CLASSES
+       ======================================== */
+    
+    /* Cost breakdown items */
+    .cost-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px;
+      background: white;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .cost-item-label {
+      font-weight: 600;
+    }
+
+    .cost-item-amount {
+      color: var(--primary-color);
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .cost-total-box {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f8f9fa;
+      border: 2px solid var(--border-color);
+      border-radius: 10px;
+    }
+
+    .cost-total-label {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 5px;
+    }
+
+    .cost-total-amount {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary-dark);
+    }
+
+    .cost-total-note {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 5px;
+    }
+
+    /* Flexible action rows */
+    .action-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .btn-large {
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      min-width: 200px;
+    }
+
+    /* Info grid for trip details */
+    .info-grid {
+      display: grid;
+      gap: 12px;
+      margin: 15px 0;
+    }
+
+    /* Bordered content box */
+    .content-box {
+      border: 2px solid var(--border-color);
+      border-radius: 10px;
+      padding: 15px;
+      background: #f8f9fa;
+      margin: 15px 0;
+    }
+
+    .content-box-primary {
+      border: 2px solid var(--primary-color);
+      background: white;
+    }
+
+    .content-box-highlight {
+      border: 3px solid var(--primary-color);
+      background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+    }
+
+    /* Responsive adjustments for new classes */
+    @media (min-width: 600px) {
+      .cost-item {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .action-row {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .btn-large {
+        width: auto;
+      }
+
+      .info-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+    }
+
     }
 
     /* Loading State */
@@ -1054,141 +1120,26 @@
       }
     }
     
-    /* Mobile-specific styles for better spacing */
-    @media (max-width: 768px) {
-      .section,
-      .section-content,
-      .subsection-content,
-      .trip-card,
-      .info-box,
-      .warning-box,
-      details,
-      summary {
-        max-width: 100%;
-      }
-
-      .subsection-content,
-      .subsection-content.expanded,
-      .section-content,
-      .section-content.expanded {
-        overflow-x: hidden;
-      }
-
-      .subsection-content.expanded {
-        margin-bottom: 40px;
-        max-height: none;
-        overflow-y: visible;
-        -webkit-overflow-scrolling: touch;
-      }
-      
-      #estimates-content.expanded {
-        margin-bottom: 60px;
-      }
-      
-      /* Allow My Trip Details to be taller since it's a form */
-      #mytrip-content.expanded {
-        max-height: none;
-        overflow-y: visible;
-      }
-      
-      /* Ensure text wraps properly on mobile */
-      #mytrip-content input,
-      #mytrip-content textarea,
-      #mytrip-content select,
-      #mytrip-content .info-box {
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        max-width: 100%;
-      }
-
-      .section-header,
-      .subsection-header {
-        align-items: flex-start;
-      }
-
-      .section-title,
-      .subsection-title {
-        min-width: 0;
-        flex: 1;
-        flex-wrap: wrap;
-      }
-
-      .section-title span,
-      .subsection-title span {
-        overflow-wrap: anywhere;
-      }
-
-      details > div,
-      summary + div {
-        max-width: 100%;
-        overflow-x: hidden;
-      }
-
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-    }
     
     /* Mobile font size adjustments for estimates section */
     @media (max-width: 480px) {
-      /* Main heading - "Estimated Cost Breakdown (Per Person)" */
+      /* Estimates section typography */
       #estimates-content h4 {
-        font-size: 0.95rem !important;
+        font-size: 0.95rem;
       }
       
-      #estimates-content p {
-        font-size: 0.8rem !important;
-      }
-      
-      #estimates-content .info-box {
-        font-size: 0.8rem !important;
-      }
-      
+      #estimates-content p,
+      #estimates-content .info-box,
       #estimates-content ul li {
-        font-size: 0.8rem !important;
-        line-height: 1.6 !important;
-      }
-      
-      /* Make cost breakdown items stack better on small screens */
-      #estimates-content > div > div > div[style*="display: flex"] {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 8px !important;
-      }
-      
-      /* Cost item labels */
-      #estimates-content > div > div > div[style*="display: flex"] span:first-child {
-        font-size: 0.85rem !important;
-      }
-      
-      /* Cost amounts */
-      #estimates-content > div > div > div[style*="display: flex"] span:last-child {
-        font-size: 1.1rem !important;
-      }
-      
-      /* Adjust total estimate box */
-      #estimates-content > div > div[style*="background: #f8f9fa"] {
-        padding: 12px !important;
-      }
-      
-      #estimates-content > div > div[style*="background: #f8f9fa"] > div:first-child {
-        font-size: 0.75rem !important;
-      }
-      
-      #estimates-content > div > div[style*="background: #f8f9fa"] > div:nth-child(2) {
-        font-size: 1.3rem !important;
-      }
-      
-      #estimates-content > div > div[style*="background: #f8f9fa"] > div:last-child {
-        font-size: 0.7rem !important;
+        font-size: 0.85rem;
+        line-height: 1.6;
       }
     }
     
-    /* Mobile optimizations for flight form */
+    /* Additional mobile refinements for very small screens */
     @media (max-width: 480px) {
       .container {
-        padding: 8px;
+        padding: 12px;
       }
 
       header {
@@ -1196,49 +1147,24 @@
         padding-right: 14px;
       }
 
-      .section {
-        padding: 8px !important;
-      }
-
+      .section,
       .trip-card {
-        padding: 8px !important;
+        padding: 12px;
       }
 
       .info-box,
-      .warning-box,
-      [style*="border: 2px solid var(--border-color)"],
-      [style*="border: 2px solid var(--primary-color)"],
-      [style*="border: 3px solid var(--primary-color)"],
-      [style*="border: 2px solid #ffc107"],
-      [style*="border: 2px solid #FF9800"],
-      [style*="border: 2px solid #8B4513"],
-      [style*="border: 2px solid #00D632"] {
-        padding: 10px !important;
-        border-width: 1px !important;
+      .warning-box {
+        padding: 12px;
       }
 
-      p,
-      li,
-      a,
-      span,
-      strong,
-      small,
-      code {
+      p, li, a, span, strong, small, code {
         word-break: break-word;
         overflow-wrap: anywhere;
       }
 
-      .warning-box code {
-        font-size: 0.72rem !important;
-      }
-
-      summary {
-        text-align: left !important;
-      }
-
       .section-header,
       .subsection-header {
-        padding: 10px 12px !important;
+        padding: 12px;
       }
 
       .section-title,
@@ -1246,51 +1172,26 @@
         gap: 6px;
       }
 
-      .section-title > span:first-child,
-      .subsection-title > span:first-child {
-        flex-shrink: 0;
-      }
-
-      [style*="display: flex"][style*="justify-content: space-between"] {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-      }
-
-      [style*="min-width: 200px"] {
-        min-width: 0 !important;
-        width: 100% !important;
-      }
-
-      a[style*="padding: 15px 30px"],
-      button[style*="padding: 15px 30px"] {
-        width: 100% !important;
-      }
-
       #mytrip-content h4 {
-        font-size: 1.1rem !important;
+        font-size: 1.1rem;
       }
       
       #mytrip-content h5 {
-        font-size: 1rem !important;
+        font-size: 1rem;
       }
       
       #mytrip-content input,
       #mytrip-content select,
       #mytrip-content textarea {
-        font-size: 0.9rem !important;
+        font-size: 16px;
       }
       
       #mytrip-content label {
-        font-size: 0.85rem !important;
+        font-size: 0.9rem;
       }
       
       #mytrip-content small {
-        font-size: 0.75rem !important;
-      }
-      
-      #mytrip-content .info-box {
-        font-size: 0.85rem !important;
-        padding: 10px !important;
+        font-size: 0.8rem;
       }
     }
     
@@ -1491,7 +1392,7 @@
       <div class="section-header" id="trip-section-header" onclick="toggleSection('trips')">
         <h2 class="section-title">
           <span class="toggle-icon" id="trips-icon">▶</span>
-          ⛺ Dots Go Glamping - Yellowstone 2026 (Last Update 06/08/2026 - )
+          ⛺ Dots Go Glamping - Yellowstone 2026 (Last Update 06/08/2026 -1.1 )
         </h2>
       </div>
       <div class="section-content" id="trips-content">
