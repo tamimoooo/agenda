@@ -47,6 +47,7 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 16px;
       line-height: 1.6;
       color: var(--text-primary);
       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -76,7 +77,7 @@
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 16px;
     }
 
     /* Header */
@@ -558,15 +559,42 @@
       }
     }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
+    /* ========================================
+       RESPONSIVE DESIGN - MOBILE FIRST
+       ======================================== */
+    
+    /* Tablet and up (600px+) */
+    @media (min-width: 600px) {
       .container {
-        padding: 12px;
+        padding: 20px;
       }
 
+      .contacts-grid,
+      .photo-links {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Desktop (769px+) */
+    @media (min-width: 769px) {
+      .contacts-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .photo-links {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Mobile adjustments (max-width: 600px) */
+    @media (max-width: 600px) {
       header {
         padding: 40px 16px 30px;
         border-radius: 0 0 20px 20px;
+      }
+
+      h1 {
+        font-size: 1.75rem;
       }
 
       .section {
@@ -576,13 +604,23 @@
       }
 
       .section-title {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
+      }
+
+      .section-header {
+        min-height: 44px;
+        padding: 14px;
       }
 
       .modal-content {
-        padding: 24px;
+        padding: 20px;
+        margin: 10px;
         max-height: 85vh;
         overflow-y: auto;
+      }
+
+      .modal-title {
+        font-size: 1.3rem;
       }
 
       .contacts-grid,
@@ -624,41 +662,12 @@
 
       input,
       textarea,
-      select,
-      .info-box,
-      p {
-        overflow-wrap: break-word;
-        max-width: 100%;
-        box-sizing: border-box;
-      }
-
-      #tripDetailsForm input,
-      #tripDetailsForm select,
-      #tripDetailsForm textarea {
+      select {
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
         font-size: 16px;
-      }
-
-      #tripDetailsForm > div {
-        padding: 16px;
-      }
-
-      .section-header {
-        min-height: 44px;
-        padding: 12px 14px;
-        align-items: flex-start;
-      }
-
-      .section-title {
-        min-width: 0;
-        flex: 1;
-        flex-wrap: wrap;
-      }
-
-      .section-title span {
-        overflow-wrap: anywhere;
+        overflow-wrap: break-word;
       }
 
       .photo-link-card,
@@ -705,37 +714,6 @@
       img {
         height: auto;
       }
-    }
-    
-    /* Extra small devices (phones, 480px and down) */
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.75rem;
-      }
-
-      .section-title {
-        font-size: 1.2rem;
-      }
-
-
-      .subtitle {
-        font-size: 1rem;
-      }
-
-      .container {
-        padding: 12px;
-      }
-
-      .section,
-      .trip-card,
-      .info-box,
-      .warning-box {
-        padding: 12px;
-      }
-
-      .section-header {
-        padding: 12px;
-      }
 
       .countdown-container {
         padding: 14px;
@@ -751,25 +729,6 @@
 
       .countdown-label {
         font-size: 0.72rem;
-      }
-
-      #quickLinks a,
-      #quickLinks button {
-        font-size: 0.8rem;
-        padding: 8px 10px;
-      }
-
-      .modal-content {
-        padding: 20px;
-        margin: 10px;
-      }
-
-      .modal-title {
-        font-size: 1.3rem;
-      }
-
-      .trip-title {
-        font-size: 1.2rem;
       }
     }
 
@@ -788,6 +747,8 @@
 
     .hidden {
       display: none;
+    }
+
     /* ========================================
        REUSABLE COMPONENT CLASSES
        ======================================== */
@@ -901,6 +862,45 @@
       }
     }
 
+    /* Activity list */
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .activity-item {
+      padding: 14px;
+      background: white;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary-color);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .activity-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .activity-item-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--text-primary);
+    }
+
+    .activity-item-cost {
+      color: var(--primary-color);
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .activity-item-details {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
     }
 
     /* Loading State */
@@ -961,8 +961,6 @@
       background: #da190b;
     }
 
-    /* Subsection styles removed - trip section now uses simple cards without collapsible subsections */
-    
     /* Card hover effects */
     .trip-card {
       transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -987,53 +985,22 @@
       transform: translateY(0);
     }
 
-    /* Subsection scrollbar styles removed */
-    
-    /* Desktop: Make sections scrollable so content below is visible */
-    /* Old trip subsection scroll rules removed */
-    
-    /* Additional mobile refinements for very small screens */
-    @media (max-width: 480px) {
-      .container {
-        padding: 12px;
-      }
-
-      header {
-        padding-left: 14px;
-        padding-right: 14px;
-      }
-
-      .section,
-      .trip-card {
-        padding: 12px;
-      }
-
-      .info-box,
-      .warning-box {
-        padding: 12px;
-      }
-
-      p, li, a, span, strong, small, code {
-        word-break: break-word;
-        overflow-wrap: anywhere;
-      }
-
-      .section-header {
-        padding: 12px;
-      }
-
-      .section-title {
-        gap: 6px;
-      }
-    }
     
     /* Print styles */
     @media print {
       .polka-dots,
       #quickLinks,
       .btn,
-      button {
+      button,
+      .subsection-toggle {
         display: none !important;
+      }
+      
+      .subsection-content {
+        max-height: none !important;
+        overflow: visible !important;
+        opacity: 1 !important;
+        transform: none !important;
       }
       
       .trip-card {
@@ -1057,12 +1024,12 @@
   <div class="polka-dots"></div>
 
   <header>
-    <h1>ðŸ”´ SPRING 94 Dot Connection</h1>
+    <h1>🔴 SPRING 94 Dot Connection</h1>
     <p class="subtitle">Stay Connected, Share Memories, Plan Adventures</p>
     
     <!-- Countdown Timer -->
     <div class="countdown-container">
-      <div class="countdown-title">â° Countdown to Montana Glamping Adventure</div>
+      <div class="countdown-title">⏰ Countdown to Montana Glamping Adventure</div>
       <div class="countdown-timer" id="countdown">
         <div class="countdown-item">
           <span class="countdown-number" id="days">250</span>
@@ -1083,7 +1050,7 @@
         if (!daysElement) return;
 
         if (distance < 0) {
-          document.getElementById('countdown').innerHTML = '<div style="font-size: 1.5rem; font-weight: bold;">ðŸŽ‰ The Adventure Has Begun! ðŸŽ‰</div>';
+          document.getElementById('countdown').innerHTML = '<div style="font-size: 1.5rem; font-weight: bold;">🎉 The Adventure Has Begun! 🎉</div>';
           return;
         }
 
@@ -1104,13 +1071,13 @@
   <nav id="quickLinks" style="position: sticky; top: 0; z-index: 999; background: linear-gradient(135deg, #8B0000 0%, #5C0000 100%); box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 8px 0; transition: all 0.3s ease;">
     <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 10px;">
       <div style="display: flex; gap: 6px; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: thin; padding: 4px 0;">
-        <a href="trip-dashboard.html" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #8B0000; padding: 6px 16px; border-radius: 15px; text-decoration: none; font-size: 0.85rem; font-weight: bold; transition: all 0.2s ease; flex-shrink: 0; box-shadow: 0 2px 8px rgba(255,215,0,0.3);">ðŸ“Š Trip Dashboard</a>
-        <a href="#trip-overview" onclick="scrollToElement('trip-overview', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">â›º Trip</a>
-        <a href="#lodging-info" onclick="scrollToElement('lodging-info', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">ðŸ¨ Lodging</a>
-        <a href="#confirmed-activities" onclick="scrollToElement('confirmed-activities', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">ðŸŽ¯ Activities</a>
-        <a href="#travel-info" onclick="scrollToElement('travel-info', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">âœˆï¸ Travel</a>
-        <a href="#contacts-content" onclick="scrollToSection('contacts', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">ðŸ“‡ Contacts</a>
-        <button onclick="collapseAll()" style="background: rgba(255,255,255,0.3); color: white; padding: 6px 12px; border-radius: 15px; border: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0; cursor: pointer; font-weight: 500;">ðŸ“¦ Collapse</button>
+        <a href="trip-dashboard.html" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #8B0000; padding: 6px 16px; border-radius: 15px; text-decoration: none; font-size: 0.85rem; font-weight: bold; transition: all 0.2s ease; flex-shrink: 0; box-shadow: 0 2px 8px rgba(255,215,0,0.3);">📊 Dashboard</a>
+        <a href="#contacts" onclick="scrollToSection('contacts', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">📇 Contacts</a>
+        <a href="#trip-overview" onclick="scrollToSection('trip-overview', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">💰 Overview</a>
+        <a href="#lodging" onclick="scrollToSection('lodging', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">🏕️ Lodging</a>
+        <a href="#activities" onclick="scrollToSection('activities', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">🎯 Activities</a>
+        <a href="#travel-info" onclick="scrollToSection('travel-info', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">✈️ Travel</a>
+        <button onclick="collapseAll()" style="background: rgba(255,255,255,0.3); color: white; padding: 6px 12px; border-radius: 15px; border: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0; cursor: pointer; font-weight: 500;">📦 Collapse</button>
       </div>
     </div>
   </nav>
@@ -1123,17 +1090,17 @@
     <div class="section">
       <div class="section-header" onclick="toggleSection('contacts')">
         <h2 class="section-title">
-          <span class="toggle-icon" id="contacts-icon">â–¶</span>
-          ðŸ“‡ Contact Directory
+          <span class="toggle-icon" id="contacts-icon">▶</span>
+          📇 Contact Directory
         </h2>
       </div>
       <div class="section-content" id="contacts-content">
         <div class="info-box">
-          <strong>ðŸ’¡ Tip:</strong> Click on any contact to edit their information. Don't forget to add your birthday! Changes are saved automatically.
+          <strong>💡 Tip:</strong> Click on any contact to edit their information. Don't forget to add your birthday! Changes are saved automatically.
         </div>
         <div class="text-center mt-20">
           <button class="btn btn-secondary btn-small" onclick="downloadContactsJSON()">
-            ðŸ’¾ Download All Contacts
+            💾 Download All Contacts
           </button>
         </div>
         <div class="contacts-grid" id="contacts-grid">
@@ -1146,8 +1113,8 @@
     <div class="section">
       <div class="section-header" onclick="toggleSection('email')">
         <h2 class="section-title">
-          <span class="toggle-icon" id="email-icon">â–¶</span>
-          ðŸ“§ Email Everyone
+          <span class="toggle-icon" id="email-icon">▶</span>
+          📧 Email Everyone
         </h2>
       </div>
       <div class="section-content" id="email-content">
@@ -1163,12 +1130,12 @@
        <div class="text-center mt-20">
   <a class="btn btn-primary"
     href="mailto:YOURADDRESS@example.com?bcc=sum0316@gmail.com,dst894@hotmail.com,tamikalfrancis@gmail.com,errinmccomb@gmail.com,melaniebullock@yahoo.com,missdana213@gmail.com,vernet1@gmail.com,mdfikes@gmail.com,tephia25@yahoo.com,sherribelklaw@gmail.com,freshnclean9@gmail.com,kilpatrickn39@gmail.com,iamadelta@yahoo.com,michelleyfoxx@yahoo.com&subject=Spring%2094%20Dot%20Connection%20Updates&body=Hi%20everyone,%0A%0AHere%20are%20the%20latest%20updates%20for%20our%20Spring%2094%20Dot%20Connection%20group.%0A%0AThanks,%0A[Your%20Name]">
-    ðŸ“§ Open Email Client
+    📧 Open Email Client
   </a>
 </div>
 
         <div class="warning-box mt-20">
-          <strong>ðŸ“‹ Copy & Paste Email List:</strong><br>
+          <strong>📋 Copy & Paste Email List:</strong><br>
           <code style="display: block; margin-top: 10px; padding: 10px; background: white; border-radius: 8px; word-break: break-all;">
           sum0316@gmail.com; dst894@hotmail.com; tamikalfrancis@gmail.com; errinmccomb@gmail.com; melaniebullock@yahoo.com; missdana213@gmail.com; vernet1@gmail.com; mdfikes@gmail.com; tephia25@yahoo.com; sherribelklaw@gmail.com; freshnclean9@gmail.com; kilpatrickn39@gmail.com; iamadelta@yahoo.com; michelleyfoxx@yahoo.com
           </code>
@@ -1180,30 +1147,30 @@
     <div class="section">
       <div class="section-header" onclick="toggleSection('photos')">
         <h2 class="section-title">
-          <span class="toggle-icon" id="photos-icon">â–¶</span>
-          ðŸ“¸ Photo Albums
+          <span class="toggle-icon" id="photos-icon">▶</span>
+          📸 Photo Albums
         </h2>
       </div>
       <div class="section-content" id="photos-content">
         <div class="photo-links">
           <a href="https://link.shutterfly.com/AVu65l2xBJb" target="_blank" class="photo-link-card">
-            <div class="photo-link-icon">ðŸŽ“</div>
+            <div class="photo-link-icon">🎓</div>
             <div class="photo-link-title">Spring 94 Old Photos</div>
             <p>Throwback memories from our college days</p>
           </a>
           <a href="https://link.shutterfly.com/suiedxnxvNb" target="_blank" class="photo-link-card">
-            <div class="photo-link-icon">ðŸˆ</div>
+            <div class="photo-link-icon">🏈</div>
             <div class="photo-link-title">Homecoming 2024</div>
             <p>Recent reunion photos</p>
           </a>
           <a href="https://link.shutterfly.com/lurzZCVsxNb" target="_blank" class="photo-link-card">
-            <div class="photo-link-icon">ðŸ“·</div>
+            <div class="photo-link-icon">📷</div>
             <div class="photo-link-title">Photoshoots</div>
             <p>Professional group photos</p>
           </a>
         </div>
         <div class="info-box mt-20">
-          <strong>ðŸ” Shared Account Access:</strong><br>
+          <strong>🔐 Shared Account Access:</strong><br>
           Email: <strong style="color: #2196f3;">dst894@yahoo.com</strong><br>
           Password: <strong style="color: #f44336;">BigSisterTr0ll!</strong>
         </div>
@@ -1214,115 +1181,394 @@
     <div class="section">
       <div class="section-header" id="trip-section-header" onclick="toggleSection('trips')">
         <h2 class="section-title">
-          <span class="toggle-icon" id="trips-icon">â–¶</span>
-          â›º Dots Go Glamping - Yellowstone 2026 (Last Update 06/09/2026 )
+          <span class="toggle-icon" id="trips-icon">▶</span>
+          ⛺ Dots Go Glamping - Yellowstone 2026 (Last Update 06/08/2026 -1.1 )
         </h2>
       </div>
       <div class="section-content" id="trips-content">
         
+   <!-- Trip Overview -->
+<div class="trip-card highlight">
+  <div class="trip-title">⛺ Dots Go Glamping</div>
+  
+  <div style="display: grid; gap: 12px; margin: 15px 0;">
+    <p style="margin: 0;"><strong>📍 Location:</strong> Under Canvas Yellowstone - North Yellowstone (Paradise Valley), MT</p>
+    <p style="margin: 0;"><strong>✈️ Airport:</strong> Bozeman Yellowstone International Airport BZN</p>
+    <p style="margin: 0;"><strong>📅 Dates:</strong> <span style="color: var(--primary-color); font-weight: bold;">September 9-13, 2026</span></p>
+  </div>
+  
+  <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: #f8f9fa; margin: 15px 0;">
+    <h4 style="color: var(--primary-dark); margin: 0 0 12px 0; font-size: 1.1rem;">📅 Accommodation Schedule</h4>
+    <div style="display: grid; gap: 10px;">
+      <div style="padding: 8px; background: white; border-radius: 5px;">
+        <strong>🏨 Night 1:</strong> September 9-10<br>
+        <a href="https://www.hilton.com/en/hotels/bznhtht-home2-suites-bozeman-midtown/" target="_blank" rel="noopener" style="color: var(--primary-color); text-decoration: none; font-size: 0.95rem;">
+          Home2 Suites by Hilton Bozeman Midtown 🔗
+        </a><br>
+        <span style="font-size: 0.9rem; color: #666;">1760 Baxter Lane, Bozeman, MT 59715</span>
+      </div>
+      <div style="padding: 8px; background: white; border-radius: 5px;">
+        <strong>⛺ Nights 2-3:</strong> September 10-12, 2026<br>
+        <a href="https://www.undercanvas.com/camps/north-yellowstone/" target="_blank" rel="noopener" style="color: var(--primary-color); text-decoration: none; font-size: 0.95rem;">
+          Under Canvas Yellowstone (Glamping) 🔗
+        </a><br>
+        <span style="font-size: 0.9rem; color: #666;">139 Pine Creek Road, Livingston, MT 59047</span>
+      </div>
+      <div style="padding: 8px; background: white; border-radius: 5px;">
+        <strong>🏨 Night 4:</strong> September 12-13, 2026<br>
+        <a href="https://www.hilton.com/en/hotels/bznfcht-home2-suites-bozeman-four-corners/" target="_blank" rel="noopener" style="color: var(--primary-color); text-decoration: none; font-size: 0.95rem;">
+          Home2 Suites By Hilton Bozeman Four Corners 🔗
+        </a><br>
+        <span style="font-size: 0.9rem; color: #666;">110 Homestake Drive, Bozeman, MT 59718</span>
+      </div>
+    </div>
+    <p style="margin-top: 10px; font-size: 0.95rem; color: #666; font-style: italic; font-weight: bold;">
+      Note: Sherri has reserved 6 rooms for our convenience; however, these reservations are optional and not mandatory. If you decide to stay at a different hotel, please inform Sherri before September 6th.
+    </p>
+  </div>
+  
+  <p style="margin-top: 15px; font-size: 1.1rem;">
+    Experience luxury camping in one of America's most iconic national parks!
+    Glamping combines the beauty of nature with the comfort of a hotel.
+  </p>
+
+  <!-- Meeting & Questions -->
+  <div style="margin-top: 25px; padding: 20px; border: 2px solid var(--border-color); border-radius: 10px; background: white;">
+    <div style="display: grid; gap: 20px;">
+
+      <!-- Next Meeting Info -->
+
+	<!-- Next Meeting Info -->
+<div>
+  <h4 style="color: var(--primary-color); margin-bottom: 10px;">
+    📅 Next Planning Meeting
+  </h4>
+  <p style="margin: 5px 0;">
+    <strong>Tuesday, June 16th, 2026 at 8:30 PM EST</strong>
+  </p>
+
+  <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+    <a href="https://teams.microsoft.com/meet/244803074039445?p=OToa0IdaetqjmJvfDx"
+       target="_blank"
+       style="display: inline-block; padding: 10px 20px; background: #5b5fc7; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+      💻 Join Meeting
+    </a>
+
+    <!-- Current agenda -->
+    <a href="https://tamimoooo.github.io/agenda/2026-03-06GlampingTripPlanningMeeting.pdf"
+       target="_blank"
+       style="display: inline-block; padding: 10px 20px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+      🆕 View Current Agenda
+    </a>
+
+    <!-- Previous agenda -->
+    <a href="https://tamimoooo.github.io/agenda/Agenda.pdf"
+       target="_blank"
+       style="display: inline-block; padding: 10px 20px; background: #777; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+      📄 View Previous Agenda
+    </a>
+  </div>
+</div>
+
+     
+
+  <!-- Action Items -->
+  <div style="margin-top: 25px; padding: 20px; border: 2px dashed var(--border-color); border-radius: 10px; background: #fafafa;">
+    <h4 style="color: var(--primary-color); margin-bottom: 15px;">
+      ✅ Action Items <span style="font-size: 0.7rem; color: #999;">(Updated Feb 8, 2026)</span>
+    </h4>
+    <ul style="margin: 0; padding-left: 20px; line-height: 1.6;">
+      <li style="margin-top: 10px;">
+        <strong>Submit your trip details</strong><br>
+        Fill out flight info, tent selection, and roommate preferences in <a href="reunion.html#mytrip-content" style="color: #d32f2f; text-decoration: underline;">My Trip Details</a>
+      </li>
+     
+      <li style="margin-top: 10px;">
+        <strong>Committee Members:</strong><br>
+        <small style="color: #666; font-style: italic; font-size: 0.85rem; line-height: 1.4;">
+          Logistics: Sherri, Janita, Dana<br>
+          Activities: Nicole, Melanie, Tamika <br>
+          Hospitality: Summer, Rochelle     </small>
+      </li>
+      <li style="margin-top: 10px;">
+        <strong>Questions?</strong><br>
+        Have questions before the meeting? Click below to submit them.
+      </li>
+    </ul>
+	   
+	   <!-- Submit Questions Form (Collapsible) -->
+	   <div style="margin-top: 20px; background: white; border-radius: 10px; border: 2px solid var(--primary-color); overflow: hidden;">
+	     <div
+	       onclick="toggleQuestionsForm()"
+	       style="padding: 15px 20px; background: linear-gradient(135deg, #DAA520 0%, #B8860B 100%); color: white; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: var(--transition);"
+	       onmouseover="this.style.background='linear-gradient(135deg, #B8860B 0%, #8B6914 100%)'"
+	       onmouseout="this.style.background='linear-gradient(135deg, #DAA520 0%, #B8860B 100%)'"
+	     >
+	       <h5 style="margin: 0; font-size: 1.1rem;">
+	         ❓ Submit Your Questions
+	       </h5>
+	       <span id="questionsToggle" style="font-size: 1.2rem; font-weight: bold; transition: transform 0.3s;">▶</span>
+	     </div>
+	     
+	     <div id="questionsFormContent" style="display: none; padding: 20px;">
+	       <form id="questionsForm" style="display: flex; flex-direction: column; gap: 15px;">
+	       <div>
+	         <label for="questionName" style="display: block; margin-bottom: 5px; font-weight: 600; color: var(--text-primary);">
+	           Your Name <span style="color: red;">*</span>
+	         </label>
+	         <input
+	           type="text"
+	           id="questionName"
+	           required
+	           style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem;"
+	           placeholder="Enter your name"
+	         />
+	       </div>
+	       
+	       <div>
+	         <label for="questionEmail" style="display: block; margin-bottom: 5px; font-weight: 600; color: var(--text-primary);">
+	           Your Email <span style="color: red;">*</span>
+	         </label>
+	         <input
+	           type="email"
+	           id="questionEmail"
+	           required
+	           style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem;"
+	           placeholder="your.email@example.com"
+	         />
+	       </div>
+	       
+	       <div>
+	         <label for="questionText" style="display: block; margin-bottom: 5px; font-weight: 600; color: var(--text-primary);">
+	           Your Question(s) <span style="color: red;">*</span>
+	         </label>
+	         <textarea
+	           id="questionText"
+	           required
+	           rows="5"
+	           style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem; resize: vertical;"
+	           placeholder="Enter your questions or concerns here..."
+	         ></textarea>
+	       </div>
+	       
+	       <button
+	         type="submit"
+	         style="padding: 12px 24px; background: #DAA520; color: white; border: none; border-radius: 5px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: var(--transition);"
+	         onmouseover="this.style.background='#B8860B'"
+	         onmouseout="this.style.background='#DAA520'"
+	       >
+	         📤 Submit Question
+	       </button>
+	       </form>
+	       <div id="questionStatus" style="margin-top: 15px; padding: 10px; border-radius: 5px; display: none;"></div>
+	     </div>
+	   </div>
+	 </div>
+
+</div>
+
+
         <!-- Card 1: Trip Overview -->
-        <div class="trip-card highlight" id="trip-overview">
-          <div class="trip-title">â›º Trip Overview</div>
-          
-          <div class="info-grid">
-            <p style="margin: 0;"><strong>ðŸ“ Location:</strong> Under Canvas Yellowstone - North Yellowstone (Paradise Valley), MT</p>
-            <p style="margin: 0;"><strong>âœˆï¸ Airport:</strong> Bozeman Yellowstone International Airport (BZN)</p>
-            <p style="margin: 0;"><strong>ðŸ“… Dates:</strong> <span style="color: var(--primary-color); font-weight: bold;">September 9-13, 2026</span></p>
+        <div class="trip-card" id="trip-overview">
+          <div class="section-header">
+            <h3 class="section-title">📋 Trip Overview</h3>
           </div>
-          
-          <p style="margin-top: 15px; font-size: 1.05rem;">
-            Experience luxury camping in one of America's most iconic national parks!
-            Glamping combines the beauty of nature with the comfort of a hotel.
-          </p>
+          <div class="section-content expanded">
+            
+            <div class="content-box-highlight">
+              <h4 style="color: var(--primary-color); margin-bottom: 15px;">💰 Estimated Cost (Per Person)</h4>
+              <p style="margin-bottom: 15px; color: var(--text-secondary);">
+                <em>September 9-13, 2026 • Prices are estimates</em>
+              </p>
+              
+              <div class="cost-item">
+                <span class="cost-item-label">🏨 Hotels (2 nights: Sept 9-10 & Sept 12-13)</span>
+                <span class="cost-item-amount">$358</span>
+              </div>
+              
+              <div class="cost-item">
+                <span class="cost-item-label">⛺ Glamping Tent (2 nights: Sept 10-12)</span>
+                <span class="cost-item-amount">$400-$620</span>
+              </div>
+              
+              <div class="cost-item">
+                <span class="cost-item-label">🎯 Activities (average for 1 activity)</span>
+                <span class="cost-item-amount">$105</span>
+              </div>
+              
+              <div class="cost-total-box">
+                <div class="cost-total-label">Estimated Total (excluding airfare & van)</div>
+                <div class="cost-total-amount">$863 - $1,083</div>
+                <div class="cost-total-note">+ airfare + van rental (TBD)</div>
+              </div>
+            </div>
+
+            <div class="content-box">
+              <h4 style="color: var(--primary-dark); margin-bottom: 12px;">✅ Quick Action Checklist</h4>
+              <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                <li>Book your flights to Bozeman, MT (BZN)</li>
+                <li>Reserve your glamping tent with Tavia</li>
+                <li>Confirm attendance by September 6, 2026</li>
+                <li>Review confirmed group activities below</li>
+                <li>Mark your calendar for payment deadlines</li>
+              </ul>
+            </div>
+
+            <div class="info-box">
+              <strong>⚠️ Important Notes:</strong>
+              <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                <li>All prices are estimates and subject to change</li>
+                <li>Tent prices vary by type - see lodging section</li>
+                <li>Van rental cost TBD at group meeting</li>
+                <li>Activities are optional - choose what interests you</li>
+                <li>Book airfare early for best rates</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <!-- Card 2: Where We're Staying -->
-        <div class="trip-card" id="lodging-info">
-          <div class="trip-title">ðŸ¨ Where We're Staying</div>
-  
-          <h4 style="color: var(--primary-dark); margin: 0 0 12px 0;">ðŸ“… Accommodation Schedule</h4>
-          
-          <div class="content-box-highlight">
-            <strong>ðŸ¨ Night 1:</strong> September 9-10<br>
-            <a href="https://www.hilton.com/en/hotels/bznhtht-home2-suites-bozeman-midtown/" target="_blank" rel="noopener">
-              Home2 Suites by Hilton Bozeman Midtown ðŸ”—
-            </a><br>
-            <small>1760 Baxter Lane, Bozeman, MT 59715</small>
+        <div class="trip-card" id="lodging">
+          <div class="section-header">
+            <h3 class="section-title">🏕️ Where We're Staying</h3>
           </div>
+          <div class="section-content expanded">
+            <div class="content-box-primary">
+              <p style="margin-bottom: 15px;"><strong>Glamping:</strong> September 10-12, 2026 (2 nights at Under Canvas Yellowstone)</p>
+              <p><strong>Hotels:</strong> Home2 Suites by Hilton - Sept 9-10 & Sept 12-13 (2 nights)</p>
+            </div>
 
-          <div class="content-box-highlight">
-            <strong>â›º Nights 2-3:</strong> September 10-12<br>
-            <a href="https://www.undercanvas.com/camps/north-yellowstone/" target="_blank" rel="noopener">
-              Under Canvas Yellowstone (Glamping) ðŸ”—
-            </a><br>
-            <small>139 Pine Creek Road, Livingston, MT 59047</small>
-          </div>
+            <div class="content-box-highlight">
+              <h4 style="color: var(--primary-dark); margin-bottom: 15px;">📞 Book Your Glamping Tent</h4>
+              <p style="margin-bottom: 10px;"><strong>Contact:</strong> Tavia Neal</p>
+              <p style="margin-bottom: 10px;">
+                📞 <a href="tel:+18884961148,049" style="color: var(--primary-color); text-decoration: none;">1-888-496-1148 ext. 049</a>
+              </p>
+              <p style="margin-bottom: 10px;">
+                ✉️ <a href="mailto:tavia.neal@undercanvas.com" style="color: var(--primary-color); text-decoration: none;">tavia.neal@undercanvas.com</a>
+              </p>
+              <p style="margin-top: 15px;">
+                <a href="https://www.undercanvas.com/camps/north-yellowstone/" target="_blank" 
+                   style="display: inline-block; padding: 10px 20px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                  🏕️ Book on Under Canvas Website
+                </a>
+              </p>
+            </div>
 
-          <div class="content-box-highlight">
-            <strong>ðŸ¨ Night 4:</strong> September 12-13<br>
-            <a href="https://www.hilton.com/en/hotels/bznfcht-home2-suites-bozeman-four-corners/" target="_blank" rel="noopener">
-              Home2 Suites By Hilton Bozeman Four Corners ðŸ”—
-            </a><br>
-            <small>110 Homestake Drive, Bozeman, MT 59718</small>
-          </div>
-
-          <div class="info-box">
-            <strong>ðŸ“ Note:</strong> Sherri has reserved 6 rooms for our convenience; however, these reservations are optional and not mandatory. If you decide to stay at a different hotel, please inform Sherri before September 6th.
-          </div>
-
-          <div class="content-box-primary">
-            <h4 style="margin-bottom: 10px;">ðŸ“ž Booking Contact</h4>
-            <p><strong>Phone:</strong> <a href="tel:+18884961148,049">1-888-496-1148 ext. 049</a></p>
-            <p><strong>Email:</strong> <a href="mailto:tavia.neal@undercanvas.com">tavia.neal@undercanvas.com</a></p>
-            <p style="margin-top: 10px;"><em>Ask for Tavia when booking for our group</em></p>
+            <details style="margin-top: 20px;">
+              <summary style="cursor: pointer; padding: 12px 15px; background: #f0f0f0; color: var(--primary-color); border: 2px solid var(--border-color); border-radius: 8px; font-weight: 500; text-align: center;">
+                📍 View Campsite Maps
+              </summary>
+              <div style="margin-top: 15px; padding: 20px; background: white; border: 2px solid var(--border-color); border-radius: 10px;">
+                <img src="map_.png" alt="Under Canvas Yellowstone Campsite Layout Map" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 15px;">
+                <p style="text-align: center; margin-top: 15px;">
+                  <a href="https://www.undercanvas.com/camps/north-yellowstone/#tab-6-2" target="_blank" 
+                     style="display: inline-block; padding: 10px 20px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 5px; font-weight: 500;">
+                    🗺️ View Interactive Map
+                  </a>
+                </p>
+              </div>
+            </details>
           </div>
         </div>
 
-        <!-- Card 3: Confirmed Activities -->
-        <div class="trip-card" id="confirmed-activities">
-          <div class="trip-title">ðŸŽ¯ Confirmed Group Activities</div>
-          
-          <div id="confirmedActivitiesList" class="content-box">
-            <div style="text-align: center; padding: 20px; color: var(--text-secondary);">
-              <p>Loading confirmed activities...</p>
+        <!-- Card 3: Confirmed Group Activities -->
+        <div class="trip-card" id="activities">
+          <div class="section-header">
+            <h3 class="section-title">🎯 Confirmed Group Activities</h3>
+          </div>
+          <div class="section-content expanded">
+            <div class="info-box" style="margin-bottom: 20px;">
+              <strong>ℹ️ Note:</strong> These activities have been selected by the group. Review and let us know which ones you'd like to join!
+            </div>
+            
+            <div id="confirmed-activities-list" class="activity-list">
+              <!-- Activities will be loaded from JSON -->
+              <p style="text-align: center; color: var(--text-secondary);">Loading activities...</p>
             </div>
           </div>
-
-          <div class="info-box">
-            <strong>ðŸ’¡ Note:</strong> These are activities confirmed for the group. Additional optional activities may be available. Check the dashboard for the latest updates.
-          </div>
         </div>
 
-        <!-- Card 4: Travel Info -->
+        <!-- Card 4: Travel Information -->
         <div class="trip-card" id="travel-info">
-          <div class="trip-title">âœˆï¸ Travel Information</div>
-          
-          <p style="margin-bottom: 15px;">
-            Use the Trip Dashboard to coordinate your travel plans, view flight details, and see who's arriving when.
-          </p>
-
-          <div class="action-row">
-            <a href="trip-dashboard.html" class="btn btn-primary btn-large">
-              ðŸ“Š View Trip Dashboard
-            </a>
+          <div class="section-header">
+            <h3 class="section-title">✈️ Travel Information</h3>
           </div>
+          <div class="section-content expanded">
+            <div class="content-box">
+              <h4 style="color: var(--primary-dark); margin-bottom: 15px;">Flight Details</h4>
+              <div class="info-grid">
+                <div class="info-grid-item">
+                  <div class="info-grid-label">Airport</div>
+                  <div class="info-grid-value">Bozeman (BZN)</div>
+                </div>
+                <div class="info-grid-item">
+                  <div class="info-grid-label">Arrival</div>
+                  <div class="info-grid-value">Sept 9, 2026</div>
+                </div>
+                <div class="info-grid-item">
+                  <div class="info-grid-label">Departure</div>
+                  <div class="info-grid-value">Sept 13, 2026</div>
+                </div>
+              </div>
+              <p style="margin-top: 15px; color: var(--text-secondary);">
+                <strong>💡 Tip:</strong> Book early for best rates! Group will coordinate van rental for airport pickup.
+              </p>
+            </div>
 
-          <div class="info-box" style="margin-top: 15px;">
-            <strong>ðŸ“‹ Travel Coordination:</strong>
-            <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
-              <li>Submit your flight details through the dashboard</li>
-              <li>Coordinate airport transportation with other travelers</li>
-              <li>View arrival and departure times for the group</li>
-              <li>Get updates on travel arrangements</li>
-            </ul>
+            <div class="content-box-highlight">
+              <h4 style="color: var(--primary-dark); margin-bottom: 15px;">Important Deadlines</h4>
+              <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                <li><strong>Attendance Confirmation:</strong> September 6, 2026</li>
+                <li><strong>Hotel Cancellation Deadline:</strong> September 6, 2026</li>
+                <li><strong>Activity Sign-up:</strong> TBD at group meeting</li>
+              </ul>
+            </div>
+
+            <div class="info-box">
+              <strong>📋 Need Help?</strong>
+              <p style="margin: 10px 0 0 0;">
+                Check the <a href="trip-dashboard.html" style="color: var(--primary-color); text-decoration: underline;">Trip Dashboard</a> 
+                for detailed travel information, or contact the trip coordinator with questions.
+              </p>
+            </div>
           </div>
         </div>
 
-
-      </div>
-    </div>
-
-     
+        <!-- Packing Suggestions - HIDDEN FOR NOW -->
+        <!-- Uncomment when ready to show packing list
+        <div class="trip-card">
+          <div class="subsection-header" onclick="toggleSubsection('packing')">
+            <h3 class="subsection-title">🎒 Packing Suggestions</h3>
+            <span class="subsection-toggle" id="packing-toggle">▶</span>
+          </div>
+          <div class="subsection-content" id="packing-content">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+            <div>
+              <h4 style="color: var(--primary-color);">Clothing</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>Layers (mornings/evenings are cool)</li>
+                <li>Comfortable hiking shoes</li>
+                <li>Rain jacket</li>
+                <li>Sun hat & sunglasses</li>
+                <li>Casual evening wear</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="color: var(--primary-color);">Essentials</h4>
+              <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li>Sunscreen & bug spray</li>
+                <li>Reusable water bottle</li>
+                <li>Camera/phone charger</li>
+                <li>Personal medications</li>
+                <li>Toiletries</li>
+              </ul>
+            </div>
+          </div>
+          <p style="margin-top: 15px;"><em>Full packing list will be provided closer to trip date.</em></p>
+          </div>
+        </div>
+        -->
 
 
       </div>
@@ -1382,7 +1628,7 @@
         </div>
 
         <div class="action-buttons">
-          <button type="submit" class="btn btn-primary">ðŸ“§ Submit</button>
+          <button type="submit" class="btn btn-primary">📧 Submit</button>
           <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
         </div>
       </form>
@@ -1418,15 +1664,15 @@
         const response = await fetch('contacts.json?t=' + Date.now()); // Cache-busting
         if (response.ok) {
           contactsData = await response.json();
-          console.log('âœ… Loaded', contactsData.length, 'contacts from contacts.json');
+          console.log('✅ Loaded', contactsData.length, 'contacts from contacts.json');
         } else {
           throw new Error('contacts.json not found');
         }
       } catch (error) {
-        console.error('âŒ Could not load contacts.json:', error.message);
+        console.error('❌ Could not load contacts.json:', error.message);
         // Use default contacts as fallback
         contactsData = defaultContacts;
-        console.log('ðŸ“‹ Using default contacts');
+        console.log('📋 Using default contacts');
       }
       loadContacts();
     }
@@ -1444,16 +1690,16 @@
       grid.innerHTML = contactsData.map(contact => `
         <div class="contact-card">
           <div class="contact-name">${contact.name}</div>
-          ${contact.birthday ? `<div class="contact-info">ðŸŽ‚ ${formatBirthday(contact.birthday)}</div>` : ''}
-          ${contact.address ? `<div class="contact-info">ðŸ“ ${contact.address}</div>` : ''}
+          ${contact.birthday ? `<div class="contact-info">🎂 ${formatBirthday(contact.birthday)}</div>` : ''}
+          ${contact.address ? `<div class="contact-info">📍 ${contact.address}</div>` : ''}
           ${contact.city || contact.state || contact.zip ? `<div class="contact-info">${[contact.city, contact.state, contact.zip].filter(Boolean).join(', ')}</div>` : ''}
-          ${contact.phone ? `<div class="contact-info">ðŸ“ž ${contact.phone}</div>` : ''}
+          ${contact.phone ? `<div class="contact-info">📞 ${contact.phone}</div>` : ''}
           <div class="contact-info">
-            <a href="mailto:${contact.email}" class="contact-email">âœ‰ï¸ ${contact.email}</a>
+            <a href="mailto:${contact.email}" class="contact-email">✉️ ${contact.email}</a>
           </div>
           <div class="action-buttons">
-            <button class="edit-btn" onclick="editContact(${contact.id})">âœï¸ Edit</button>
-            <button class="delete-btn" onclick="deleteContact(${contact.id})">ðŸ—‘ï¸ Delete</button>
+            <button class="edit-btn" onclick="editContact(${contact.id})">✏️ Edit</button>
+            <button class="delete-btn" onclick="deleteContact(${contact.id})">🗑️ Delete</button>
           </div>
         </div>
       `).join('');
@@ -1478,9 +1724,9 @@
 
     // Print page function
     function printPage() {
-      // No subsections to expand for printing
-      const allContent = [];
-      const allIcons = [];
+      // Expand all sections before printing
+      const allContent = document.querySelectorAll('.subsection-content');
+      const allIcons = document.querySelectorAll('.subsection-toggle');
       
       allContent.forEach(content => content.classList.add('expanded'));
       allIcons.forEach(icon => icon.classList.add('expanded'));
@@ -1495,28 +1741,25 @@
     function scrollToSection(sectionId, event) {
       if (event) event.preventDefault();
       
-      // Map of trip cards to their parent section
-      const parentSections = {
-        'trip-overview': 'trips',
-        'lodging-info': 'trips',
-        'confirmed-activities': 'trips',
-        'travel-info': 'trips'
-      };
+      // Try to find the element by ID
+      let element = document.getElementById(sectionId);
       
-      // First, open parent section if this is a trip card
-      if (parentSections[sectionId]) {
-        const parentContent = document.getElementById(`${parentSections[sectionId]}-content`);
-        if (parentContent && (!parentContent.style.display || parentContent.style.display === 'none')) {
-          toggleSection(parentSections[sectionId]);
-        }
+      // If not found, try with -content suffix for backward compatibility
+      if (!element) {
+        element = document.getElementById(`${sectionId}-content`);
       }
       
-      // Now scroll to the target element
-      const element = document.getElementById(sectionId);
-      
       if (!element) {
-        console.error(`Element ${sectionId} not found`);
+        console.error(`Section ${sectionId} not found`);
         return;
+      }
+      
+      // For main sections with toggle functionality, expand if collapsed
+      if (sectionId === 'contacts' || sectionId === 'email' || sectionId === 'photos' || sectionId === 'trips') {
+        const content = document.getElementById(`${sectionId}-content`);
+        if (content && (!content.style.display || content.style.display === 'none')) {
+          toggleSection(sectionId);
+        }
       }
       
       // Smooth scroll to the element
@@ -1544,10 +1787,42 @@
         currentElement = currentElement.parentElement;
       }
       
-      // Find and expand parent section if element is in trips section
-      let parent = element.closest('#trips-content');
-      if (parent && (!parent.style.display || parent.style.display === 'none')) {
-        toggleSection('trips');
+      // Find and expand parent sections if needed
+      let parent = element.closest('.subsection-content');
+      if (parent) {
+        // Get the subsection ID from the parent
+        const subsectionId = parent.id.replace('-content', '');
+        
+        // Check if this subsection has a parent section
+        const parentSections = {
+          'estimates': 'trips',
+          'decisions': 'trips',
+          'lodging': 'trips',
+          'roommate': 'trips',
+          'actionitems': 'trips',
+          'payment': 'trips',
+          'activities': 'trips',
+          'importantlinks': 'trips',
+          'mytrip': 'trips',
+          'tripdetails': 'trips',
+          'itinerary': 'trips',
+          'packing': 'trips'
+        };
+        
+        // Open parent section first
+        if (parentSections[subsectionId]) {
+          const parentContent = document.getElementById(`${parentSections[subsectionId]}-content`);
+          if (parentContent && (!parentContent.style.display || parentContent.style.display === 'none')) {
+            toggleSection(parentSections[subsectionId]);
+          }
+        }
+        
+        // Then expand the subsection
+        if (!parent.classList.contains('expanded')) {
+          const icon = document.getElementById(`${subsectionId}-toggle`);
+          parent.classList.add('expanded');
+          if (icon) icon.classList.add('expanded');
+        }
       }
       
       // Smooth scroll to the element
@@ -1557,13 +1832,21 @@
     }
 
     // Open section and scroll to element
-    function openSectionAndScroll(sectionId, elementId, event) {
+    function openSectionAndScroll(subsectionId, elementId, event) {
       if (event) event.preventDefault();
       
-      // First, open the main section if it's not open
-      const sectionContent = document.getElementById(`${sectionId}-content`);
-      if (sectionContent && (!sectionContent.style.display || sectionContent.style.display === 'none')) {
-        toggleSection(sectionId);
+      // First, open the main "trips" section if it's not open
+      const tripsContent = document.getElementById('trips-content');
+      const tripsIcon = document.getElementById('trips-icon');
+      if (tripsContent && !tripsContent.classList.contains('expanded')) {
+        toggleSection('trips');
+      }
+      
+      // Then open the subsection
+      const subsectionContent = document.getElementById(`${subsectionId}-content`);
+      const subsectionIcon = document.getElementById(`${subsectionId}-toggle`);
+      if (subsectionContent && !subsectionContent.classList.contains('expanded')) {
+        toggleSubsection(subsectionId);
       }
       
       // Open any parent <details> elements
@@ -1601,7 +1884,7 @@
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
       
-      alert('âœ… Contacts downloaded! Please send this file to the group admin to update the website.');
+      alert('✅ Contacts downloaded! Please send this file to the group admin to update the website.');
     }
 
     // Toggle section visibility
@@ -1618,7 +1901,42 @@
       }
     }
 
-    // toggleSubsection function removed - no longer needed with simplified trip cards
+    // Load confirmed activities from JSON
+    async function loadConfirmedActivities() {
+      try {
+        const response = await fetch('activity_suggestions.json?t=' + Date.now());
+        if (!response.ok) {
+          throw new Error('Could not load activities');
+        }
+        
+        const activities = await response.json();
+        const confirmedActivities = activities.filter(activity => activity.selectedByGroup === true);
+        
+        const container = document.getElementById('confirmed-activities-list');
+        
+        if (confirmedActivities.length === 0) {
+          container.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No confirmed activities yet. Check back soon!</p>';
+          return;
+        }
+        
+        container.innerHTML = confirmedActivities.map(activity => `
+          <div class="activity-item">
+            <div class="activity-item-header">
+              <div class="activity-item-title">${activity.activityName}</div>
+              <div class="activity-item-cost">${activity.estimatedCost}</div>
+            </div>
+            <div class="activity-item-details">
+              ${activity.description || 'Details coming soon'}
+            </div>
+          </div>
+        `).join('');
+        
+      } catch (error) {
+        console.error('Error loading activities:', error);
+        const container = document.getElementById('confirmed-activities-list');
+        container.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Unable to load activities. Please try again later.</p>';
+      }
+    }
 
     // Scroll to top of trip section
     function scrollToTop(event) {
@@ -1642,9 +1960,7 @@
         }
       });
 
-      // No subsections to collapse anymore
-
-      // Close all details elements (for collapsible maps and tent options)
+      // Close all details elements (for collapsible maps and other expandable content)
       const allDetails = document.querySelectorAll('details');
       allDetails.forEach(detail => {
         detail.removeAttribute('open');
@@ -1725,7 +2041,7 @@
       closeModal();
       loadContacts();
       
-      alert('âœ… Contact saved locally!');
+      alert('✅ Contact saved locally!');
     }
 
     // Submit contact to admin (uses mailto as fallback)
@@ -1747,7 +2063,7 @@
 
       // Validate required fields
       if (!contactData.name || !contactData.email) {
-        alert('âŒ Please fill in at least Name and Email before submitting.');
+        alert('❌ Please fill in at least Name and Email before submitting.');
         return;
       }
 
@@ -1768,7 +2084,7 @@ Phone: ${contactData.phone || 'Not provided'}
       // Send via EmailJS with mailto fallback
       const submitBtn = event.target;
       const originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = 'â³ Sending...';
+      submitBtn.innerHTML = '⏳ Sending...';
       submitBtn.disabled = true;
 
       try {
@@ -1782,7 +2098,7 @@ Phone: ${contactData.phone || 'Not provided'}
         );
 
         console.log('EmailJS Success:', result);
-        alert('âœ… Contact information sent successfully to admin!');
+        alert('✅ Contact information sent successfully to admin!');
         saveAndClose(contactData);
         
       } catch (error) {
@@ -1799,7 +2115,7 @@ Phone: ${contactData.phone || 'Not provided'}
           saveAndClose(contactData);
         }
       } finally {
-        if (submitBtn.innerHTML === 'â³ Sending...') {
+        if (submitBtn.innerHTML === '⏳ Sending...') {
           submitBtn.innerHTML = originalText;
           submitBtn.disabled = false;
         }
@@ -1839,9 +2155,315 @@ Phone: ${contactData.phone || 'Not provided'}
       }
     });
 
-    // Old roommate/tentmate functions removed - trip essentials now use simplified cards
+    // Load submitted roommates - disabled (data only in admin emails/JSON files)
+    function loadSubmittedRoommates() {
+      const submitted = [];
+      const listContainer = document.getElementById('submittedRoommatesList');
+      const section = document.getElementById('submittedRoommatesSection');
+      
+      if (submitted.length > 0 && section && listContainer) {
+        section.style.display = 'block';
+        listContainer.innerHTML = submitted.map((reservation, index) => `
+          <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);">
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+              <h5 style="color: var(--primary-color); margin: 0;">${reservation.tentType}</h5>
+              <button onclick="deleteReservation(${index})" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.9rem;">Delete</button>
+            </div>
+            <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px;">
+              <strong>Confirmation:</strong> ${reservation.confirmationNumber}
+            </div>
+            <div style="display: grid; gap: 8px;">
+              ${reservation.roommates.map((r, i) => `
+                <div style="padding: 8px; background: white; border-radius: 5px; border-left: 3px solid var(--primary-color);">
+                  <strong>${r.name}</strong>
+                </div>
+              `).join('')}
+            </div>
+            ${reservation.additionalNotes ? `<div style="margin-top: 10px; padding: 10px; background: #fff3cd; border-radius: 5px; font-size: 0.9rem;"><strong>Notes:</strong> ${reservation.additionalNotes}</div>` : ''}
+          </div>
+        `).join('');
+      } else if (section) {
+        section.style.display = 'none';
+      }
+    }
 
-    // Old activity submission functions removed - activities now managed via JSON and dashboard
+    // Delete reservation
+    function deleteReservation(index) {
+      if (confirm('Are you sure you want to delete this reservation?')) {
+        // Note: Tentmate data is not stored locally - managed by admin
+        alert('Tentmate deletion must be done by admin. Please email them to remove this reservation.');
+      }
+    }
+
+    // Admin: Clear all reservations
+    function clearAllReservations() {
+      if (confirm('⚠️ Are you sure you want to delete ALL reservations? This cannot be undone!')) {
+        // Note: Tentmate data is not stored locally - managed by admin
+        alert('Tentmate data deletion must be done by admin. Please email them.');
+        
+        const messageDiv = document.getElementById('adminMessage');
+        messageDiv.style.display = 'block';
+        messageDiv.style.background = '#d4edda';
+        messageDiv.style.color = '#155724';
+        messageDiv.textContent = '✅ All reservations cleared successfully!';
+        
+        setTimeout(() => {
+          messageDiv.style.display = 'none';
+        }, 3000);
+      }
+    }
+
+    // Admin: Add reservations from JSON (handles multiple objects)
+    function addReservationsFromJson() {
+      const jsonInput = document.getElementById('adminJsonInput').value.trim();
+      const messageDiv = document.getElementById('adminMessage');
+      
+      if (!jsonInput) {
+        messageDiv.style.display = 'block';
+        messageDiv.style.background = '#fff3cd';
+        messageDiv.style.color = '#856404';
+        messageDiv.textContent = '⚠️ Please paste JSON data first';
+        return;
+      }
+      
+      try {
+        // Split by }{ to handle multiple JSON objects
+        let jsonObjects = jsonInput.split(/\}\s*\{/);
+        
+        // Fix the split objects by adding back the braces
+        if (jsonObjects.length > 1) {
+          jsonObjects = jsonObjects.map((obj, index) => {
+            if (index === 0) return obj + '}';
+            if (index === jsonObjects.length - 1) return '{' + obj;
+            return '{' + obj + '}';
+          });
+        }
+        
+        const submitted = [];
+        let successCount = 0;
+        let errors = [];
+        
+        // Process each JSON object
+        jsonObjects.forEach((jsonStr, index) => {
+          try {
+            const reservationData = JSON.parse(jsonStr.trim());
+            
+            // Validate required fields
+            if (!reservationData.confirmationNumber || !reservationData.tentType || !reservationData.roommates || reservationData.roommates.length === 0) {
+              errors.push(`Object ${index + 1}: Missing required fields`);
+              return;
+            }
+            
+            // Add to array
+            submitted.push(reservationData);
+            successCount++;
+            
+          } catch (err) {
+            errors.push(`Object ${index + 1}: ${err.message}`);
+          }
+        });
+        
+        // Note: Data is NOT saved to localStorage
+        if (successCount > 0) {
+        }
+        
+        // Show results
+        messageDiv.style.display = 'block';
+        if (errors.length === 0) {
+          messageDiv.style.background = '#d4edda';
+          messageDiv.style.color = '#155724';
+          messageDiv.textContent = `✅ Successfully added ${successCount} reservation${successCount > 1 ? 's' : ''}!`;
+          document.getElementById('adminJsonInput').value = '';
+        } else if (successCount > 0) {
+          messageDiv.style.background = '#fff3cd';
+          messageDiv.style.color = '#856404';
+          messageDiv.textContent = `⚠️ Added ${successCount} reservation(s), but ${errors.length} failed:\n${errors.join('\n')}`;
+        } else {
+          messageDiv.style.background = '#f8d7da';
+          messageDiv.style.color = '#721c24';
+          messageDiv.textContent = `❌ All reservations failed:\n${errors.join('\n')}`;
+        }
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+          messageDiv.style.display = 'none';
+        }, 5000);
+        
+      } catch (error) {
+        messageDiv.style.display = 'block';
+        messageDiv.style.background = '#f8d7da';
+        messageDiv.style.color = '#721c24';
+        messageDiv.textContent = '❌ Error: ' + error.message + '. Please check the JSON format.';
+      }
+    }
+
+    // Handle tentmate form submission
+    document.getElementById('roommateForm')?.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // Collect form data
+      const formData = {
+        confirmationNumber: document.getElementById('confirmationNumber').value,
+        tentType: document.getElementById('tentType').value,
+        roommates: [],
+        additionalNotes: document.getElementById('additionalNotes').value,
+        submittedDate: new Date().toISOString()
+      };
+      
+      // Collect tentmate data
+      for (let i = 1; i <= 4; i++) {
+        const name = document.getElementById(`roommate${i}Name`).value;
+        
+        if (name) {
+          formData.roommates.push({
+            name: name
+          });
+        }
+      }
+      
+      // Format roommate info for email
+      const roommateInfo = `
+Confirmation Number: ${formData.confirmationNumber}
+Tent Type: ${formData.tentType}
+Roommates: ${formData.roommates.map(r => r.name).join(', ')}
+Additional Notes: ${formData.additionalNotes || 'None'}
+Submitted: ${new Date(formData.submittedDate).toLocaleString()}
+      `.trim();
+
+      const roommateJSON = JSON.stringify(formData, null, 2);
+
+      // Send via EmailJS
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '⏳ Sending...';
+      submitBtn.disabled = true;
+
+      try {
+        const result = await emailjs.send(
+          'service_9sytocs',
+          'template_ckmly4q',
+          {
+            name: formData.roommates[0]?.name || 'Tentmate Submission',
+            message: `Tentmates & Tent Reservation:\n\n${roommateInfo}\n\n---\nJSON Format:\n${roommateJSON}`
+          }
+        );
+
+        console.log('✅ Tentmate EmailJS Success:', result);
+        console.log('Response details:', JSON.stringify(result, null, 2));
+        
+        // Note: Data is NOT saved to localStorage - only sent to admin via email
+
+        alert('✅ Your tentmate details have been sent to admin successfully!\n\n📊 Check the View Trip Dashboard in 24 hours for updates.');
+        
+        // Reset form and reload submitted list
+        e.target.reset();
+        loadSubmittedRoommates();
+        
+      } catch (error) {
+        console.error('❌ Tentmate EmailJS Error:', error);
+        console.error('Error details:', JSON.stringify(error, null, 2));
+        console.error('Error text:', error.text);
+        console.error('Error status:', error.status);
+        
+        // Fallback to mailto
+        if (confirm('Email service unavailable. Would you like to send via your email client instead?')) {
+          const subject = `Tentmate Reservation: ${formData.confirmationNumber}`;
+          const body = `Tentmates & Tent Reservation:\n\n${roommateInfo}\n\n---\nJSON Format:\n${roommateJSON}`;
+          const mailtoLink = `mailto:dst894@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.location.href = mailtoLink;
+          // Note: Data is NOT saved to localStorage - only sent to admin via email
+
+          
+          e.target.reset();
+          loadSubmittedRoommates();
+        }
+      } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+
+    // Load submitted activities - disabled (data only in admin emails/JSON files)
+    function loadSubmittedActivities() {
+      let activities = [];
+      
+      // Ensure activities is an array
+      if (!Array.isArray(activities)) {
+        activities = [];
+      }
+      
+      const section = document.getElementById('submittedActivitiesSection');
+      const bozemanSection = document.getElementById('bozemanActivitiesSection');
+      const yellowstoneSection = document.getElementById('yellowstoneActivitiesSection');
+      const bozemanList = document.getElementById('bozemanActivitiesList');
+      const yellowstoneList = document.getElementById('yellowstoneActivitiesList');
+      
+      // Check if elements exist before accessing them
+      // Note: These sections were removed - user-submitted activities now go to dashboard
+      if (!section || !bozemanSection || !yellowstoneSection || !bozemanList || !yellowstoneList) {
+        // Silently return - these sections are intentionally removed
+        return;
+      }
+      
+      const bozemanActivities = activities.filter(a => a.location === 'bozeman');
+      const yellowstoneActivities = activities.filter(a => a.location === 'yellowstone');
+      
+      if (activities.length > 0) {
+        section.style.display = 'block';
+        
+        // Display Bozeman activities
+        if (bozemanActivities.length > 0) {
+          bozemanSection.style.display = 'block';
+          bozemanList.innerHTML = bozemanActivities.map((activity, index) => `
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                <h6 style="color: var(--primary-color); margin: 0;">${activity.name}</h6>
+                <button onclick="deleteActivity(${activities.indexOf(activity)})" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.85rem;">Delete</button>
+              </div>
+              <p style="margin: 10px 0; color: var(--text-secondary);">${activity.description}</p>
+              ${activity.cost ? `<div style="margin: 5px 0;"><strong>💰 Cost:</strong> ${activity.cost}</div>` : ''}
+              ${activity.link ? `<div style="margin: 5px 0;"><strong>🔗 Link:</strong> <a href="${activity.link}" target="_blank" style="color: var(--primary-color);">${activity.link}</a></div>` : ''}
+              <div style="margin-top: 10px; font-size: 0.9rem; color: var(--text-secondary); font-style: italic;">
+                Suggested by: ${activity.suggester}
+              </div>
+            </div>
+          `).join('');
+        } else {
+          bozemanSection.style.display = 'none';
+        }
+        
+        // Display Yellowstone activities
+        if (yellowstoneActivities.length > 0) {
+          yellowstoneSection.style.display = 'block';
+          yellowstoneList.innerHTML = yellowstoneActivities.map((activity, index) => `
+            <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: white;">
+              <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                <h6 style="color: var(--primary-color); margin: 0;">${activity.name}</h6>
+                <button onclick="deleteActivity(${activities.indexOf(activity)})" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.85rem;">Delete</button>
+              </div>
+              <p style="margin: 10px 0; color: var(--text-secondary);">${activity.description}</p>
+              ${activity.cost ? `<div style="margin: 5px 0;"><strong>💰 Cost:</strong> ${activity.cost}</div>` : ''}
+              ${activity.link ? `<div style="margin: 5px 0;"><strong>🔗 Link:</strong> <a href="${activity.link}" target="_blank" style="color: var(--primary-color);">${activity.link}</a></div>` : ''}
+              <div style="margin-top: 10px; font-size: 0.9rem; color: var(--text-secondary); font-style: italic;">
+                Suggested by: ${activity.suggester}
+              </div>
+            </div>
+          `).join('');
+        } else {
+          yellowstoneSection.style.display = 'none';
+        }
+      } else {
+        section.style.display = 'none';
+      }
+    }
+
+    // Delete activity
+    function deleteActivity(index) {
+      if (confirm('Are you sure you want to delete this activity suggestion?')) {
+        // Note: Activity data is not stored locally - managed by admin
+        alert('Activity deletion must be done by admin. Please email them to remove this suggestion.');
+      }
+    }
 
     // Initialize activity suggestions data
     let activitySuggestionsData = [];
@@ -1852,88 +2474,145 @@ Phone: ${contactData.phone || 'Not provided'}
         const response = await fetch('activity_suggestions.json?t=' + Date.now()); // Cache-busting
         if (response.ok) {
           activitySuggestionsData = await response.json();
-          console.log('âœ… Loaded activity suggestions from activity_suggestions.json:', activitySuggestionsData.length, 'activities');
+          console.log('✅ Loaded activity suggestions from activity_suggestions.json:', activitySuggestionsData.length, 'activities');
         } else {
           throw new Error('JSON file not found');
         }
       } catch (error) {
-        console.warn('âš ï¸ Could not load activity_suggestions.json:', error.message);
+        console.warn('⚠️ Could not load activity_suggestions.json:', error.message);
         activitySuggestionsData = [];
-        console.log('ðŸ“‹ No activities available');
+        console.log('📋 No activities available');
       }
-      loadConfirmedActivities(); // Load confirmed activities into Trip Essentials
+      loadSubmittedActivities();
+      loadActivitiesExcursions(); // Load activities into the main section
     }
 
-    // Load and display confirmed group activities in the Trip Essentials section
-    function loadConfirmedActivities() {
-      const container = document.getElementById('confirmedActivitiesList');
-      if (!container) {
-        console.warn('âš ï¸ Confirmed activities container not found');
-        return;
-      }
+    // Load and display activities in the Activities & Excursions section
+    function loadActivitiesExcursions() {
+      const container = document.getElementById('activitiesListContainer');
+      if (!container) return;
 
       if (!activitySuggestionsData || activitySuggestionsData.length === 0) {
-        container.innerHTML = `
-          <div style="text-align: center; padding: 20px; color: var(--text-secondary);">
-            <p>No confirmed group activities yet. Check back soon!</p>
-          </div>
-        `;
+        container.innerHTML = '<div style="text-align: center; padding: 40px; color: var(--text-secondary);"><p>No activities available yet. Check back soon!</p></div>';
         return;
       }
 
-      // Filter for confirmed group activities only
-      const confirmedActivities = activitySuggestionsData.filter(a => a.name && a.selectedByGroup);
-
-      if (confirmedActivities.length === 0) {
-        container.innerHTML = `
-          <div style="text-align: center; padding: 20px; color: var(--text-secondary);">
-            <p>ðŸŽ¯ No group activities confirmed yet.</p>
-            <p style="font-size: 0.9rem; margin-top: 10px;">The group will vote on activities during planning meetings.</p>
-          </div>
-        `;
-        return;
+      // Get activity icon based on name/type
+      function getActivityIcon(name) {
+        if (!name) return '🎯'; // Default icon if name is undefined
+        const nameLower = name.toLowerCase();
+        if (nameLower.includes('raft') || nameLower.includes('float')) return '🌊';
+        if (nameLower.includes('horse')) return '🐴';
+        if (nameLower.includes('hike') || nameLower.includes('walk')) return '🥾';
+        if (nameLower.includes('tour') || nameLower.includes('yellowstone')) return '🦬';
+        if (nameLower.includes('photo')) return '📸';
+        if (nameLower.includes('hot spring') || nameLower.includes('soak')) return '♨️';
+        if (nameLower.includes('cookout') || nameLower.includes('stagecoach')) return '🤠';
+        if (nameLower.includes('sunset') || nameLower.includes('butte')) return '🌅';
+        if (nameLower.includes('bike') || nameLower.includes('e-bike')) return '🚴';
+        return '🎯';
       }
 
-      // Build HTML for confirmed activities
-      let html = '<div style="display: grid; gap: 12px;">';
-      
-      confirmedActivities.forEach(activity => {
-        html += `
-          <div style="padding: 12px; background: white; border-radius: 8px; border-left: 4px solid var(--primary-color);">
-            <div style="display: flex; justify-content: space-between; align-items: start; gap: 10px; flex-wrap: wrap;">
-              <div style="flex: 1; min-width: 200px;">
-                <strong style="color: var(--primary-dark); font-size: 1.05rem;">${activity.name}</strong>
-                ${activity.duration ? `<div style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 4px;">â±ï¸ ${activity.duration}</div>` : ''}
-                ${activity.location ? `<div style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 2px;">ðŸ“ ${activity.location}</div>` : ''}
-              </div>
-              <div style="text-align: right;">
-                <span style="color: var(--primary-color); font-weight: bold; font-size: 1.1rem;">${activity.cost || 'TBD'}</span>
+      // Separate activities by type - filter out any without a name
+      const groupSelected = activitySuggestionsData.filter(a => a.name && a.selectedByGroup);
+      const complimentaryActivities = activitySuggestionsData.filter(a => a.name && a.location === 'on-site' && !a.selectedByGroup);
+      const otherActivities = activitySuggestionsData.filter(a => a.name && !a.selectedByGroup && a.location !== 'on-site');
+
+      let html = '';
+
+      // Show group-selected activities first
+      if (groupSelected.length > 0) {
+        html += `<div style="margin-bottom: 20px;"><h4 style="color: var(--primary-color); margin-bottom: 15px;">⭐ Selected by Group</h4></div>`;
+        
+        groupSelected.forEach(activity => {
+          const icon = getActivityIcon(activity.name);
+          const locationText = activity.locationDetail || activity.location || '';
+          const duration = activity.duration || '';
+          const cost = activity.cost || 'TBD';
+          const link = activity.link || '';
+          
+          html += `
+            <div style="border: 2px solid #FFD700; border-radius: 10px; padding: 15px; background: linear-gradient(to right, #FFFEF0, #FFFFFF); margin-bottom: 10px; box-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);">
+              <h5 style="color: var(--primary-color); margin-bottom: 10px;">⭐ ${icon} ${activity.name}</h5>
+              <div style="display: grid; gap: 8px;">
+                ${cost !== 'TBD' && cost !== '' ? `<div><strong>💰 Price:</strong> ${cost}</div>` : ''}
+                ${duration ? `<div><strong>⏱️ Duration:</strong> ${duration}</div>` : ''}
+                ${locationText ? `<div><strong>📍 Location:</strong> ${locationText}</div>` : ''}
+                ${activity.description ? `<div style="margin-top: 5px; font-style: italic; color: var(--text-secondary);">${activity.description}</div>` : ''}
+                ${link ? `<div style="margin-top: 8px;"><a href="${link}" target="_blank" rel="noopener" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">🔗 More Info</a></div>` : ''}
               </div>
             </div>
-            ${activity.link ? `
-              <div style="margin-top: 8px;">
-                <a href="${activity.link}" target="_blank" rel="noopener" style="color: var(--primary-color); text-decoration: none; font-size: 0.9rem;">
-                  ðŸ”— More Info
-                </a>
+          `;
+        });
+      }
+
+      // Show complimentary on-site activities in purple
+      if (complimentaryActivities.length > 0) {
+        if (groupSelected.length > 0) {
+          html += `<div style="margin-top: 20px;"><h4 style="color: #8B5CF6; margin-bottom: 15px;">🎁 Complimentary On-Site Activities</h4></div>`;
+        } else {
+          html += `<div style="margin-bottom: 20px;"><h4 style="color: #8B5CF6; margin-bottom: 15px;">🎁 Complimentary On-Site Activities</h4></div>`;
+        }
+        
+        complimentaryActivities.forEach(activity => {
+          const icon = getActivityIcon(activity.name);
+          const locationText = activity.locationDetail || activity.location || '';
+          const duration = activity.duration || '';
+          const cost = activity.cost || 'TBD';
+          const link = activity.link || '';
+          
+          html += `
+            <div style="border: 2px solid #8B5CF6; border-radius: 10px; padding: 15px; background: linear-gradient(to right, #F3E8FF, #FFFFFF); margin-bottom: 10px;">
+              <h5 style="color: #8B5CF6; margin-bottom: 10px;">${icon} ${activity.name}</h5>
+              <div style="display: grid; gap: 8px;">
+                ${cost !== 'TBD' && cost !== '' ? `<div><strong>💰 Price:</strong> <span style="color: #8B5CF6; font-weight: bold;">${cost}</span></div>` : ''}
+                ${duration ? `<div><strong>⏱️ Duration:</strong> ${duration}</div>` : ''}
+                ${locationText ? `<div><strong>📍 Location:</strong> ${locationText}</div>` : ''}
+                ${activity.description ? `<div style="margin-top: 5px; font-style: italic; color: #6B21A8;">${activity.description}</div>` : ''}
+                ${link ? `<div style="margin-top: 8px;"><a href="${link}" target="_blank" rel="noopener" style="color: #8B5CF6; text-decoration: none; font-weight: 600;">🔗 More Info</a></div>` : ''}
               </div>
-            ` : ''}
-          </div>
-        `;
-      });
-      
-      html += '</div>';
-      
-      // Add dashboard link
-      html += `
-        <div style="margin-top: 20px; text-align: center;">
-          <a href="trip-dashboard.html" class="btn btn-secondary" style="text-decoration: none;">
-            ðŸ“Š View Full Trip Dashboard
-          </a>
-        </div>
-      `;
-      
+            </div>
+          `;
+        });
+      }
+
+      // Show other activities
+      if (otherActivities.length > 0) {
+        if (groupSelected.length > 0 || complimentaryActivities.length > 0) {
+          html += `<div style="margin-top: 20px;"><h4 style="color: var(--primary-color); margin-bottom: 15px;">Other Available Activities</h4></div>`;
+        }
+        
+        otherActivities.forEach(activity => {
+          const icon = getActivityIcon(activity.name);
+          const locationText = activity.locationDetail || activity.location || '';
+          const duration = activity.duration || '';
+          const cost = activity.cost || 'TBD';
+          const link = activity.link || '';
+          
+          // Check if activity is free
+          const isFree = cost.toLowerCase().includes('free') || cost === '$0' || cost === '0';
+          const borderColor = isFree ? '#14B8A6' : 'var(--border-color)';
+          const backgroundColor = isFree ? 'linear-gradient(to right, #CCFBF1, #FFFFFF)' : 'white';
+          const titleColor = isFree ? '#14B8A6' : 'var(--primary-color)';
+          const costColor = isFree ? 'color: #14B8A6; font-weight: bold;' : '';
+          
+          html += `
+            <div style="border: 2px solid ${borderColor}; border-radius: 10px; padding: 15px; background: ${backgroundColor}; margin-bottom: 10px;">
+              <h5 style="color: ${titleColor}; margin-bottom: 10px;">${icon} ${activity.name}</h5>
+              <div style="display: grid; gap: 8px;">
+                ${cost !== 'TBD' && cost !== '' ? `<div><strong>💰 Price:</strong> <span style="${costColor}">${cost}</span></div>` : ''}
+                ${duration ? `<div><strong>⏱️ Duration:</strong> ${duration}</div>` : ''}
+                ${locationText ? `<div><strong>📍 Location:</strong> ${locationText}</div>` : ''}
+                ${activity.description ? `<div style="margin-top: 5px; font-style: italic; color: var(--text-secondary);">${activity.description}</div>` : ''}
+                ${link ? `<div style="margin-top: 8px;"><a href="${link}" target="_blank" rel="noopener" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">🔗 More Info</a></div>` : ''}
+              </div>
+            </div>
+          `;
+        });
+      }
+
       container.innerHTML = html;
-      console.log('âœ… Loaded', confirmedActivities.length, 'confirmed activities into Trip Essentials');
+      console.log('✅ Loaded', activitySuggestionsData.length, 'activities into Activities & Excursions section');
     }
 
     // Download activities list as a text file
@@ -1949,37 +2628,37 @@ Phone: ${contactData.phone || 'Not provided'}
       const otherActivities = activitySuggestionsData.filter(a => !a.selectedByGroup && a.location !== 'on-site');
 
       // Build the text content
-      let content = 'ðŸŽ¯ ACTIVITIES & EXCURSIONS\n';
+      let content = '🎯 ACTIVITIES & EXCURSIONS\n';
       content += 'Montana Glamping Adventure 2026\n';
       content += 'September 9-14, 2026\n';
       content += '=' .repeat(60) + '\n\n';
 
       // Group-selected activities
       if (groupSelected.length > 0) {
-        content += 'â­ SELECTED BY GROUP\n';
+        content += '⭐ SELECTED BY GROUP\n';
         content += '-'.repeat(60) + '\n';
         groupSelected.forEach((activity, index) => {
           content += `\n${index + 1}. ${activity.name}\n`;
-          if (activity.cost && activity.cost !== 'TBD') content += `   ðŸ’° Price: ${activity.cost}\n`;
-          if (activity.duration) content += `   â±ï¸  Duration: ${activity.duration}\n`;
-          if (activity.locationDetail || activity.location) content += `   ðŸ“ Location: ${activity.locationDetail || activity.location}\n`;
-          if (activity.description) content += `   ðŸ“ ${activity.description}\n`;
-          if (activity.link) content += `   ðŸ”— More Info: ${activity.link}\n`;
+          if (activity.cost && activity.cost !== 'TBD') content += `   💰 Price: ${activity.cost}\n`;
+          if (activity.duration) content += `   ⏱️  Duration: ${activity.duration}\n`;
+          if (activity.locationDetail || activity.location) content += `   📍 Location: ${activity.locationDetail || activity.location}\n`;
+          if (activity.description) content += `   📝 ${activity.description}\n`;
+          if (activity.link) content += `   🔗 More Info: ${activity.link}\n`;
         });
         content += '\n';
       }
 
       // Complimentary activities
       if (complimentaryActivities.length > 0) {
-        content += 'ðŸŽ COMPLIMENTARY ON-SITE ACTIVITIES\n';
+        content += '🎁 COMPLIMENTARY ON-SITE ACTIVITIES\n';
         content += '-'.repeat(60) + '\n';
         complimentaryActivities.forEach((activity, index) => {
           content += `\n${index + 1}. ${activity.name}\n`;
-          if (activity.cost && activity.cost !== 'TBD') content += `   ðŸ’° Price: ${activity.cost}\n`;
-          if (activity.duration) content += `   â±ï¸  Duration: ${activity.duration}\n`;
-          if (activity.locationDetail || activity.location) content += `   ðŸ“ Location: ${activity.locationDetail || activity.location}\n`;
-          if (activity.description) content += `   ðŸ“ ${activity.description}\n`;
-          if (activity.link) content += `   ðŸ”— More Info: ${activity.link}\n`;
+          if (activity.cost && activity.cost !== 'TBD') content += `   💰 Price: ${activity.cost}\n`;
+          if (activity.duration) content += `   ⏱️  Duration: ${activity.duration}\n`;
+          if (activity.locationDetail || activity.location) content += `   📍 Location: ${activity.locationDetail || activity.location}\n`;
+          if (activity.description) content += `   📝 ${activity.description}\n`;
+          if (activity.link) content += `   🔗 More Info: ${activity.link}\n`;
         });
         content += '\n';
       }
@@ -1990,11 +2669,11 @@ Phone: ${contactData.phone || 'Not provided'}
         content += '-'.repeat(60) + '\n';
         otherActivities.forEach((activity, index) => {
           content += `\n${index + 1}. ${activity.name}\n`;
-          if (activity.cost && activity.cost !== 'TBD') content += `   ðŸ’° Price: ${activity.cost}\n`;
-          if (activity.duration) content += `   â±ï¸  Duration: ${activity.duration}\n`;
-          if (activity.locationDetail || activity.location) content += `   ðŸ“ Location: ${activity.locationDetail || activity.location}\n`;
-          if (activity.description) content += `   ðŸ“ ${activity.description}\n`;
-          if (activity.link) content += `   ðŸ”— More Info: ${activity.link}\n`;
+          if (activity.cost && activity.cost !== 'TBD') content += `   💰 Price: ${activity.cost}\n`;
+          if (activity.duration) content += `   ⏱️  Duration: ${activity.duration}\n`;
+          if (activity.locationDetail || activity.location) content += `   📍 Location: ${activity.locationDetail || activity.location}\n`;
+          if (activity.description) content += `   📝 ${activity.description}\n`;
+          if (activity.link) content += `   🔗 More Info: ${activity.link}\n`;
         });
         content += '\n';
       }
@@ -2014,7 +2693,7 @@ Phone: ${contactData.phone || 'Not provided'}
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
 
-      console.log('âœ… Downloaded activities list');
+      console.log('✅ Downloaded activities list');
     }
 
     // Handle activity suggestion form submission
@@ -2033,7 +2712,7 @@ Phone: ${contactData.phone || 'Not provided'}
       
       // Format activity info for email
       const activityInfo = `
-Location: ${activityData.location === 'bozeman' ? 'ðŸ“ Bozeman Area' : 'ðŸžï¸ Yellowstone Park Area'}
+Location: ${activityData.location === 'bozeman' ? '📍 Bozeman Area' : '🏞️ Yellowstone Park Area'}
 Activity Name: ${activityData.name}
 Description: ${activityData.description}
 Estimated Cost: ${activityData.cost || 'Not specified'}
@@ -2047,7 +2726,7 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
       // Send via EmailJS
       const submitBtn = e.target.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = 'â³ Sending...';
+      submitBtn.innerHTML = '⏳ Sending...';
       submitBtn.disabled = true;
 
       try {
@@ -2064,7 +2743,7 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
         
         // Note: Data is NOT saved to localStorage - only sent to admin via email
         
-        alert('âœ… Your activity suggestion has been sent to admin successfully!\n\nðŸ“Š Check the View Trip Dashboard in 24 hours for updates.');
+        alert('✅ Your activity suggestion has been sent to admin successfully!\n\n📊 Check the View Trip Dashboard in 24 hours for updates.');
         
         // Reset form
         e.target.reset();
@@ -2126,12 +2805,12 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
             }
           });
           
-          console.log('âœ… Loaded', contacts.length, 'names into dropdown from whosgoing.json');
+          console.log('✅ Loaded', contacts.length, 'names into dropdown from whosgoing.json');
         } else {
-          console.error('âŒ Dropdown element #tripUserName not found!');
+          console.error('❌ Dropdown element #tripUserName not found!');
         }
       } catch (error) {
-        console.error('âŒ Error loading whosgoing.json for dropdown:', error);
+        console.error('❌ Error loading whosgoing.json for dropdown:', error);
       }
     }
     
@@ -2146,7 +2825,7 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
         const existingTrip = tripContacts.find(trip => trip.userId === userId);
         
         if (existingTrip) {
-          console.log('âœ… Found existing trip details for user:', userId, existingTrip);
+          console.log('✅ Found existing trip details for user:', userId, existingTrip);
           
           // Populate outbound flight fields
           document.getElementById('outboundDepartureCity').value = existingTrip.outbound?.departureCity || '';
@@ -2201,9 +2880,9 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
             }
           }
           
-          alert('âœ… Your previously submitted information has been loaded. You can now update any fields and resubmit.');
+          alert('✅ Your previously submitted information has been loaded. You can now update any fields and resubmit.');
         } else {
-          console.log('â„¹ï¸ No existing trip details found for user:', userId);
+          console.log('ℹ️ No existing trip details found for user:', userId);
         }
       } catch (error) {
         console.error('Error loading existing trip details:', error);
@@ -2230,7 +2909,7 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
         // Add group-selected activities first with special marker
         if (groupSelected.length > 0) {
           const groupOptgroup = document.createElement('optgroup');
-          groupOptgroup.label = 'â­ Selected by Group (Example)';
+          groupOptgroup.label = '⭐ Selected by Group (Example)';
           groupSelected.forEach((activity, index) => {
             const option = document.createElement('option');
             option.value = JSON.stringify({name: activity.name, cost: activity.cost, selectedByGroup: true});
@@ -2253,7 +2932,7 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
           dropdown.appendChild(otherOptgroup);
         }
         
-        console.log('âœ… Loaded', activities.length, 'activities into dropdown');
+        console.log('✅ Loaded', activities.length, 'activities into dropdown');
         
       } catch (error) {
         console.error('Error loading activities for trip form:', error);
@@ -2291,12 +2970,12 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
 
       // Define activities with their details (matching the Activities & Excursions section)
       const activities = [
-        { id: 'rafting', name: 'Group Whitewater Rafting - 18 Mile', icon: 'ðŸŒŠ', price: '$164/person' },
-        { id: 'float', name: 'Private Yellowstone River Luxury Float', icon: 'ðŸ›¶', price: '$644 total' },
-        { id: 'horseback', name: 'Group Horseback Ride', icon: 'ðŸ´', price: '$244/person' },
-        { id: 'park', name: 'Yellowstone Park Tours', icon: 'ðŸ¦¬', price: 'TBD' },
-        { id: 'hiking', name: 'Hiking & Nature Walks', icon: 'ðŸ¥¾', price: 'Free' },
-        { id: 'photo', name: 'Photography Tours', icon: 'ðŸ“¸', price: 'TBD' }
+        { id: 'rafting', name: 'Group Whitewater Rafting - 18 Mile', icon: '🌊', price: '$164/person' },
+        { id: 'float', name: 'Private Yellowstone River Luxury Float', icon: '🛶', price: '$644 total' },
+        { id: 'horseback', name: 'Group Horseback Ride', icon: '🐴', price: '$244/person' },
+        { id: 'park', name: 'Yellowstone Park Tours', icon: '🦬', price: 'TBD' },
+        { id: 'hiking', name: 'Hiking & Nature Walks', icon: '🥾', price: 'Free' },
+        { id: 'photo', name: 'Photography Tours', icon: '📸', price: 'TBD' }
       ];
 
       activitiesList.innerHTML = activities.map(activity => `
@@ -2317,7 +2996,7 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
       
       // Validate user selection
       if (!userId || !userName) {
-        alert('âŒ Please select your name from the dropdown first.');
+        alert('❌ Please select your name from the dropdown first.');
         return;
       }
       
@@ -2363,7 +3042,7 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
 
       // Validate at least flight info
       if (!tripDetails.outbound.airline && !tripDetails.return.airline) {
-        alert('âŒ Please fill in at least some flight information before submitting.');
+        alert('❌ Please fill in at least some flight information before submitting.');
         return;
       }
 
@@ -2389,7 +3068,7 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
         
         activitiesText = '';
         if (groupActivities.length > 0) {
-          activitiesText += '\n  â­ GROUP SELECTED:\n';
+          activitiesText += '\n  ⭐ GROUP SELECTED:\n';
           groupActivities.forEach(a => {
             activitiesText += `    - ${a.name} (${a.cost})\n`;
           });
@@ -2438,7 +3117,7 @@ SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
       // Send via EmailJS
       const submitBtn = event.target;
       const originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = 'â³ Sending...';
+      submitBtn.innerHTML = '⏳ Sending...';
       submitBtn.disabled = true;
 
       try {
@@ -2456,7 +3135,7 @@ SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
         // Note: Data is NOT saved to localStorage - only sent to admin via email
         // This prevents cross-device confusion and ensures admin has the authoritative data
         
-        alert('âœ… Your flight and trip details have been sent to admin successfully!\n\nðŸ“Š Check the View Trip Dashboard in 24 hours for updates.');
+        alert('✅ Your flight and trip details have been sent to admin successfully!\n\n📊 Check the View Trip Dashboard in 24 hours for updates.');
         
       } catch (error) {
         console.error('EmailJS Error:', error);
@@ -2523,7 +3202,7 @@ SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
       // Note: Data is NOT saved to localStorage for download itinerary
       // Download generates from current form values only
       
-      alert('âœ… Your itinerary has been downloaded successfully!');
+      alert('✅ Your itinerary has been downloaded successfully!');
     }
 
     function loadTripDetails() {
@@ -2598,7 +3277,7 @@ SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
       const userName = document.getElementById('tripUserName').options[document.getElementById('tripUserName').selectedIndex]?.text;
       
       if (!userId || !userName) {
-        alert('âš ï¸ Please select your name from the dropdown first!');
+        alert('⚠️ Please select your name from the dropdown first!');
         return;
       }
 
@@ -2610,7 +3289,7 @@ SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
         const tripDetails = tripContacts.find(tc => tc.userId === parseInt(userId));
         
         if (!tripDetails) {
-          alert('âš ï¸ No trip details found. Please fill out and submit the form first!');
+          alert('⚠️ No trip details found. Please fill out and submit the form first!');
           return;
         }
         
@@ -2646,18 +3325,18 @@ SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
 Personal Trip Itinerary for ${userName}
 Generated: ${new Date().toLocaleDateString()}
 
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+═══════════════════════════════════════════════════════════════
 
 TRIP OVERVIEW
-â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Dates: September 9-13, 2026
 Location: Under Canvas Yellowstone, Montana
 Trip Coordinators: Sherri Belk & Janita Moody
 
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+═══════════════════════════════════════════════════════════════
 
 FLIGHT INFORMATION
-â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 OUTBOUND FLIGHT
   From: ${tripDetails.outbound.departureCity || 'Not specified'}
@@ -2677,10 +3356,10 @@ RETURN FLIGHT
   Arrival: ${formatDateTime(tripDetails.return.arrival)}
   Confirmation: ${tripDetails.return.confirmation || 'Not specified'}
 
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+═══════════════════════════════════════════════════════════════
 
 ACCOMMODATION DETAILS
-â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ACCOMMODATION SCHEDULE (In Chronological Order)
 
@@ -2691,11 +3370,11 @@ Night 1 (Sept 9-10):
   Check-in: 3:00 PM | Check-out: 11:00 AM
 
 Nights 2-3 (Sept 10-12):
-  Under Canvas North Yellowstone â€“ Paradise Valley
+  Under Canvas North Yellowstone – Paradise Valley
   Address: 139 Pine Creek Road, Livingston, Montana 59047
   Phone: (888) 496-1148
   Check-in: 4:00 PM | Check-out: 11:00 AM
-  â›º GLAMPING EXPERIENCE
+  ⛺ GLAMPING EXPERIENCE
 
 Night 4 (Sept 12-13):
   Home2 Suites by Hilton Bozeman Four Corners
@@ -2708,14 +3387,14 @@ MY TENT SELECTION
   Confirmation Number: ${tripDetails.tent?.confirmation || 'Not provided'}
   Notes: ${tripDetails.tent?.notes || 'None'}
 
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+═══════════════════════════════════════════════════════════════
 
 ACTIVITIES
-â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-â­ SELECTED BY GROUP (For Everyone):
+⭐ SELECTED BY GROUP (For Everyone):
 ${groupActivities.length > 0 ?
-  groupActivities.map(a => `  â­ ${a.name} - ${a.cost}`).join('\n')
+  groupActivities.map(a => `  ⭐ ${a.name} - ${a.cost}`).join('\n')
 : '  No group activities selected yet'}
 
 MY SELECTED ACTIVITIES:
@@ -2723,39 +3402,39 @@ ${tripDetails.activities && tripDetails.activities.length > 0 ?
   tripDetails.activities.map(a => {
     const activityName = typeof a === 'string' ? a : (a && a.name ? a.name : 'Unknown activity');
     const activityPrice = typeof a === 'string' ? '' : (a && a.cost ? ` - ${a.cost}` : '');
-    return `  âœ“ ${activityName}${activityPrice}`;
+    return `  ✓ ${activityName}${activityPrice}`;
   }).join('\n')
 : '  No personal activities selected yet'}
 
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+═══════════════════════════════════════════════════════════════
 
 TRIP COORDINATORS CONTACT
-â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   Sherri Belk: sherribelklaw@gmail.com
   Janita Moody: freshnclean9@gmail.com
 
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+═══════════════════════════════════════════════════════════════
 
-ðŸ’° PERSONAL COST BREAKDOWN - COMING SOON!
-â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
+💰 PERSONAL COST BREAKDOWN - COMING SOON!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 A detailed cost breakdown section will be added here soon to help you
 track your trip expenses including flights, accommodations, activities,
 and other costs. Stay tuned!
 
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+═══════════════════════════════════════════════════════════════
 
 IMPORTANT REMINDERS
-â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”
-  â€¢ Bring valid ID for flights and hotel check-in
-  â€¢ Pack layers - Montana weather can be unpredictable
-  â€¢ Bring sunscreen, bug spray, and comfortable shoes
-  â€¢ Camera/phone for capturing memories
-  â€¢ Reusable water bottle
-  â€¢ Any personal medications
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  • Bring valid ID for flights and hotel check-in
+  • Pack layers - Montana weather can be unpredictable
+  • Bring sunscreen, bug spray, and comfortable shoes
+  • Camera/phone for capturing memories
+  • Reusable water bottle
+  • Any personal medications
 
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+═══════════════════════════════════════════════════════════════
 
-Have an amazing trip! ðŸ•ï¸âœ¨
+Have an amazing trip! 🏕️✨
 
 For the latest updates, visit:
 https://tamimoooo.github.io/agenda/reunion.html
@@ -2772,10 +3451,10 @@ https://tamimoooo.github.io/agenda/reunion.html
         document.body.removeChild(a);
         window.URL.revokeObjectURL(url);
 
-        alert('ðŸ“¥ Your trip itinerary has been downloaded!\n\nNote: This is a text file mockup. In the full version, this would be a formatted Word document (.docx) with proper styling, images, and layout.');
+        alert('📥 Your trip itinerary has been downloaded!\n\nNote: This is a text file mockup. In the full version, this would be a formatted Word document (.docx) with proper styling, images, and layout.');
       } catch (error) {
         console.error('Error downloading itinerary:', error);
-        alert('âŒ Error downloading itinerary. Please try again.');
+        alert('❌ Error downloading itinerary. Please try again.');
       }
     }
 
@@ -2793,7 +3472,7 @@ https://tamimoooo.github.io/agenda/reunion.html
       }
 
       if (distance < 0) {
-        document.getElementById('countdown').innerHTML = '<div style="font-size: 1.5rem; font-weight: bold;">ðŸŽ‰ The Adventure Has Begun! ðŸŽ‰</div>';
+        document.getElementById('countdown').innerHTML = '<div style="font-size: 1.5rem; font-weight: bold;">🎉 The Adventure Has Begun! 🎉</div>';
         return;
       }
 
@@ -2812,11 +3491,11 @@ https://tamimoooo.github.io/agenda/reunion.html
       if (content.style.display === 'none' || content.style.display === '') {
         content.style.display = 'block';
         toggle.style.transform = 'rotate(90deg)';
-        toggle.textContent = 'â–¼';
+        toggle.textContent = '▼';
       } else {
         content.style.display = 'none';
         toggle.style.transform = 'rotate(0deg)';
-        toggle.textContent = 'â–¶';
+        toggle.textContent = '▶';
       }
     }
 
@@ -2839,13 +3518,13 @@ https://tamimoooo.github.io/agenda/reunion.html
         statusDiv.style.display = 'block';
         statusDiv.style.background = '#ffebee';
         statusDiv.style.color = '#c62828';
-        statusDiv.innerHTML = 'âŒ Please fill in all required fields.';
+        statusDiv.innerHTML = '❌ Please fill in all required fields.';
         return;
       }
       
       // Disable button and show loading
       submitBtn.disabled = true;
-      submitBtn.innerHTML = 'â³ Sending...';
+      submitBtn.innerHTML = '⏳ Sending...';
       statusDiv.style.display = 'none';
       
       try {
@@ -2862,14 +3541,14 @@ https://tamimoooo.github.io/agenda/reunion.html
           }
         );
         
-        console.log('âœ… Question submitted successfully:', result);
+        console.log('✅ Question submitted successfully:', result);
         console.log('Response details:', JSON.stringify(result, null, 2));
         
         // Show success message
         statusDiv.style.display = 'block';
         statusDiv.style.background = '#e8f5e9';
         statusDiv.style.color = '#2e7d32';
-        statusDiv.innerHTML = 'âœ… Your question has been submitted successfully! We\'ll address it at the meeting.';
+        statusDiv.innerHTML = '✅ Your question has been submitted successfully! We\'ll address it at the meeting.';
         
         // Reset form
         form.reset();
@@ -2879,7 +3558,7 @@ https://tamimoooo.github.io/agenda/reunion.html
         submitBtn.innerHTML = originalBtnText;
         
       } catch (error) {
-        console.error('âŒ Error submitting question:', error);
+        console.error('❌ Error submitting question:', error);
         console.error('Error details:', JSON.stringify(error, null, 2));
         console.error('Error text:', error.text);
         console.error('Error status:', error.status);
@@ -2888,7 +3567,7 @@ https://tamimoooo.github.io/agenda/reunion.html
         statusDiv.style.display = 'block';
         statusDiv.style.background = '#ffebee';
         statusDiv.style.color = '#c62828';
-        statusDiv.innerHTML = 'âŒ Failed to submit question. Please try again or email directly to dst894@hotmail.com';
+        statusDiv.innerHTML = '❌ Failed to submit question. Please try again or email directly to dst894@hotmail.com';
         
         // Re-enable button
         submitBtn.disabled = false;
@@ -2899,11 +3578,7 @@ https://tamimoooo.github.io/agenda/reunion.html
     // Initialize on page load
     document.addEventListener('DOMContentLoaded', function() {
       initializeContacts();
-      initializeActivitySuggestions();
-      populateActivitiesCheckboxes();
-      populateNameDropdown();
-      populateTripActivitiesDropdown();
-      loadTripDetails();
+      loadConfirmedActivities();
       
       // Initialize questions form
       const questionsForm = document.getElementById('questionsForm');
