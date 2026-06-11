@@ -52,6 +52,7 @@
       color: var(--text-primary);
       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
       min-height: 100vh;
+      min-height: 100dvh;
       position: relative;
       overflow-x: hidden;
       overflow-y: auto;
@@ -203,8 +204,22 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 20px;
+      padding: 12px;
+      margin: -12px -12px 20px -12px;
       cursor: pointer;
       user-select: none;
+      min-height: 44px;
+      touch-action: manipulation;
+      border-radius: 10px;
+      transition: background-color 0.2s ease;
+    }
+
+    .section-header:hover {
+      background-color: rgba(211, 47, 47, 0.05);
+    }
+
+    .section-header:active {
+      background-color: rgba(211, 47, 47, 0.1);
     }
 
     .section-title {
@@ -229,11 +244,14 @@
     .section-content {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease-out;
+      transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+      opacity: 0;
     }
 
     .section-content.expanded {
-      max-height: 5000px;
+      max-height: none;
+      opacity: 1;
+      overflow: visible;
     }
 
     /* Contact Cards */
@@ -290,6 +308,7 @@
       align-items: center;
       gap: 8px;
       padding: 12px 24px;
+      min-height: 44px;
       border: none;
       border-radius: 25px;
       font-weight: 600;
@@ -297,6 +316,7 @@
       transition: var(--transition);
       text-decoration: none;
       font-size: 1rem;
+      touch-action: manipulation;
     }
 
     .btn-primary {
@@ -325,6 +345,7 @@
 
     .btn-small {
       padding: 8px 16px;
+      min-height: 36px;
       font-size: 0.9rem;
     }
 
@@ -336,6 +357,7 @@
       left: 0;
       width: 100%;
       height: 100%;
+      height: 100dvh;
       background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(5px);
       z-index: 1000;
@@ -356,7 +378,9 @@
       max-width: 600px;
       width: 100%;
       max-height: 90vh;
+      max-height: 90dvh;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       box-shadow: var(--shadow-lg);
       animation: slideUp 0.4s ease-out;
     }
@@ -382,12 +406,15 @@
       color: var(--text-secondary);
       transition: var(--transition);
       padding: 0;
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
+      touch-action: manipulation;
     }
 
     .close-btn:hover {
@@ -411,11 +438,13 @@
     .form-input {
       width: 100%;
       padding: 12px 16px;
+      min-height: 44px;
       border: 2px solid var(--border-color);
       border-radius: 10px;
-      font-size: 1rem;
+      font-size: 16px;
       transition: var(--transition);
       font-family: inherit;
+      box-sizing: border-box;
     }
 
     .form-input:focus {
@@ -427,6 +456,7 @@
     textarea.form-input {
       resize: vertical;
       min-height: 100px;
+      line-height: 1.5;
     }
 
     /* Photo Gallery */
@@ -563,6 +593,16 @@
        RESPONSIVE DESIGN - MOBILE FIRST
        ======================================== */
     
+    /* Base styles are mobile-first (320px+)
+       - Single column layouts
+       - Full-width elements
+       - Comfortable touch targets (44px min)
+       - No fixed heights that clip content
+       - Natural content flow with overflow: visible
+       - 16px base font to prevent iOS zoom
+       - Flexible spacing with min values
+    */
+    
     /* Tablet and up (600px+) */
     @media (min-width: 600px) {
       .container {
@@ -615,8 +655,9 @@
       .modal-content {
         padding: 20px;
         margin: 10px;
-        max-height: 85vh;
+        max-height: calc(100dvh - 40px);
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
       }
 
       .modal-title {
