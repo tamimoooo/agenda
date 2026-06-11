@@ -51,7 +51,6 @@
       line-height: 1.6;
       color: var(--text-primary);
       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      min-height: 100vh;
       min-height: 100dvh;
       position: relative;
       overflow-x: hidden;
@@ -242,16 +241,11 @@
     }
 
     .section-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
-      opacity: 0;
+      display: none;
     }
 
     .section-content.expanded {
-      max-height: none;
-      opacity: 1;
-      overflow: visible;
+      display: block;
     }
 
     /* Contact Cards */
@@ -1115,7 +1109,6 @@
         <a href="trip-dashboard.html" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #8B0000; padding: 6px 16px; border-radius: 15px; text-decoration: none; font-size: 0.85rem; font-weight: bold; transition: all 0.2s ease; flex-shrink: 0; box-shadow: 0 2px 8px rgba(255,215,0,0.3);">📊 Dashboard</a>
         <a href="#contacts" onclick="scrollToSection('contacts', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">📇 Contacts</a>
         <a href="#trip-overview" onclick="scrollToSection('trip-overview', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">💰 Overview</a>
-        <a href="#lodging" onclick="scrollToSection('lodging', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">🏕️ Lodging</a>
         <a href="#activities" onclick="scrollToSection('activities', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">🎯 Activities</a>
         <a href="#travel-info" onclick="scrollToSection('travel-info', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">✈️ Travel</a>
         <button onclick="collapseAll()" style="background: rgba(255,255,255,0.3); color: white; padding: 6px 12px; border-radius: 15px; border: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0; cursor: pointer; font-weight: 500;">📦 Collapse</button>
@@ -1931,8 +1924,8 @@
         container.innerHTML = confirmedActivities.map(activity => `
           <div class="activity-item">
             <div class="activity-item-header">
-              <div class="activity-item-title">${activity.activityName}</div>
-              <div class="activity-item-cost">${activity.estimatedCost}</div>
+              <div class="activity-item-title">${activity.name || activity.activityName || 'Activity name missing'}</div>
+              <div class="activity-item-cost">${activity.cost || activity.estimatedCost || 'Cost TBD'}</div>
             </div>
             <div class="activity-item-details">
               ${activity.description || 'Details coming soon'}
@@ -1988,23 +1981,6 @@
     function editContact(id) {
       // Note: Contacts are loaded from JSON files, not localStorage
       alert('Contact editing must be done by admin. Please email them to update this contact.');
-      return;
-      const contacts = [];
-      const contact = contacts.find(c => c.id === id);
-      
-      if (contact) {
-        document.getElementById('modalTitle').textContent = 'Edit Contact Info';
-        document.getElementById('contactId').value = contact.id;
-        document.getElementById('contactName').value = contact.name;
-        document.getElementById('contactEmail').value = contact.email;
-        document.getElementById('contactAddress').value = contact.address || '';
-        document.getElementById('contactCity').value = contact.city || '';
-        document.getElementById('contactState').value = contact.state || '';
-        document.getElementById('contactZip').value = contact.zip || '';
-        document.getElementById('contactPhone').value = contact.phone || '';
-        document.getElementById('contactBirthday').value = contact.birthday || '';
-        document.getElementById('contactModal').classList.add('active');
-      }
     }
 
     // Delete contact
