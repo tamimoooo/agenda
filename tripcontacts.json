@@ -492,43 +492,5 @@
     "submittedDate": "",
     "lastUpdated": "",
     "confirmationStatus": "not_submitted"
-  },
-  {
-    "userId": 16,
-    "name": "Rochelle",
-    "outbound": {
-      "departureCity": "",
-      "arrivalCity": "Bozeman, MT",
-      "airline": "",
-      "flightNumber": "",
-      "departure": "",
-      "arrival": "",
-      "confirmation": ""
-    },
-    "return": {
-      "departureCity": "Bozeman, MT",
-      "arrivalCity": "",
-      "airline": "",
-      "flightNumber": "",
-      "departure": "",
-      "arrival": "",
-      "confirmation": ""
-    },
-    "tent": {
-      "type": "",
-      "notes": ""
-    },
-    "activities": [],
-    "transportation": {
-      "needsAirportPickup": false,
-      "needsAirportDropoff": false,
-      "willingToRentCar": "",
-      "arrivalTime": "",
-      "departureTime": ""
-    },
-    "specialRequests": "",
-    "submittedDate": "",
-    "lastUpdated": "",
-    "confirmationStatus": "not_submitted"
   }
 ]
