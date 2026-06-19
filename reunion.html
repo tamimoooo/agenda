@@ -622,6 +622,17 @@
 
     /* Mobile adjustments (max-width: 600px) */
     @media (max-width: 600px) {
+      /* Collapse activities and travel-info cards by default on mobile */
+      #activities-content,
+      #travel-info-content {
+        display: none;
+      }
+      
+      #activities-icon,
+      #travel-info-icon {
+        transform: rotate(0deg);
+      }
+      
       header {
         padding: 40px 16px 30px;
         border-radius: 0 0 20px 20px;
@@ -936,6 +947,57 @@
       font-size: 0.9rem;
       color: var(--text-secondary);
       line-height: 1.5;
+    }
+
+    /* Trip Card Collapsible Headers */
+    .trip-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      min-height: 44px;
+      padding: 12px 0;
+      user-select: none;
+      touch-action: manipulation;
+      border-radius: 8px;
+      margin: -12px -12px 12px -12px;
+      padding: 12px;
+      transition: background-color 0.2s ease;
+    }
+
+    .trip-card-header:hover {
+      background-color: rgba(211, 47, 47, 0.05);
+    }
+
+    .trip-card-header:active {
+      background-color: rgba(211, 47, 47, 0.1);
+    }
+
+    .trip-card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .trip-card-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+      color: var(--primary-color);
+    }
+
+    .trip-card-icon.expanded {
+      transform: rotate(90deg);
+    }
+
+    .trip-card-content {
+      display: none;
+    }
+
+    .trip-card-content.expanded {
+      display: block;
     }
 
     /* Loading State */
@@ -1408,10 +1470,11 @@
 
         <!-- Card 1: Trip Overview -->
         <div class="trip-card" id="trip-overview">
-          <div class="section-header">
-            <h3 class="section-title">📋 Trip Overview</h3>
+          <div class="trip-card-header" onclick="toggleTripCard('trip-overview')">
+            <h3 class="trip-card-title">📋 Trip Overview</h3>
+            <span class="trip-card-icon expanded" id="trip-overview-icon">▶</span>
           </div>
-          <div class="section-content expanded">
+          <div class="trip-card-content expanded" id="trip-overview-content">
             
             <div class="content-box-highlight">
               <h4 style="color: var(--primary-color); margin-bottom: 15px;">💰 Estimated Cost (Per Person)</h4>
@@ -1454,10 +1517,15 @@
                 <span class="cost-item-amount">$35</span>
               </div>
               
+              <div class="cost-item">
+                <span class="cost-item-label">🚗 Vehicle/Car Rental (per day)</span>
+                <span class="cost-item-amount">TBD</span>
+              </div>
+              
               <div class="cost-total-box">
-                <div class="cost-total-label">Estimated Total (excluding meals, airfare & van rental)</div>
+                <div class="cost-total-label">Estimated Total (excluding meals, airfare & vehicle rental)</div>
                 <div class="cost-total-amount">$1,415.97+</div>
-                <div class="cost-total-note">+ meals (TBD) + airfare + car rental (TBD)</div>
+                <div class="cost-total-note">+ meals (TBD) + airfare + vehicle rental (TBD)</div>
               </div>
             </div>
 
@@ -1487,10 +1555,11 @@
 
         <!-- Card 3: Confirmed Group Activities -->
         <div class="trip-card" id="activities">
-          <div class="section-header">
-            <h3 class="section-title">🎯 Confirmed Group Activities</h3>
+          <div class="trip-card-header" onclick="toggleTripCard('activities')">
+            <h3 class="trip-card-title">🎯 Confirmed Group Activities</h3>
+            <span class="trip-card-icon" id="activities-icon">▶</span>
           </div>
-          <div class="section-content expanded">
+          <div class="trip-card-content" id="activities-content">
             <div class="info-box" style="margin-bottom: 20px;">
               <strong>ℹ️ Note:</strong> These activities have been selected by the group. Review and let us know which ones you'd like to join!
             </div>
@@ -1504,10 +1573,11 @@
 
         <!-- Card 4: Travel Information -->
         <div class="trip-card" id="travel-info">
-          <div class="section-header">
-            <h3 class="section-title">✈️ Travel Information</h3>
+          <div class="trip-card-header" onclick="toggleTripCard('travel-info')">
+            <h3 class="trip-card-title">✈️ Travel Information</h3>
+            <span class="trip-card-icon" id="travel-info-icon">▶</span>
           </div>
-          <div class="section-content expanded">
+          <div class="trip-card-content" id="travel-info-content">
             <div class="content-box">
               <h4 style="color: var(--primary-dark); margin-bottom: 15px;">Flight Details</h4>
               <div class="info-grid">
@@ -1769,8 +1839,21 @@
       // For main sections with toggle functionality, expand if collapsed
       if (sectionId === 'contacts' || sectionId === 'email' || sectionId === 'photos' || sectionId === 'trips') {
         const content = document.getElementById(`${sectionId}-content`);
-        if (content && (!content.style.display || content.style.display === 'none')) {
+        if (content && !content.classList.contains('expanded')) {
           toggleSection(sectionId);
+        }
+      }
+      
+      // For trip cards, auto-expand them when navigating via quick links
+      if (sectionId === 'trip-overview' || sectionId === 'activities' || sectionId === 'travel-info') {
+        const cardContent = document.getElementById(`${sectionId}-content`);
+        if (cardContent && !cardContent.classList.contains('expanded')) {
+          toggleTripCard(sectionId);
+        }
+        // Also ensure the parent trips section is expanded
+        const tripsContent = document.getElementById('trips-content');
+        if (tripsContent && !tripsContent.classList.contains('expanded')) {
+          toggleSection('trips');
         }
       }
       
@@ -1911,6 +1994,15 @@
         content.classList.add('expanded');
         icon.classList.add('expanded');
       }
+    }
+
+    // Toggle trip card visibility
+    function toggleTripCard(cardId) {
+      const content = document.getElementById(cardId + '-content');
+      const icon = document.getElementById(cardId + '-icon');
+      if (!content || !icon) return;
+      content.classList.toggle('expanded');
+      icon.classList.toggle('expanded');
     }
 
     // Load confirmed activities from JSON
