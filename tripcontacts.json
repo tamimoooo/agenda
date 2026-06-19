@@ -67,12 +67,12 @@
     "userId": 3,
     "name": "Summer",
     "outbound": {
-      "departureCity": "Miami",
+      "departureCity": "Dallas",
       "arrivalCity": "Bozeman, MT",
       "airline": "American",
-      "flightNumber": "AA1226",
+      "flightNumber": "AA947",
       "departure": "",
-      "arrival": "2026-09-09T11:00",
+      "arrival": "2026-09-09T15:26",
       "confirmation": ""
     },
     "return": {
