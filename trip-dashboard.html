@@ -653,29 +653,125 @@
       </div>
     </div>
 
-    <!-- What Activities Dots Are Interested In -->
-    <div class="section" id="individual-activities">
-      <h2 class="section-title collapsed" onclick="toggleSection(this)">
-        <span>🎯 What Activities Dots Are Interested In</span>
+    <!-- Cost Breakdown -->
+    <div class="section" id="cost-breakdown">
+      <h2 class="section-title" onclick="toggleSection(this)">
+        <span>💰 Estimated Cost Breakdown (Per Person)</span>
         <span class="toggle-icon">▼</span>
       </h2>
-      <div class="section-content collapsed" id="individualActivitiesList" style="max-height: 400px; overflow-y: auto; -webkit-overflow-scrolling: touch;">
-        <div style="background: #fff3cd; padding: 10px; border-radius: 5px; margin-bottom: 15px; font-size: 0.9rem;">
-          <strong>⭐ Group-Selected Activities:</strong> E-BIKE & Horseback Riding<br>
-          <span style="font-size: 0.85rem; color: #666;">Payment: $NicoleKilpatrick via Cash App • <a href="reunion.html#payment-content" style="color: #d32f2f; text-decoration: underline;">View payment details on main page</a></span>
+      <div class="section-content" style="padding: 20px;">
+        <div style="background: #fff3cd; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+          <p style="margin: 0; color: #856404;">
+            <strong>📅 September 9-14, 2026</strong> • Prices are estimates and subject to change
+          </p>
         </div>
-        <div class="loading">Loading individual selections...</div>
-      </div>
-    </div>
 
-    <!-- Activity Statistics -->
-    <div class="section" id="activity-stats">
-      <h2 class="section-title collapsed" onclick="toggleSection(this)">
-        <span>📊 Activity Statistics</span>
-        <span class="toggle-icon">▼</span>
-      </h2>
-      <div class="section-content collapsed" id="activityStatsList">
-        <div class="loading">Loading activity statistics...</div>
+        <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          <h3 style="color: var(--primary-dark); margin-bottom: 15px; font-size: 1.2rem;">📋 Base Costs (All Departure Options)</h3>
+          
+          <div style="display: grid; gap: 12px;">
+            <div style="display: flex; justify-content: space-between; padding: 12px; background: #f8f9fa; border-radius: 5px;">
+              <span>🏨 Home2 Suites Bozeman Midtown (Night 1: Sept 9-10)</span>
+              <strong style="color: var(--primary-dark);">$181</strong>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; padding: 12px; background: #f8f9fa; border-radius: 5px;">
+              <span>⛺ Under Canvas Yellowstone (Nights 2-3: Sept 10-12)</span>
+              <strong style="color: var(--primary-dark);">$600</strong>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; padding: 12px; background: #f8f9fa; border-radius: 5px;">
+              <span>🎯 Activities (average for 2 activities)</span>
+              <strong style="color: var(--primary-dark);">$210</strong>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; padding: 12px; background: #f8f9fa; border-radius: 5px;">
+              <span>🎫 Yellowstone Park Entry (per vehicle, not per person)</span>
+              <strong style="color: var(--primary-dark);">$35</strong>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="color: var(--primary-dark); margin: 25px 0 15px 0; font-size: 1.2rem;">📅 Cost by Departure Date</h3>
+        
+        <!-- Saturday Departure -->
+        <div style="background: #e8f5e9; border: 2px solid #4caf50; border-radius: 10px; padding: 20px; margin-bottom: 15px;">
+          <div style="font-weight: bold; color: #2e7d32; margin-bottom: 12px; font-size: 1.1rem;">
+            ✈️ Saturday, September 12 Departure (3 nights, 3 days)
+          </div>
+          <div style="font-size: 0.95rem; color: #555; margin-bottom: 12px; line-height: 1.8;">
+            • Accommodations: $781.00 (Bozeman + Under Canvas)<br>
+            • Activities: $210.00<br>
+            • Meals: $240.00 (3 days @ $80/day)<br>
+            • Car Rental: $129.00 (3 days @ $43/day)<br>
+            • Gas: TBD (per vehicle, split among passengers)<br>
+            • Park Entry: N/A (leaving before Yellowstone visit)
+          </div>
+          <div style="border-top: 2px solid #4caf50; padding-top: 12px; margin-top: 12px;">
+            <div style="font-size: 0.9rem; color: #666; margin-bottom: 5px;">Estimated Total (excluding airfare, drinks & gas)</div>
+            <div style="font-size: 1.5rem; font-weight: bold; color: #2e7d32;">$1,360.00</div>
+            <div style="font-size: 0.85rem; color: #666; margin-top: 5px;">+ airfare + drinks + gas</div>
+          </div>
+        </div>
+
+        <!-- Sunday Departure -->
+        <div style="background: #fff3e0; border: 2px solid #ff9800; border-radius: 10px; padding: 20px; margin-bottom: 15px;">
+          <div style="font-weight: bold; color: #e65100; margin-bottom: 12px; font-size: 1.1rem;">
+            ✈️ Sunday, September 13 Departure (4 nights, 4 days)
+          </div>
+          <div style="font-size: 0.95rem; color: #555; margin-bottom: 12px; line-height: 1.8;">
+            • Accommodations: $1,050.21 (Bozeman + Under Canvas + West Yellowstone)<br>
+            • Activities: $210.00<br>
+            • Meals: $320.00 (4 days @ $80/day)<br>
+            • Car Rental: $172.00 (4 days @ $43/day)<br>
+            • Gas: TBD (per vehicle, split among passengers)<br>
+            • Park Entry: $35.00 (per vehicle, split among passengers)
+          </div>
+          <div style="border-top: 2px solid #ff9800; padding-top: 12px; margin-top: 12px;">
+            <div style="font-size: 0.9rem; color: #666; margin-bottom: 5px;">Estimated Total (excluding airfare, drinks & gas)</div>
+            <div style="font-size: 1.5rem; font-weight: bold; color: #e65100;">$1,787.21</div>
+            <div style="font-size: 0.85rem; color: #666; margin-top: 5px;">+ airfare + drinks + gas</div>
+          </div>
+        </div>
+
+        <!-- Monday Departure -->
+        <div style="background: #e3f2fd; border: 2px solid #2196f3; border-radius: 10px; padding: 20px; margin-bottom: 15px;">
+          <div style="font-weight: bold; color: #0d47a1; margin-bottom: 12px; font-size: 1.1rem;">
+            ✈️ Monday, September 14 Departure (5 nights, 5 days) - FULL TRIP
+          </div>
+          <div style="font-size: 0.95rem; color: #555; margin-bottom: 12px; line-height: 1.8;">
+            • Accommodations: $1,170.97 (All hotels)<br>
+            • Activities: $210.00<br>
+            • Meals: $400.00 (5 days @ $80/day)<br>
+            • Car Rental: $215.00 (5 days @ $43/day)<br>
+            • Gas: TBD (per vehicle, split among passengers)<br>
+            • Park Entry: $35.00 (per vehicle, split among passengers)
+          </div>
+          <div style="border-top: 2px solid #2196f3; padding-top: 12px; margin-top: 12px;">
+            <div style="font-size: 0.9rem; color: #666; margin-bottom: 5px;">Estimated Total (excluding airfare, drinks & gas)</div>
+            <div style="font-size: 1.5rem; font-weight: bold; color: #0d47a1;">$2,030.97</div>
+            <div style="font-size: 0.85rem; color: #666; margin-top: 5px;">+ airfare + drinks + gas</div>
+          </div>
+        </div>
+
+        <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          <h4 style="color: var(--primary-dark); margin-bottom: 12px;">✅ Quick Action Checklist</h4>
+          <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+            <li>Book your flights to Bozeman, MT (BZN)</li>
+            <li>Confirm Hotel attendance by September 6, 2026</li>
+            <li>Review confirmed group activities below</li>
+            <li>Mark your calendar for Activities payment deadlines</li>
+          </ul>
+        </div>
+
+        <div style="background: #fff3cd; padding: 15px; border-radius: 10px; margin-top: 15px;">
+          <strong>⚠️ Important Notes:</strong>
+          <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+            <li>All prices are estimates and subject to change</li>
+            <li>Car rental - Rented Per Group (Sat Grp, Sun Grp, Mon Grp)</li>
+            <li>Dana is checking on Service Project Date Changes</li>
+          </ul>
+        </div>
       </div>
     </div>
 
