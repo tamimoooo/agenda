@@ -461,10 +461,10 @@
     "outbound": {
       "departureCity": "Phoenix, AZ",
       "arrivalCity": "Bozeman, MT",
-      "airline": "",
-      "flightNumber": "716",
+      "airline": "Southwest",
+      "flightNumber": "1575",
       "departure": "2026-09-09T08:05",
-      "arrival": "2026-09-09T13:25",
+      "arrival": "2026-09-09T14:40",
       "confirmation": ""
     },
     "return": {
