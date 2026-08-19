@@ -123,96 +123,17 @@
     "lastUpdated": "2026-03-15T22:46:58.761Z",
     "confirmationStatus": "pending"
   },
-  {
-    "userId": 4,
-    "name": "Dana",
-    "outbound": {
-      "departureCity": "Atlanta, GA",
-      "arrivalCity": "Bozeman, MT",
-      "airline": "Delta",
-      "flightNumber": "DL406",
-      "departure": "2026-09-09T11:01",
-      "arrival": "2026-09-09T13:06",
-      "confirmation": "Main Classic"
-    },
-    "return": {
-      "departureCity": "Bozeman, MT",
-      "arrivalCity": "Atlanta, GA",
-      "airline": "Delta",
-      "flightNumber": "DL406",
-      "departure": "2026-09-12T14:00",
-      "arrival": "2026-09-12T19:54",
-      "confirmation": "Main Classic"
-    },
-    "tent": {
-      "type": "Suite",
-      "confirmation": "109591",
-      "notes": "Sharing tent with Michelle"
-    },
-    "activities": [
-      {
-        "name": "Yellowstone Park Tours",
-        "cost": "TBD",
-        "selectedByGroup": false
-      },
-      {
-        "name": "Hiking & Nature Walks",
-        "cost": "Free",
-        "selectedByGroup": false
-      },
-      {
-        "name": "Evening S'mores",
-        "cost": "Free (included with stay)",
-        "selectedByGroup": false
-      },
-      {
-        "name": "Morning Yoga",
-        "cost": "Free (included with stay)",
-        "selectedByGroup": false
-      },
-      {
-        "name": "Live Acoustic Music",
-        "cost": "Free (included with stay)",
-        "selectedByGroup": false
-      },
-      {
-        "name": "Camp Programming",
-        "cost": "Free (included with stay)",
-        "selectedByGroup": false
-      },
-      {
-        "name": "Lawn & Board Games",
-        "cost": "Free (included with stay)",
-        "selectedByGroup": false
-      },
-      {
-        "name": "Complimentary Coffee & Tea",
-        "cost": "Free (included with stay)",
-        "selectedByGroup": false
-      }
-    ],
-    "transportation": {
-      "needsAirportPickup": true,
-      "needsAirportDropoff": true,
-      "willingToRentCar": false,
-      "arrivalTime": "2026-09-09T13:06",
-      "departureTime": "2026-09-12T14:00"
-    },
-    "specialRequests": "Park Tour. Hiking. Yoga. Shellfish Allergy.",
-    "submittedDate": "2026-02-04T19:19:36.954Z",
-    "lastUpdated": "2026-02-04T19:19:36.954Z",
-    "confirmationStatus": "pending"
-  },
+ 
   {
     "userId": 8,
     "name": "Tamika",
     "outbound": {
       "departureCity": "Raleigh, NC",
       "arrivalCity": "Bozeman, MT",
-      "airline": "Delta",
-      "flightNumber": "DL2847",
+      "airline": "United",
+      "flightNumber": "UA5586",
       "departure": "2026-09-09T08:30:00",
-      "arrival": "2026-09-09T13:45:00",
+      "arrival": "2026-09-09T15:35:00",
       "confirmation": "ABC123XYZ"
     },
     "return": {
@@ -417,44 +338,7 @@
     "lastUpdated": "2026-02-01T23:41:01.754Z",
     "confirmationStatus": "pending"
   },
-  {
-    "userId": 13,
-    "name": "Michelle",
-    "outbound": {
-      "departureCity": "",
-      "arrivalCity": "Bozeman, MT",
-      "airline": "",
-      "flightNumber": "",
-      "departure": "",
-      "arrival": "",
-      "confirmation": ""
-    },
-    "return": {
-      "departureCity": "Bozeman, MT",
-      "arrivalCity": "",
-      "airline": "",
-      "flightNumber": "",
-      "departure": "",
-      "arrival": "",
-      "confirmation": ""
-    },
-    "tent": {
-      "type": "",
-      "notes": ""
-    },
-    "activities": [],
-    "transportation": {
-      "needsAirportPickup": false,
-      "needsAirportDropoff": false,
-      "willingToRentCar": "",
-      "arrivalTime": "",
-      "departureTime": ""
-    },
-    "specialRequests": "",
-    "submittedDate": "",
-    "lastUpdated": "",
-    "confirmationStatus": "not_submitted"
-  },
+ 
   {
     "userId": 15,
     "name": "Nicole",
