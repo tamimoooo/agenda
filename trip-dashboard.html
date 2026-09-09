@@ -609,6 +609,24 @@
       </div>
     </div>
 
+    <!-- Download Itinerary -->
+    <div class="section" id="itinerary-download-section" style="border: 2px solid var(--primary); background: #fdfaf2; padding: 20px; border-radius: 10px; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+      <h2 style="color: var(--primary-dark); margin: 0 0 10px 0; font-size: 1.4rem; display: flex; align-items: center; gap: 8px;">
+        <span>📋 Get Your Personal Itinerary</span>
+      </h2>
+      <p style="color: #666; margin: 0 0 15px 0; font-size: 0.95rem;">
+        Select your name to instantly download your personalized trip itinerary containing your confirmed flights, hotel/glamping locations, tent assignments, and selected activities!
+      </p>
+      <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+        <select id="itineraryUserSelect" style="padding: 12px 15px; font-size: 1rem; border: 2px solid #ccc; border-radius: 6px; min-width: 250px; background: white; cursor: pointer; color: #333;">
+          <option value="">-- Select your name --</option>
+        </select>
+        <button onclick="downloadDashboardItinerary()" style="padding: 12px 25px; background: linear-gradient(135deg, #DAA520 0%, #B8860B 100%); color: white; border: none; border-radius: 6px; font-size: 1rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+          <span>📥 Download Itinerary</span>
+        </button>
+      </div>
+    </div>
+
     <!-- Who's Going -->
     <div class="section" id="whos-going">
       <h2 class="section-title collapsed" onclick="toggleSection(this)">
@@ -924,6 +942,18 @@
         namesHtml += '</div>';
 
         container.innerHTML = namesHtml;
+
+        // Populate itinerary user select dropdown
+        const dropdown = document.getElementById('itineraryUserSelect');
+        if (dropdown) {
+          dropdown.innerHTML = '<option value="">-- Select your name --</option>';
+          contacts.forEach(contact => {
+            const option = document.createElement('option');
+            option.value = contact.id;
+            option.textContent = contact.name;
+            dropdown.appendChild(option);
+          });
+        }
         
         console.log('Loaded participants from whosgoing.json:', contacts.length, 'people');
         
@@ -1377,6 +1407,219 @@
         if (activitiesCountEl) activitiesCountEl.textContent = activities.length;
       } catch (error) {
         console.error('Error updating statistics:', error);
+      }
+    }
+
+    // Download personalized itinerary function
+    async function downloadDashboardItinerary() {
+      const selectEl = document.getElementById('itineraryUserSelect');
+      const userId = selectEl.value;
+      const userName = selectEl.options[selectEl.selectedIndex]?.text;
+      
+      if (!userId || !userName) {
+        alert('⚠️ Please select your name from the dropdown first!');
+        return;
+      }
+
+      try {
+        const timestamp = new Date().getTime();
+        const response = await fetch(`tripcontacts.json?t=${timestamp}`);
+        const tripContacts = await response.json();
+        const tripDetails = tripContacts.find(tc => tc.userId === parseInt(userId));
+        
+        if (!tripDetails) {
+          alert('⚠️ No trip details found. Make sure flight/trip details are submitted first!');
+          return;
+        }
+        
+        // Fetch group-selected activities from activity_suggestions.json
+        const activityResponse = await fetch(`activity_suggestions.json?t=${timestamp}`);
+        const allActivities = await activityResponse.json();
+        const groupActivities = allActivities.filter(a => a.selectedByGroup);
+        
+        // Ensure all required properties exist with defaults
+        if (!tripDetails.activities) tripDetails.activities = [];
+        if (!tripDetails.outbound) tripDetails.outbound = {};
+        if (!tripDetails.return) tripDetails.return = {};
+        if (!tripDetails.emergency) tripDetails.emergency = {};
+        if (!tripDetails.tent) tripDetails.tent = {};
+      
+        // Format dates nicely
+        const formatDateTime = (dateStr) => {
+          if (!dateStr) return 'Not specified';
+          const date = new Date(dateStr);
+          return date.toLocaleString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
+          });
+        };
+
+        // Create document content
+        let content = `DOTS GO GLAMPING - YELLOWSTONE 2026
+Personal Trip Itinerary for ${userName}
+Generated: ${new Date().toLocaleDateString()}
+
+═══════════════════════════════════════════════════════════════
+
+TRIP OVERVIEW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Dates: September 9-13, 2026
+Location: Under Canvas Yellowstone, Montana
+Trip Coordinators: Sherri Belk & Janita Moody
+
+═══════════════════════════════════════════════════════════════
+
+FLIGHT INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+OUTBOUND FLIGHT
+  From: ${tripDetails.outbound.departureCity || 'Not specified'}
+  To: ${tripDetails.outbound.arrivalCity || 'Not specified'}
+  Airline: ${tripDetails.outbound.airline || 'Not specified'}
+  Flight Number: ${tripDetails.outbound.flightNumber || 'Not specified'}
+  Departure: ${formatDateTime(tripDetails.outbound.departure)}
+  Arrival: ${formatDateTime(tripDetails.outbound.arrival)}
+  Confirmation: ${tripDetails.outbound.confirmation || 'Not specified'}
+
+RETURN FLIGHT
+  From: ${tripDetails.return.departureCity || 'Not specified'}
+  To: ${tripDetails.return.arrivalCity || 'Not specified'}
+  Airline: ${tripDetails.return.airline || 'Not specified'}
+  Flight Number: ${tripDetails.return.flightNumber || 'Not specified'}
+  Departure: ${formatDateTime(tripDetails.return.departure)}
+  Arrival: ${formatDateTime(tripDetails.return.arrival)}
+  Confirmation: ${tripDetails.return.confirmation || 'Not specified'}
+
+═══════════════════════════════════════════════════════════════
+
+ACCOMMODATION DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ACCOMMODATION SCHEDULE (In Chronological Order)
+
+Night 1 (Sept 9-10):
+  Home2 Suites by Hilton Bozeman Midtown
+  Address: 1760 Baxter Lane, Bozeman, Montana, 59715, USA
+  Phone: (406) 582-8800
+  Check-in: 3:00 PM | Check-out: 11:00 AM
+
+Nights 2-3 (Sept 10-12):
+  Under Canvas North Yellowstone – Paradise Valley
+  Address: 139 Pine Creek Road, Livingston, Montana 59047
+  Phone: (888) 496-1148
+  Check-in: 4:00 PM | Check-out: 11:00 AM
+  ⛺ GLAMPING EXPERIENCE
+
+Night 4 (Sept 12-13):
+  West Yellowstone Lodge
+  Address: West Yellowstone, MT (Details coming soon)
+  Check-in: 3:00 PM | Check-out: 11:00 AM
+
+Night 5 (Sept 13-14):
+  Home2 Suites by Hilton Bozeman Four Corners
+  Address: 110 Homestake Drive, Bozeman, MT 59718
+  Phone: (406) 813-3000
+  Check-in: 3:00 PM | Check-out: 11:00 AM
+
+MY TENT SELECTION
+  Type: ${tripDetails.tent?.type || tripDetails.tent || 'Not selected yet'}
+  Confirmation Number: ${tripDetails.tent?.confirmation || 'Not provided'}
+  Notes: ${tripDetails.tent?.notes || 'None'}
+
+═══════════════════════════════════════════════════════════════
+
+KEY TRIP & ACTIVITY LOCATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Home2 Suites Bozeman Midtown (Night 1 Hotel):
+  1760 Baxter Lane, Bozeman, Montana, 59715, USA
+
+• Under Canvas Yellowstone (Nights 2-3 Glamping):
+  139 Pine Creek Road, Livingston, Montana 59047
+
+• West Yellowstone Lodge (Night 4 Hotel):
+  West Yellowstone, MT
+
+• Home2 Suites Bozeman Four Corners (Night 5 Hotel):
+  110 Homestake Drive, Bozeman, MT 59718
+
+• Sage Lodge (E-Bike Adventure Location):
+  55 Sage Lodge Drive, Pray, MT 59065
+
+• Horseback Riding (Gardiner Location):
+  14 Hanlon Hill Drive, Gardiner, MT 59030
+
+═══════════════════════════════════════════════════════════════
+
+ACTIVITIES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⭐ SELECTED BY GROUP (For Everyone):
+${groupActivities.length > 0 ?
+  groupActivities.map(a => `  ⭐ ${a.name} - ${a.cost}`).join('\n')
+: '  No group activities selected yet'}
+
+MY SELECTED ACTIVITIES:
+${tripDetails.activities && tripDetails.activities.length > 0 ?
+  tripDetails.activities.map(a => {
+    const activityName = typeof a === 'string' ? a : (a && a.name ? a.name : 'Unknown activity');
+    const activityPrice = typeof a === 'string' ? '' : (a && a.cost ? ` - ${a.cost}` : '');
+    return `  ✓ ${activityName}${activityPrice}`;
+  }).join('\n')
+: '  No personal activities selected yet'}
+
+═══════════════════════════════════════════════════════════════
+
+TRIP COORDINATORS CONTACT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Sherri Belk: sherribelklaw@gmail.com
+  Janita Moody: freshnclean9@gmail.com
+
+═══════════════════════════════════════════════════════════════
+
+💰 PERSONAL COST BREAKDOWN - COMING SOON!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+A detailed cost breakdown section will be added here soon to help you
+track your trip expenses including flights, accommodations, activities,
+and other costs. Stay tuned!
+
+═══════════════════════════════════════════════════════════════
+
+IMPORTANT REMINDERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  • Bring valid ID for flights and hotel check-in
+  • Pack layers - Montana weather can be unpredictable
+  • Bring sunscreen, bug spray, and comfortable shoes
+  • Camera/phone for capturing memories
+  • Reusable water bottle
+  • Any personal medications
+
+═══════════════════════════════════════════════════════════════
+
+Have an amazing trip! 🏕️✨
+
+For the latest updates, visit:
+https://tamimoooo.github.io/agenda/reunion.html
+`;
+
+        // Create and download the file
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Yellowstone_Trip_Itinerary_${userName.replace(/\s+/g, '_')}_2026.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      } catch (error) {
+        console.error('Error downloading itinerary:', error);
+        alert('❌ Error downloading itinerary. Please try again.');
       }
     }
   </script>
