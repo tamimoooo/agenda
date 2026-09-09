@@ -123,25 +123,24 @@
     "lastUpdated": "2026-03-15T22:46:58.761Z",
     "confirmationStatus": "pending"
   },
- 
   {
     "userId": 8,
     "name": "Tamika",
     "outbound": {
       "departureCity": "Raleigh, NC",
       "arrivalCity": "Bozeman, MT",
-      "airline": "United",
-      "flightNumber": "UA5586",
+      "airline": "Delta",
+      "flightNumber": "DL2847",
       "departure": "2026-09-09T08:30:00",
-      "arrival": "2026-09-09T15:35:00",
-      "confirmation": "BVBKQ5"
+      "arrival": "2026-09-09T13:45:00",
+      "confirmation": "ABC123XYZ"
     },
     "return": {
       "departureCity": "Bozeman, MT",
       "arrivalCity": "Raleigh, NC",
-      "airline": "Southwest",
+      "airline": "Delta",
       "flightNumber": "DL1956",
-      "departure": "2026-09-09T13:10",
+      "departure": "2026-09-09T13:15",
       "arrival": "2026-09-13T21:15:00",
       "confirmation": "ABC123XYZ"
     },
@@ -338,24 +337,23 @@
     "lastUpdated": "2026-02-01T23:41:01.754Z",
     "confirmationStatus": "pending"
   },
- 
   {
     "userId": 15,
     "name": "Nicole",
     "outbound": {
       "departureCity": "Phoenix, AZ",
       "arrivalCity": "Bozeman, MT",
-      "airline": "Southwest",
-      "flightNumber": "1575",
+      "airline": "",
+      "flightNumber": "716",
       "departure": "2026-09-09T08:05",
-      "arrival": "2026-09-09T14:40",
+      "arrival": "2026-09-09T13:25",
       "confirmation": ""
     },
     "return": {
       "departureCity": "Bozeman, MT",
       "arrivalCity": "Phoenix, AZ",
       "airline": "",
-      "flightNumber": "",
+      "flightNumber": "1255d",
       "departure": "2026-09-14T14:30",
       "arrival": "2026-09-14T20:30",
       "confirmation": ""
