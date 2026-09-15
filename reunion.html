@@ -105,49 +105,6 @@
       animation: fadeInUp 0.8s ease-out;
     }
 
-    /* Countdown Timer */
-    .countdown-container {
-      margin-top: 20px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 15px;
-      backdrop-filter: blur(10px);
-      display: inline-block;
-    }
-
-    .countdown-title {
-      font-size: 1rem;
-      margin-bottom: 10px;
-      opacity: 0.9;
-      font-weight: 500;
-    }
-
-    .countdown-timer {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .countdown-item {
-      text-align: center;
-      min-width: 70px;
-    }
-
-    .countdown-number {
-      font-size: 2rem;
-      font-weight: 700;
-      display: block;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    }
-
-    .countdown-label {
-      font-size: 0.8rem;
-      opacity: 0.9;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
     /* Navigation Tabs */
     .nav-tabs {
       display: flex;
@@ -761,21 +718,6 @@
         height: auto;
       }
 
-      .countdown-container {
-        padding: 14px;
-      }
-
-      .countdown-title {
-        font-size: 0.9rem;
-      }
-
-      .countdown-number {
-        font-size: 1.5rem;
-      }
-
-      .countdown-label {
-        font-size: 0.72rem;
-      }
     }
 
     /* Utility Classes */
@@ -1124,44 +1066,6 @@
     <h1>🔴 SPRING 94 Dot Connection</h1>
     <p class="subtitle">Stay Connected, Share Memories, Plan Adventures</p>
     
-    <!-- Countdown Timer -->
-    <div class="countdown-container">
-      <div class="countdown-title">⏰ Countdown to Montana Glamping Adventure</div>
-      <div class="countdown-timer" id="countdown">
-        <div class="countdown-item">
-          <span class="countdown-number" id="days">250</span>
-          <span class="countdown-label">Days</span>
-        </div>
-      </div>
-    </div>
-    <script>
-    // Inline countdown to ensure it runs immediately
-    (function() {
-      function updateCountdown() {
-        const reunionDate = new Date('September 9, 2026 00:00:00').getTime();
-        const now = new Date().getTime();
-        const distance = reunionDate - now;
-
-        const daysElement = document.getElementById('days');
-        
-        if (!daysElement) return;
-
-        if (distance < 0) {
-          document.getElementById('countdown').innerHTML = '<div style="font-size: 1.5rem; font-weight: bold;">🎉 The Adventure Has Begun! 🎉</div>';
-          return;
-        }
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-
-        daysElement.textContent = days;
-      }
-      
-      // Run immediately
-      updateCountdown();
-      // Update every minute
-      setInterval(updateCountdown, 60000);
-    })();
-    </script>
   </header>
 
   <!-- Sticky Quick Links Navigation -->
@@ -3158,31 +3062,6 @@ https://tamimoooo.github.io/agenda/reunion.html
       }
     }
 
-    // Countdown Timer Function
-    function updateCountdown() {
-      const reunionDate = new Date('September 9, 2026 00:00:00').getTime();
-      const now = new Date().getTime();
-      const distance = reunionDate - now;
-
-      const daysElement = document.getElementById('days');
-      
-      if (!daysElement) {
-        console.error('Countdown element not found');
-        return;
-      }
-
-      if (distance < 0) {
-        document.getElementById('countdown').innerHTML = '<div style="font-size: 1.5rem; font-weight: bold;">🎉 The Adventure Has Begun! 🎉</div>';
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-
-      daysElement.textContent = days;
-      
-      console.log(`Countdown updated: ${days} days`);
-    }
-
     // Toggle Questions Form visibility
     function toggleQuestionsForm() {
       const content = document.getElementById('questionsFormContent');
@@ -3312,9 +3191,6 @@ https://tamimoooo.github.io/agenda/reunion.html
       // Load saved trip details on page load
       loadTripDetails();
       
-      // Start countdown timer immediately and update every minute for testing
-      setTimeout(updateCountdown, 100); // Small delay to ensure DOM is ready
-      setInterval(updateCountdown, 60000); // Update every minute
     });
   </script>
 </body>
