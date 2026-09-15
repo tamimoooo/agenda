@@ -1168,11 +1168,7 @@
   <nav id="quickLinks" style="position: sticky; top: 0; z-index: 999; background: linear-gradient(135deg, #8B0000 0%, #5C0000 100%); box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 8px 0; transition: all 0.3s ease;">
     <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 10px;">
       <div style="display: flex; gap: 6px; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: thin; padding: 4px 0;">
-        <a href="trip-dashboard.html" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #8B0000; padding: 6px 16px; border-radius: 15px; text-decoration: none; font-size: 0.85rem; font-weight: bold; transition: all 0.2s ease; flex-shrink: 0; box-shadow: 0 2px 8px rgba(255,215,0,0.3);">📊 Dashboard</a>
         <a href="#contacts" onclick="scrollToSection('contacts', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">📇 Contacts</a>
-        <a href="#trip-overview" onclick="scrollToSection('trip-overview', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">💰 Overview</a>
-        <a href="#activities" onclick="scrollToSection('activities', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">🎯 Activities</a>
-        <a href="#travel-info" onclick="scrollToSection('travel-info', event); return false;" style="background: rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0;">✈️ Travel</a>
         <button onclick="collapseAll()" style="background: rgba(255,255,255,0.3); color: white; padding: 6px 12px; border-radius: 15px; border: none; font-size: 0.8rem; backdrop-filter: blur(10px); transition: all 0.2s ease; flex-shrink: 0; cursor: pointer; font-weight: 500;">📦 Collapse</button>
       </div>
     </div>
@@ -1273,244 +1269,7 @@
       </div>
     </div>
 
-    <!-- Trip Details Section -->
-    <div class="section">
-      <div class="section-header" id="trip-section-header" onclick="toggleSection('trips')">
-        <h2 class="section-title">
-          <span class="toggle-icon" id="trips-icon">▶</span>
-          ⛺ Dots Go Glamping - Yellowstone 2026 (Last Update 06/22/2026))
-        </h2>
-      </div>
-      <div class="section-content" id="trips-content">
         
-   <!-- Trip Overview -->
-<div class="trip-card highlight">
-  <div class="trip-title">⛺ Dots Go Glamping</div>
-  
-  <div style="display: grid; gap: 12px; margin: 15px 0;">
-    <p style="margin: 0;"><strong>📍 Location:</strong> Under Canvas Yellowstone - North Yellowstone (Paradise Valley), MT</p>
-    <p style="margin: 0;"><strong>✈️ Airport:</strong> Bozeman Yellowstone International Airport BZN</p>
-    <p style="margin: 0;"><strong>📅 Dates:</strong> <span style="color: var(--primary-color); font-weight: bold;">September 9-14, 2026</span></p>
-  </div>
-  
-  <div style="border: 2px solid var(--border-color); border-radius: 10px; padding: 15px; background: #f8f9fa; margin: 15px 0;">
-    <h4 style="color: var(--primary-dark); margin: 0 0 12px 0; font-size: 1.1rem;">📅 Accommodation Schedule</h4>
-    <div style="display: grid; gap: 10px;">
-      <div style="padding: 8px; background: white; border-radius: 5px;">
-        <strong>🏨 Night 1:</strong> September 9-10<br>
-        <a href="https://www.hilton.com/en/hotels/bznhtht-home2-suites-bozeman-midtown/" target="_blank" rel="noopener" style="color: var(--primary-color); text-decoration: none; font-size: 0.95rem;">
-          Home2 Suites by Hilton Bozeman Midtown 🔗
-        </a><br>
-        <span style="font-size: 0.9rem; color: #666;">1760 Baxter Lane, Bozeman, Montana, 59715, USA</span>
-      </div>
-      <div style="padding: 8px; background: white; border-radius: 5px;">
-        <strong>⛺ Nights 2-3:</strong> September 10-12, 2026<br>
-        <a href="https://www.undercanvas.com/camps/north-yellowstone/" target="_blank" rel="noopener" style="color: var(--primary-color); text-decoration: none; font-size: 0.95rem;">
-          Under Canvas Yellowstone (Glamping) 🔗
-        </a><br>
-        <span style="font-size: 0.9rem; color: #666;">139 Pine Creek Road, Livingston, MT 59047</span>
-      </div>
-      <div style="padding: 8px; background: white; border-radius: 5px;">
-        <strong>🏨 Night 4:</strong> September 12-13, 2026<br>
-        <span style="color: var(--text-primary); font-size: 0.95rem; font-weight: 600;">West Yellowstone Lodge</span><br>
-        <span style="font-size: 0.9rem; color: #666; font-style: italic;">(Details coming soon)</span>
-      </div>
-      <div style="padding: 8px; background: white; border-radius: 5px;">
-        <strong>🏨 Night 5:</strong> September 13-14, 2026<br>
-        <a href="https://www.hilton.com/en/hotels/bznfcht-home2-suites-bozeman-four-corners/" target="_blank" rel="noopener" style="color: var(--primary-color); text-decoration: none; font-size: 0.95rem;">
-          Home2 Suites By Hilton Bozeman Four Corners 🔗
-        </a><br>
-        <span style="font-size: 0.9rem; color: #666;">110 Homestake Drive, Bozeman, MT 59718</span>
-      </div>
-    </div>
-    <p style="margin-top: 10px; font-size: 0.95rem; color: #666; font-style: italic; font-weight: bold;">
-      Note: Sherri has reserved 6 rooms for our convenience; however, these reservations are optional and not mandatory. If you decide to stay at a different hotel, please inform Sherri before September 6th.
-    </p>
-  </div>
-  
-  <p style="margin-top: 15px; font-size: 1.1rem;">
-    Experience luxury camping in one of America's most iconic national parks!
-    Glamping combines the beauty of nature with the comfort of a hotel.
-  </p>
-
-</div>
-
-<!-- Next Meeting Info -->
-<div style="margin-top: 25px; padding: 20px; border: 2px solid var(--border-color); border-radius: 10px; background: white;">
-  <h4 style="color: var(--primary-color); margin-bottom: 10px;">
-    📅 Next Planning Meeting
-  </h4>
-  <p style="margin: 5px 0;">
-    <strong>None Planned</strong>
-  </p>
-
-  <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
-    <a href="https://teams.microsoft.com/meet/244803074039445?p=OToa0IdaetqjmJvfDx"
-       target="_blank"
-       style="display: inline-block; padding: 10px 20px; background: #5b5fc7; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
-      💻 Join Meeting
-    </a>
-
-    <a href="https://tamimoooo.github.io/agenda/MeetingMins06192026.pdf"
-       target="_blank"
-       style="display: inline-block; padding: 10px 20px; background: #777; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
-      📄 View Meeting Mins from June 16, 2026
-    </a>
-  </div>
-</div>
-
-<!-- Action Items & Questions -->
-<div style="margin-top: 25px; padding: 20px; border: 2px solid var(--border-color); border-radius: 10px; background: white;">
-  <!-- Action Items -->
-  <div style="padding: 20px; border: 2px dashed var(--border-color); border-radius: 10px; background: #fafafa;">
-    <h4 style="color: var(--primary-color); margin-bottom: 15px;">
-      ✅ Action Items <span style="font-size: 0.7rem; color: #999;">(Updated Feb 8, 2026)</span>
-    </h4>
-    <ul style="margin: 0; padding-left: 20px; line-height: 1.6;">
-      <li style="margin-top: 10px;">
-        <strong>Email Logistics Committee Flight Details</strong><br>
-      </li>
-     
-      <li style="margin-top: 10px;">
-        <strong>Committee Members:</strong><br>
-        <small style="color: #666; font-style: italic; font-size: 0.85rem; line-height: 1.4;">
-          Logistics: Sherri, Janita, Dana<br>
-          Activities: Nicole, Melanie, Tamika <br>
-          Hospitality: Summer, Rochelle     </small>
-      </li>
-      <li style="margin-top: 10px;">
-        <strong>Questions?</strong><br>
-        Have questions before the meeting? Click below to submit them.
-      </li>
-    </ul>
-	   
-	   <!-- Submit Questions Form (Collapsible) -->
-	   <div style="margin-top: 20px; background: white; border-radius: 10px; border: 2px solid var(--primary-color); overflow: hidden;">
-	     <div
-	       onclick="toggleQuestionsForm()"
-	       style="padding: 15px 20px; background: linear-gradient(135deg, #DAA520 0%, #B8860B 100%); color: white; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: var(--transition);"
-	       onmouseover="this.style.background='linear-gradient(135deg, #B8860B 0%, #8B6914 100%)'"
-	       onmouseout="this.style.background='linear-gradient(135deg, #DAA520 0%, #B8860B 100%)'"
-	     >
-	       <h5 style="margin: 0; font-size: 1.1rem;">
-	         ❓ Submit Your Questions
-	       </h5>
-	       <span id="questionsToggle" style="font-size: 1.2rem; font-weight: bold; transition: transform 0.3s;">▶</span>
-	     </div>
-	     
-	     <div id="questionsFormContent" style="display: none; padding: 20px;">
-	       <form id="questionsForm" style="display: flex; flex-direction: column; gap: 15px;">
-	       <div>
-	         <label for="questionName" style="display: block; margin-bottom: 5px; font-weight: 600; color: var(--text-primary);">
-	           Your Name <span style="color: red;">*</span>
-	         </label>
-	         <input
-	           type="text"
-	           id="questionName"
-	           required
-	           style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem;"
-	           placeholder="Enter your name"
-	         />
-	       </div>
-	       
-	       <div>
-	         <label for="questionEmail" style="display: block; margin-bottom: 5px; font-weight: 600; color: var(--text-primary);">
-	           Your Email <span style="color: red;">*</span>
-	         </label>
-	         <input
-	           type="email"
-	           id="questionEmail"
-	           required
-	           style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem;"
-	           placeholder="your.email@example.com"
-	         />
-	       </div>
-	       
-	       <div>
-	         <label for="questionText" style="display: block; margin-bottom: 5px; font-weight: 600; color: var(--text-primary);">
-	           Your Question(s) <span style="color: red;">*</span>
-	         </label>
-	         <textarea
-	           id="questionText"
-	           required
-	           rows="5"
-	           style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 5px; font-size: 1rem; resize: vertical;"
-	           placeholder="Enter your questions or concerns here..."
-	         ></textarea>
-	       </div>
-	       
-	       <button
-	         type="submit"
-	         style="padding: 12px 24px; background: #DAA520; color: white; border: none; border-radius: 5px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: var(--transition);"
-	         onmouseover="this.style.background='#B8860B'"
-	         onmouseout="this.style.background='#DAA520'"
-	       >
-	         📤 Submit Question
-	       </button>
-	       </form>
-	       <div id="questionStatus" style="margin-top: 15px; padding: 10px; border-radius: 5px; display: none;"></div>
-	     </div>
-	   </div>
-	 </div>
-
-</div>
-
-
-<!-- Trip Details Link -->
-<div style="margin-top: 25px; padding: 30px; border: 3px solid var(--primary-color); border-radius: 15px; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); text-align: center;">
-  <h3 style="color: var(--primary-color); margin-bottom: 15px; font-size: 1.5rem;">
-    📋 Complete Trip Planning Details
-  </h3>
-  <p style="margin-bottom: 20px; color: var(--text-secondary); font-size: 1.1rem;">
-    View detailed costs, activities, travel information, and more
-  </p>
-  <a href="trip-dashboard.html"
-     style="display: inline-block; padding: 15px 40px; background: linear-gradient(135deg, #DAA520 0%, #B8860B 100%); color: white; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 1.2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.3s ease;"
-     onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(0,0,0,0.15)'"
-     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.1)'">
-    🗺️ View Trip Dashboard
-  </a>
-</div>
-
-        <!-- Packing Suggestions - HIDDEN FOR NOW -->
-        <!-- Uncomment when ready to show packing list
-        <div class="trip-card">
-          <div class="subsection-header" onclick="toggleSubsection('packing')">
-            <h3 class="subsection-title">🎒 Packing Suggestions</h3>
-            <span class="subsection-toggle" id="packing-toggle">▶</span>
-          </div>
-          <div class="subsection-content" id="packing-content">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
-            <div>
-              <h4 style="color: var(--primary-color);">Clothing</h4>
-              <ul style="margin-left: 20px; font-size: 0.95rem;">
-                <li>Layers (mornings/evenings are cool)</li>
-                <li>Comfortable hiking shoes</li>
-                <li>Rain jacket</li>
-                <li>Sun hat & sunglasses</li>
-                <li>Casual evening wear</li>
-              </ul>
-            </div>
-            <div>
-              <h4 style="color: var(--primary-color);">Essentials</h4>
-              <ul style="margin-left: 20px; font-size: 0.95rem;">
-                <li>Sunscreen & bug spray</li>
-                <li>Reusable water bottle</li>
-                <li>Camera/phone charger</li>
-                <li>Personal medications</li>
-                <li>Toiletries</li>
-              </ul>
-            </div>
-          </div>
-          <p style="margin-top: 15px;"><em>Full packing list will be provided closer to trip date.</em></p>
-          </div>
-        </div>
-        -->
-
-
-      </div>
-    </div>
-
   </div>
 
   <!-- Add/Edit Contact Modal -->
@@ -1699,19 +1458,6 @@
         }
       }
       
-      // For trip cards, auto-expand them when navigating via quick links
-      if (sectionId === 'trip-overview' || sectionId === 'activities' || sectionId === 'travel-info') {
-        const cardContent = document.getElementById(`${sectionId}-content`);
-        if (cardContent && !cardContent.classList.contains('expanded')) {
-          toggleTripCard(sectionId);
-        }
-        // Also ensure the parent trips section is expanded
-        const tripsContent = document.getElementById('trips-content');
-        if (tripsContent && !tripsContent.classList.contains('expanded')) {
-          toggleSection('trips');
-        }
-      }
-      
       // Smooth scroll to the element
       setTimeout(() => {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1784,13 +1530,6 @@
     // Open section and scroll to element
     function openSectionAndScroll(subsectionId, elementId, event) {
       if (event) event.preventDefault();
-      
-      // First, open the main "trips" section if it's not open
-      const tripsContent = document.getElementById('trips-content');
-      const tripsIcon = document.getElementById('trips-icon');
-      if (tripsContent && !tripsContent.classList.contains('expanded')) {
-        toggleSection('trips');
-      }
       
       // Then open the subsection
       const subsectionContent = document.getElementById(`${subsectionId}-content`);
@@ -1894,15 +1633,6 @@
         console.error('Error loading activities:', error);
         const container = document.getElementById('confirmed-activities-list');
         container.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Unable to load activities. Please try again later.</p>';
-      }
-    }
-
-    // Scroll to top of trip section
-    function scrollToTop(event) {
-      if (event) event.preventDefault();
-      const header = document.getElementById('trip-section-header');
-      if (header) {
-        header.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
 
@@ -2295,7 +2025,7 @@ Submitted: ${new Date(formData.submittedDate).toLocaleString()}
         
         // Note: Data is NOT saved to localStorage - only sent to admin via email
 
-        alert('✅ Your tentmate details have been sent to admin successfully!\n\n📊 Check the View Trip Dashboard in 24 hours for updates.');
+        alert('✅ Your tentmate details have been sent to admin successfully!');
         
         // Reset form and reload submitted list
         e.target.reset();
@@ -2685,7 +2415,7 @@ Submitted: ${new Date(activityData.submittedDate).toLocaleString()}
         
         // Note: Data is NOT saved to localStorage - only sent to admin via email
         
-        alert('✅ Your activity suggestion has been sent to admin successfully!\n\n📊 Check the View Trip Dashboard in 24 hours for updates.');
+        alert('✅ Your activity suggestion has been sent to admin successfully!');
         
         // Reset form
         e.target.reset();
@@ -3077,7 +2807,7 @@ SPECIAL REQUESTS: ${tripDetails.specialRequests || 'None'}
         // Note: Data is NOT saved to localStorage - only sent to admin via email
         // This prevents cross-device confusion and ensures admin has the authoritative data
         
-        alert('✅ Your flight and trip details have been sent to admin successfully!\n\n📊 Check the View Trip Dashboard in 24 hours for updates.');
+        alert('✅ Your flight and trip details have been sent to admin successfully!');
         
       } catch (error) {
         console.error('EmailJS Error:', error);
